@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// device RGB colorspace.
 - (nullable instancetype)initWithHbcp_propertyListValue:(id)value;
 
+- (NSString *)hbcp_propertyListValue;
+
 @end
 
 NS_ASSUME_NONNULL_END

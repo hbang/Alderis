@@ -12,7 +12,10 @@ XCODEPROJ_NAME = Alderis
 
 Alderis_XCODEFLAGS = DYLIB_INSTALL_NAME_BASE=/Library/Frameworks
 
+SUBPROJECTS = lcpshim
+
 include $(THEOS_MAKE_PATH)/xcodeproj.mk
+include $(THEOS_MAKE_PATH)/aggregate.mk
 
 internal-Alderis-stage::
 	@# Copy postinst

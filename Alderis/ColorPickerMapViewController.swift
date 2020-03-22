@@ -63,7 +63,7 @@ class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
 		brightnessRightImageView.translatesAutoresizingMaskIntoConstraints = false
 		brightnessRightImageView.tintColor = imageTintColor
 
-		let brightnessStackView = UIStackView(arrangedSubviews: [brightnessSlider])// brightnessLeftImageView, brightnessSlider, brightnessRightImageView ])
+		let brightnessStackView = UIStackView(arrangedSubviews: [ brightnessLeftImageView, brightnessSlider, brightnessRightImageView ])
 		brightnessStackView.translatesAutoresizingMaskIntoConstraints = false
 		brightnessStackView.axis = .horizontal
 		brightnessStackView.alignment = .center

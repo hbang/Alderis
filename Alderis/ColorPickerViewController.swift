@@ -11,14 +11,21 @@ import UIKit
 @objc(HBColorPickerViewController)
 open class ColorPickerViewController: UIViewController {
 
-	weak var delegate: ColorPickerDelegate? {
+	@objc static let defaultColor = UIColor(white: 0.6, alpha: 1)
+
+	@objc open weak var delegate: ColorPickerDelegate? {
 		didSet {
 			innerViewController?.delegate = delegate
 		}
 	}
-	var overrideSmartInvert = true {
+	@objc open var overrideSmartInvert = true {
 		didSet {
 			innerViewController?.overrideSmartInvert = overrideSmartInvert
+		}
+	}
+	@objc open var color = ColorPickerViewController.defaultColor {
+		didSet {
+			innerViewController?.color = color
 		}
 	}
 
@@ -58,6 +65,9 @@ open class ColorPickerViewController: UIViewController {
 		containerView.addSubview(backgroundView)
 
 		innerViewController = ColorPickerInnerViewController()
+		innerViewController.delegate = delegate
+		innerViewController.overrideSmartInvert = overrideSmartInvert
+		innerViewController.color = color
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)
 		innerViewController.view.translatesAutoresizingMaskIntoConstraints = false

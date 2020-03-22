@@ -8,9 +8,13 @@
 
 import UIKit
 
-@objc protocol ColorPickerDelegate: NSObjectProtocol {
+@objc(HBColorPickerDelegate)
+public protocol ColorPickerDelegate: NSObjectProtocol {
 
-	@objc func colorPicker(_ colorPicker: ColorPickerViewController, didSelectColor color: UIColor)
-	@objc optional func colorPickerDidCancel(_ colorPicker: ColorPickerViewController)
+	@objc(colorPicker:didSelectColor:)
+	func colorPicker(_ colorPicker: ColorPickerViewController, didSelectColor color: UIColor)
+
+	@objc(colorPickerDidCancel:)
+	optional func colorPickerDidCancel(_ colorPicker: ColorPickerViewController)
 
 }

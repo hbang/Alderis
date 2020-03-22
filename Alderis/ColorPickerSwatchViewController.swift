@@ -232,6 +232,7 @@ class ColorPickerSwatchViewController: UIViewController, ColorPickerTabProtocol 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
 		preferredContentSize = rootStackView.frame.size
+		updateColor()
 	}
 
 	@objc private func gestureRecognizerFired(_ sender: UIGestureRecognizer) {

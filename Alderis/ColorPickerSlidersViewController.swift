@@ -78,6 +78,9 @@ class ColorPickerSlidersViewController: UIViewController, ColorPickerTabProtocol
 			textField.delegate = self
 			textField.returnKeyType = .next
 			textField.keyboardType = .numberPad
+			textField.autocapitalizationType = .none
+			textField.autocorrectionType = .no
+			textField.spellCheckingType = .no
 			textField.textAlignment = .right
 			textField.font = UIFont.systemFont(ofSize: 16)
 			fields.append(textField)
@@ -105,6 +108,9 @@ class ColorPickerSlidersViewController: UIViewController, ColorPickerTabProtocol
 		hexTextField.delegate = self
 		hexTextField.textAlignment = .right
 		hexTextField.returnKeyType = .done
+		hexTextField.autocapitalizationType = .none
+		hexTextField.autocorrectionType = .no
+		hexTextField.spellCheckingType = .no
 		hexTextField.font = UIFont.systemFont(ofSize: 16)
 
 		eggLabel = UILabel()
@@ -141,6 +147,11 @@ class ColorPickerSlidersViewController: UIViewController, ColorPickerTabProtocol
 		updateMode()
 	}
 
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		updateColor(color, force: true)
+	}
+
 	@objc func segmentControlChanged(_ sender: UISegmentedControl) {
 		view.endEditing(true)
 		mode = Mode(rawValue: sender.selectedSegmentIndex)!
@@ -154,8 +165,8 @@ class ColorPickerSlidersViewController: UIViewController, ColorPickerTabProtocol
 		updateTintColor()
 	}
 
-	func updateColor(_ newValue: UIColor) {
-		if color != newValue {
+	func updateColor(_ newValue: UIColor, force: Bool = false) {
+		if color != newValue || force {
 			_color = newValue
 			rawColor = RawColor(_color)
 

@@ -27,7 +27,7 @@ class ColorPickerInnerViewController: UIViewController {
 	weak var delegate: ColorPickerDelegate?
 	var overrideSmartInvert = true
 
-	private var color = UIColor(white: 0.6, alpha: 1) {
+	var color = UIColor.white {
 		didSet {
 			colorDidChange()
 		}

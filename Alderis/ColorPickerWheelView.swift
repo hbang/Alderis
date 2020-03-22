@@ -58,7 +58,9 @@ class ColorPickerWheelView: UIView {
 		} else {
 			// TODO
 		}
-		let colors = [ 0, 60, 120, 180, 240, 300, 360 ].map { h in
+		let colors = [
+			0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360
+		].map { h in
 			UIColor(hue: CGFloat(h) / 360, saturation: 1, brightness: 1, alpha: 1).cgColor
 		}
 		hueLayer.colors = colors
@@ -121,12 +123,13 @@ class ColorPickerWheelView: UIView {
 		let cornerRadius = bounds.size.height / 2
 		hueLayer.frame = bounds
 		saturationLayer.frame = bounds
-		saturationMask.frame = bounds
+		saturationMask.frame = saturationLayer.bounds
 		brightnessLayer.frame = bounds
 		hueLayer.cornerRadius = cornerRadius
 		saturationLayer.cornerRadius = cornerRadius
 		saturationMask.cornerRadius = cornerRadius
 		brightnessLayer.cornerRadius = cornerRadius
+		updateSelectionPoint()
 	}
 
 	private func updateColor() {
@@ -139,13 +142,11 @@ class ColorPickerWheelView: UIView {
 
 	private func updateSelectionPoint() {
 		let selectionPoint = pointForColor(color, in: hueLayer.frame.size)
-		var fingerXOffset: CGFloat = 0
 		var fingerYOffset: CGFloat = 0
 		if isFingerDown {
-			fingerXOffset = -20
 			fingerYOffset = selectionPoint.y < hueLayer.frame.size.height / 2 ? 40 : -40
 		}
-		selectionViewXConstraint.constant = hueLayer.frame.origin.x + selectionPoint.x - (selectionView.frame.size.width / 2) + fingerXOffset
+		selectionViewXConstraint.constant = hueLayer.frame.origin.x + selectionPoint.x - (selectionView.frame.size.width / 2)
 		selectionViewYConstraint.constant = hueLayer.frame.origin.y + selectionPoint.y - (selectionView.frame.size.height / 2) + fingerYOffset
 	}
 
@@ -174,7 +175,9 @@ class ColorPickerWheelView: UIView {
 	@objc private func gestureRecognizerFired(_ sender: UIGestureRecognizer) {
 		switch sender.state {
 		case .began, .changed, .ended:
-			let location = sender.location(in: containerView)
+			var location = sender.location(in: containerView)
+			location.x -= hueLayer.frame.origin.x
+			location.y -= hueLayer.frame.origin.y
 			var br: CGFloat = 0
 			color?.getHue(nil, saturation: nil, brightness: &br, alpha: nil)
 			color = colorAt(position: location, in: hueLayer.frame.size, brightness: br)
@@ -196,6 +199,9 @@ class ColorPickerWheelView: UIView {
 			updateSelectionPoint()
 			UIView.animate(withDuration: 0.2, animations: {
 				self.containerView.layoutIfNeeded()
+				self.updateSelectionPoint()
+			}, completion: { _ in
+				self.updateSelectionPoint()
 			})
 			if sender.state == .began {
 				touchDownFeedbackGenerator.impactOccurred()

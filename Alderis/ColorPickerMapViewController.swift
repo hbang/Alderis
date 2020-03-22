@@ -85,25 +85,38 @@ class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
 		])
 	}
 
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		updateColor(color, force: true)
+		wheelView.color = color
+	}
+
 	@objc private func brightnessSliderChanged() {
 		rawColor = RawColor(h: rawColor.h, s: rawColor.s, br: CGFloat(brightnessSlider.value), color: _color)
 		_color = UIColor(hue: rawColor.h, saturation: rawColor.s, brightness: rawColor.br, alpha: 1)
 		colorPickerDelegate.colorPicker(didSelectColor: color)
 		wheelView.color = color
+		updateBrightnessSliderTintColor()
 	}
 
-	private func updateColor(_ newValue: UIColor) {
-		if _color != newValue {
+	private func updateBrightnessSliderTintColor() {
+		var h: CGFloat = 0
+		var br: CGFloat = 0
+		color.getHue(&h, saturation: nil, brightness: &br, alpha: nil)
+		brightnessSlider.tintColor = UIColor(hue: h, saturation: 0.75, brightness: br, alpha: 1)
+	}
+
+	private func updateColor(_ newValue: UIColor, force: Bool = false) {
+		if _color != newValue || force {
 			_color = newValue
 			wheelView.color = newValue
 
 			var h: CGFloat = 0
-			var s: CGFloat = 0
 			var br: CGFloat = 0
-			newValue.getHue(&h, saturation: &s, brightness: &br, alpha: nil)
+			newValue.getHue(&h, saturation: nil, brightness: &br, alpha: nil)
 			rawColor = RawColor(_color)
 			brightnessSlider.value = Float(br)
-			brightnessSlider.tintColor = UIColor(hue: h, saturation: 0.75, brightness: br, alpha: 1)
+			updateBrightnessSliderTintColor()
 		}
 	}
 

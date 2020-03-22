@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ColorPickerCircleView: UIView {
+@objc(HBColorPickerCircleView)
+open class ColorPickerCircleView: UIView {
 
-	var borderColor: UIColor? {
+	@objc var borderColor: UIColor? {
 		get { return layer.borderColor == nil ? nil : UIColor(cgColor: layer.borderColor!) }
 		set { layer.borderColor = newValue?.cgColor }
 	}
@@ -27,16 +28,16 @@ class ColorPickerCircleView: UIView {
 		layer.shadowRadius = 1
 	}
 
-	required init?(coder: NSCoder) {
+	required public init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	override func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 		layer.cornerRadius = frame.size.width / 2
 	}
 
-	override func didMoveToWindow() {
+	override open func didMoveToWindow() {
 		super.didMoveToWindow()
 		let scale = window?.screen.scale ?? 1
 		layer.borderWidth = (scale > 2 ? 2 : 1) / scale

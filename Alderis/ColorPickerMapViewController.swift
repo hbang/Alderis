@@ -47,20 +47,22 @@ class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
 		if #available(iOS 13, *) {
 			minImage = UIImage(systemName: "sun.min")!
 			maxImage = UIImage(systemName: "sun.max")!
-			imageTintColor = .label
+			imageTintColor = .secondaryLabel
 		} else {
-			// TODO
-			minImage = UIImage()
-			maxImage = UIImage()
-			imageTintColor = .black
+			let bundle = Bundle(for: type(of: self))
+			minImage = UIImage(named: "sun.min", in: bundle, compatibleWith: nil)!
+			maxImage = UIImage(named: "sun.max", in: bundle, compatibleWith: nil)!
+			imageTintColor = UIColor(white: 60 / 255, alpha: 0.6)
 		}
 
 		let brightnessLeftImageView = UIImageView(image: minImage)
 		brightnessLeftImageView.translatesAutoresizingMaskIntoConstraints = false
+		brightnessLeftImageView.contentMode = .center
 		brightnessLeftImageView.tintColor = imageTintColor
 
 		let brightnessRightImageView = UIImageView(image: maxImage)
 		brightnessRightImageView.translatesAutoresizingMaskIntoConstraints = false
+		brightnessRightImageView.contentMode = .center
 		brightnessRightImageView.tintColor = imageTintColor
 
 		let brightnessStackView = UIStackView(arrangedSubviews: [ brightnessLeftImageView, brightnessSlider, brightnessRightImageView ])
@@ -82,6 +84,9 @@ class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
 			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
 			mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
 			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+			brightnessLeftImageView.widthAnchor.constraint(equalTo: brightnessRightImageView.widthAnchor),
+			brightnessLeftImageView.heightAnchor.constraint(equalTo: brightnessLeftImageView.widthAnchor),
+			brightnessRightImageView.heightAnchor.constraint(equalTo: brightnessRightImageView.widthAnchor)
 		])
 	}
 

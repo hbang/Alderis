@@ -26,6 +26,7 @@
 		CF73D34F241F9E28000B1B10 /* UIColor+HBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF73D351241F9FB3000B1B10 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */; };
 		CF83082423F7819A00157D3F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF83082323F7819A00157D3F /* Launch Screen.storyboard */; };
+		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
 		CFE70278241A593200083903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70277241A593200083903 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		CF73D339241F9C23000B1B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
 		CF83082323F7819A00157D3F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFCF774D242113EE00379864 /* AlderisDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlderisDemo.entitlements; sourceTree = "<group>"; };
 		CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HBAdditions.h"; sourceTree = "<group>"; };
 		CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HBAdditions.m"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				CFE70275241A590F00083903 /* LayoutGuide.swift */,
 				CF73D32B241E4720000B1B10 /* RawColor.swift */,
 				CF73D339241F9C23000B1B10 /* Info.plist */,
+				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
 			);
 			path = Alderis;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

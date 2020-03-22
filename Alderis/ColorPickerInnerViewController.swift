@@ -87,19 +87,17 @@ class ColorPickerInnerViewController: UIViewController {
 		bottomSeparatorView.direction = .horizontal
 		buttonsBackgroundView.addSubview(bottomSeparatorView)
 
+		let tabNames = [
+			"square.grid.4x3.fill",
+			"slider.horizontal.below.rectangle",
+			"slider.horizontal.3"
+		]
 		let tabImages: [UIImage]
 		if #available(iOS 13, *) {
-			tabImages = [
-				UIImage(systemName: "square.grid.4x3.fill")!,
-				UIImage(systemName: "slider.horizontal.below.rectangle")!,
-				UIImage(systemName: "slider.horizontal.3")!
-			]
+			tabImages = tabNames.map { name in UIImage(systemName: name)! }
 		} else {
-			tabImages = [
-				UIImage(),
-				UIImage(),
-				UIImage(),
-			]
+			let bundle = Bundle(for: type(of: self))
+			tabImages = tabNames.map { name in UIImage(named: name, in: bundle, compatibleWith: nil)! }
 		}
 
 		for (i, tab) in tabs.enumerated() {

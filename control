@@ -1,17 +1,16 @@
-Package: ws.hbang.alderus
-Name: Alderus Color Picker
+Package: ws.hbang.alderis
+Name: Alderis Color Picker
 Depends: firmware (>= 12.0), firmware (>= 12.2) | ${LIBSWIFT}
 Conflicts: org.thebigboss.libcolorpicker, me.nepeta.libcolorpicker
 Replaces: org.thebigboss.libcolorpicker, me.nepeta.libcolorpicker
 Provides: org.thebigboss.libcolorpicker (= 1.6.7), me.nepeta.libcolorpicker (= 1.6.2-3)
 Version: 1.0
 Architecture: iphoneos-arm
-Description: Support library for tweaks
+Description: Color picker support library for tweaks
 Maintainer: HASHBANG Productions <support@hbang.ws>
 Author: HASHBANG Productions <support@hbang.ws>
 Section: Development
-Icon: file:///Library/PreferenceBundles/Alderus.bundle/icon@3x.png
-Depiction: https://repo.chariz.com/package/ws.hbang.alderus/
+Depiction: https://repo.chariz.com/package/ws.hbang.alderis/
 Support: https://hashbang.productions/support/
 Tag: role::developer, compatible::ios12, compatible::ios13
 dev: hbang

@@ -10,7 +10,7 @@
 		return [self initWithRed:((NSNumber *)array[0]).integerValue / 255.f
 		                   green:((NSNumber *)array[1]).integerValue / 255.f
 		                    blue:((NSNumber *)array[2]).integerValue / 255.f
-											 alpha:array.count == 4 ? ((NSNumber *)array[3]).doubleValue : 1];
+		                    alpha:array.count == 4 ? ((NSNumber *)array[3]).doubleValue : 1];
 	} else if ([value isKindOfClass:NSString.class]) {
 		NSString *string = value;
 		NSUInteger colonLocation = [string rangeOfString:@":"].location;
@@ -35,9 +35,9 @@
 
 		if (string.length == 9) {
 			return [self initWithRed:((hex & 0xFF000000) >> 24) / 255.f
-												 green:((hex & 0x00FF0000) >> 16) / 255.f
-													blue:((hex & 0x0000FF00) >> 8)  / 255.f
-												 alpha:((hex & 0x000000FF) >> 0)  / 255.f];
+			                   green:((hex & 0x00FF0000) >> 16) / 255.f
+		                        blue:((hex & 0x0000FF00) >> 8)  / 255.f
+		                       alpha:((hex & 0x000000FF) >> 0)  / 255.f];
 		} else {
 			CGFloat alpha = 1;
 			if (alphaString.length > 0) {
@@ -47,9 +47,9 @@
 				}
 			}
 			return [self initWithRed:((hex & 0xFF0000) >> 16) / 255.f
-												 green:((hex & 0x00FF00) >> 8)  / 255.f
-													blue:((hex & 0x0000FF) >> 0)  / 255.f
-												 alpha:alpha];
+			                   green:((hex & 0x00FF00) >> 8)  / 255.f
+			                    blue:((hex & 0x0000FF) >> 0)  / 255.f
+			                   alpha:alpha];
 		}
 	}
 

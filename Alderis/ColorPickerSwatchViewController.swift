@@ -10,7 +10,7 @@ import UIKit
 
 class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
-    static let imageName = "square.grid.4x3.fill"
+	static let imageName = "square.grid.4x3.fill"
 
 	static let colorSwatch = [
 		[
@@ -157,10 +157,10 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	let colors = ColorPickerSwatchViewController.colorSwatch
 
-    var colorStackViews: [UIStackView] = []
-    var colorViews: [[UIView]] = []
+	var colorStackViews: [UIStackView] = []
+	var colorViews: [[UIView]] = []
 
-    private var colorDict: [Color: (x: Int, y: Int)] = [:]
+	private var colorDict: [Color: (x: Int, y: Int)] = [:]
 
 	var rootStackView: UIStackView!
 	var selectionView: UIView!
@@ -170,24 +170,24 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        for (y, row) in colors.enumerated() {
-            var colorViewRow: [UIView] = []
-            for (x, color) in row.enumerated() {
-                let colorView = UIView()
-                colorView.accessibilityIgnoresInvertColors = overrideSmartInvert
-                colorView.backgroundColor = color.uiColor
-                colorView.widthAnchor.constraint(equalTo: colorView.heightAnchor).isActive = true
-                colorViewRow.append(colorView)
+		for (y, row) in colors.enumerated() {
+			var colorViewRow: [UIView] = []
+			for (x, color) in row.enumerated() {
+				let colorView = UIView()
+				colorView.accessibilityIgnoresInvertColors = overrideSmartInvert
+				colorView.backgroundColor = color.uiColor
+				colorView.widthAnchor.constraint(equalTo: colorView.heightAnchor).isActive = true
+				colorViewRow.append(colorView)
 
-                colorDict[color] = (x, y)
-            }
-            colorViews.append(colorViewRow)
+				colorDict[color] = (x, y)
+			}
+			colorViews.append(colorViewRow)
 
-            let rowStackView = UIStackView(arrangedSubviews: colorViewRow)
-            rowStackView.axis = .horizontal
-            rowStackView.distribution = .fillEqually
-            colorStackViews.append(rowStackView)
-        }
+			let rowStackView = UIStackView(arrangedSubviews: colorViewRow)
+			rowStackView.axis = .horizontal
+			rowStackView.distribution = .fillEqually
+			colorStackViews.append(rowStackView)
+		}
 
 		rootStackView = UIStackView(arrangedSubviews: colorStackViews)
 		rootStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -219,8 +219,8 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 			view.topAnchor.constraint(equalTo: rootStackView.topAnchor),
 			view.bottomAnchor.constraint(greaterThanOrEqualTo: rootStackView.bottomAnchor),
 			rootStackView.heightAnchor.constraint(
-                equalTo: rootStackView.widthAnchor, multiplier: (1 / CGFloat(colors[0].count)) * CGFloat(colors.count)
-            ),
+				equalTo: rootStackView.widthAnchor, multiplier: (1 / CGFloat(colors[0].count)) * CGFloat(colors.count)
+			),
 			selectionView.widthAnchor.constraint(equalTo: colorViews[0][0].widthAnchor),
 			selectionView.heightAnchor.constraint(equalTo: colorViews[0][0].heightAnchor),
 			selectionViewXConstraint,
@@ -259,7 +259,7 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	override func updateColor() {
 		guard selectionView != nil else { return }
-        let coordinates = colorDict[color]
+		let coordinates = colorDict[color]
 		selectionView.isHidden = coordinates == nil
 		if let (x, y) = coordinates {
 			selectionViewXConstraint.constant = colorViews[y][x].frame.origin.x

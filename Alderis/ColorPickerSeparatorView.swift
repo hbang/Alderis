@@ -18,22 +18,22 @@ class ColorPickerSeparatorView: UIView {
 		case horizontal, vertical
 	}
 
-    var direction: Direction {
+	var direction: Direction {
 		didSet { updateConstraints() }
 	}
 
 	private var widthConstraint: NSLayoutConstraint!
 	private var heightConstraint: NSLayoutConstraint!
 
-    init(direction: Direction) {
-        self.direction = direction
-        super.init(frame: .zero)
+	init(direction: Direction) {
+		self.direction = direction
+		super.init(frame: .zero)
 
 		if #available(iOS 13, *) {
 			// Matches the separator views used in UIAlertController since iOS 13
 			let visualEffectView = UIVisualEffectView(effect:
-                UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator)
-            )
+				UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator)
+			)
 			visualEffectView.frame = bounds
 			visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 			addSubview(visualEffectView)

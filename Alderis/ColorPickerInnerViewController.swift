@@ -10,31 +10,31 @@ import UIKit
 
 class ColorPickerInnerViewController: UIViewController {
 
-    private let tabClasses: [ColorPickerTabViewController.Type] = [
-        ColorPickerSwatchViewController.self,
-        ColorPickerMapViewController.self,
-        ColorPickerSlidersViewController.self
-    ]
+	private let tabClasses: [ColorPickerTabViewController.Type] = [
+		ColorPickerSwatchViewController.self,
+		ColorPickerMapViewController.self,
+		ColorPickerSlidersViewController.self
+	]
 
 	weak var delegate: ColorPickerDelegate?
-    var overrideSmartInvert: Bool
-    var color: Color {
+	var overrideSmartInvert: Bool
+	var color: Color {
 		didSet { colorDidChange() }
 	}
 
-    private var colorPicker: ColorPickerViewController {
-        parent as! ColorPickerViewController
-    }
+	private var colorPicker: ColorPickerViewController {
+		parent as! ColorPickerViewController
+	}
 
-    init(delegate: ColorPickerDelegate?, overrideSmartInvert: Bool, color: Color) {
-        self.delegate = delegate
-        self.overrideSmartInvert = overrideSmartInvert
-        self.color = color
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+	init(delegate: ColorPickerDelegate?, overrideSmartInvert: Bool, color: Color) {
+		self.delegate = delegate
+		self.overrideSmartInvert = overrideSmartInvert
+		self.color = color
+		super.init(nibName: nil, bundle: nil)
+	}
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 
 	private var currentTab = 0 {
 		didSet {
@@ -43,8 +43,8 @@ class ColorPickerInnerViewController: UIViewController {
 	}
 
 	private var pageViewController: UIPageViewController!
-    private var tabs: [ColorPickerTabViewController] = []
-    private var tabButtons: [UIButton] = []
+	private var tabs: [ColorPickerTabViewController] = []
+	private var tabButtons: [UIButton] = []
 	private var cancelButton: UIButton!
 	private var saveButton: UIButton!
 	private var tabsBackgroundView: UIView!
@@ -55,8 +55,8 @@ class ColorPickerInnerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        tabs = tabClasses.map { $0.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color) }
-        tabs.forEach { _ = $0.view }
+		tabs = tabClasses.map { $0.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color) }
+		tabs.forEach { _ = $0.view }
 
 		backgroundView = UIView()
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ class ColorPickerInnerViewController: UIViewController {
 		tabsBackgroundView.accessibilityIgnoresInvertColors = overrideSmartInvert
 		view.addSubview(tabsBackgroundView)
 
-        let topSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
+		let topSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
 		topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		tabsBackgroundView.addSubview(topSeparatorView)
 
@@ -77,7 +77,7 @@ class ColorPickerInnerViewController: UIViewController {
 		buttonsBackgroundView.accessibilityIgnoresInvertColors = overrideSmartInvert
 		view.addSubview(buttonsBackgroundView)
 
-        let bottomSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
+		let bottomSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
 		bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		buttonsBackgroundView.addSubview(bottomSeparatorView)
 
@@ -87,7 +87,7 @@ class ColorPickerInnerViewController: UIViewController {
 			button.accessibilityIgnoresInvertColors = overrideSmartInvert
 			button.tag = i
 			button.accessibilityLabel = tab.title
-            button.setImage(tab.image, for: .normal)
+			button.setImage(tab.image, for: .normal)
 			button.addTarget(self, action: #selector(tabButtonTapped), for: .touchUpInside)
 			tabButtons.append(button)
 		}
@@ -117,7 +117,7 @@ class ColorPickerInnerViewController: UIViewController {
 		saveButton.setTitle("Done", for: .normal)
 		saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
 
-        let buttonSeparatorView = ColorPickerSeparatorView(direction: .vertical)
+		let buttonSeparatorView = ColorPickerSeparatorView(direction: .vertical)
 		buttonSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 
 		let buttonsView = UIStackView(arrangedSubviews: [cancelButton, buttonSeparatorView, saveButton])
@@ -135,7 +135,7 @@ class ColorPickerInnerViewController: UIViewController {
 		heightConstraint = pageViewController.view.heightAnchor.constraint(equalToConstant: 300)
 		heightConstraint.priority = .defaultHigh
 
-        let tabsHeight: CGFloat = 44
+		let tabsHeight: CGFloat = 44
 		NSLayoutConstraint.activate([
 			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -186,7 +186,7 @@ class ColorPickerInnerViewController: UIViewController {
 
 	private func updateHeightConstraint() {
 		DispatchQueue.main.async {
-            self.tabs.forEach { $0.view.layoutIfNeeded() }
+			self.tabs.forEach { $0.view.layoutIfNeeded() }
 			let preferredHeight = self.tabs[self.currentTab].preferredContentSize.height
 			if preferredHeight > 0 {
 				self.heightConstraint?.constant = preferredHeight
@@ -206,26 +206,26 @@ class ColorPickerInnerViewController: UIViewController {
 	}
 
 	@objc private func saveTapped() {
-        delegate?.colorPicker(colorPicker, didSelect: color.uiColor)
+		delegate?.colorPicker(colorPicker, didSelect: color.uiColor)
 		dismiss(animated: true)
 	}
 
 	private func colorDidChange() {
-        let foregroundColor: UIColor = color.isDark ? .white : .black
+		let foregroundColor: UIColor = color.isDark ? .white : .black
 
-        view.tintColor = color.uiColor
-        tabsBackgroundView.backgroundColor = color.uiColor
-        buttonsBackgroundView.backgroundColor = color.uiColor
+		view.tintColor = color.uiColor
+		tabsBackgroundView.backgroundColor = color.uiColor
+		buttonsBackgroundView.backgroundColor = color.uiColor
 		cancelButton.tintColor = foregroundColor
 		saveButton.tintColor = foregroundColor
 
 		for (i, button) in tabButtons.enumerated() {
-            button.tintColor = foregroundColor.withAlphaComponent(i == currentTab ? 1 : 0.6)
+			button.tintColor = foregroundColor.withAlphaComponent(i == currentTab ? 1 : 0.6)
 		}
 
-        tabs.forEach { $0.color = color }
+		tabs.forEach { $0.color = color }
 
-        backgroundView.backgroundColor = color.uiColor.withAlphaComponent(0.1)
+		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(0.1)
 	}
 
 	private func tabDidChange(oldValue: Int) {
@@ -242,6 +242,6 @@ class ColorPickerInnerViewController: UIViewController {
 
 extension ColorPickerInnerViewController: ColorPickerTabDelegate {
 	func colorPicker(didSelect color: Color) {
-        self.color = color
+		self.color = color
 	}
 }

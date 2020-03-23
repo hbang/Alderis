@@ -34,9 +34,9 @@ class ColorPickerWheelView: UIView {
 	private let touchDownFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 	private let touchUpFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    init(color: Color) {
-        self.color = color
-        super.init(frame: .zero)
+	init(color: Color) {
+		self.color = color
+		super.init(frame: .zero)
 
 		containerView = UIView()
 		containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,8 +130,8 @@ class ColorPickerWheelView: UIView {
 	}
 
 	private func updateColor() {
-        brightnessLayer.opacity = Float(1 - color.brightness)
-        selectionView.backgroundColor = color.uiColor
+		brightnessLayer.opacity = Float(1 - color.brightness)
+		selectionView.backgroundColor = color.uiColor
 		updateSelectionPoint()
 	}
 
@@ -152,13 +152,13 @@ class ColorPickerWheelView: UIView {
 		let handleRange = size.width / 2
 		let handleDistance = min(sqrt(x * x + y * y), handleRange)
 		let s = round(100 / handleRange * handleDistance)
-        return Color(hue: h / 360, saturation: s / 100, brightness: color.brightness, alpha: 1)
+		return Color(hue: h / 360, saturation: s / 100, brightness: color.brightness, alpha: 1)
 	}
 
 	private func pointForColor(_ color: Color, in size: CGSize) -> CGPoint {
 		let handleRange = size.width / 2
-        let handleAngle = (color.hue * 360) * (.pi / 180)
-        let handleDistance = color.saturation * handleRange
+		let handleAngle = (color.hue * 360) * (.pi / 180)
+		let handleDistance = color.saturation * handleRange
 		let x = (size.width / 2) + handleDistance * cos(handleAngle)
 		let y = (size.height / 2) + handleDistance * sin(handleAngle)
 		return CGPoint(x: x, y: y)

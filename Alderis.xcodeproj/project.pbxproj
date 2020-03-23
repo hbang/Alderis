@@ -110,6 +110,7 @@
 				CF39D43F222BC07C001EF57F /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		CF39D43F222BC07C001EF57F /* Products */ = {
 			isa = PBXGroup;

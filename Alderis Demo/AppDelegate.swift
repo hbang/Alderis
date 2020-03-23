@@ -14,15 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	var navigationController: UINavigationController!
-    var colorPickerViewController: ColorPickerViewController!
+	var colorPickerViewController: ColorPickerViewController!
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		window = UIWindow(frame: UIScreen.main.bounds)
 
-        let tableViewController = UITableViewController()
-        tableViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Present", style: .plain, target: self, action: #selector(presentColorPicker)
-        )
+		let tableViewController = UITableViewController()
+		tableViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+			title: "Present", style: .plain, target: self, action: #selector(presentColorPicker)
+		)
 
 		navigationController = UINavigationController(rootViewController: tableViewController)
 		window!.rootViewController = navigationController
@@ -31,14 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		colorPickerViewController = ColorPickerViewController()
 		colorPickerViewController.delegate = self
 		colorPickerViewController.color = UIColor(red: 0.333333, green: 0.0627451, blue: 0.160784, alpha: 1)
-        presentColorPicker()
+		presentColorPicker()
 
 		return true
 	}
 
-    @objc func presentColorPicker() {
-        navigationController.present(colorPickerViewController, animated: true)
-    }
+	@objc func presentColorPicker() {
+		navigationController.present(colorPickerViewController, animated: true)
+	}
 
 }
 

@@ -10,43 +10,43 @@ import UIKit
 
 class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
-    static let imageName = "slider.horizontal.3"
+	static let imageName = "slider.horizontal.3"
 
-    private enum Mode: CaseIterable {
+	private enum Mode: CaseIterable {
 		case rgb, hsb
 
-        var title: String {
-            switch self {
-            case .rgb: return "RGB"
-            case .hsb: return "HSB"
-            }
-        }
+		var title: String {
+			switch self {
+			case .rgb: return "RGB"
+			case .hsb: return "HSB"
+			}
+		}
 
-        var components: [Color.Component] {
-            switch self {
-            case .rgb:
-                return [.red, .green, .blue]
-            case .hsb:
-                return [.hue, .saturation, .brightness]
-            }
-        }
+		var components: [Color.Component] {
+			switch self {
+			case .rgb:
+				return [.red, .green, .blue]
+			case .hsb:
+				return [.hue, .saturation, .brightness]
+			}
+		}
 
-        func color(withValues values: [CGFloat]) -> Color {
-            switch self {
-            case .rgb: return Color(red: values[0], green: values[1], blue: values[2], alpha: 1)
-            case .hsb: return Color(hue: values[0], saturation: values[1], brightness: values[2], alpha: 1)
-            }
-        }
+		func color(withValues values: [CGFloat]) -> Color {
+			switch self {
+			case .rgb: return Color(red: values[0], green: values[1], blue: values[2], alpha: 1)
+			case .hsb: return Color(hue: values[0], saturation: values[1], brightness: values[2], alpha: 1)
+			}
+		}
 	}
 
-    private var mode: Mode = .rgb {
+	private var mode: Mode = .rgb {
 		didSet { updateMode() }
 	}
 
 	private var segmentedControl: UISegmentedControl!
-    private var labels: [UILabel] = []
-    private var sliders: [UISlider] = []
-    private var fields: [UITextField] = []
+	private var labels: [UILabel] = []
+	private var sliders: [UISlider] = []
+	private var fields: [UITextField] = []
 	private var hexTextField: UITextField!
 	private var eggLabel: UILabel!
 	private var eggString = ""
@@ -54,7 +54,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-        segmentedControl = UISegmentedControl(items: Mode.allCases.map { $0.title })
+		segmentedControl = UISegmentedControl(items: Mode.allCases.map { $0.title })
 		segmentedControl.translatesAutoresizingMaskIntoConstraints = false
 		segmentedControl.accessibilityIgnoresInvertColors = overrideSmartInvert
 		segmentedControl.selectedSegmentIndex = 0
@@ -71,8 +71,8 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		mainStackView.spacing = 10
 		view.addSubview(mainStackView)
 
-        var colorRows: [UIStackView] = []
-        for _ in mode.components {
+		var colorRows: [UIStackView] = []
+		for _ in mode.components {
 			let label = UILabel()
 			label.translatesAutoresizingMaskIntoConstraints = false
 			label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -103,7 +103,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			stackView.distribution = .fill
 			stackView.spacing = 5
 			mainStackView.addArrangedSubview(stackView)
-            colorRows.append(stackView)
+			colorRows.append(stackView)
 
 			NSLayoutConstraint.activate([
 				label.widthAnchor.constraint(equalToConstant: 50),
@@ -165,33 +165,33 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		mode = Mode.allCases[sender.selectedSegmentIndex]
 	}
 
-    func updateMode() {
-        zip(labels, mode.components).forEach { $0.text = $1.title }
-        updateColor()
-    }
+	func updateMode() {
+		zip(labels, mode.components).forEach { $0.text = $1.title }
+		updateColor()
+	}
 
 	@objc func sliderChanged() {
 		color = mode.color(withValues: sliders.map { CGFloat($0.value) })
 		tabDelegate.colorPicker(didSelect: color)
 	}
 
-    override func updateColor() {
-        for (i, component) in mode.components.enumerated() {
-            sliders[i].value = Float(color[keyPath: component.keyPath])
-            sliders[i].tintColor = component.sliderTintColor(for: color).uiColor
-            fields[i].text = "\(Int(color[keyPath: component.keyPath] * component.limit))"
-        }
+	override func updateColor() {
+		for (i, component) in mode.components.enumerated() {
+			sliders[i].value = Float(color[keyPath: component.keyPath])
+			sliders[i].tintColor = component.sliderTintColor(for: color).uiColor
+			fields[i].text = "\(Int(color[keyPath: component.keyPath] * component.limit))"
+		}
 
-        hexTextField.text = color.hexString
+		hexTextField.text = color.hexString
 
-        if #available(iOS 13, *) {
-        } else {
-            let foregroundColor = color.isDark ? UIColor.white : UIColor.black
-            segmentedControl.setTitleTextAttributes([
-                .foregroundColor: foregroundColor
-            ], for: .selected)
-        }
-    }
+		if #available(iOS 13, *) {
+		} else {
+			let foregroundColor = color.isDark ? UIColor.white : UIColor.black
+			segmentedControl.setTitleTextAttributes([
+				.foregroundColor: foregroundColor
+			], for: .selected)
+		}
+	}
 
 }
 
@@ -206,7 +206,7 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		let newString = textField.text!.replacingCharacters(in: Range(range, in: textField.text!)!, with: string)
-        guard !newString.isEmpty else { return true }
+		guard !newString.isEmpty else { return true }
 
 		if fields.contains(textField) {
 			// Numeric only, 0-255
@@ -215,10 +215,10 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 				return false
 			}
 			let index = fields.firstIndex(of: textField)!
-            let limit = mode.components[index].limit
-            guard let value = Int(newString), (0...limit).contains(CGFloat(value)) else { return false }
+			let limit = mode.components[index].limit
+			guard let value = Int(newString), (0...limit).contains(CGFloat(value)) else { return false }
 			sliders[index].value = Float(value) / Float(limit)
-            sliderChanged()
+			sliderChanged()
 		} else if textField == hexTextField {
 			// #AAAAAA
 			eggString += string
@@ -229,7 +229,7 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 				color = Color(red: 51 / 255, green: 181 / 255, blue: 229 / 255, alpha: 1)
 				tabDelegate.colorPicker(didSelect: color)
 				eggLabel.text = "Praise DuARTe"
-                eggLabel.textColor = color.uiColor
+				eggLabel.textColor = color.uiColor
 				eggLabel.isHidden = false
 				eggString = ""
 				return false
@@ -252,8 +252,8 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 
 			guard let uiColor = UIColor(hbcp_propertyListValue: newString) else { return true }
 
-            let color = Color(uiColor: uiColor)
-            self.color = color
+			let color = Color(uiColor: uiColor)
+			self.color = color
 			tabDelegate.colorPicker(didSelect: color)
 		}
 		return true

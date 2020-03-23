@@ -14,11 +14,11 @@ extension UIBlurEffect.Style {
 
 class ColorPickerSeparatorView: UIView {
 
-	enum Direction: Int {
+	enum Direction {
 		case horizontal, vertical
 	}
 
-	var direction = Direction.horizontal {
+	var direction: Direction {
 		didSet {
 			updateConstraints()
 		}
@@ -27,16 +27,19 @@ class ColorPickerSeparatorView: UIView {
 	private var widthConstraint: NSLayoutConstraint!
 	private var heightConstraint: NSLayoutConstraint!
 
-	override init(frame: CGRect) {
-		super.init(frame: frame)
+	init(direction: Direction) {
+		self.direction = direction
+		super.init(frame: .zero)
 
 		if #available(iOS 13, *) {
 			// Matches the separator views used in UIAlertController since iOS 13
-			let visualEffectView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator))
+			let visualEffectView = UIVisualEffectView(effect:
+				UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator)
+			)
 			visualEffectView.frame = bounds
 			visualEffectView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
 			addSubview(visualEffectView)
-			backgroundColor = UIColor.separator
+			backgroundColor = .separator
 		} else {
 			backgroundColor = UIColor(white: 0.5, alpha: 0.5)
 		}
@@ -59,12 +62,10 @@ class ColorPickerSeparatorView: UIView {
 			widthConstraint.isActive = false
 			heightConstraint.isActive = true
 			heightConstraint.constant = constant
-			break
 		case .vertical:
 			widthConstraint.isActive = true
 			heightConstraint.isActive = false
 			widthConstraint.constant = constant
-			break
 		}
 	}
 

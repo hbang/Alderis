@@ -14,26 +14,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	var navigationController: UINavigationController!
+	var colorPickerViewController: ColorPickerViewController!
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		window = UIWindow(frame: UIScreen.main.bounds)
-		navigationController = UINavigationController(rootViewController: UITableViewController())
+
+		let tableViewController = UITableViewController()
+		tableViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+			title: "Present", style: .plain, target: self, action: #selector(presentColorPicker)
+		)
+
+		navigationController = UINavigationController(rootViewController: tableViewController)
 		window!.rootViewController = navigationController
 		window!.makeKeyAndVisible()
 
-		let colorPickerViewController = ColorPickerViewController()
+		colorPickerViewController = ColorPickerViewController()
 		colorPickerViewController.delegate = self
 		colorPickerViewController.color = UIColor(red: 0.333333, green: 0.0627451, blue: 0.160784, alpha: 1)
-		navigationController.present(colorPickerViewController, animated: true, completion: nil)
+		presentColorPicker()
 
 		return true
+	}
+
+	@objc func presentColorPicker() {
+		navigationController.present(colorPickerViewController, animated: true)
 	}
 
 }
 
 extension AppDelegate: ColorPickerDelegate {
 
-	func colorPicker(_ colorPicker: ColorPickerViewController, didSelectColor color: UIColor) {
+	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor) {
 		print("Returned with color \(color)")
 		navigationController.navigationBar.barTintColor = color
 	}

@@ -9,16 +9,14 @@
 import UIKit
 
 protocol ColorPickerWheelViewDelegate {
-
-	func colorPickerWheelView(didSelectColor color: UIColor)
-
+	func colorPickerWheelView(didSelectColor color: Color)
 }
 
 class ColorPickerWheelView: UIView {
 
 	var delegate: ColorPickerWheelViewDelegate?
 
-	var color: UIColor! {
+	var color: Color {
 		didSet {
 			updateColor()
 		}
@@ -38,17 +36,18 @@ class ColorPickerWheelView: UIView {
 	private let touchDownFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 	private let touchUpFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
-	override init(frame: CGRect) {
-		super.init(frame: frame)
+	init(color: Color) {
+		self.color = color
+		super.init(frame: .zero)
 
 		containerView = UIView()
 		containerView.translatesAutoresizingMaskIntoConstraints = false
 		containerView.clipsToBounds = true
 		addSubview(containerView)
 
-		containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.gestureRecognizerFired(_:))))
-		containerView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.gestureRecognizerFired(_:))))
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.gestureRecognizerFired(_:)))
+		containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		containerView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:)))
 		panGestureRecognizer.maximumNumberOfTouches = 1
 		containerView.addGestureRecognizer(panGestureRecognizer)
 
@@ -78,7 +77,7 @@ class ColorPickerWheelView: UIView {
 		saturationMask = CAGradientLayer()
 		saturationMask.type = .radial
 		saturationMask.colors = [ UIColor.white.cgColor, UIColor.clear.cgColor ]
-		saturationMask.locations = [ NSNumber(value: 0), NSNumber(value: 1) ]
+		saturationMask.locations = [ 0, 1 ]
 		saturationMask.startPoint = CGPoint(x: 0.5, y: 0.5)
 		saturationMask.endPoint = CGPoint(x: 1, y: 1)
 		saturationMask.allowsGroupOpacity = false
@@ -133,10 +132,8 @@ class ColorPickerWheelView: UIView {
 	}
 
 	private func updateColor() {
-		var br: CGFloat = 0
-		color?.getHue(nil, saturation: nil, brightness: &br, alpha: nil)
-		brightnessLayer.opacity = Float(1 - br)
-		selectionView.backgroundColor = color
+		brightnessLayer.opacity = Float(1 - color.brightness)
+		selectionView.backgroundColor = color.uiColor
 		updateSelectionPoint()
 	}
 
@@ -150,23 +147,20 @@ class ColorPickerWheelView: UIView {
 		selectionViewYConstraint.constant = hueLayer.frame.origin.y + selectionPoint.y - (selectionView.frame.size.height / 2) + fingerYOffset
 	}
 
-	private func colorAt(position: CGPoint, in size: CGSize, brightness br: CGFloat) -> UIColor {
+	private func colorAt(position: CGPoint, in size: CGSize) -> Color {
 		let x = (size.width / 2) - position.x
 		let y = (size.height / 2) - position.y
 		let h = 180 + round(atan2(y, x) * (180 / .pi))
 		let handleRange = size.width / 2
 		let handleDistance = min(sqrt(x * x + y * y), handleRange)
 		let s = round(100 / handleRange * handleDistance)
-		return UIColor(hue: h / 360, saturation: s / 100, brightness: br, alpha: 1)
+		return Color(hue: h / 360, saturation: s / 100, brightness: color.brightness, alpha: 1)
 	}
 
-	private func pointForColor(_ color: UIColor, in size: CGSize) -> CGPoint {
-		var h: CGFloat = 0
-		var s: CGFloat = 0
-		color.getHue(&h, saturation: &s, brightness: nil, alpha: nil)
+	private func pointForColor(_ color: Color, in size: CGSize) -> CGPoint {
 		let handleRange = size.width / 2
-		let handleAngle = (h * 360) * (.pi / 180)
-		let handleDistance = s * handleRange
+		let handleAngle = (color.hue * 360) * (.pi / 180)
+		let handleDistance = color.saturation * handleRange
 		let x = (size.width / 2) + handleDistance * cos(handleAngle)
 		let y = (size.height / 2) + handleDistance * sin(handleAngle)
 		return CGPoint(x: x, y: y)
@@ -178,11 +172,8 @@ class ColorPickerWheelView: UIView {
 			var location = sender.location(in: containerView)
 			location.x -= hueLayer.frame.origin.x
 			location.y -= hueLayer.frame.origin.y
-			var br: CGFloat = 0
-			color?.getHue(nil, saturation: nil, brightness: &br, alpha: nil)
-			color = colorAt(position: location, in: hueLayer.frame.size, brightness: br)
+			color = colorAt(position: location, in: hueLayer.frame.size)
 			delegate?.colorPickerWheelView(didSelectColor: color)
-			break
 		case .possible, .cancelled, .failed:
 			break
 		@unknown default:
@@ -192,6 +183,7 @@ class ColorPickerWheelView: UIView {
 		if sender is UITapGestureRecognizer {
 			return
 		}
+
 		switch sender.state {
 		case .began, .ended, .cancelled:
 			isFingerDown = sender.state == .began
@@ -208,7 +200,6 @@ class ColorPickerWheelView: UIView {
 			} else {
 				touchUpFeedbackGenerator.impactOccurred()
 			}
-			break
 		case .possible, .changed, .failed:
 			break
 		@unknown default:

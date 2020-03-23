@@ -12,8 +12,12 @@ import UIKit
 open class ColorPickerCircleView: UIView {
 
 	@objc var borderColor: UIColor? {
-		get { return layer.borderColor == nil ? nil : UIColor(cgColor: layer.borderColor!) }
-		set { layer.borderColor = newValue?.cgColor }
+		get {
+			layer.borderColor.map(UIColor.init(cgColor:))
+		}
+		set {
+			layer.borderColor = newValue?.cgColor
+		}
 	}
 
 	override init(frame: CGRect) {

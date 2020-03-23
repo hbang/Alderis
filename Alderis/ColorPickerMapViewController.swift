@@ -8,71 +8,35 @@
 
 import UIKit
 
-class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
+class ColorPickerMapViewController: ColorPickerTabViewController {
 
-	weak var colorPickerDelegate: ColorPickerTabDelegate!
-	var color: UIColor! {
-		get {
-			return _color
-		}
-		set {
-			updateColor(newValue)
-		}
-	}
-	private var _color: UIColor!
-	var overrideSmartInvert = true
+	static let imageName = "slider.horizontal.below.rectangle"
 
 	private var wheelView: ColorPickerWheelView!
-	private var brightnessSlider: UISlider!
-
-	private var rawColor = RawColor(.white)
+	private var sliders = [ColorPickerMapSlider]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		wheelView = ColorPickerWheelView()
+		wheelView = ColorPickerWheelView(color: color)
 		wheelView.translatesAutoresizingMaskIntoConstraints = false
 		wheelView.accessibilityIgnoresInvertColors = overrideSmartInvert
 		wheelView.delegate = self
 		view.addSubview(wheelView)
 
-		brightnessSlider = UISlider()
-		brightnessSlider.translatesAutoresizingMaskIntoConstraints = false
-		brightnessSlider.accessibilityIgnoresInvertColors = overrideSmartInvert
-		brightnessSlider.addTarget(self, action: #selector(self.brightnessSliderChanged), for: .valueChanged)
+		sliders = [
+			ColorPickerMapSlider(
+				minImageName: "sun.min", maxImageName: "sun.max", component: .brightness,
+				overrideSmartInvert: overrideSmartInvert
+			)
+		]
 
-		let minImage: UIImage
-		let maxImage: UIImage
-		let imageTintColor: UIColor
-		if #available(iOS 13, *) {
-			minImage = UIImage(systemName: "sun.min")!
-			maxImage = UIImage(systemName: "sun.max")!
-			imageTintColor = .secondaryLabel
-		} else {
-			let bundle = Bundle(for: type(of: self))
-			minImage = UIImage(named: "sun.min", in: bundle, compatibleWith: nil)!
-			maxImage = UIImage(named: "sun.max", in: bundle, compatibleWith: nil)!
-			imageTintColor = UIColor(white: 60 / 255, alpha: 0.6)
+		sliders.forEach {
+			$0.translatesAutoresizingMaskIntoConstraints = false
+			$0.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 		}
 
-		let brightnessLeftImageView = UIImageView(image: minImage)
-		brightnessLeftImageView.translatesAutoresizingMaskIntoConstraints = false
-		brightnessLeftImageView.contentMode = .center
-		brightnessLeftImageView.tintColor = imageTintColor
-
-		let brightnessRightImageView = UIImageView(image: maxImage)
-		brightnessRightImageView.translatesAutoresizingMaskIntoConstraints = false
-		brightnessRightImageView.contentMode = .center
-		brightnessRightImageView.tintColor = imageTintColor
-
-		let brightnessStackView = UIStackView(arrangedSubviews: [ brightnessLeftImageView, brightnessSlider, brightnessRightImageView ])
-		brightnessStackView.translatesAutoresizingMaskIntoConstraints = false
-		brightnessStackView.axis = .horizontal
-		brightnessStackView.alignment = .center
-		brightnessStackView.distribution = .fill
-		brightnessStackView.spacing = 10
-
-		let mainStackView = UIStackView(arrangedSubviews: [ wheelView, brightnessStackView ])
+		let mainStackView = UIStackView(arrangedSubviews: [ wheelView ] + sliders)
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -83,55 +47,32 @@ class ColorPickerMapViewController: UIViewController, ColorPickerTabProtocol {
 			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
 			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
 			mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
-			brightnessLeftImageView.widthAnchor.constraint(equalTo: brightnessRightImageView.widthAnchor),
-			brightnessLeftImageView.heightAnchor.constraint(equalTo: brightnessLeftImageView.widthAnchor),
-			brightnessRightImageView.heightAnchor.constraint(equalTo: brightnessRightImageView.widthAnchor)
+			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
 		])
 	}
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		updateColor(color, force: true)
+		colorDidChange()
+	}
+
+	@objc private func sliderChanged(_ slider: ColorPickerMapSlider) {
+		var color = self.color
+		slider.apply(to: &color)
+		self.setColor(color)
+	}
+
+	override func colorDidChange() {
 		wheelView.color = color
-	}
-
-	@objc private func brightnessSliderChanged() {
-		rawColor = RawColor(h: rawColor.h, s: rawColor.s, br: CGFloat(brightnessSlider.value), color: _color)
-		_color = UIColor(hue: rawColor.h, saturation: rawColor.s, brightness: rawColor.br, alpha: 1)
-		colorPickerDelegate.colorPicker(didSelectColor: color)
-		wheelView.color = color
-		updateBrightnessSliderTintColor()
-	}
-
-	private func updateBrightnessSliderTintColor() {
-		var h: CGFloat = 0
-		var br: CGFloat = 0
-		color.getHue(&h, saturation: nil, brightness: &br, alpha: nil)
-		brightnessSlider.tintColor = UIColor(hue: h, saturation: 0.75, brightness: br, alpha: 1)
-	}
-
-	private func updateColor(_ newValue: UIColor, force: Bool = false) {
-		if _color != newValue || force {
-			_color = newValue
-			wheelView.color = newValue
-
-			var h: CGFloat = 0
-			var br: CGFloat = 0
-			newValue.getHue(&h, saturation: nil, brightness: &br, alpha: nil)
-			rawColor = RawColor(_color)
-			brightnessSlider.value = Float(br)
-			updateBrightnessSliderTintColor()
-		}
+		sliders.forEach { $0.setColor(color) }
 	}
 
 }
 
 extension ColorPickerMapViewController: ColorPickerWheelViewDelegate {
 
-	func colorPickerWheelView(didSelectColor color: UIColor) {
-		self.color = color
-		colorPickerDelegate.colorPicker(didSelectColor: self.color)
+	func colorPickerWheelView(didSelectColor color: Color) {
+		self.setColor(color)
 	}
 
 }

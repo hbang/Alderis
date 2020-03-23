@@ -8,6 +8,13 @@
 
 import UIKit
 
+@objc(HBColorPickerTab)
+public enum ColorPickerTab: Int, CaseIterable {
+	case swatch
+	case map
+	case sliders
+}
+
 @objc(HBColorPickerViewController)
 open class ColorPickerViewController: UIViewController {
 
@@ -25,8 +32,13 @@ open class ColorPickerViewController: UIViewController {
 	}
 	@objc open var color = ColorPickerViewController.defaultColor {
 		didSet {
-			innerViewController?.color = color
+			innerViewController?.color = Color(uiColor: color)
 		}
+	}
+
+	// A width divisible by 12 (the number of items wide in the swatch).
+	var finalWidth: CGFloat {
+		floor(min(384, view.frame.size.width - 30) / 12) * 12
 	}
 
 	private var innerViewController: ColorPickerInnerViewController!
@@ -64,10 +76,9 @@ open class ColorPickerViewController: UIViewController {
 		}
 		containerView.addSubview(backgroundView)
 
-		innerViewController = ColorPickerInnerViewController()
-		innerViewController.delegate = delegate
-		innerViewController.overrideSmartInvert = overrideSmartInvert
-		innerViewController.color = color
+		innerViewController = ColorPickerInnerViewController(
+			delegate: delegate, overrideSmartInvert: overrideSmartInvert, color: .init(uiColor: color)
+		)
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)
 		innerViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -80,16 +91,13 @@ open class ColorPickerViewController: UIViewController {
 		}
 		containerView.addSubview(innerViewController.view)
 
-		var layoutGuide = view as LayoutGuide
+		let layoutGuide: LayoutGuide
 		if #available(iOS 11, *) {
 			layoutGuide = view.safeAreaLayoutGuide
+		} else {
+			layoutGuide = view
 		}
 
-		// Find a width divisible by 12 (the number of items wide in the swatch).
-		var finalWidth = min(384, view.frame.size.width - 30)
-		while finalWidth.truncatingRemainder(dividingBy: 12) != 0 {
-			finalWidth -= 1
-		}
 		widthLayoutConstraint = containerView.widthAnchor.constraint(equalToConstant: finalWidth)
 		bottomLayoutConstraint = layoutGuide.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 15)
 
@@ -110,12 +118,6 @@ open class ColorPickerViewController: UIViewController {
 
 	override open func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
-
-		// Find a width divisible by 12 (the number of items wide in the swatch).
-		var finalWidth = min(384, view.frame.size.width - 30)
-		while finalWidth.truncatingRemainder(dividingBy: 12) != 0 {
-			finalWidth -= 1
-		}
 		widthLayoutConstraint.constant = finalWidth
 	}
 
@@ -130,20 +132,26 @@ open class ColorPickerViewController: UIViewController {
 		}
 	}
 
+	private let keyboardNotificationNames: [Notification.Name] = [
+		UIResponder.keyboardWillShowNotification,
+		UIResponder.keyboardWillHideNotification,
+		UIResponder.keyboardWillChangeFrameNotification
+	]
+
 	override open func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardFrameWillChange(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardFrameWillChange(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardFrameWillChange(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+		keyboardNotificationNames.forEach {
+			NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillChange(_:)), name: $0, object: nil)
+		}
 	}
 
 	override open func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+		keyboardNotificationNames.forEach {
+			NotificationCenter.default.removeObserver(self, name: $0, object: nil)
+		}
 
 		if animated {
 			UIView.animate(withDuration: 0.3) {
@@ -153,16 +161,21 @@ open class ColorPickerViewController: UIViewController {
 	}
 
 	@objc private func keyboardFrameWillChange(_ notification: Notification) {
+		guard let userInfo = notification.userInfo,
+			let keyboardEndFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+			let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+			let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+			else { return }
+
 		let isHiding = notification.name == UIResponder.keyboardWillHideNotification
-		let keyboardEndFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-		let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-		let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
-		let options = UIView.AnimationOptions(rawValue: (curve << 16) + UIView.AnimationOptions.beginFromCurrentState.rawValue)
+
+		var options: UIView.AnimationOptions = .beginFromCurrentState
+		options.insert(.init(rawValue: curve << 16))
 
 		bottomLayoutConstraint.constant = max(isHiding ? 0 : keyboardEndFrame.size.height, 30)
 		UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
 			self.view.layoutIfNeeded()
-		}, completion: nil)
+		})
 	}
 
 }

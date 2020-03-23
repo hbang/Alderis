@@ -165,6 +165,11 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		mode = Mode.allCases[sender.selectedSegmentIndex]
 	}
 
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
+		view.endEditing(true)
+	}
+
 	func updateMode() {
 		zip(labels, mode.components).forEach { $0.text = $1.title }
 		updateColor()

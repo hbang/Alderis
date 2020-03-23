@@ -1,5 +1,5 @@
 //
-//  ColorComponents.swift
+//  Color.swift
 //  Alderis
 //
 //  Created by Adam Demasi on 15/3/20.

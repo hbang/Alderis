@@ -12,7 +12,7 @@ import UIKit
 public protocol ColorPickerDelegate: NSObjectProtocol {
 
 	@objc(colorPicker:didSelectColor:)
-	func colorPicker(_ colorPicker: ColorPickerViewController, didSelectColor color: UIColor)
+	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor)
 
 	@objc(colorPickerDidCancel:)
 	optional func colorPickerDidCancel(_ colorPicker: ColorPickerViewController)

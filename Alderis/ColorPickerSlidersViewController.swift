@@ -25,16 +25,16 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
         var components: [Color.Component] {
             switch self {
             case .rgb:
-                return [.red, .green, .blue, .alpha]
+                return [.red, .green, .blue]
             case .hsb:
-                return [.hue, .saturation, .brightness, .alpha]
+                return [.hue, .saturation, .brightness]
             }
         }
 
         func color(withValues values: [CGFloat]) -> Color {
             switch self {
-            case .rgb: return Color(red: values[0], green: values[1], blue: values[2], alpha: values[3])
-            case .hsb: return Color(hue: values[0], saturation: values[1], brightness: values[2], alpha: values[3])
+            case .rgb: return Color(red: values[0], green: values[1], blue: values[2], alpha: 1)
+            case .hsb: return Color(hue: values[0], saturation: values[1], brightness: values[2], alpha: 1)
             }
         }
 	}

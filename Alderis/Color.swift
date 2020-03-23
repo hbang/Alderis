@@ -81,7 +81,6 @@ extension Color {
         return UIAccessibility.isReduceTransparencyEnabled || differentiateWithoutColor ? 128.0 : 80.0
     }()
 
-    #warning("TODO: Include alpha")
     var perceivedBrightness: CGFloat {
         // W3C perceived brightness algorithm
         return ((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000
@@ -160,10 +159,6 @@ extension Color {
 
         static let brightness: Component = .init(keyPath: \.brightness, limit: 100, title: "Bright") { color in
             Color(hue: color.hue, saturation: 0.75, brightness: color.brightness, alpha: 1)
-        }
-
-        static let alpha: Component = .init(keyPath: \.alpha, limit: 255, title: "Alpha") {
-            Color(white: 1, alpha: $0.alpha)
         }
     }
 }

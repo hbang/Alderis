@@ -24,14 +24,9 @@ class ColorPickerMapViewController: ColorPickerTabViewController {
 		wheelView.delegate = self
 		view.addSubview(wheelView)
 
-        #warning("TODO: Add eye.slash and eye images")
         sliders = [
             ColorPickerMapSlider(
                 minImageName: "sun.min", maxImageName: "sun.max", component: .brightness,
-                overrideSmartInvert: overrideSmartInvert
-            ),
-            ColorPickerMapSlider(
-                minImageName: "eye.slash", maxImageName: "eye", component: .alpha,
                 overrideSmartInvert: overrideSmartInvert
             )
         ]

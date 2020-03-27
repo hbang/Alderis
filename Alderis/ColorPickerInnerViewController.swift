@@ -57,10 +57,11 @@ class ColorPickerInnerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		tabs = tabClasses.map { tabClass in
-			tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
+		for tabClass in tabClasses {
+			let tab = tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
+			_ = tab.view
+			tabs.append(tab)
 		}
-		tabs.forEach { _ = $0.view }
 
 		backgroundView = UIView()
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -190,7 +191,9 @@ class ColorPickerInnerViewController: UIViewController {
 
 	private func updateHeightConstraint() {
 		DispatchQueue.main.async {
-			self.tabs.forEach { $0.view.layoutIfNeeded() }
+			for tab in self.tabs {
+				tab.view.layoutIfNeeded()
+			}
 			let preferredHeight = self.tabs[self.currentTab].preferredContentSize.height
 			if preferredHeight > 0 {
 				self.heightConstraint?.constant = preferredHeight
@@ -224,10 +227,12 @@ class ColorPickerInnerViewController: UIViewController {
 		saveButton.tintColor = foregroundColor
 
 		for (i, button) in tabButtons.enumerated() {
-			button.tintColor = foregroundColor.withAlphaComponent(i == currentTab ? 1 : 0.6)
+			button.tintColor = i == currentTab ? foregroundColor : foregroundColor.withAlphaComponent(0.6)
 		}
 
-		tabs.forEach { $0.color = color }
+		for tab in tabs {
+			tab.color = color
+		}
 
 		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(0.1)
 	}
@@ -245,7 +250,9 @@ class ColorPickerInnerViewController: UIViewController {
 }
 
 extension ColorPickerInnerViewController: ColorPickerTabDelegate {
+
 	func colorPicker(didSelect color: Color) {
 		self.color = color
 	}
+
 }

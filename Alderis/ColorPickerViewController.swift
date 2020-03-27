@@ -30,7 +30,9 @@ open class ColorPickerViewController: UIViewController {
 	}
 
 	// A width divisible by 12 (the number of items wide in the swatch).
-	var finalWidth: CGFloat { floor(min(384, view.frame.size.width - 30) / 12) * 12 }
+	var finalWidth: CGFloat {
+		floor(min(384, view.frame.size.width - 30) / 12) * 12
+	}
 
 	private var innerViewController: ColorPickerInnerViewController!
 	private var backgroundView: UIVisualEffectView!

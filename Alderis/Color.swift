@@ -10,23 +10,35 @@ import UIKit
 
 struct Color: Equatable, Hashable {
 	var red: CGFloat = 0 {
-		didSet { self = .init(red: red, green: green, blue: blue, alpha: alpha) }
+		didSet {
+			self = Color(red: red, green: green, blue: blue, alpha: alpha)
+		}
 	}
 	var green: CGFloat = 0 {
-		didSet { self = .init(red: red, green: green, blue: blue, alpha: alpha) }
+		didSet {
+			self = Color(red: red, green: green, blue: blue, alpha: alpha)
+		}
 	}
 	var blue: CGFloat = 0 {
-		didSet { self = .init(red: red, green: green, blue: blue, alpha: alpha) }
+		didSet {
+			self = Color(red: red, green: green, blue: blue, alpha: alpha)
+		}
 	}
 
 	var hue: CGFloat = 0 {
-		didSet { self = .init(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha) }
+		didSet {
+			self = Color(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+		}
 	}
 	var saturation: CGFloat = 0 {
-		didSet { self = .init(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha) }
+		didSet {
+			self = Color(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+		}
 	}
 	var brightness: CGFloat = 0 {
-		didSet { self = .init(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha) }
+		didSet {
+			self = Color(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+		}
 	}
 
 	var alpha: CGFloat = 0
@@ -81,9 +93,9 @@ extension Color {
 		return UIAccessibility.isReduceTransparencyEnabled || differentiateWithoutColor ? 128.0 : 80.0
 	}()
 
+	// W3C perceived brightness algorithm
 	var perceivedBrightness: CGFloat {
-		// W3C perceived brightness algorithm
-		return ((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000
+		((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000
 	}
 
 	var isDark: Bool { perceivedBrightness < Self.brightnessThreshold }

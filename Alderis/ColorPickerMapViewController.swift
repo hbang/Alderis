@@ -13,7 +13,7 @@ class ColorPickerMapViewController: ColorPickerTabViewController {
 	static let imageName = "slider.horizontal.below.rectangle"
 
 	private var wheelView: ColorPickerWheelView!
-	private var sliders: [ColorPickerMapSlider] = []
+	private var sliders = [ColorPickerMapSlider]()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,10 +33,10 @@ class ColorPickerMapViewController: ColorPickerTabViewController {
 
 		sliders.forEach {
 			$0.translatesAutoresizingMaskIntoConstraints = false
-			$0.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+			$0.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 		}
 
-		let mainStackView = UIStackView(arrangedSubviews: [wheelView] + sliders)
+		let mainStackView = UIStackView(arrangedSubviews: [ wheelView ] + sliders)
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill

@@ -19,7 +19,9 @@ class ColorPickerInnerViewController: UIViewController {
 	weak var delegate: ColorPickerDelegate?
 	var overrideSmartInvert: Bool
 	var color: Color {
-		didSet { colorDidChange() }
+		didSet {
+			colorDidChange()
+		}
 	}
 
 	private var colorPicker: ColorPickerViewController {
@@ -43,8 +45,8 @@ class ColorPickerInnerViewController: UIViewController {
 	}
 
 	private var pageViewController: UIPageViewController!
-	private var tabs: [ColorPickerTabViewController] = []
-	private var tabButtons: [UIButton] = []
+	private var tabs = [ColorPickerTabViewController]()
+	private var tabButtons = [UIButton]()
 	private var cancelButton: UIButton!
 	private var saveButton: UIButton!
 	private var tabsBackgroundView: UIView!
@@ -55,7 +57,9 @@ class ColorPickerInnerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		tabs = tabClasses.map { $0.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color) }
+		tabs = tabClasses.map { tabClass in
+			tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
+		}
 		tabs.forEach { _ = $0.view }
 
 		backgroundView = UIView()
@@ -88,7 +92,7 @@ class ColorPickerInnerViewController: UIViewController {
 			button.tag = i
 			button.accessibilityLabel = tab.title
 			button.setImage(tab.image, for: .normal)
-			button.addTarget(self, action: #selector(tabButtonTapped), for: .touchUpInside)
+			button.addTarget(self, action: #selector(tabButtonTapped(_:)), for: .touchUpInside)
 			tabButtons.append(button)
 		}
 
@@ -120,12 +124,12 @@ class ColorPickerInnerViewController: UIViewController {
 		let buttonSeparatorView = ColorPickerSeparatorView(direction: .vertical)
 		buttonSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 
-		let buttonsView = UIStackView(arrangedSubviews: [cancelButton, buttonSeparatorView, saveButton])
+		let buttonsView = UIStackView(arrangedSubviews: [ cancelButton, buttonSeparatorView, saveButton ])
 		buttonsView.translatesAutoresizingMaskIntoConstraints = false
 		buttonsView.axis = .horizontal
 		buttonsView.alignment = .fill
 
-		let mainStackView = UIStackView(arrangedSubviews: [tabsView, pageViewController.view, buttonsView])
+		let mainStackView = UIStackView(arrangedSubviews: [ tabsView, pageViewController.view, buttonsView ])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -230,7 +234,7 @@ class ColorPickerInnerViewController: UIViewController {
 
 	private func tabDidChange(oldValue: Int) {
 		let direction: UIPageViewController.NavigationDirection = currentTab < oldValue ? .reverse : .forward
-		pageViewController.setViewControllers([tabs[currentTab]], direction: direction, animated: true)
+		pageViewController.setViewControllers([ tabs[currentTab] ], direction: direction, animated: true)
 		colorDidChange()
 
 		UIView.animate(withDuration: 0.2) {

@@ -157,10 +157,10 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	let colors = ColorPickerSwatchViewController.colorSwatch
 
-	var colorStackViews: [UIStackView] = []
-	var colorViews: [[UIView]] = []
+	var colorStackViews = [UIStackView]()
+	var colorViews = [[UIView]]()
 
-	private var colorDict: [Color: (x: Int, y: Int)] = [:]
+	private var colorDict = [Color: (x: Int, y: Int)]()
 
 	var rootStackView: UIStackView!
 	var selectionView: UIView!
@@ -171,7 +171,7 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		super.viewDidLoad()
 
 		for (y, row) in colors.enumerated() {
-			var colorViewRow: [UIView] = []
+			var colorViewRow = [UIView]()
 			for (x, color) in row.enumerated() {
 				let colorView = UIView()
 				colorView.accessibilityIgnoresInvertColors = overrideSmartInvert
@@ -195,8 +195,8 @@ class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		rootStackView.distribution = .fillEqually
 		view.addSubview(rootStackView)
 
-		rootStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired)))
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired))
+		rootStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:)))
 		panGestureRecognizer.maximumNumberOfTouches = 1
 		rootStackView.addGestureRecognizer(panGestureRecognizer)
 

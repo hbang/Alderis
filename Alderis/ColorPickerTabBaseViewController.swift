@@ -19,7 +19,9 @@ class ColorPickerTabViewControllerBase: UIViewController {
 	var overrideSmartInvert: Bool
 
 	var color: Color {
-		didSet { updateColor() }
+		didSet {
+			updateColor()
+		}
 	}
 
 	func updateColor() {}

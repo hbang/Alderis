@@ -17,7 +17,9 @@ class ColorPickerWheelView: UIView {
 	var delegate: ColorPickerWheelViewDelegate?
 
 	var color: Color {
-		didSet { updateColor() }
+		didSet {
+			updateColor()
+		}
 	}
 
 	private var containerView: UIView!
@@ -43,9 +45,9 @@ class ColorPickerWheelView: UIView {
 		containerView.clipsToBounds = true
 		addSubview(containerView)
 
-		containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired)))
-		containerView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(gestureRecognizerFired)))
-		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired))
+		containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		containerView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:)))
 		panGestureRecognizer.maximumNumberOfTouches = 1
 		containerView.addGestureRecognizer(panGestureRecognizer)
 
@@ -74,8 +76,8 @@ class ColorPickerWheelView: UIView {
 
 		saturationMask = CAGradientLayer()
 		saturationMask.type = .radial
-		saturationMask.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
-		saturationMask.locations = [0, 1]
+		saturationMask.colors = [ UIColor.white.cgColor, UIColor.clear.cgColor ]
+		saturationMask.locations = [ 0, 1 ]
 		saturationMask.startPoint = CGPoint(x: 0.5, y: 0.5)
 		saturationMask.endPoint = CGPoint(x: 1, y: 1)
 		saturationMask.allowsGroupOpacity = false
@@ -98,9 +100,9 @@ class ColorPickerWheelView: UIView {
 		selectionViewNormalConstraint.priority = .defaultHigh
 
 		NSLayoutConstraint.activate([
-			containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-			containerView.topAnchor.constraint(equalTo: topAnchor),
-			containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+			containerView.topAnchor.constraint(equalTo: self.topAnchor),
+			containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 			containerView.widthAnchor.constraint(equalTo: containerView.heightAnchor, constant: 30),
 			selectionViewXConstraint,
 			selectionViewYConstraint,

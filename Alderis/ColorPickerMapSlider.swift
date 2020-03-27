@@ -23,7 +23,9 @@ class ColorPickerMapSlider: UIControl {
 	private var slider: UISlider!
 
 	var value: CGFloat {
-		get { CGFloat(slider.value) }
+		get {
+			CGFloat(slider.value)
+		}
 		set {
 			slider.value = Float(newValue)
 		}
@@ -59,7 +61,7 @@ class ColorPickerMapSlider: UIControl {
 		rightImageView.contentMode = .scaleAspectFit
 		rightImageView.tintColor = imageTintColor
 
-		let stackView = UIStackView(arrangedSubviews: [leftImageView, slider, rightImageView])
+		let stackView = UIStackView(arrangedSubviews: [ leftImageView, slider, rightImageView ])
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.axis = .horizontal
 		stackView.alignment = .center
@@ -68,10 +70,10 @@ class ColorPickerMapSlider: UIControl {
 		addSubview(stackView)
 
 		NSLayoutConstraint.activate([
-			stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-			stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-			stackView.topAnchor.constraint(equalTo: topAnchor),
-			stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+			stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+			stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+			stackView.topAnchor.constraint(equalTo: self.topAnchor),
+			stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
 			leftImageView.widthAnchor.constraint(equalToConstant: 22),
 			leftImageView.widthAnchor.constraint(equalTo: rightImageView.widthAnchor),
 			leftImageView.heightAnchor.constraint(equalTo: leftImageView.widthAnchor),

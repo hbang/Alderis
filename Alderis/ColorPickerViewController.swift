@@ -25,7 +25,7 @@ open class ColorPickerViewController: UIViewController {
 	}
 	@objc open var color = ColorPickerViewController.defaultColor {
 		didSet {
-			innerViewController?.color = .init(uiColor: color)
+			innerViewController?.color = Color(uiColor: color)
 		}
 	}
 
@@ -133,7 +133,7 @@ open class ColorPickerViewController: UIViewController {
 		super.viewDidAppear(animated)
 
 		keyboardNotificationNames.forEach {
-			NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillChange), name: $0, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillChange(_:)), name: $0, object: nil)
 		}
 	}
 

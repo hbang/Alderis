@@ -19,7 +19,9 @@ class ColorPickerSeparatorView: UIView {
 	}
 
 	var direction: Direction {
-		didSet { updateConstraints() }
+		didSet {
+			updateConstraints()
+		}
 	}
 
 	private var widthConstraint: NSLayoutConstraint!
@@ -35,7 +37,7 @@ class ColorPickerSeparatorView: UIView {
 				UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator)
 			)
 			visualEffectView.frame = bounds
-			visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			visualEffectView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
 			addSubview(visualEffectView)
 			backgroundColor = .separator
 		} else {

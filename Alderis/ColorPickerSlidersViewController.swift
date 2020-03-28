@@ -50,6 +50,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 	private var sliders = [UISlider]()
 	private var fields = [UITextField]()
 	private var hexTextField: UITextField!
+	private var hexOptions = Color.HexOptions()
 	private var eggLabel: UILabel!
 	private var eggString = ""
 
@@ -95,7 +96,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			textField.autocorrectionType = .no
 			textField.spellCheckingType = .no
 			textField.textAlignment = .right
-			textField.font = UIFont.systemFont(ofSize: 16)
+			textField.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)
 			fields.append(textField)
 
 			let stackView = UIStackView(arrangedSubviews: [ label, slider, textField ])
@@ -121,7 +122,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		hexTextField.autocapitalizationType = .none
 		hexTextField.autocorrectionType = .no
 		hexTextField.spellCheckingType = .no
-		hexTextField.font = UIFont.systemFont(ofSize: 16)
+		hexTextField.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)
 
 		eggLabel = UILabel()
 		eggLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -157,11 +158,6 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		updateMode()
 	}
 
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-		updateColor()
-	}
-
 	@objc func segmentControlChanged(_ sender: UISegmentedControl) {
 		view.endEditing(true)
 		mode = Mode.allCases[sender.selectedSegmentIndex]
@@ -178,6 +174,7 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 	}
 
 	@objc func sliderChanged() {
+		hexOptions = []
 		color = mode.color(withValues: sliders.map { CGFloat($0.value) })
 		tabDelegate.colorPicker(didSelect: color)
 	}
@@ -186,10 +183,10 @@ class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		for (i, component) in mode.components.enumerated() {
 			sliders[i].value = Float(color[keyPath: component.keyPath])
 			sliders[i].tintColor = component.sliderTintColor(for: color).uiColor
-			fields[i].text = "\(Int(color[keyPath: component.keyPath] * component.limit))"
+			fields[i].text = "\(Int((color[keyPath: component.keyPath] * component.limit).rounded()))"
 		}
 
-		hexTextField.text = color.hexString
+		hexTextField.text = color.hexString(with: hexOptions)
 
 		if #available(iOS 13, *) {
 		} else {
@@ -217,22 +214,25 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 
 		if fields.contains(textField) {
 			// Numeric only, 0-255
-			let badCharacterSet = NSCharacterSet(charactersIn: "0123456789").inverted
-			if newString.rangeOfCharacter(from: badCharacterSet) != nil {
+			let badCharacterSet = CharacterSet(charactersIn: "0123456789").inverted
+			guard newString.rangeOfCharacter(from: badCharacterSet) == nil else {
 				return false
 			}
 			let index = fields.firstIndex(of: textField)!
 			let limit = mode.components[index].limit
-			guard let value = Int(newString), (0...limit).contains(CGFloat(value)) else { return false }
-			sliders[index].value = Float(value) / Float(limit)
-			sliderChanged()
+			guard let value = Int(newString), (0...limit).contains(CGFloat(value)) else {
+				return false
+			}
+			// Run this after the input is fully processed by enqueuing it onto the run loop
+			OperationQueue.main.addOperation {
+				self.sliders[index].value = Float(value) / Float(limit)
+				self.sliderChanged()
+			}
 		} else if textField == hexTextField {
 			// #AAAAAA
-			eggString += string
-			if eggString.count > 4 {
-				eggString = String(eggString.dropFirst(eggString.count - 4))
-			}
+			eggString = "\(eggString.suffix(3))\(string)"
 			if eggString.lowercased() == "holo" {
+				hexOptions = []
 				color = Color(red: 51 / 255, green: 181 / 255, blue: 229 / 255, alpha: 1)
 				tabDelegate.colorPicker(didSelect: color)
 				eggLabel.text = "Praise DuARTe"
@@ -242,26 +242,31 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 				return false
 			}
 
-			let expectedLength = newString.hasPrefix("#") ? 7 : 6
-			if newString.count > expectedLength {
+			let canonicalizedString = newString.hasPrefix("#") ? newString.dropFirst() : Substring(newString)
+			guard canonicalizedString.count <= 6 else {
 				return false
 			}
 
-			let badCharacterSet = NSCharacterSet(charactersIn: "0123456789ABCDEFabcdef#").inverted
-			if newString.rangeOfCharacter(from: badCharacterSet) != nil {
+			let badCharacterSet = CharacterSet(charactersIn: "0123456789ABCDEFabcdef").inverted
+			guard canonicalizedString.rangeOfCharacter(from: badCharacterSet) == nil else {
 				return false
 			}
 
-			if newString.count != expectedLength {
+			if canonicalizedString.count != 3 && canonicalizedString.count != 6 {
 				// User is probably still typing it out. Don’t do anything yet.
 				return true
 			}
 
-			guard let uiColor = UIColor(hbcp_propertyListValue: newString) else { return true }
+			guard let uiColor = UIColor(hbcp_propertyListValue: "#\(canonicalizedString)") else {
+				return true
+			}
 
 			let color = Color(uiColor: uiColor)
-			self.color = color
-			tabDelegate.colorPicker(didSelect: color)
+			OperationQueue.main.addOperation {
+				self.hexOptions = canonicalizedString.count == 3 ? .allowShorthand : []
+				self.color = color
+				self.tabDelegate.colorPicker(didSelect: color)
+			}
 		}
 		return true
 	}

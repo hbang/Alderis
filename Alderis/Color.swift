@@ -102,12 +102,34 @@ extension Color {
 }
 
 extension Color {
-	private func hex(_ val: CGFloat) -> String {
-		String(format: "%02X", Int(val * 255) & 0xFF)
+	struct HexOptions: OptionSet {
+		let rawValue: Int
+		static let allowShorthand = HexOptions(rawValue: 1 << 0)
+		static let forceAlpha = HexOptions(rawValue: 1 << 1)
 	}
 
-	var hexString: String {
-		"#\(hex(red))\(hex(green))\(hex(blue))\(alpha == 1 ? "" : hex(alpha))"
+	// if the character in `value` is repeated, `repeatedValue` is a single copy of that character. If
+	// `value` consists of two unique characters, `repeatedValue` is nil
+	// e.g. valid return values are `("AA", "A")` and `("AB", nil)`
+	private func hex(_ val: CGFloat) -> (value: String, repeatedValue: Character?) {
+		let byte = Int(val * 255) & 0xFF
+		let isRepeated = (byte & 0xF) == (byte >> 4)
+		let value = String(format: "%02X", byte)
+		return (value, isRepeated ? value.first : nil)
+	}
+
+	func hexString(with options: HexOptions = []) -> String {
+		let (r, rRep) = hex(red)
+		let (g, gRep) = hex(green)
+		let (b, bRep) = hex(blue)
+		let (a, aRep) = hex(alpha)
+		let showAlpha = options.contains(.forceAlpha) || alpha != 1
+		if options.contains(.allowShorthand),
+			let rRep = rRep, let gRep = gRep, let bRep = bRep, let aRep = aRep {
+			return "#\(rRep)\(gRep)\(bRep)\(showAlpha ? "\(aRep)" : "")"
+		} else {
+			return "#\(r)\(g)\(b)\(showAlpha ? a : "")"
+		}
 	}
 }
 
@@ -161,7 +183,7 @@ extension Color {
 			sliderTint: Color(red: 0, green: 0.478431, blue: 1, alpha: 1)
 		)
 
-		static let hue: Component = .init(keyPath: \.hue, limit: (360 as CGFloat).nextDown, title: "Hue") { color in
+		static let hue: Component = .init(keyPath: \.hue, limit: 360, title: "Hue") { color in
 			Color(hue: color.hue, saturation: 0.75, brightness: 0.5, alpha: 1)
 		}
 

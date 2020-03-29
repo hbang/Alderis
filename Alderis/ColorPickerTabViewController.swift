@@ -1,5 +1,5 @@
 //
-//  ColorPickerTabBaseViewController.swift
+//  ColorPickerTabViewController.swift
 //  Alderis
 //
 //  Created by Kabir Oberai on 23/03/20.
@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ColorPickerTabDelegate: class {
-	func colorPicker(didSelect color: Color)
+	func colorPickerTab(_ tab: ColorPickerTabViewControllerBase, didSelect color: Color)
 }
 
 class ColorPickerTabViewControllerBase: UIViewController {
@@ -18,13 +18,20 @@ class ColorPickerTabViewControllerBase: UIViewController {
 
 	var overrideSmartInvert: Bool
 
-	var color: Color {
+	private(set) var color: Color {
 		didSet {
-			updateColor()
+			colorDidChange()
 		}
 	}
 
-	func updateColor() {}
+	func colorDidChange() {}
+
+	func setColor(_ color: Color, shouldBroadcast: Bool = true) {
+		self.color = color
+		if shouldBroadcast {
+			tabDelegate.colorPickerTab(self, didSelect: color)
+		}
+	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -41,15 +48,15 @@ class ColorPickerTabViewControllerBase: UIViewController {
 
 protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewControllerBase {
 	static var imageName: String { get }
-	var image: UIImage { get }
+	static var image: UIImage { get }
 }
 extension ColorPickerTabViewControllerProtocol {
-	var image: UIImage {
+	static var image: UIImage {
 		if #available(iOS 13, *) {
-			return UIImage(systemName: Self.imageName)!
+			return UIImage(systemName: imageName)!
 		} else {
-			let bundle = Bundle(for: type(of: self))
-			return UIImage(named: Self.imageName, in: bundle, compatibleWith: nil)!
+			let bundle = Bundle(for: self)
+			return UIImage(named: imageName, in: bundle, compatibleWith: nil)!
 		}
 	}
 }

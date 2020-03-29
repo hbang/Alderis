@@ -8,20 +8,34 @@
 
 import UIKit
 
-class ColorPickerInnerViewController: UIViewController {
+extension ColorPickerTab {
+	var tabClass: ColorPickerTabViewController.Type {
+		switch self {
+		case .swatch: return ColorPickerSwatchViewController.self
+		case .map: return ColorPickerMapViewController.self
+		case .sliders: return ColorPickerSlidersViewController.self
+		}
+	}
 
-	private let tabClasses: [ColorPickerTabViewController.Type] = [
-		ColorPickerSwatchViewController.self,
-		ColorPickerMapViewController.self,
-		ColorPickerSlidersViewController.self
-	]
+	var index: Int {
+		Self.allCases.firstIndex(of: self)!
+	}
+}
+
+class ColorPickerInnerViewController: UIViewController {
 
 	weak var delegate: ColorPickerDelegate?
 	var overrideSmartInvert: Bool
-	var color: Color {
-		didSet {
-			colorDidChange()
-		}
+	var color: Color
+
+	var tab: ColorPickerTab {
+		get { ColorPickerTab.allCases[currentTab] }
+		set { currentTab = newValue.index }
+	}
+
+	func setColor(_ color: Color, withSource source: ColorPickerTabViewControllerBase? = nil) {
+		self.color = color
+		colorDidChange(withSource: source)
 	}
 
 	private var colorPicker: ColorPickerViewController {
@@ -32,13 +46,14 @@ class ColorPickerInnerViewController: UIViewController {
 		self.delegate = delegate
 		self.overrideSmartInvert = overrideSmartInvert
 		self.color = color
+		self.currentTab = 0
 		super.init(nibName: nil, bundle: nil)
 	}
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	private var currentTab = 0 {
+	private var currentTab: Int {
 		didSet {
 			tabDidChange(oldValue: oldValue)
 		}
@@ -57,8 +72,8 @@ class ColorPickerInnerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		for tabClass in tabClasses {
-			let tab = tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
+		for tabType in ColorPickerTab.allCases {
+			let tab = tabType.tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
 			_ = tab.view
 			tabs.append(tab)
 		}
@@ -92,7 +107,7 @@ class ColorPickerInnerViewController: UIViewController {
 			button.accessibilityIgnoresInvertColors = overrideSmartInvert
 			button.tag = i
 			button.accessibilityLabel = tab.title
-			button.setImage(tab.image, for: .normal)
+			button.setImage(type(of: tab).image, for: .normal)
 			button.addTarget(self, action: #selector(tabButtonTapped(_:)), for: .touchUpInside)
 			tabButtons.append(button)
 		}
@@ -171,7 +186,7 @@ class ColorPickerInnerViewController: UIViewController {
 		])
 
 		colorDidChange()
-		currentTab = 0
+		tabDidChange(oldValue: currentTab)
 	}
 
 	override func viewWillLayoutSubviews() {
@@ -217,7 +232,7 @@ class ColorPickerInnerViewController: UIViewController {
 		dismiss(animated: true)
 	}
 
-	private func colorDidChange() {
+	private func colorDidChange(withSource source: ColorPickerTabViewControllerBase? = nil) {
 		let foregroundColor: UIColor = color.isDark ? .white : .black
 
 		view.tintColor = color.uiColor
@@ -230,8 +245,11 @@ class ColorPickerInnerViewController: UIViewController {
 			button.tintColor = i == currentTab ? foregroundColor : foregroundColor.withAlphaComponent(0.6)
 		}
 
-		for tab in tabs {
-			tab.color = color
+		// Even though `shouldBroadcast: false` avoids recursion if we call setColor on the callee tab,
+		// doing so on ColorPickerSlidersViewController would reset `hexOptions`, leading to a buggy typing
+		// experience in `hexTextField`
+		for tab in tabs where tab != source {
+			tab.setColor(color, shouldBroadcast: false)
 		}
 
 		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(0.1)
@@ -251,8 +269,8 @@ class ColorPickerInnerViewController: UIViewController {
 
 extension ColorPickerInnerViewController: ColorPickerTabDelegate {
 
-	func colorPicker(didSelect color: Color) {
-		self.color = color
+	func colorPickerTab(_ tab: ColorPickerTabViewControllerBase, didSelect color: Color) {
+		self.setColor(color, withSource: tab)
 	}
 
 }

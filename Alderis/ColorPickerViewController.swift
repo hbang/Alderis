@@ -8,6 +8,13 @@
 
 import UIKit
 
+@objc(HBColorPickerTab)
+public enum ColorPickerTab: Int, CaseIterable {
+	case swatch
+	case map
+	case sliders
+}
+
 @objc(HBColorPickerViewController)
 open class ColorPickerViewController: UIViewController {
 

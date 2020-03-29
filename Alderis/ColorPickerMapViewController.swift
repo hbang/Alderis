@@ -53,17 +53,18 @@ class ColorPickerMapViewController: ColorPickerTabViewController {
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		updateColor()
+		colorDidChange()
 	}
 
 	@objc private func sliderChanged(_ slider: ColorPickerMapSlider) {
-		slider.modify(&color)
-		tabDelegate.colorPicker(didSelect: color)
+		var color = self.color
+		slider.apply(to: &color)
+		self.setColor(color)
 	}
 
-	override func updateColor() {
+	override func colorDidChange() {
 		wheelView.color = color
-		sliders.forEach { $0.update(with: color) }
+		sliders.forEach { $0.setColor(color) }
 	}
 
 }
@@ -71,8 +72,7 @@ class ColorPickerMapViewController: ColorPickerTabViewController {
 extension ColorPickerMapViewController: ColorPickerWheelViewDelegate {
 
 	func colorPickerWheelView(didSelectColor color: Color) {
-		self.color = color
-		tabDelegate.colorPicker(didSelect: color)
+		self.setColor(color)
 	}
 
 }

@@ -12,6 +12,7 @@
 		56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74666242F722A003ED00A /* ColorPickerSlider.swift */; };
 		56C74669242F75E3003ED00A /* ColorPickerNumericSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */; };
 		CF39D44B222BC07E001EF57F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF39D44A222BC07E001EF57F /* Assets.xcassets */; };
+		CF6B3B9E2446A13C000A608B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6B3B9D2446A13C000A608B /* FirstViewController.swift */; };
 		CF73D33A241F9C23000B1B10 /* Alderis.h in Headers */ = {isa = PBXBuildFile; fileRef = CF73D338241F9C23000B1B10 /* Alderis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF73D33D241F9C23000B1B10 /* Alderis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF73D336241F9C23000B1B10 /* Alderis.framework */; };
 		CF73D33F241F9C23000B1B10 /* Alderis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF73D336241F9C23000B1B10 /* Alderis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -65,6 +66,7 @@
 		CF39D43E222BC07C001EF57F /* AlderisDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlderisDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF39D44A222BC07E001EF57F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF39D44F222BC07E001EF57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF6B3B9D2446A13C000A608B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		CF73D32B241E4720000B1B10 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCircleView.swift; sourceTree = "<group>"; };
 		CF73D336241F9C23000B1B10 /* Alderis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alderis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				CFCF774D242113EE00379864 /* AlderisDemo.entitlements */,
 				CF83082323F7819A00157D3F /* Launch Screen.storyboard */,
 				CFE70277241A593200083903 /* AppDelegate.swift */,
+				CF6B3B9D2446A13C000A608B /* FirstViewController.swift */,
 				CF39D44A222BC07E001EF57F /* Assets.xcassets */,
 				CF39D44F222BC07E001EF57F /* Info.plist */,
 			);
@@ -150,8 +153,8 @@
 				569C25572428346900022C60 /* ColorPickerMapSlider.swift */,
 				CFE70280241CBDE700083903 /* ColorPickerMapViewController.swift */,
 				CFE70288241D0E7300083903 /* ColorPickerWheelView.swift */,
-				56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */,
 				CFE70282241CC88D00083903 /* ColorPickerSlidersViewController.swift */,
+				56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */,
 				CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */,
 				CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */,
 				CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */,
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFE70278241A593200083903 /* AppDelegate.swift in Sources */,
+				CF6B3B9E2446A13C000A608B /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

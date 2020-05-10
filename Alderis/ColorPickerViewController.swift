@@ -76,9 +76,8 @@ open class ColorPickerViewController: UIViewController {
 		}
 		containerView.addSubview(backgroundView)
 
-		innerViewController = ColorPickerInnerViewController(
-			delegate: delegate, overrideSmartInvert: overrideSmartInvert, color: .init(uiColor: color)
-		)
+		let color = Color(uiColor: self.color ?? ColorPickerViewController.defaultColor)
+		innerViewController = ColorPickerInnerViewController(delegate: delegate, overrideSmartInvert: overrideSmartInvert, color: color)
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)
 		innerViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +131,7 @@ open class ColorPickerViewController: UIViewController {
 		}
 	}
 
-	private let keyboardNotificationNames: [Notification.Name] = [
+	private let keyboardNotificationNames = [
 		UIResponder.keyboardWillShowNotification,
 		UIResponder.keyboardWillHideNotification,
 		UIResponder.keyboardWillChangeFrameNotification
@@ -165,7 +164,9 @@ open class ColorPickerViewController: UIViewController {
 			let keyboardEndFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
 			let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
 			let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
-			else { return }
+			else {
+				return
+		}
 
 		let isHiding = notification.name == UIResponder.keyboardWillHideNotification
 

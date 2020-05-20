@@ -17,7 +17,7 @@
                BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
                BuildableName = "AlderisDemo.app"
                BlueprintName = "Alderis Demo"
-               ReferencedContainer = "container:Alderis.xcodeproj">
+               ReferencedContainer = "container:Alderis Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
             BuildableName = "AlderisDemo.app"
             BlueprintName = "Alderis Demo"
-            ReferencedContainer = "container:Alderis.xcodeproj">
+            ReferencedContainer = "container:Alderis Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
             BuildableName = "AlderisDemo.app"
             BlueprintName = "Alderis Demo"
-            ReferencedContainer = "container:Alderis.xcodeproj">
+            ReferencedContainer = "container:Alderis Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

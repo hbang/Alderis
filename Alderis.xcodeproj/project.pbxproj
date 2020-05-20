@@ -11,11 +11,7 @@
 		569C25582428346900022C60 /* ColorPickerMapSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C25572428346900022C60 /* ColorPickerMapSlider.swift */; };
 		56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74666242F722A003ED00A /* ColorPickerSlider.swift */; };
 		56C74669242F75E3003ED00A /* ColorPickerNumericSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */; };
-		CF39D44B222BC07E001EF57F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF39D44A222BC07E001EF57F /* Assets.xcassets */; };
-		CF6B3B9E2446A13C000A608B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6B3B9D2446A13C000A608B /* FirstViewController.swift */; };
 		CF73D33A241F9C23000B1B10 /* Alderis.h in Headers */ = {isa = PBXBuildFile; fileRef = CF73D338241F9C23000B1B10 /* Alderis.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CF73D33D241F9C23000B1B10 /* Alderis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF73D336241F9C23000B1B10 /* Alderis.framework */; };
-		CF73D33F241F9C23000B1B10 /* Alderis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CF73D336241F9C23000B1B10 /* Alderis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CF73D343241F9C31000B1B10 /* ColorPickerSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */; };
 		CF73D344241F9C31000B1B10 /* ColorPickerCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */; };
 		CF73D345241F9C31000B1B10 /* ColorPickerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70280241CBDE700083903 /* ColorPickerMapViewController.swift */; };
@@ -29,58 +25,25 @@
 		CF73D34E241F9E13000B1B10 /* UIColor+HBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */; };
 		CF73D34F241F9E28000B1B10 /* UIColor+HBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF73D351241F9FB3000B1B10 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */; };
-		CF83082423F7819A00157D3F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF83082323F7819A00157D3F /* Launch Screen.storyboard */; };
 		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
-		CFE70278241A593200083903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70277241A593200083903 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CF73D33B241F9C23000B1B10 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CF39D436222BC07C001EF57F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF73D335241F9C23000B1B10;
-			remoteInfo = Alderis;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		CF73D33E241F9C23000B1B10 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				CF73D33F241F9C23000B1B10 /* Alderis.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		569C25512427F57000022C60 /* ColorPickerTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerTabViewController.swift; sourceTree = "<group>"; };
 		569C25572428346900022C60 /* ColorPickerMapSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerMapSlider.swift; sourceTree = "<group>"; };
 		56C74666242F722A003ED00A /* ColorPickerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSlider.swift; sourceTree = "<group>"; };
 		56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerNumericSlider.swift; sourceTree = "<group>"; };
-		CF39D43E222BC07C001EF57F /* AlderisDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlderisDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF39D44A222BC07E001EF57F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CF39D44F222BC07E001EF57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF6B3B9D2446A13C000A608B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		CF73D32B241E4720000B1B10 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCircleView.swift; sourceTree = "<group>"; };
 		CF73D336241F9C23000B1B10 /* Alderis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alderis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF73D338241F9C23000B1B10 /* Alderis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alderis.h; sourceTree = "<group>"; };
 		CF73D339241F9C23000B1B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
-		CF83082323F7819A00157D3F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CFCF774D242113EE00379864 /* AlderisDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlderisDemo.entitlements; sourceTree = "<group>"; };
 		CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HBAdditions.h"; sourceTree = "<group>"; };
 		CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HBAdditions.m"; sourceTree = "<group>"; };
 		CFE70273241A4C5500083903 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		CFE70275241A590F00083903 /* LayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutGuide.swift; sourceTree = "<group>"; };
-		CFE70277241A593200083903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSeparatorView.swift; sourceTree = "<group>"; };
 		CFE7027B241A62ED00083903 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
 		CFE7027E241B984600083903 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
@@ -90,14 +53,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CF39D43B222BC07C001EF57F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF73D33D241F9C23000B1B10 /* Alderis.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CF73D333241F9C23000B1B10 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				CF73D337241F9C23000B1B10 /* Alderis */,
-				CF39D440222BC07C001EF57F /* Alderis Demo */,
 				CF39D43F222BC07C001EF57F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,23 +75,9 @@
 		CF39D43F222BC07C001EF57F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF39D43E222BC07C001EF57F /* AlderisDemo.app */,
 				CF73D336241F9C23000B1B10 /* Alderis.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CF39D440222BC07C001EF57F /* Alderis Demo */ = {
-			isa = PBXGroup;
-			children = (
-				CFCF774D242113EE00379864 /* AlderisDemo.entitlements */,
-				CF83082323F7819A00157D3F /* Launch Screen.storyboard */,
-				CFE70277241A593200083903 /* AppDelegate.swift */,
-				CF6B3B9D2446A13C000A608B /* FirstViewController.swift */,
-				CF39D44A222BC07E001EF57F /* Assets.xcassets */,
-				CF39D44F222BC07E001EF57F /* Info.plist */,
-			);
-			path = "Alderis Demo";
 			sourceTree = "<group>";
 		};
 		CF73D337241F9C23000B1B10 /* Alderis */ = {
@@ -182,25 +122,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		CF39D43D222BC07C001EF57F /* Alderis Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CF39D454222BC07E001EF57F /* Build configuration list for PBXNativeTarget "Alderis Demo" */;
-			buildPhases = (
-				CF39D43A222BC07C001EF57F /* Sources */,
-				CF39D43B222BC07C001EF57F /* Frameworks */,
-				CF39D43C222BC07C001EF57F /* Resources */,
-				CF73D33E241F9C23000B1B10 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CF73D33C241F9C23000B1B10 /* PBXTargetDependency */,
-			);
-			name = "Alderis Demo";
-			productName = "Alderis Demo";
-			productReference = CF39D43E222BC07C001EF57F /* AlderisDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
 		CF73D335241F9C23000B1B10 /* Alderis */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF73D340241F9C23000B1B10 /* Build configuration list for PBXNativeTarget "Alderis" */;
@@ -228,10 +149,6 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "HASHBANG Productions";
 				TargetAttributes = {
-					CF39D43D222BC07C001EF57F = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1130;
-					};
 					CF73D335241F9C23000B1B10 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -251,21 +168,11 @@
 			projectRoot = "";
 			targets = (
 				CF73D335241F9C23000B1B10 /* Alderis */,
-				CF39D43D222BC07C001EF57F /* Alderis Demo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CF39D43C222BC07C001EF57F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CF83082423F7819A00157D3F /* Launch Screen.storyboard in Resources */,
-				CF39D44B222BC07E001EF57F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CF73D334241F9C23000B1B10 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,15 +184,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CF39D43A222BC07C001EF57F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CFE70278241A593200083903 /* AppDelegate.swift in Sources */,
-				CF6B3B9E2446A13C000A608B /* FirstViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CF73D332241F9C23000B1B10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,14 +208,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CF73D33C241F9C23000B1B10 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CF73D335241F9C23000B1B10 /* Alderis */;
-			targetProxy = CF73D33B241F9C23000B1B10 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CF39D452222BC07E001EF57F /* Debug */ = {
@@ -433,55 +323,6 @@
 			};
 			name = Release;
 		};
-		CF39D455222BC07E001EF57F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Alderis Demo/AlderisDemo.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
-				INFOPLIST_FILE = "Alderis Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ws.hbang.AlderisDemo;
-				PRODUCT_NAME = AlderisDemo;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CF39D456222BC07E001EF57F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Alderis Demo/AlderisDemo.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
-				INFOPLIST_FILE = "Alderis Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = ws.hbang.AlderisDemo;
-				PRODUCT_NAME = AlderisDemo;
-				SUPPORTS_MACCATALYST = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		CF73D341241F9C23000B1B10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -554,15 +395,6 @@
 			buildConfigurations = (
 				CF39D452222BC07E001EF57F /* Debug */,
 				CF39D453222BC07E001EF57F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CF39D454222BC07E001EF57F /* Build configuration list for PBXNativeTarget "Alderis Demo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CF39D455222BC07E001EF57F /* Debug */,
-				CF39D456222BC07E001EF57F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

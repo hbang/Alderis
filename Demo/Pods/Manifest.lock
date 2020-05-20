@@ -1,0 +1,16 @@
+PODS:
+  - Alderis (1.0)
+
+DEPENDENCIES:
+  - Alderis (from `..`)
+
+EXTERNAL SOURCES:
+  Alderis:
+    :path: ".."
+
+SPEC CHECKSUMS:
+  Alderis: 22ebfe92a1c7f3f411b273a40842e13e760fc936
+
+PODFILE CHECKSUM: ec7a2ee9a64089a4374e61824363ea96330e7a8a
+
+COCOAPODS: 1.9.1

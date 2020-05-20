@@ -76,7 +76,7 @@ open class ColorPickerViewController: UIViewController {
 		}
 		containerView.addSubview(backgroundView)
 
-		let color = Color(uiColor: self.color ?? ColorPickerViewController.defaultColor)
+		let color = Color(uiColor: self.color)
 		innerViewController = ColorPickerInnerViewController(delegate: delegate, overrideSmartInvert: overrideSmartInvert, color: color)
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)

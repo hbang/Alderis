@@ -22,7 +22,7 @@ extension ColorPickerTab {
 	}
 }
 
-class ColorPickerInnerViewController: UIViewController {
+internal class ColorPickerInnerViewController: UIViewController {
 
 	weak var delegate: ColorPickerDelegate?
 	var overrideSmartInvert: Bool

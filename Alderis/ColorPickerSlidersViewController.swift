@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerSlidersViewController: ColorPickerTabViewController {
+internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
 	static let imageName = "slider.horizontal.3"
 

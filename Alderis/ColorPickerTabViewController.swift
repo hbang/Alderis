@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ColorPickerTabDelegate: class {
+internal protocol ColorPickerTabDelegate: class {
 	func colorPickerTab(_ tab: ColorPickerTabViewControllerBase, didSelect color: Color)
 }
 
-class ColorPickerTabViewControllerBase: UIViewController {
+internal class ColorPickerTabViewControllerBase: UIViewController {
 
 	unowned var tabDelegate: ColorPickerTabDelegate
 
@@ -46,7 +46,7 @@ class ColorPickerTabViewControllerBase: UIViewController {
 
 }
 
-protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewControllerBase {
+internal protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewControllerBase {
 	static var imageName: String { get }
 	static var image: UIImage { get }
 }
@@ -61,4 +61,4 @@ extension ColorPickerTabViewControllerProtocol {
 	}
 }
 
-typealias ColorPickerTabViewController = ColorPickerTabViewControllerBase & ColorPickerTabViewControllerProtocol
+internal typealias ColorPickerTabViewController = ColorPickerTabViewControllerBase & ColorPickerTabViewControllerProtocol

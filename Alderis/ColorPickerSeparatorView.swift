@@ -12,7 +12,7 @@ extension UIBlurEffect.Style {
 	static let systemVibrantBackgroundRegular = UIBlurEffect.Style.init(rawValue: 1200)!
 }
 
-class ColorPickerSeparatorView: UIView {
+internal class ColorPickerSeparatorView: UIView {
 
 	enum Direction {
 		case horizontal, vertical

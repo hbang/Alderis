@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerMapViewController: ColorPickerTabViewController {
+internal class ColorPickerMapViewController: ColorPickerTabViewController {
 
 	static let imageName = "slider.horizontal.below.rectangle"
 

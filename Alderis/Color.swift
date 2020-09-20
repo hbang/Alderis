@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Color: Equatable, Hashable {
+internal struct Color: Equatable, Hashable {
 	var red: CGFloat = 0 {
 		didSet {
 			self = Color(red: red, green: green, blue: blue, alpha: alpha)

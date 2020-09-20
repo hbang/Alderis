@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerMapSlider: ColorPickerComponentSlider {
+internal class ColorPickerMapSlider: ColorPickerComponentSlider {
 
 	init(minImageName: String, maxImageName: String, component: Color.Component, overrideSmartInvert: Bool) {
 		super.init(component: component, overrideSmartInvert: overrideSmartInvert)

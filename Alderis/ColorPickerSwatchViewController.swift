@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerSwatchViewController: ColorPickerTabViewController {
+internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	private class ColorView: UIControl {
 		let color: Color

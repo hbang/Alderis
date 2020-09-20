@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol ColorPickerWheelViewDelegate {
+internal protocol ColorPickerWheelViewDelegate {
 	func colorPickerWheelView(didSelectColor color: Color)
 }
 
-class ColorPickerWheelView: UIView {
+internal class ColorPickerWheelView: UIView {
 
 	var delegate: ColorPickerWheelViewDelegate?
 

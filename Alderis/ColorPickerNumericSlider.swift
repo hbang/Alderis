@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerNumericSlider: ColorPickerComponentSlider {
+internal class ColorPickerNumericSlider: ColorPickerComponentSlider {
 
 	private var textField: UITextField!
 

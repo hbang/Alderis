@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ColorPickerSliderBase: UIControl {
+internal class ColorPickerSliderBase: UIControl {
 
 	var overrideSmartInvert: Bool {
 		didSet {
@@ -63,14 +63,14 @@ class ColorPickerSliderBase: UIControl {
 
 }
 
-protocol ColorPickerSliderProtocol: ColorPickerSliderBase {
+internal protocol ColorPickerSliderProtocol: ColorPickerSliderBase {
 	func setColor(_ color: Color)
 	func apply(to color: inout Color)
 }
 
-typealias ColorPickerSlider = ColorPickerSliderBase & ColorPickerSliderProtocol
+internal typealias ColorPickerSlider = ColorPickerSliderBase & ColorPickerSliderProtocol
 
-class ColorPickerComponentSlider: ColorPickerSlider {
+internal class ColorPickerComponentSlider: ColorPickerSlider {
 
 	let component: Color.Component
 

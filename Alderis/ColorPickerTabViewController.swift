@@ -16,7 +16,7 @@ internal class ColorPickerTabViewControllerBase: UIViewController {
 
 	unowned var tabDelegate: ColorPickerTabDelegate
 
-	var overrideSmartInvert: Bool
+	private(set) var configuration: ColorPickerConfiguration
 
 	private(set) var color: Color {
 		didSet {
@@ -37,9 +37,9 @@ internal class ColorPickerTabViewControllerBase: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	required init(tabDelegate: ColorPickerTabDelegate, overrideSmartInvert: Bool, color: Color) {
+	required init(tabDelegate: ColorPickerTabDelegate, configuration: ColorPickerConfiguration, color: Color) {
 		self.tabDelegate = tabDelegate
-		self.overrideSmartInvert = overrideSmartInvert
+		self.configuration = configuration
 		self.color = color
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -51,14 +51,7 @@ internal protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewContro
 	static var image: UIImage { get }
 }
 extension ColorPickerTabViewControllerProtocol {
-	static var image: UIImage {
-		if #available(iOS 13, *) {
-			return UIImage(systemName: imageName)!
-		} else {
-			let bundle = Bundle(for: self)
-			return UIImage(named: imageName, in: bundle, compatibleWith: nil)!
-		}
-	}
+	static var image: UIImage { Assets.systemImage(named: imageName, fontSize: 20)! }
 }
 
 internal typealias ColorPickerTabViewController = ColorPickerTabViewControllerBase & ColorPickerTabViewControllerProtocol

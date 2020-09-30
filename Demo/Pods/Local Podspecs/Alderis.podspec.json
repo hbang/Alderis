@@ -21,7 +21,12 @@
     "git": "https://github.com/hbang/Alderis.git",
     "tag": "1.0"
   },
-  "source_files": "Alderis",
   "requires_arc": true,
+  "source_files": [
+    "Alderis/**"
+  ],
+  "resource_bundles": {
+    "Alderis": "Alderis/Assets.xcassets"
+  },
   "swift_version": "5.0"
 }

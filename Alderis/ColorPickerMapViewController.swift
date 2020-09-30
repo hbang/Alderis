@@ -20,14 +20,14 @@ internal class ColorPickerMapViewController: ColorPickerTabViewController {
 
 		wheelView = ColorPickerWheelView(color: color)
 		wheelView.translatesAutoresizingMaskIntoConstraints = false
-		wheelView.accessibilityIgnoresInvertColors = overrideSmartInvert
+		wheelView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		wheelView.delegate = self
 		view.addSubview(wheelView)
 
 		sliders = [
 			ColorPickerMapSlider(
 				minImageName: "sun.min", maxImageName: "sun.max", component: .brightness,
-				overrideSmartInvert: overrideSmartInvert
+				overrideSmartInvert: configuration.overrideSmartInvert
 			)
 		]
 

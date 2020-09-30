@@ -27,7 +27,7 @@ internal class ColorPickerWheelView: UIView {
 	private var saturationLayer: CALayer!
 	private var saturationMask: CAGradientLayer!
 	private var brightnessLayer: CALayer!
-	private var selectionView: ColorPickerCircleView!
+	private var selectionView: ColorWell!
 	private var selectionViewXConstraint: NSLayoutConstraint!
 	private var selectionViewYConstraint: NSLayoutConstraint!
 	private var selectionViewFingerDownConstraint: NSLayoutConstraint!
@@ -88,7 +88,7 @@ internal class ColorPickerWheelView: UIView {
 		brightnessLayer.allowsGroupOpacity = false
 		containerView.layer.addSublayer(brightnessLayer)
 
-		selectionView = ColorPickerCircleView()
+		selectionView = ColorWell()
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
 		containerView.addSubview(selectionView)
 

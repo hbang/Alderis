@@ -1,5 +1,5 @@
 //
-//  ColorPickerSeparatorView.swift
+//  SeparatorView.swift
 //  Alderis
 //
 //  Created by Adam Demasi on 12/3/20.
@@ -8,11 +8,7 @@
 
 import UIKit
 
-extension UIBlurEffect.Style {
-	static let systemVibrantBackgroundRegular = UIBlurEffect.Style.init(rawValue: 1200)!
-}
-
-internal class ColorPickerSeparatorView: UIView {
+internal class SeparatorView: UIView {
 
 	enum Direction {
 		case horizontal, vertical
@@ -31,18 +27,7 @@ internal class ColorPickerSeparatorView: UIView {
 		self.direction = direction
 		super.init(frame: .zero)
 
-		if #available(iOS 13, *) {
-			// Matches the separator views used in UIAlertController since iOS 13
-			let visualEffectView = UIVisualEffectView(effect:
-				UIVibrancyEffect(blurEffect: UIBlurEffect(style: .systemMaterial), style: .separator)
-			)
-			visualEffectView.frame = bounds
-			visualEffectView.autoresizingMask = [ .flexibleWidth, .flexibleHeight ]
-			addSubview(visualEffectView)
-			backgroundColor = .separator
-		} else {
-			backgroundColor = UIColor(white: 0.5, alpha: 0.5)
-		}
+		backgroundColor = Assets.separatorColor
 
 		widthConstraint = widthAnchor.constraint(equalToConstant: 1.0)
 		heightConstraint = heightAnchor.constraint(equalToConstant: 1.0)

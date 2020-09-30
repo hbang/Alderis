@@ -1,2 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-Alderis Demo/Pods-Alderis Demo-resources.sh
-${PODS_ROOT}/../../Alderis/Assets.xcassets
+${PODS_CONFIGURATION_BUILD_DIR}/Alderis/Alderis.bundle

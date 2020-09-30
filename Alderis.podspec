@@ -24,6 +24,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "12.0"
 
   spec.source       = { :git => "https://github.com/hbang/Alderis.git", :tag => "#{spec.version}" }
-  spec.source_files = "Alderis"
   spec.requires_arc = true
+  spec.source_files = [ "Alderis/**" ]
+  spec.resource_bundles = { "Alderis" => "Alderis/Assets.xcassets" }
 end

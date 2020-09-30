@@ -12,8 +12,7 @@
 		56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74666242F722A003ED00A /* ColorPickerSlider.swift */; };
 		56C74669242F75E3003ED00A /* ColorPickerNumericSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */; };
 		CF73D33A241F9C23000B1B10 /* Alderis.h in Headers */ = {isa = PBXBuildFile; fileRef = CF73D338241F9C23000B1B10 /* Alderis.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CF73D343241F9C31000B1B10 /* ColorPickerSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */; };
-		CF73D344241F9C31000B1B10 /* ColorPickerCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */; };
+		CF73D344241F9C31000B1B10 /* ColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D32D241E49EE000B1B10 /* ColorWell.swift */; };
 		CF73D345241F9C31000B1B10 /* ColorPickerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70280241CBDE700083903 /* ColorPickerMapViewController.swift */; };
 		CF73D346241F9C31000B1B10 /* ColorPickerSlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70282241CC88D00083903 /* ColorPickerSlidersViewController.swift */; };
 		CF73D347241F9C31000B1B10 /* ColorPickerWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70288241D0E7300083903 /* ColorPickerWheelView.swift */; };
@@ -21,10 +20,14 @@
 		CF73D34A241F9C31000B1B10 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70273241A4C5500083903 /* ColorPickerViewController.swift */; };
 		CF73D34B241F9C31000B1B10 /* ColorPickerSwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE7027E241B984600083903 /* ColorPickerSwatchViewController.swift */; };
 		CF73D34C241F9C4D000B1B10 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D32B241E4720000B1B10 /* Color.swift */; };
-		CF73D34D241F9C4D000B1B10 /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE70275241A590F00083903 /* LayoutGuide.swift */; };
 		CF73D34E241F9E13000B1B10 /* UIColor+HBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */; };
 		CF73D34F241F9E28000B1B10 /* UIColor+HBAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF73D351241F9FB3000B1B10 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */; };
+		CF7750B72520D3B50069CC57 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750B62520D3B50069CC57 /* Assets.swift */; };
+		CF7750BE252203630069CC57 /* DialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750BD252203630069CC57 /* DialogButton.swift */; };
+		CF7750CF252433680069CC57 /* ColorPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750CE252433680069CC57 /* ColorPickerConfiguration.swift */; };
+		CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750D52524615D0069CC57 /* SeparatorView.swift */; };
+		CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */; };
 		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -34,17 +37,20 @@
 		56C74666242F722A003ED00A /* ColorPickerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSlider.swift; sourceTree = "<group>"; };
 		56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerNumericSlider.swift; sourceTree = "<group>"; };
 		CF73D32B241E4720000B1B10 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCircleView.swift; sourceTree = "<group>"; };
+		CF73D32D241E49EE000B1B10 /* ColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorWell.swift; sourceTree = "<group>"; };
 		CF73D336241F9C23000B1B10 /* Alderis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alderis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF73D338241F9C23000B1B10 /* Alderis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Alderis.h; sourceTree = "<group>"; };
 		CF73D339241F9C23000B1B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
+		CF7750B62520D3B50069CC57 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		CF7750BD252203630069CC57 /* DialogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogButton.swift; sourceTree = "<group>"; };
+		CF7750CE252433680069CC57 /* ColorPickerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerConfiguration.swift; sourceTree = "<group>"; };
+		CF7750D52524615D0069CC57 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
 		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HBAdditions.h"; sourceTree = "<group>"; };
 		CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HBAdditions.m"; sourceTree = "<group>"; };
 		CFE70273241A4C5500083903 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
-		CFE70275241A590F00083903 /* LayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutGuide.swift; sourceTree = "<group>"; };
-		CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSeparatorView.swift; sourceTree = "<group>"; };
 		CFE7027B241A62ED00083903 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
 		CFE7027E241B984600083903 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
 		CFE70280241CBDE700083903 /* ColorPickerMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerMapViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +90,11 @@
 			isa = PBXGroup;
 			children = (
 				CF73D338241F9C23000B1B10 /* Alderis.h */,
+				CF7750B62520D3B50069CC57 /* Assets.swift */,
+				CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */,
+				CF73D32B241E4720000B1B10 /* Color.swift */,
 				CFE70273241A4C5500083903 /* ColorPickerViewController.swift */,
+				CF7750CE252433680069CC57 /* ColorPickerConfiguration.swift */,
 				CF73D350241F9FB3000B1B10 /* ColorPickerDelegate.swift */,
 				CFE7027B241A62ED00083903 /* ColorPickerInnerViewController.swift */,
 				569C25512427F57000022C60 /* ColorPickerTabViewController.swift */,
@@ -95,12 +105,11 @@
 				CFE70288241D0E7300083903 /* ColorPickerWheelView.swift */,
 				CFE70282241CC88D00083903 /* ColorPickerSlidersViewController.swift */,
 				56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */,
-				CFE70279241A5A0200083903 /* ColorPickerSeparatorView.swift */,
-				CF73D32D241E49EE000B1B10 /* ColorPickerCircleView.swift */,
+				CF73D32D241E49EE000B1B10 /* ColorWell.swift */,
+				CF7750BD252203630069CC57 /* DialogButton.swift */,
+				CF7750D52524615D0069CC57 /* SeparatorView.swift */,
 				CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */,
 				CFE2A80B222D5888005C31C3 /* UIColor+HBAdditions.m */,
-				CFE70275241A590F00083903 /* LayoutGuide.swift */,
-				CF73D32B241E4720000B1B10 /* Color.swift */,
 				CF73D339241F9C23000B1B10 /* Info.plist */,
 				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
 			);
@@ -189,17 +198,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF73D34B241F9C31000B1B10 /* ColorPickerSwatchViewController.swift in Sources */,
+				CF7750BE252203630069CC57 /* DialogButton.swift in Sources */,
 				CF73D347241F9C31000B1B10 /* ColorPickerWheelView.swift in Sources */,
+				CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */,
 				CF73D34C241F9C4D000B1B10 /* Color.swift in Sources */,
 				569C25582428346900022C60 /* ColorPickerMapSlider.swift in Sources */,
-				CF73D344241F9C31000B1B10 /* ColorPickerCircleView.swift in Sources */,
-				CF73D343241F9C31000B1B10 /* ColorPickerSeparatorView.swift in Sources */,
+				CF73D344241F9C31000B1B10 /* ColorWell.swift in Sources */,
+				CF7750B72520D3B50069CC57 /* Assets.swift in Sources */,
 				CF73D348241F9C31000B1B10 /* ColorPickerInnerViewController.swift in Sources */,
 				56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */,
-				CF73D34D241F9C4D000B1B10 /* LayoutGuide.swift in Sources */,
 				CF73D345241F9C31000B1B10 /* ColorPickerMapViewController.swift in Sources */,
+				CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */,
 				CF73D34E241F9E13000B1B10 /* UIColor+HBAdditions.m in Sources */,
 				CF73D34A241F9C31000B1B10 /* ColorPickerViewController.swift in Sources */,
+				CF7750CF252433680069CC57 /* ColorPickerConfiguration.swift in Sources */,
 				56C74669242F75E3003ED00A /* ColorPickerNumericSlider.swift in Sources */,
 				569C25522427F57000022C60 /* ColorPickerTabViewController.swift in Sources */,
 				CF73D351241F9FB3000B1B10 /* ColorPickerDelegate.swift in Sources */,

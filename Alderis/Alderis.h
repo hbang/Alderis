@@ -9,9 +9,3 @@
 @import UIKit;
 
 #import "UIColor+HBAdditions.h"
-
-@interface UIView ()
-
-@property (setter=_setContinuousCornerRadius:, nonatomic) double _continuousCornerRadius;
-
-@end

@@ -11,8 +11,8 @@ import UIKit
 extension ColorPickerTab {
 	var tabClass: ColorPickerTabViewController.Type {
 		switch self {
-		case .swatch: return ColorPickerSwatchViewController.self
-		case .map: return ColorPickerMapViewController.self
+		case .swatch:  return ColorPickerSwatchViewController.self
+		case .map: 		 return ColorPickerMapViewController.self
 		case .sliders: return ColorPickerSlidersViewController.self
 		}
 	}
@@ -25,7 +25,7 @@ extension ColorPickerTab {
 internal class ColorPickerInnerViewController: UIViewController {
 
 	weak var delegate: ColorPickerDelegate?
-	var overrideSmartInvert: Bool
+	let configuration: ColorPickerConfiguration
 	var color: Color
 
 	var tab: ColorPickerTab {
@@ -33,22 +33,18 @@ internal class ColorPickerInnerViewController: UIViewController {
 		set { currentTab = newValue.index }
 	}
 
-	func setColor(_ color: Color, withSource source: ColorPickerTabViewControllerBase? = nil) {
-		self.color = color
-		colorDidChange(withSource: source)
-	}
-
 	private var colorPicker: ColorPickerViewController {
 		parent as! ColorPickerViewController
 	}
 
-	init(delegate: ColorPickerDelegate?, overrideSmartInvert: Bool, color: Color) {
+	init(delegate: ColorPickerDelegate?, configuration: ColorPickerConfiguration) {
 		self.delegate = delegate
-		self.overrideSmartInvert = overrideSmartInvert
-		self.color = color
+		self.configuration = configuration
 		self.currentTab = 0
+		self.color = Color(uiColor: configuration.color)
 		super.init(nibName: nil, bundle: nil)
 	}
+
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -59,11 +55,17 @@ internal class ColorPickerInnerViewController: UIViewController {
 		}
 	}
 
+	func setColor(_ color: Color, withSource source: ColorPickerTabViewControllerBase? = nil) {
+		self.color = color
+		colorDidChange(withSource: source)
+	}
+
 	private var pageViewController: UIPageViewController!
 	private var tabs = [ColorPickerTabViewController]()
-	private var tabButtons = [UIButton]()
-	private var cancelButton: UIButton!
-	private var saveButton: UIButton!
+	private var tabsView: UISegmentedControl!
+	private var oldTabButtons = [UIButton]()
+	private var cancelButton: DialogButton!
+	private var saveButton: DialogButton!
 	private var tabsBackgroundView: UIView!
 	private var buttonsBackgroundView: UIView!
 	private var heightConstraint: NSLayoutConstraint!
@@ -73,79 +75,121 @@ internal class ColorPickerInnerViewController: UIViewController {
 		super.viewDidLoad()
 
 		for tabType in ColorPickerTab.allCases {
-			let tab = tabType.tabClass.init(tabDelegate: self, overrideSmartInvert: overrideSmartInvert, color: color)
+			let tab = tabType.tabClass.init(tabDelegate: self, configuration: configuration, color: color)
 			_ = tab.view
 			tabs.append(tab)
 		}
 
+		view.addInteraction(UIDropInteraction(delegate: self))
+
 		backgroundView = UIView()
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
-		backgroundView.accessibilityIgnoresInvertColors = overrideSmartInvert
+		backgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		view.addSubview(backgroundView)
+
+		let tabsCheckerboardView = UIView()
+		tabsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
+		tabsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+		tabsCheckerboardView.backgroundColor = Assets.checkerboardPatternColor
+		view.addSubview(tabsCheckerboardView)
 
 		tabsBackgroundView = UIView()
 		tabsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-		tabsBackgroundView.accessibilityIgnoresInvertColors = overrideSmartInvert
+		tabsBackgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		view.addSubview(tabsBackgroundView)
 
-		let topSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
+		let topSeparatorView = SeparatorView(direction: .horizontal)
 		topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		tabsBackgroundView.addSubview(topSeparatorView)
 
+		let buttonsCheckerboardView = UIView()
+		buttonsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
+		buttonsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+		buttonsCheckerboardView.backgroundColor = Assets.checkerboardPatternColor
+		view.addSubview(buttonsCheckerboardView)
+
 		buttonsBackgroundView = UIView()
 		buttonsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsBackgroundView.accessibilityIgnoresInvertColors = overrideSmartInvert
+		buttonsBackgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		view.addSubview(buttonsBackgroundView)
 
-		let bottomSeparatorView = ColorPickerSeparatorView(direction: .horizontal)
+		let bottomSeparatorView = SeparatorView(direction: .horizontal)
 		bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		buttonsBackgroundView.addSubview(bottomSeparatorView)
 
-		for (i, tab) in tabs.enumerated() {
-			let button = UIButton(type: .system)
-			button.translatesAutoresizingMaskIntoConstraints = false
-			button.accessibilityIgnoresInvertColors = overrideSmartInvert
-			button.tag = i
-			button.accessibilityLabel = tab.title
-			button.setImage(type(of: tab).image, for: .normal)
-			button.addTarget(self, action: #selector(tabButtonTapped(_:)), for: .touchUpInside)
-			tabButtons.append(button)
-		}
+		let actualTabsView: UIView!
+		if #available(iOS 13, *) {
+			actualTabsView = UIView()
+			actualTabsView.translatesAutoresizingMaskIntoConstraints = false
 
-		let tabsView = UIStackView(arrangedSubviews: tabButtons)
-		tabsView.translatesAutoresizingMaskIntoConstraints = false
-		tabsView.axis = .horizontal
-		tabsView.alignment = .fill
-		tabsView.distribution = .fillEqually
+			tabsView = UISegmentedControl()
+			tabsView.translatesAutoresizingMaskIntoConstraints = false
+			tabsView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+			tabsView.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
+			tabsView.selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.35)
+
+			for (i, tab) in tabs.enumerated() {
+				tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
+			}
+
+			tabsView.selectedSegmentIndex = 0
+			actualTabsView.addSubview(tabsView)
+
+			NSLayoutConstraint.activate([
+				tabsView.leadingAnchor.constraint(equalTo: actualTabsView.leadingAnchor, constant: 4),
+				tabsView.trailingAnchor.constraint(equalTo: actualTabsView.trailingAnchor, constant: -4),
+				tabsView.topAnchor.constraint(equalTo: actualTabsView.topAnchor, constant: 4),
+				tabsView.bottomAnchor.constraint(equalTo: actualTabsView.bottomAnchor, constant: -4)
+			])
+		} else {
+			for (i, tab) in tabs.enumerated() {
+				let button = UIButton(type: .system)
+				button.translatesAutoresizingMaskIntoConstraints = false
+				button.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+				button.tag = i
+				button.accessibilityLabel = tab.title
+				button.setImage(type(of: tab).image, for: .normal)
+				button.addTarget(self, action: #selector(oldTabButtonTapped(_:)), for: .touchUpInside)
+				oldTabButtons.append(button)
+			}
+
+			let oldTabsView = UIStackView(arrangedSubviews: oldTabButtons)
+			oldTabsView.translatesAutoresizingMaskIntoConstraints = false
+			oldTabsView.axis = .horizontal
+			oldTabsView.alignment = .fill
+			oldTabsView.distribution = .fillEqually
+			actualTabsView = oldTabsView
+		}
 
 		pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
 		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
 		pageViewController.willMove(toParent: self)
 		addChild(pageViewController)
 
-		cancelButton = UIButton(type: .system)
+		cancelButton = DialogButton()
 		cancelButton.translatesAutoresizingMaskIntoConstraints = false
-		cancelButton.accessibilityIgnoresInvertColors = overrideSmartInvert
+		cancelButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		cancelButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .regular)
-		cancelButton.setTitle("Cancel", for: .normal)
+		cancelButton.setTitle(Assets.uikitLocalize("Cancel"), for: .normal)
 		cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
 
-		saveButton = UIButton(type: .system)
+		saveButton = DialogButton()
 		saveButton.translatesAutoresizingMaskIntoConstraints = false
-		saveButton.accessibilityIgnoresInvertColors = overrideSmartInvert
-		saveButton.titleLabel!.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-		saveButton.setTitle("Done", for: .normal)
+		saveButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+		saveButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .semibold)
+		saveButton.setTitle(Assets.uikitLocalize("Done"), for: .normal)
 		saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
 
-		let buttonSeparatorView = ColorPickerSeparatorView(direction: .vertical)
+		let buttonSeparatorView = SeparatorView(direction: .vertical)
 		buttonSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+		buttonsBackgroundView.addSubview(buttonSeparatorView)
 
-		let buttonsView = UIStackView(arrangedSubviews: [ cancelButton, buttonSeparatorView, saveButton ])
+		let buttonsView = UIStackView(arrangedSubviews: [ cancelButton, saveButton ])
 		buttonsView.translatesAutoresizingMaskIntoConstraints = false
 		buttonsView.axis = .horizontal
 		buttonsView.alignment = .fill
 
-		let mainStackView = UIStackView(arrangedSubviews: [ tabsView, pageViewController.view, buttonsView ])
+		let mainStackView = UIStackView(arrangedSubviews: [ actualTabsView, pageViewController.view, buttonsView ])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -161,27 +205,49 @@ internal class ColorPickerInnerViewController: UIViewController {
 			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
 			mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
 			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			tabsView.heightAnchor.constraint(equalToConstant: tabsHeight),
+
+			actualTabsView.heightAnchor.constraint(equalToConstant: tabsHeight),
 			buttonsView.heightAnchor.constraint(equalToConstant: tabsHeight),
+
 			tabsBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			tabsBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tabsBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			tabsBackgroundView.heightAnchor.constraint(equalToConstant: tabsHeight),
+
+			tabsCheckerboardView.topAnchor.constraint(equalTo: tabsBackgroundView.topAnchor),
+			tabsCheckerboardView.bottomAnchor.constraint(equalTo: tabsBackgroundView.bottomAnchor),
+			tabsCheckerboardView.leadingAnchor.constraint(equalTo: tabsBackgroundView.leadingAnchor),
+			tabsCheckerboardView.trailingAnchor.constraint(equalTo: tabsBackgroundView.trailingAnchor),
+
 			buttonsBackgroundView.topAnchor.constraint(equalTo: buttonsView.topAnchor),
 			buttonsBackgroundView.bottomAnchor.constraint(equalTo: buttonsView.bottomAnchor),
 			buttonsBackgroundView.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor),
 			buttonsBackgroundView.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
+
+			buttonsCheckerboardView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
+			buttonsCheckerboardView.bottomAnchor.constraint(equalTo: buttonsBackgroundView.bottomAnchor),
+			buttonsCheckerboardView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
+			buttonsCheckerboardView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
+
 			topSeparatorView.leadingAnchor.constraint(equalTo: tabsBackgroundView.leadingAnchor),
 			topSeparatorView.trailingAnchor.constraint(equalTo: tabsBackgroundView.trailingAnchor),
 			topSeparatorView.bottomAnchor.constraint(equalTo: tabsBackgroundView.bottomAnchor),
+
 			bottomSeparatorView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
 			bottomSeparatorView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
 			bottomSeparatorView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
+
+			buttonSeparatorView.heightAnchor.constraint(equalToConstant: 23),
+			buttonSeparatorView.centerXAnchor.constraint(equalTo: buttonsBackgroundView.centerXAnchor),
+			buttonSeparatorView.centerYAnchor.constraint(equalTo: buttonsBackgroundView.centerYAnchor),
+
 			heightConstraint,
+
 			cancelButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor)
 		])
 
@@ -212,11 +278,20 @@ internal class ColorPickerInnerViewController: UIViewController {
 			let preferredHeight = self.tabs[self.currentTab].preferredContentSize.height
 			if preferredHeight > 0 {
 				self.heightConstraint?.constant = preferredHeight
+
+				self.preferredContentSize = CGSize(width: self.tabs[self.currentTab].preferredContentSize.width,
+																					 height: preferredHeight)
 			}
 		}
 	}
 
-	@objc private func tabButtonTapped(_ sender: UIButton) {
+	@objc private func segmentControlChanged(_ sender: UISegmentedControl) {
+		UIView.animate(withDuration: 0.2) {
+			self.currentTab = self.tabsView.selectedSegmentIndex
+		}
+	}
+
+	@objc private func oldTabButtonTapped(_ sender: UIButton) {
 		UIView.animate(withDuration: 0.2) {
 			self.currentTab = sender.tag
 		}
@@ -238,11 +313,17 @@ internal class ColorPickerInnerViewController: UIViewController {
 		view.tintColor = color.uiColor
 		tabsBackgroundView.backgroundColor = color.uiColor
 		buttonsBackgroundView.backgroundColor = color.uiColor
-		cancelButton.tintColor = foregroundColor
-		saveButton.tintColor = foregroundColor
+		cancelButton.setTitleColor(foregroundColor, for: .normal)
+		saveButton.setTitleColor(foregroundColor, for: .normal)
+		cancelButton.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
+		saveButton.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
 
-		for (i, button) in tabButtons.enumerated() {
-			button.tintColor = i == currentTab ? foregroundColor : foregroundColor.withAlphaComponent(0.6)
+		if #available(iOS 13, *) {
+			tabsView.setTitleTextAttributes([ .foregroundColor: foregroundColor ], for: .normal)
+		} else {
+			for (i, button) in oldTabButtons.enumerated() {
+				button.tintColor = i == currentTab ? foregroundColor : foregroundColor.withAlphaComponent(0.6)
+			}
 		}
 
 		// Even though `shouldBroadcast: false` avoids recursion if we call setColor on the callee tab,
@@ -252,7 +333,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tab.setColor(color, shouldBroadcast: false)
 		}
 
-		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(0.1)
+		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(color.alpha * 0.1)
 	}
 
 	private func tabDidChange(oldValue: Int) {
@@ -271,6 +352,26 @@ extension ColorPickerInnerViewController: ColorPickerTabDelegate {
 
 	func colorPickerTab(_ tab: ColorPickerTabViewControllerBase, didSelect color: Color) {
 		self.setColor(color, withSource: tab)
+	}
+
+}
+
+extension ColorPickerInnerViewController: UIDropInteractionDelegate {
+
+	public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+		return session.items.count == 1 && session.canLoadObjects(ofClass: UIColor.self)
+	}
+
+	public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+		return UIDropProposal(operation: .copy)
+	}
+
+	public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+		session.loadObjects(ofClass: UIColor.self) { items in
+			if let color = items.first as? UIColor {
+				self.setColor(Color(uiColor: color), withSource: nil)
+			}
+		}
 	}
 
 }

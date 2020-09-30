@@ -98,7 +98,9 @@ extension Color {
 		((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000
 	}
 
-	var isDark: Bool { perceivedBrightness < Self.brightnessThreshold }
+	var isDark: Bool {
+		perceivedBrightness < Self.brightnessThreshold && alpha > 0.5
+	}
 }
 
 extension Color {
@@ -193,6 +195,10 @@ extension Color {
 
 		static let brightness: Component = .init(keyPath: \.brightness, limit: 100, title: "Bright") { color in
 			Color(hue: color.hue, saturation: 0.75, brightness: color.brightness, alpha: 1)
+		}
+
+		static let alpha: Component = .init(keyPath: \.alpha, limit: 100, title: "Alpha") { color in
+			Color(red: color.red, green: color.green, blue: color.blue, alpha: max(color.alpha, 0.5))
 		}
 	}
 }

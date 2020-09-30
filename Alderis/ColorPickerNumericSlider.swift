@@ -33,7 +33,7 @@ internal class ColorPickerNumericSlider: ColorPickerComponentSlider {
 		textField.autocorrectionType = .no
 		textField.spellCheckingType = .no
 		textField.textAlignment = .right
-		textField.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .regular)
+		textField.font = Assets.niceMonospaceDigitFont(ofSize: 16)
 		stackView.addArrangedSubview(textField)
 
 		NSLayoutConstraint.activate([
@@ -65,7 +65,7 @@ extension ColorPickerNumericSlider: UITextFieldDelegate {
 			return false
 		}
 		let limit = component.limit
-		guard let value = Int(newString), (0...limit).contains(CGFloat(value)) else {
+		guard let value = Int(newString), 0...limit ~= CGFloat(value) else {
 			return false
 		}
 

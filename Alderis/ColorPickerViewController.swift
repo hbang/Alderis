@@ -76,7 +76,7 @@ open class ColorPickerViewController: UIViewController {
 	private var bottomLayoutConstraint: NSLayoutConstraint!
 	private var bottomAnimatingLayoutConstraint: NSLayoutConstraint!
 
-	private var _transitioningDelegate = BottomSheetTransitioningDelegate()
+	private lazy var _transitioningDelegate = BottomSheetTransitioningDelegate()
 	private var initialBottomSafeAreaInset: CGFloat?
 	private var isKeyboardVisible = false
 
@@ -99,17 +99,28 @@ open class ColorPickerViewController: UIViewController {
 			modalPresentationStyle = .popover
 		} else {
 			modalPresentationStyle = .overCurrentContext
+			transitioningDelegate = _transitioningDelegate
 		}
-
-		transitioningDelegate = _transitioningDelegate
 	}
 
 	/// :nodoc:
 	override open func viewDidLoad() {
 		super.viewDidLoad()
 
+		if configuration == nil {
+			// Yes, Swift, I know my code for handling deprecated API usage uses deprecated API 🙄
+			configuration = ColorPickerConfiguration(color: color)
+			configuration.overrideSmartInvert = overrideSmartInvert
+		}
+
+		if !configuration.supportsAlpha {
+			// Force the color to be fully opaque.
+			configuration.color = configuration.color.withAlphaComponent(1)
+		}
+
 		navigationController?.isNavigationBarHidden = true
 		view.backgroundColor = .clear
+		preferredContentSize = .zero
 
 		if isFullScreen {
 			backdropView = UIView()
@@ -132,12 +143,6 @@ open class ColorPickerViewController: UIViewController {
 				backgroundView.layer.cornerCurve = .continuous
 			}
 			containerView.addSubview(backgroundView)
-		}
-
-		if configuration == nil {
-			// Yes, Swift, I know my code for handling deprecated API usage uses deprecated API 🙄
-			configuration = ColorPickerConfiguration(color: color)
-			configuration.overrideSmartInvert = overrideSmartInvert
 		}
 
 		innerViewController = ColorPickerInnerViewController(delegate: delegate, configuration: configuration)

@@ -34,9 +34,12 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			}
 		}
 
-		func makeSliders(overrideSmartInvert: Bool) -> [ColorPickerNumericSlider] {
-			components.map { component in
-				ColorPickerNumericSlider(component: component, overrideSmartInvert: overrideSmartInvert)
+		func makeSliders(overrideSmartInvert: Bool, supportsAlpha: Bool) -> [ColorPickerNumericSlider] {
+			components.compactMap { component in
+				if component.keyPath == \.alpha && !supportsAlpha {
+					return nil
+				}
+				return ColorPickerNumericSlider(component: component, overrideSmartInvert: overrideSmartInvert)
 			}
 		}
 	}
@@ -85,7 +88,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		view.addSubview(mainStackView)
 
 		for mode in Mode.allCases {
-			let modeSliders = mode.makeSliders(overrideSmartInvert: configuration.overrideSmartInvert)
+			let modeSliders = mode.makeSliders(overrideSmartInvert: configuration.overrideSmartInvert, supportsAlpha: configuration.supportsAlpha)
 			for slider in modeSliders {
 				slider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 			}
@@ -121,12 +124,16 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		eggLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
 		eggLabel.isHidden = true
 
+		let bottomSpacerView = UIView()
+		bottomSpacerView.translatesAutoresizingMaskIntoConstraints = false
+		mainStackView.addArrangedSubview(bottomSpacerView)
+
 		let hexStackView = UIStackView(arrangedSubviews: [ colorWell, eggLabel, hexTextField ])
 		hexStackView.translatesAutoresizingMaskIntoConstraints = false
 		hexStackView.axis = .horizontal
 		hexStackView.alignment = .fill
 		hexStackView.distribution = .fill
-		hexStackView.spacing = 5
+		hexStackView.spacing = 10
 		mainStackView.addArrangedSubview(hexStackView)
 
 		NSLayoutConstraint.activate([
@@ -141,6 +148,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			segmentedControl.widthAnchor.constraint(equalToConstant: 180),
 
 			topSpacerView.heightAnchor.constraint(equalToConstant: 0),
+			bottomSpacerView.heightAnchor.constraint(equalToConstant: 0),
 
 			colorWell.widthAnchor.constraint(equalToConstant: 32),
 			colorWell.heightAnchor.constraint(equalTo: colorWell.widthAnchor)
@@ -223,7 +231,7 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 		}
 
 		let canonicalizedString = newString.hasPrefix("#") ? newString.dropFirst() : Substring(newString)
-		guard canonicalizedString.count <= 6 else {
+		guard canonicalizedString.count <= 8 else {
 			return false
 		}
 
@@ -232,13 +240,18 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 			return false
 		}
 
-		if canonicalizedString.count != 3 && canonicalizedString.count != 6 {
+		if ![ 3, 6, 8 ].contains(canonicalizedString.count) {
 			// User is probably still typing it out. Don’t do anything yet.
 			return true
 		}
 
-		guard let uiColor = UIColor(hbcp_propertyListValue: "#\(canonicalizedString)") else {
+		guard var uiColor = UIColor(hbcp_propertyListValue: "#\(canonicalizedString)") else {
 			return true
+		}
+
+		if !configuration.supportsAlpha {
+			// Discard the alpha component.
+			uiColor = uiColor.withAlphaComponent(1)
 		}
 
 		let color = Color(uiColor: uiColor)

@@ -23,6 +23,10 @@ class FirstViewController: UIViewController {
 			view.backgroundColor = .white
 		}
 
+		#if targetEnvironment(macCatalyst)
+		navigationController?.isNavigationBarHidden = true
+		#endif
+
 		let stackView = UIStackView()
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.axis = .vertical
@@ -36,9 +40,12 @@ class FirstViewController: UIViewController {
 		stackView.addArrangedSubview(mainButton)
 
 		let buttons: [(String, Selector)] = [
+			("Present with customised title",       #selector(self.presentColorPickerCustomisedTitle)),
 			("Present with customised initial tab", #selector(self.presentColorPickerCustomisedInitialTab)),
 			("Present with customised tabs",        #selector(self.presentColorPickerCustomisedTabs)),
 			("Present with tabs hidden",            #selector(self.presentColorPickerNoTabs)),
+			("Present with customised title, tabs hidden", #selector(self.presentColorPickerCustomisedTitleNoTabs)),
+			("Present without alpha",               #selector(self.presentColorPickerNoAlpha)),
 			("Present without overriding Smart Invert", #selector(self.presentColorPickerNoOverrideSmartInvert)),
 			("Present using deprecated API",        #selector(self.presentColorPickerDeprecatedAPI))
 		]
@@ -138,6 +145,16 @@ class FirstViewController: UIViewController {
 		tabBarController!.present(colorPickerViewController, animated: true)
 	}
 
+	@objc func presentColorPickerCustomisedTitle(_ sender: UIView) {
+		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		configuration.title = "Select an Awesome Color"
+
+		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
+		colorPickerViewController.delegate = self
+		colorPickerViewController.popoverPresentationController?.sourceView = sender
+		tabBarController!.present(colorPickerViewController, animated: true)
+	}
+
 	@objc func presentColorPickerCustomisedInitialTab(_ sender: UIView) {
 		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
 		configuration.initialTab = .map
@@ -151,6 +168,17 @@ class FirstViewController: UIViewController {
 	@objc func presentColorPickerCustomisedTabs(_ sender: UIView) {
 		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
 		configuration.visibleTabs = [ .map, .sliders ]
+		configuration.initialTab = .sliders
+
+		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
+		colorPickerViewController.delegate = self
+		colorPickerViewController.popoverPresentationController?.sourceView = sender
+		tabBarController!.present(colorPickerViewController, animated: true)
+	}
+
+	@objc func presentColorPickerNoAlpha(_ sender: UIView) {
+		let configuration = ColorPickerConfiguration(color: view.window!.tintColor.withAlphaComponent(0.5))
+		configuration.supportsAlpha = false
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
 		colorPickerViewController.delegate = self
@@ -160,6 +188,17 @@ class FirstViewController: UIViewController {
 
 	@objc func presentColorPickerNoTabs(_ sender: UIView) {
 		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		configuration.showTabs = false
+
+		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
+		colorPickerViewController.delegate = self
+		colorPickerViewController.popoverPresentationController?.sourceView = sender
+		tabBarController!.present(colorPickerViewController, animated: true)
+	}
+
+	@objc func presentColorPickerCustomisedTitleNoTabs(_ sender: UIView) {
+		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		configuration.title = "Select an Awesome Color"
 		configuration.showTabs = false
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)

@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.tintColor = UIColor(hue: 0.939614, saturation: 0.811765, brightness: 0.333333, alpha: 1)
 
 		let tabBarController = UITabBarController()
-		tabBarController.viewControllers = [
-			UINavigationController(rootViewController: FirstViewController())
-		]
+		let viewController = UINavigationController(rootViewController: FirstViewController())
+
+		if #available(iOS 13, *) {
+			let tabIcon = UIImage(systemName: "paintbrush.fill")?.withBaselineOffset(fromBottom: 2)
+			viewController.tabBarItem = UITabBarItem(title: "Alderis Demo", image: tabIcon, tag: 0)
+		}
+
+		tabBarController.viewControllers = [ viewController ]
 
 		window!.rootViewController = tabBarController
 		window!.makeKeyAndVisible()

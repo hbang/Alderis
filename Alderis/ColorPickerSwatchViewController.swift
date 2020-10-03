@@ -178,8 +178,10 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	var containerView: UIView!
 	var selectionView: UIView!
+	var containerViewHeightConstraint: NSLayoutConstraint!
 	var selectionViewWidthConstraint: NSLayoutConstraint!
-	var selectionViewConstraints: (x: NSLayoutConstraint, y: NSLayoutConstraint)?
+	var selectionViewXConstraint: NSLayoutConstraint!
+	var selectionViewYConstraint: NSLayoutConstraint!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -215,26 +217,28 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		selectionView.layer.shadowColor = UIColor(white: 0, alpha: 0.1).cgColor
 		view.addSubview(selectionView)
 
-		let selectionViewBaseXConstraint = selectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+		containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: 0)
+		selectionViewWidthConstraint = selectionView.widthAnchor.constraint(equalToConstant: 20)
+		let selectionViewBaseXConstraint = selectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
 		selectionViewBaseXConstraint.priority = .defaultLow
 		let selectionViewBaseYConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
 		selectionViewBaseYConstraint.priority = .defaultLow
-		selectionViewWidthConstraint = selectionView.widthAnchor.constraint(equalToConstant: 20)
+		selectionViewXConstraint = selectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
+		selectionViewYConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
 
 		NSLayoutConstraint.activate([
-			view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-			view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-			view.topAnchor.constraint(equalTo: containerView.topAnchor),
-			view.bottomAnchor.constraint(greaterThanOrEqualTo: containerView.bottomAnchor),
-
-			containerView.heightAnchor.constraint(
-				equalTo: containerView.widthAnchor, multiplier: (1 / CGFloat(colors[0].count)) * CGFloat(colors.count)
-			),
+			containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			containerView.topAnchor.constraint(equalTo: view.topAnchor),
+			containerView.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor),
+			containerViewHeightConstraint,
 
 			selectionViewWidthConstraint,
 			selectionView.heightAnchor.constraint(equalTo: selectionView.widthAnchor),
 			selectionViewBaseXConstraint,
-			selectionViewBaseYConstraint
+			selectionViewBaseYConstraint,
+			selectionViewXConstraint,
+			selectionViewYConstraint
 		])
 
 		colorDidChange()
@@ -254,7 +258,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 			y += 1
 		}
 
-		preferredContentSize = CGSize(width: x * size, height: y * size)
+		containerViewHeightConstraint.constant = y * size
 		selectionViewWidthConstraint.constant = size
 		colorDidChange()
 	}
@@ -274,21 +278,13 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		}
 	}
 
-	func setSelection(to colorView: CALayer?) {
-//		selectionView.isHidden = colorView == nil
-//		selectionViewConstraints.map {
-//			NSLayoutConstraint.deactivate([$0.x, $0.y])
-//		}
-//		selectionViewConstraints = colorView.map { (
-//			selectionView.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
-//			selectionView.topAnchor.constraint(equalTo: $0.topAnchor)
-//		) }
-//		selectionViewConstraints.map {
-//			NSLayoutConstraint.activate([$0.x, $0.y])
-//		}
-//		UIView.animate(withDuration: 0.2) {
-//			self.view.layoutIfNeeded()
-//		}
+	func setSelection(to colorLayer: CALayer?) {
+		selectionView.isHidden = colorLayer == nil
+		selectionViewXConstraint.constant = colorLayer?.frame.origin.x ?? 0
+		selectionViewYConstraint.constant = colorLayer?.frame.origin.y ?? 0
+		UIView.animate(withDuration: 0.2) {
+			self.view.layoutIfNeeded()
+		}
 	}
 
 	override func colorDidChange() {

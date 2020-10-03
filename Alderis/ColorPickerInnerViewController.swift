@@ -29,8 +29,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 	var color: Color
 
 	var tab: ColorPickerTab {
-		get { ColorPickerTab.allCases[currentTab] }
-		set { currentTab = newValue.index }
+		get { configuration.visibleTabs[currentTab] }
+		set { currentTab = configuration.visibleTabs.firstIndex(of: newValue) ?? 0 }
 	}
 
 	private var colorPicker: ColorPickerViewController {
@@ -64,6 +64,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 	private var tabs = [ColorPickerTabViewController]()
 	private var tabsView: UISegmentedControl!
 	private var oldTabButtons = [UIButton]()
+	private var titleLabel: UILabel!
 	private var cancelButton: DialogButton!
 	private var saveButton: DialogButton!
 	private var tabsBackgroundView: UIView!
@@ -74,8 +75,9 @@ internal class ColorPickerInnerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		for tabType in ColorPickerTab.allCases {
+		for tabType in configuration.visibleTabs {
 			let tab = tabType.tabClass.init(tabDelegate: self, configuration: configuration, color: color)
+			// Force the view to be initialised
 			_ = tab.view
 			tabs.append(tab)
 		}
@@ -117,6 +119,17 @@ internal class ColorPickerInnerViewController: UIViewController {
 		bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		buttonsBackgroundView.addSubview(bottomSeparatorView)
 
+		let titleView = UIView()
+		titleView.translatesAutoresizingMaskIntoConstraints = false
+		titleView.isHidden = configuration.title == nil || configuration.title!.isEmpty
+
+		titleLabel = UILabel()
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
+		titleLabel.textAlignment = .center
+		titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+		titleLabel.text = configuration.title
+		titleView.addSubview(titleLabel)
+
 		let actualTabsView: UIView!
 		if #available(iOS 13, *) {
 			actualTabsView = UIView()
@@ -132,7 +145,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 				tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
 			}
 
-			tabsView.selectedSegmentIndex = 0
 			actualTabsView.addSubview(tabsView)
 
 			NSLayoutConstraint.activate([
@@ -161,10 +173,16 @@ internal class ColorPickerInnerViewController: UIViewController {
 			actualTabsView = oldTabsView
 		}
 
+		actualTabsView.isHidden = !configuration.showTabs
+
+		let pageViewContainer = UIView()
+		pageViewContainer.translatesAutoresizingMaskIntoConstraints = false
+
 		pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
 		pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
 		pageViewController.willMove(toParent: self)
 		addChild(pageViewController)
+		pageViewContainer.addSubview(pageViewController.view)
 
 		cancelButton = DialogButton()
 		cancelButton.translatesAutoresizingMaskIntoConstraints = false
@@ -189,17 +207,18 @@ internal class ColorPickerInnerViewController: UIViewController {
 		buttonsView.axis = .horizontal
 		buttonsView.alignment = .fill
 
-		let mainStackView = UIStackView(arrangedSubviews: [ actualTabsView, pageViewController.view, buttonsView ])
+		let mainStackView = UIStackView(arrangedSubviews: [ titleView, actualTabsView, pageViewContainer, buttonsView ])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
 		mainStackView.distribution = .fill
 		view.addSubview(mainStackView)
 
-		heightConstraint = pageViewController.view.heightAnchor.constraint(equalToConstant: 300)
-		heightConstraint.priority = .defaultHigh
+		heightConstraint = pageViewContainer.heightAnchor.constraint(equalToConstant: 0)
 
-		let tabsHeight: CGFloat = 44
+		let barHeight: CGFloat = 48
+		let topHeight = (titleView.isHidden ? 0 : barHeight) + (actualTabsView.isHidden ? 0 : barHeight)
+		let titleLabelTopOffset: CGFloat = actualTabsView.isHidden ? 0 : 3
 		NSLayoutConstraint.activate([
 			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -211,13 +230,18 @@ internal class ColorPickerInnerViewController: UIViewController {
 			mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
 			mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
-			actualTabsView.heightAnchor.constraint(equalToConstant: tabsHeight),
-			buttonsView.heightAnchor.constraint(equalToConstant: tabsHeight),
+			titleView.heightAnchor.constraint(equalToConstant: barHeight),
+			actualTabsView.heightAnchor.constraint(equalToConstant: barHeight),
+			buttonsView.heightAnchor.constraint(equalToConstant: barHeight),
+
+			titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor, constant: titleLabelTopOffset),
+			titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
+			titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
 
 			tabsBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			tabsBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tabsBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			tabsBackgroundView.heightAnchor.constraint(equalToConstant: tabsHeight),
+			tabsBackgroundView.heightAnchor.constraint(equalToConstant: topHeight),
 
 			tabsCheckerboardView.topAnchor.constraint(equalTo: tabsBackgroundView.topAnchor),
 			tabsCheckerboardView.bottomAnchor.constraint(equalTo: tabsBackgroundView.bottomAnchor),
@@ -242,17 +266,22 @@ internal class ColorPickerInnerViewController: UIViewController {
 			bottomSeparatorView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
 			bottomSeparatorView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
 
-			buttonSeparatorView.heightAnchor.constraint(equalToConstant: 23),
+			buttonSeparatorView.heightAnchor.constraint(equalToConstant: barHeight / 2),
 			buttonSeparatorView.centerXAnchor.constraint(equalTo: buttonsBackgroundView.centerXAnchor),
 			buttonSeparatorView.centerYAnchor.constraint(equalTo: buttonsBackgroundView.centerYAnchor),
 
+			pageViewController.view.topAnchor.constraint(equalTo: pageViewContainer.topAnchor),
+			pageViewController.view.bottomAnchor.constraint(equalTo: pageViewContainer.bottomAnchor),
+			pageViewController.view.leadingAnchor.constraint(equalTo: pageViewContainer.leadingAnchor),
+			pageViewController.view.trailingAnchor.constraint(equalTo: pageViewContainer.trailingAnchor),
 			heightConstraint,
 
 			cancelButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor)
 		])
 
 		colorDidChange()
-		tabDidChange(oldValue: currentTab)
+		tab = configuration.initialTab
+		tabsView?.selectedSegmentIndex = currentTab
 	}
 
 	override func viewWillLayoutSubviews() {
@@ -271,16 +300,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 	}
 
 	private func updateHeightConstraint() {
-		DispatchQueue.main.async {
-			for tab in self.tabs {
-				tab.view.layoutIfNeeded()
-			}
-			let preferredHeight = self.tabs[self.currentTab].preferredContentSize.height
-			if preferredHeight > 0 {
-				self.heightConstraint?.constant = preferredHeight
-				self.preferredContentSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-			}
-		}
+		heightConstraint.constant = (view.frame.size.width / 12) * 10
+		preferredContentSize = view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 	}
 
 	@objc private func segmentControlChanged(_ sender: UISegmentedControl) {
@@ -311,6 +332,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 		view.tintColor = color.uiColor
 		tabsBackgroundView.backgroundColor = color.uiColor
 		buttonsBackgroundView.backgroundColor = color.uiColor
+		popoverPresentationController?.backgroundColor = color.uiColor
+		titleLabel.textColor = foregroundColor
 		cancelButton.setTitleColor(foregroundColor, for: .normal)
 		saveButton.setTitleColor(foregroundColor, for: .normal)
 		cancelButton.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)

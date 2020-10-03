@@ -34,13 +34,24 @@ open class ColorPickerConfiguration: NSObject {
 	/// The initial color to use when launching the color picker. Required. If you don’t have a value set yet, provide a sensible default.
 	@objc open var color: UIColor
 
-	/// Whether to allow the user to set an alpha transparency value on the color. This controls the visibility of an Alpha slider on the Sliders tab. When set to false, alpha values provided via the {@see color} {@link color} property, or by the user when entering a hexadecimal value on the Sliders tab, will be discarded.
+	/// Whether to allow the user to set an alpha transparency value on the color. This controls the visibility of an Alpha slider on the Sliders tab. When set to false, alpha values provided via the `color` property, or by the user when entering a hexadecimal value on the Sliders tab, will be discarded.
 	@objc open var supportsAlpha = true
 
+	/// The title to display at the top of the popup. If set to nil, no title will be displayed. The default is nil.
+	///
+	/// - see: `showTitle`
+	@objc open var title: String? = nil
+
 	/// The initial tab to select when the color picker is presented. The default is ColorPickerTab.swatch.
+	///
+	/// This value must be found in `visibleTabs`.
+	///
+	/// - see: `visibleTabs`
 	@objc open var initialTab = ColorPickerTab.swatch
 
 	/// The tabs the user can select and switch between at the top of the window, if tabs are enabled by showTabs.
+	///
+	/// - see: `initialTab`
 	@nonobjc open var visibleTabs: [ColorPickerTab] = [ .swatch, .map, .sliders ]
 
 	/// Maps visibleTabs to Objective-C due to Swift limitations. This is an implementation detail. Ignore this and use visibleTabs per usual.
@@ -52,6 +63,11 @@ open class ColorPickerConfiguration: NSObject {
 			visibleTabs = newValue.map { ColorPickerTab(rawValue: $0)! }
 		}
 	}
+
+	/// Whether to display the the title label at the top of the popup. The default is true.
+	///
+	/// - see: `title`
+	@objc open var showTitle = true
 
 	/// Whether to display the tab selection at the top of the popup. The default is true. When set to false, the user will only be able to access the tab specified in initialTab.
 	@objc open var showTabs = true

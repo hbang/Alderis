@@ -206,10 +206,10 @@ internal class ColorPickerInnerViewController: UIViewController {
 			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
-			mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
-			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+			mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+			mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+			mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
 			actualTabsView.heightAnchor.constraint(equalToConstant: tabsHeight),
 			buttonsView.heightAnchor.constraint(equalToConstant: tabsHeight),
@@ -278,9 +278,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			let preferredHeight = self.tabs[self.currentTab].preferredContentSize.height
 			if preferredHeight > 0 {
 				self.heightConstraint?.constant = preferredHeight
-
-				self.preferredContentSize = CGSize(width: self.tabs[self.currentTab].preferredContentSize.width,
-																					 height: preferredHeight)
+				self.preferredContentSize = self.view.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
 			}
 		}
 	}

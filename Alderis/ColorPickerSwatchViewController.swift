@@ -10,14 +10,16 @@ import UIKit
 
 internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
-	private class ColorView: UIControl {
+	private class ColorLayer: CALayer {
 		let color: Color
-		init(color: Color, overrideSmartInvert: Bool) {
+		init(color: Color) {
 			self.color = color
-			super.init(frame: .zero)
-			accessibilityIgnoresInvertColors = overrideSmartInvert
-			backgroundColor = color.uiColor
-			self.widthAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+			super.init()
+			backgroundColor = color.uiColor.cgColor
+		}
+		override init(layer: Any) {
+			color = Color(white: 1, alpha: 1)
+			super.init(layer: layer)
 		}
 		required init?(coder: NSCoder) {
 			fatalError("init(coder:) has not been implemented")
@@ -171,38 +173,37 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	let colors = ColorPickerSwatchViewController.colorSwatch
 
-	private var colorDict = [Color: ColorView]()
+	private var colorRows = [[ColorLayer]]()
+	private var colorDict = [Color: ColorLayer]()
 
-	var rootStackView: UIStackView!
+	var containerView: UIView!
 	var selectionView: UIView!
+	var selectionViewWidthConstraint: NSLayoutConstraint!
 	var selectionViewConstraints: (x: NSLayoutConstraint, y: NSLayoutConstraint)?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		rootStackView = UIStackView()
-		rootStackView.translatesAutoresizingMaskIntoConstraints = false
-		rootStackView.axis = .vertical
-		rootStackView.distribution = .fillEqually
-		view.addSubview(rootStackView)
+		containerView = UIView()
+		containerView.translatesAutoresizingMaskIntoConstraints = false
+		containerView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+		view.addSubview(containerView)
 
 		for row in colors {
-			let rowStackView = UIStackView()
-			rowStackView.axis = .horizontal
-			rowStackView.distribution = .fillEqually
-			rootStackView.addArrangedSubview(rowStackView)
-
+			var colorRow = [ColorLayer]()
 			for color in row {
-				let colorView = ColorView(color: color, overrideSmartInvert: configuration.overrideSmartInvert)
-				rowStackView.addArrangedSubview(colorView)
-				colorDict[color] = colorView
+				let colorLayer = ColorLayer(color: color)
+				containerView.layer.addSublayer(colorLayer)
+				colorDict[color] = colorLayer
+				colorRow.append(colorLayer)
 			}
+			colorRows.append(colorRow)
 		}
 
-		rootStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
+		view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:))))
 		let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureRecognizerFired(_:)))
 		panGestureRecognizer.maximumNumberOfTouches = 1
-		rootStackView.addGestureRecognizer(panGestureRecognizer)
+		view.addGestureRecognizer(panGestureRecognizer)
 
 		selectionView = UIView()
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -218,17 +219,20 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		selectionViewBaseXConstraint.priority = .defaultLow
 		let selectionViewBaseYConstraint = selectionView.topAnchor.constraint(equalTo: view.topAnchor)
 		selectionViewBaseYConstraint.priority = .defaultLow
+		selectionViewWidthConstraint = selectionView.widthAnchor.constraint(equalToConstant: 20)
 
 		NSLayoutConstraint.activate([
-			view.leadingAnchor.constraint(equalTo: rootStackView.leadingAnchor),
-			view.trailingAnchor.constraint(equalTo: rootStackView.trailingAnchor),
-			view.topAnchor.constraint(equalTo: rootStackView.topAnchor),
-			view.bottomAnchor.constraint(greaterThanOrEqualTo: rootStackView.bottomAnchor),
-			rootStackView.heightAnchor.constraint(
-				equalTo: rootStackView.widthAnchor, multiplier: (1 / CGFloat(colors[0].count)) * CGFloat(colors.count)
+			view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+			view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+			view.topAnchor.constraint(equalTo: containerView.topAnchor),
+			view.bottomAnchor.constraint(greaterThanOrEqualTo: containerView.bottomAnchor),
+
+			containerView.heightAnchor.constraint(
+				equalTo: containerView.widthAnchor, multiplier: (1 / CGFloat(colors[0].count)) * CGFloat(colors.count)
 			),
-			selectionView.widthAnchor.constraint(equalTo: colorDict.first!.value.widthAnchor),
-			selectionView.heightAnchor.constraint(equalTo: colorDict.first!.value.heightAnchor),
+
+			selectionViewWidthConstraint,
+			selectionView.heightAnchor.constraint(equalTo: selectionView.widthAnchor),
 			selectionViewBaseXConstraint,
 			selectionViewBaseYConstraint
 		])
@@ -238,15 +242,28 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		preferredContentSize = rootStackView.frame.size
+
+		var x: CGFloat = 0, y: CGFloat = 0
+		let size = view.frame.size.width / CGFloat(colors[0].count)
+		for row in colorRows {
+			x = 0
+			for item in row {
+				item.frame = CGRect(x: x * size, y: y * size, width: size, height: size)
+				x += 1
+			}
+			y += 1
+		}
+
+		preferredContentSize = CGSize(width: x * size, height: y * size)
+		selectionViewWidthConstraint.constant = size
 		colorDidChange()
 	}
 
 	@objc private func gestureRecognizerFired(_ sender: UIGestureRecognizer) {
 		switch sender.state {
 		case .began, .changed, .ended:
-			let location = sender.location(in: rootStackView)
-			guard let colorView = rootStackView.hitTest(location, with: nil) as? ColorView else {
+			let location = sender.location(in: containerView)
+			guard let colorView = containerView.layer.hitTest(location) as? ColorLayer else {
 				return
 			}
 			self.setColor(colorView.color)
@@ -257,21 +274,21 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		}
 	}
 
-	func setSelection(to colorView: UIView?) {
-		selectionView.isHidden = colorView == nil
-		selectionViewConstraints.map {
-			NSLayoutConstraint.deactivate([$0.x, $0.y])
-		}
-		selectionViewConstraints = colorView.map { (
-			selectionView.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
-			selectionView.topAnchor.constraint(equalTo: $0.topAnchor)
-		) }
-		selectionViewConstraints.map {
-			NSLayoutConstraint.activate([$0.x, $0.y])
-		}
-		UIView.animate(withDuration: 0.2) {
-			self.view.layoutIfNeeded()
-		}
+	func setSelection(to colorView: CALayer?) {
+//		selectionView.isHidden = colorView == nil
+//		selectionViewConstraints.map {
+//			NSLayoutConstraint.deactivate([$0.x, $0.y])
+//		}
+//		selectionViewConstraints = colorView.map { (
+//			selectionView.leadingAnchor.constraint(equalTo: $0.leadingAnchor),
+//			selectionView.topAnchor.constraint(equalTo: $0.topAnchor)
+//		) }
+//		selectionViewConstraints.map {
+//			NSLayoutConstraint.activate([$0.x, $0.y])
+//		}
+//		UIView.animate(withDuration: 0.2) {
+//			self.view.layoutIfNeeded()
+//		}
 	}
 
 	override func colorDidChange() {

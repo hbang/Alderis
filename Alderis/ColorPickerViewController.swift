@@ -56,7 +56,11 @@ open class ColorPickerViewController: UIViewController {
 
 	// A width divisible by 12 (the number of items wide in the swatch).
 	private var finalWidth: CGFloat {
-		floor(min(384, view.frame.size.width - 30) / 12) * 12
+		if modalPresentationStyle == .popover {
+			return 336
+		} else {
+			return floor(min(384, view.frame.size.width - 30) / 12) * 12
+		}
 	}
 
 	private var isFullScreen: Bool {
@@ -119,14 +123,16 @@ open class ColorPickerViewController: UIViewController {
 		containerView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(containerView)
 
-		backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-		backgroundView.translatesAutoresizingMaskIntoConstraints = false
-		backgroundView.clipsToBounds = true
-		backgroundView.layer.cornerRadius = 13
-		if #available(iOS 13, *) {
-			backgroundView.layer.cornerCurve = .continuous
+		if isFullScreen {
+			backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+			backgroundView.translatesAutoresizingMaskIntoConstraints = false
+			backgroundView.clipsToBounds = true
+			backgroundView.layer.cornerRadius = 13
+			if #available(iOS 13, *) {
+				backgroundView.layer.cornerCurve = .continuous
+			}
+			containerView.addSubview(backgroundView)
 		}
-		containerView.addSubview(backgroundView)
 
 		if configuration == nil {
 			// Yes, Swift, I know my code for handling deprecated API usage uses deprecated API 🙄
@@ -160,6 +166,11 @@ open class ColorPickerViewController: UIViewController {
 				backdropView.topAnchor.constraint(equalTo: view.topAnchor),
 				backdropView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
+				backgroundView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+				backgroundView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+				backgroundView.topAnchor.constraint(equalTo: containerView.topAnchor),
+				backgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+
 				containerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
 				bottomLayoutConstraint
 			])
@@ -175,15 +186,10 @@ open class ColorPickerViewController: UIViewController {
 		NSLayoutConstraint.activate([
 			widthLayoutConstraint,
 
-			backgroundView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-			backgroundView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-			backgroundView.topAnchor.constraint(equalTo: containerView.topAnchor),
-			backgroundView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-
 			innerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
 			innerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
 			innerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-			innerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+			innerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
 		])
 	}
 
@@ -209,8 +215,8 @@ open class ColorPickerViewController: UIViewController {
 		super.preferredContentSizeDidChange(forChildContentContainer: container)
 
 		if !isFullScreen {
-			preferredContentSize = innerViewController.view.systemLayoutSizeFitting(CGSize(width: finalWidth,
-																																										 height: .greatestFiniteMagnitude))
+			preferredContentSize = CGSize(width: finalWidth,
+																		height: innerViewController.preferredContentSize.height)
 		}
 	}
 

@@ -77,7 +77,9 @@
 				AB49FDA0EE3B301C0383D6FF /* Pods */,
 				13755DEE92D2481708433C7E /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 			usesTabs = 1;
 		};
 		CF39D43F222BC07C001EF57F /* Products */ = {

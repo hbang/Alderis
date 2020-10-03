@@ -75,7 +75,9 @@
 				CF73D337241F9C23000B1B10 /* Alderis */,
 				CF39D43F222BC07C001EF57F /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 			usesTabs = 1;
 		};
 		CF39D43F222BC07C001EF57F /* Products */ = {

@@ -90,6 +90,8 @@ internal class ColorPickerWheelView: UIView {
 
 		selectionView = ColorWell()
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
+		selectionView.isDragInteractionEnabled = false
+		selectionView.isDropInteractionEnabled = false
 		containerView.addSubview(selectionView)
 
 		selectionViewXConstraint = selectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor)
@@ -139,12 +141,10 @@ internal class ColorPickerWheelView: UIView {
 
 	private func updateSelectionPoint() {
 		let selectionPoint = pointForColor(color, in: hueLayer.frame.size)
-		var fingerYOffset: CGFloat = 0
-		if isFingerDown {
-			fingerYOffset = selectionPoint.y < hueLayer.frame.size.height / 2 ? 40 : -40
-		}
 		selectionViewXConstraint.constant = hueLayer.frame.origin.x + selectionPoint.x - (selectionView.frame.size.width / 2)
-		selectionViewYConstraint.constant = hueLayer.frame.origin.y + selectionPoint.y - (selectionView.frame.size.height / 2) + fingerYOffset
+		var y = max(1, hueLayer.frame.origin.y + selectionPoint.y - (selectionView.frame.size.height / 2))
+		y = min(frame.size.height - selectionView.frame.size.height - 1, y)
+		selectionViewYConstraint.constant = y
 	}
 
 	private func colorAt(position: CGPoint, in size: CGSize) -> Color {

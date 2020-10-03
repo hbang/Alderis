@@ -9,3 +9,4 @@
 @import UIKit;
 
 #import "UIColor+HBAdditions.h"
+#import "AlderisSDKCompatibility.h"

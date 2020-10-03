@@ -27,6 +27,7 @@
 		CF7750BE252203630069CC57 /* DialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750BD252203630069CC57 /* DialogButton.swift */; };
 		CF7750CF252433680069CC57 /* ColorPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750CE252433680069CC57 /* ColorPickerConfiguration.swift */; };
 		CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750D52524615D0069CC57 /* SeparatorView.swift */; };
+		CF775122252852460069CC57 /* AlderisSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = CF775121252852110069CC57 /* AlderisSDKCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */; };
 		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		CF7750BD252203630069CC57 /* DialogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogButton.swift; sourceTree = "<group>"; };
 		CF7750CE252433680069CC57 /* ColorPickerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerConfiguration.swift; sourceTree = "<group>"; };
 		CF7750D52524615D0069CC57 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		CF775121252852110069CC57 /* AlderisSDKCompatibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlderisSDKCompatibility.h; sourceTree = "<group>"; };
 		CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
 		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE2A80A222D5888005C31C3 /* UIColor+HBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HBAdditions.h"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				CF73D338241F9C23000B1B10 /* Alderis.h */,
+				CF775121252852110069CC57 /* AlderisSDKCompatibility.h */,
 				CF7750B62520D3B50069CC57 /* Assets.swift */,
 				CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */,
 				CF73D32B241E4720000B1B10 /* Color.swift */,
@@ -127,6 +130,7 @@
 			files = (
 				CF73D34F241F9E28000B1B10 /* UIColor+HBAdditions.h in Headers */,
 				CF73D33A241F9C23000B1B10 /* Alderis.h in Headers */,
+				CF775122252852460069CC57 /* AlderisSDKCompatibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

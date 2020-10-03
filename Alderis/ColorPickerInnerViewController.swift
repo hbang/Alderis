@@ -226,10 +226,10 @@ internal class ColorPickerInnerViewController: UIViewController {
 			backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
-			mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-			mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-			mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+			mainStackView.topAnchor.constraint(equalTo: view.topAnchor),
+			mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
 			titleView.heightAnchor.constraint(equalToConstant: barHeight),
 			actualTabsView.heightAnchor.constraint(equalToConstant: barHeight),
@@ -333,7 +333,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 		view.tintColor = color.uiColor
 		tabsBackgroundView.backgroundColor = color.uiColor
 		buttonsBackgroundView.backgroundColor = color.uiColor
-		popoverPresentationController?.backgroundColor = color.uiColor
 		titleLabel.textColor = foregroundColor
 		cancelButton.setTitleColor(foregroundColor, for: .normal)
 		saveButton.setTitleColor(foregroundColor, for: .normal)

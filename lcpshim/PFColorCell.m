@@ -23,7 +23,7 @@
 	return self.specifier.properties[@"color_postNotification"];
 }
 
-- (BOOL)_hbcp_showAlpha {
+- (BOOL)_hbcp_supportsAlpha {
 	return self.specifier.properties[@"usesAlpha"] ? ((NSNumber *)self.specifier.properties[@"usesAlpha"]).boolValue : NO;
 }
 

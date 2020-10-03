@@ -10,7 +10,7 @@
 @end
 
 @implementation HBColorPickerTableCell {
-	HBColorPickerCircleView *_circleView;
+	HBColorWell *_colorWell;
 	HBColorPickerViewController *_viewController;
 }
 
@@ -19,8 +19,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier specifier:(PSSpecifier *)specifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier specifier:specifier];
 	if (self) {
-		_circleView = [[HBColorPickerCircleView alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
-		self.accessoryView = _circleView;
+		_colorWell = [[HBColorWell alloc] initWithFrame:CGRectZero];
+		self.accessoryView = _colorWell;
 	}
 	return self;
 }
@@ -33,17 +33,15 @@
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
-	UIColor *backgroundColor = _circleView.backgroundColor;
+	UIColor *color = _colorWell.color;
 	[super setHighlighted:highlighted animated:animated];
 	// stop deleting my background color Apple!!!
-	_circleView.backgroundColor = backgroundColor;
+	_colorWell.color = color;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 	if (selected) {
 		[self _present];
-	} else {
-		[super setSelected:selected animated:animated];
 	}
 }
 
@@ -57,8 +55,8 @@
 	return self.specifier.properties[@"key"];
 }
 
-- (BOOL)_hbcp_showAlpha {
-	return self.specifier.properties[@"libcolorpicker"][@"alpha"] ? ((NSNumber *)self.specifier.properties[@"libcolorpicker"][@"alpha"]).boolValue : NO;
+- (BOOL)_hbcp_supportsAlpha {
+	return self.specifier.properties[@"supportsAlpha"] ? ((NSNumber *)self.specifier.properties[@"supportsAlpha"]).boolValue : NO;
 }
 
 #pragma mark - Getters/setters
@@ -73,7 +71,7 @@
 }
 
 - (void)_updateValue {
-	_circleView.backgroundColor = self._colorValue;
+	_colorWell.color = self._colorValue;
 }
 
 #pragma mark - Present
@@ -81,7 +79,13 @@
 - (void)_present {
 	_viewController = [[HBColorPickerViewController alloc] init];
 	_viewController.delegate = self;
-	_viewController.color = self._colorValue ?: [UIColor colorWithWhite:0.6 alpha:1];
+	_viewController.popoverPresentationController.sourceView = self;
+
+	UIColor *color = self._colorValue ?: [UIColor colorWithWhite:0.6 alpha:1];
+	HBColorPickerConfiguration *configuration = [[HBColorPickerConfiguration alloc] initWithColor:color];
+	configuration.title = self.specifier.properties[@"label"];
+	configuration.supportsAlpha = self._hbcp_supportsAlpha;
+	_viewController.configuration = configuration;
 
 	UIViewController *rootViewController = self._viewControllerForAncestor ?: [UIApplication sharedApplication].keyWindow.rootViewController;
 	[rootViewController presentViewController:_viewController animated:YES completion:nil];

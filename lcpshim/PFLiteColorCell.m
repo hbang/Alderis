@@ -34,7 +34,7 @@
 	return self.specifier.properties[@"libcolorpicker"][@"PostNotification"];
 }
 
-- (BOOL)_hbcp_showAlpha {
+- (BOOL)_hbcp_supportsAlpha {
 	return self.specifier.properties[@"libcolorpicker"][@"alpha"] ? ((NSNumber *)self.specifier.properties[@"libcolorpicker"][@"alpha"]).boolValue : NO;
 }
 
@@ -53,7 +53,7 @@
 - (void)_setColorValue:(UIColor *)color {
 	// libcolorpicker compatibility
 	if (self._hbcp_defaults != nil && self._hbcp_key != nil) {
-		NSLog(@"Alderis: %@: Writing directly to plist file (libcolorpicker compatibility). I’m going to do it since it seems to be somewhat common, but you should be ashamed of yourself.", self.class);
+		NSLog(@"Alderis: %@: Writing directly to plist file (libcolorpicker compatibility). I’m going to do it since it seems to be somewhat common, but you should be ashamed of yourself. https://hbang.github.io/Alderis/", self.class);
 
 		NSString *path = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", self._hbcp_defaults];
 		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:path] ?: [NSMutableDictionary dictionary];
@@ -66,15 +66,6 @@
 	} else {
 		[super _setColorValue:color];
 	}
-}
-
-#pragma mark - Present
-
-- (void)_present {
-	if (self._hbcp_showAlpha) {
-		NSLog(@"Alderis: %@: Alpha slider was requested, but this feature is not yet supported.", self.class);
-	}
-	[super _present];
 }
 
 @end

@@ -1,18 +1,7 @@
 #!/bin/bash
-# We don’t directly depend on Substrate, but tweaks may load us into places like SpringBoard.
-# Ask the package manager to restart SpringBoard after install.
-
-function finish() {
-	f="${1}"
-
-	# No control fd: bail out
-	[[ -z "${f}" || -z "${CYDIA}" ]] && return
-	cydia=(${CYDIA})
-
-	# Cydia control fd version != 1: bail out
-	[[ ${cydia[1]} -eq 1 ]] || return
-
-	echo "finish:${f}" >&${cydia[0]}
-}
-
-finish restart
+# Tell the package manager to restart system app (SpringBoard) after installation.
+cydia=($CYDIA)
+if [[ ${cydia[1]} -ge 1 ]]; then
+	echo "finish:restart" >&${cydia[0]}
+fi
+exit 0

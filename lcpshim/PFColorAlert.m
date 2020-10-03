@@ -31,7 +31,13 @@
 	_completion = [completion copy];
 	_viewController = [[HBColorPickerViewController alloc] init];
 	_viewController.delegate = self;
-	_viewController.color = _color ?: [UIColor colorWithWhite:0.6 alpha:1];
+	_viewController.popoverPresentationController.sourceRect = [UIScreen mainScreen].bounds;
+	_viewController.popoverPresentationController.permittedArrowDirections = 0;
+
+	UIColor *color = _color ?: [UIColor colorWithWhite:0.6 alpha:1];
+	HBColorPickerConfiguration *configuration = [[HBColorPickerConfiguration alloc] initWithColor:color];
+	_viewController.configuration = configuration;
+
 	UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
 	[rootViewController presentViewController:_viewController animated:YES completion:nil];
 

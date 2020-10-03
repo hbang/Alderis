@@ -237,7 +237,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 			titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor, constant: titleLabelTopOffset),
 			titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
-			titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
+			titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor, constant: 4),
+			titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor, constant: -4),
 
 			tabsBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			tabsBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

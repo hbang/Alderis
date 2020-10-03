@@ -210,6 +210,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		selectionView = UIView()
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
 		selectionView.isUserInteractionEnabled = false
+		selectionView.isHidden = true
 		selectionView.layer.borderColor = UIColor.white.cgColor
 		selectionView.layer.borderWidth = 2
 		selectionView.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -260,7 +261,9 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 		containerViewHeightConstraint.constant = y * size
 		selectionViewWidthConstraint.constant = size
-		colorDidChange()
+		UIView.performWithoutAnimation {
+			colorDidChange()
+		}
 	}
 
 	@objc private func gestureRecognizerFired(_ sender: UIGestureRecognizer) {
@@ -279,11 +282,16 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 	}
 
 	func setSelection(to colorLayer: CALayer?) {
+		let wasHidden = selectionView.isHidden
 		selectionView.isHidden = colorLayer == nil
 		selectionViewXConstraint.constant = colorLayer?.frame.origin.x ?? 0
 		selectionViewYConstraint.constant = colorLayer?.frame.origin.y ?? 0
-		UIView.animate(withDuration: 0.2) {
-			self.view.layoutIfNeeded()
+		if wasHidden {
+			view.layoutIfNeeded()
+		} else {
+			UIView.animate(withDuration: 0.2) {
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 

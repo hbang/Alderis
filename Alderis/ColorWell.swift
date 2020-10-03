@@ -9,11 +9,15 @@
 import UIKit
 import CoreServices
 
-/// ColorWell can be used to present the user’s color selection in your user interface. It optionally also supports drag-and-drop operations.
+/// ColorWell can be used to present the user’s color selection in your user interface. It
+/// optionally also supports drag-and-drop operations.
 ///
-/// By default, drop interactions are supported, which causes a `UIControl.Event.valueChanged` event to be emitted. Optionally, drag operations can be enabled, allowing the color to be dropped elsewhere.
+/// By default, drop interactions are supported, which causes a `UIControl.Event.valueChanged` event
+/// to be emitted. Optionally, drag operations can be enabled, allowing the color to be dropped
+/// elsewhere.
 ///
-/// You can also use `UIControl.Event.touchUpInside` to perform an action, such as to initialise and present an instance of `ColorPickerViewController`.
+/// You can also use `UIControl.Event.touchUpInside` to perform an action, such as to initialise
+/// and present an instance of `ColorPickerViewController`.
 @objc(HBColorWell)
 open class ColorWell: UIControl {
 
@@ -28,14 +32,17 @@ open class ColorWell: UIControl {
 		didSet { updateBorderColor() }
 	}
 
-	/// Whether the user can begin a drag interaction from this view, allowing them to drop the color into a supporting app. The default is false.
+	/// Whether the user can begin a drag interaction from this view, allowing them to drop the color
+	/// into a supporting app. The default is false.
 	@objc open var isDragInteractionEnabled = false {
 		didSet { updateDragDropInteraction() }
 	}
 
-	/// Whether the user can end a drag interaction by dropping on this view, allowing them to drag a color from a supporting app onto this view. The default is true.
+	/// Whether the user can end a drag interaction by dropping on this view, allowing them to drag a
+	/// color from a supporting app onto this view. The default is true.
 	///
-	/// To handle a color being dropped on this view, add an action for the `.valueChanged` event. For example:
+	/// To handle a color being dropped on this view, add an action for the `.valueChanged` event. For
+	/// example:
 	///
 	/// ```swift
 	/// circleView.addTarget(self, action: #selector(self.handleColorDropEvent(_:)), for: .valueChanged)
@@ -155,7 +162,7 @@ open class ColorWell: UIControl {
 	}
 
 	/// :nodoc:
-	@available(iOS 14, *)
+	@available(iOS 14, macCatalyst 14, *)
 	open override func addAction(_ action: UIAction, for controlEvents: UIControl.Event) {
 		super.addAction(action, for: controlEvents)
 		updateTapGestureRecognizer()
@@ -168,14 +175,14 @@ open class ColorWell: UIControl {
 	}
 
 	/// :nodoc:
-	@available(iOS 14, *)
+	@available(iOS 14, macCatalyst 14, *)
 	open override func removeAction(_ action: UIAction, for controlEvents: UIControl.Event) {
 		super.removeAction(action, for: controlEvents)
 		updateTapGestureRecognizer()
 	}
 
 	/// :nodoc:
-	@available(iOS 14, *)
+	@available(iOS 14, macCatalyst 14, *)
 	open override func removeAction(identifiedBy actionIdentifier: UIAction.Identifier, for controlEvents: UIControl.Event) {
 		super.removeAction(identifiedBy: actionIdentifier, for: controlEvents)
 		updateTapGestureRecognizer()

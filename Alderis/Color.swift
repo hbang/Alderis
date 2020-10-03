@@ -49,7 +49,7 @@ internal struct Color: Equatable, Hashable {
 
 	var alpha: CGFloat = 0
 
-	static func ==(lhs: Color, rhs: Color) -> Bool {
+	static func == (lhs: Color, rhs: Color) -> Bool {
 		lhs.red == rhs.red && lhs.green == rhs.green && lhs.blue == rhs.blue && lhs.alpha == rhs.alpha
 	}
 	func hash(into hasher: inout Hasher) {
@@ -99,7 +99,7 @@ extension Color {
 		} else {
 			differentiateWithoutColor = false
 		}
-		return UIAccessibility.isReduceTransparencyEnabled || differentiateWithoutColor ? 128.0 : 80.0
+		return UIAccessibility.isReduceTransparencyEnabled || differentiateWithoutColor ? 128 : 80
 	}()
 
 	// W3C perceived brightness algorithm
@@ -181,7 +181,7 @@ extension Color {
 
 		static let red: Component = .init(
 			keyPath: \.red, limit: 255, title: "Red",
-			sliderTint: Color(red: 1.0, green: 0.231373, blue: 0.188235, alpha: 1)
+			sliderTint: Color(red: 1, green: 0.231373, blue: 0.188235, alpha: 1)
 		)
 
 		static let green: Component = .init(

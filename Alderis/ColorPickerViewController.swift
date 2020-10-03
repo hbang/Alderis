@@ -10,7 +10,11 @@ import UIKit
 
 /// Provides the Color Picker user interface.
 ///
-/// Present this view controller to display the color picker. Do not push it onto a navigation controller stack. In horizontally and vertically regular size class environments, for instance on iPad and Mac, the picker will be presented as a popover. This means that you must set  before presentation.
+/// Present this view controller to display the color picker. Do not push it onto a navigation
+/// controller stack. In horizontally and vertically regular size class environments, for instance
+/// on iPad and Mac, the picker will be presented as a popover. This means that you must set
+/// `sourceView` or other similar properties on the view controller’s `popoverPresentationController`
+/// before presentation.
 ///
 /// To review examples of ColorPickerViewController in use, run `pod try Alderis`.
 @objc(HBColorPickerViewController)
@@ -28,16 +32,19 @@ open class ColorPickerViewController: UIViewController {
 		setUp()
 	}
 
-	/// The delegate that will receive the user’s selection upon tapping the Done button, or a cancellation upon tapping the Cancel button.
+	/// The delegate that will receive the user’s selection upon tapping the Done button, or a
+	/// cancellation upon tapping the Cancel button.
 	@objc open weak var delegate: ColorPickerDelegate? {
 		didSet {
 			innerViewController?.delegate = delegate
 		}
 	}
 
-	/// The configuration of the color picker. Use this to set the initially selected color, as well as other behavioral options.
+	/// The configuration of the color picker. Use this to set the initially selected color, as well
+	/// as other behavioral options.
 	///
-	/// Making changes to this value or its properties after the color picker interface has been presented may result in undefined behavior.
+	/// Making changes to this value or its properties after the color picker interface has been
+	/// presented may result in undefined behavior.
 	///
 	/// - see: `ColorPickerConfiguration`
 	@objc open var configuration: ColorPickerConfiguration!
@@ -76,7 +83,9 @@ open class ColorPickerViewController: UIViewController {
 	private var bottomLayoutConstraint: NSLayoutConstraint!
 	private var bottomAnimatingLayoutConstraint: NSLayoutConstraint!
 
+	// swiftlint:disable:next weak_delegate
 	private lazy var _transitioningDelegate = BottomSheetTransitioningDelegate()
+
 	private var initialBottomSafeAreaInset: CGFloat?
 	private var isKeyboardVisible = false
 
@@ -330,7 +339,9 @@ open class ColorPickerViewController: UIViewController {
 									 delay: 0,
 									 options: options,
 									 animations: {
-										let bottom = max((self.isKeyboardVisible ? keyboardEndFrame.size.height : 0) - (self.initialBottomSafeAreaInset ?? 0), 0) + (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
+										let keyboardHeight: CGFloat = (self.isKeyboardVisible ? keyboardEndFrame.size.height : 0)
+										let keyboardExtraMargin: CGFloat = (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
+										let bottom = max(keyboardHeight - (self.initialBottomSafeAreaInset ?? 0), 0) + keyboardExtraMargin
 										self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
 										self.view.layoutIfNeeded()
 									 })

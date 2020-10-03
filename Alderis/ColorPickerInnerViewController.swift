@@ -34,6 +34,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 	}
 
 	private var colorPicker: ColorPickerViewController {
+		// swiftlint:disable:next force_cast
 		parent as! ColorPickerViewController
 	}
 
@@ -348,8 +349,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 		}
 
 		// Even though `shouldBroadcast: false` avoids recursion if we call setColor on the callee tab,
-		// doing so on ColorPickerSlidersViewController would reset `hexOptions`, leading to a buggy typing
-		// experience in `hexTextField`
+		// doing so on ColorPickerSlidersViewController would reset `hexOptions`, leading to a buggy
+		// typing experience in `hexTextField`
 		for tab in tabs where tab != source {
 			tab.setColor(color, shouldBroadcast: false)
 		}

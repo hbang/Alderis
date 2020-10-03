@@ -7,6 +7,10 @@ disabled_rules:
   - large_tuple
   - identifier_name
   - type_name
+  - type_body_length
+  # TODO: Why is vertical_parameter_alignment giving false positives?
+  - vertical_parameter_alignment
+  - vertical_parameter_alignment_on_call
 opt_in_rules:
   - closure_end_indentation
   - closure_spacing
@@ -15,7 +19,6 @@ opt_in_rules:
   - explicit_init
   - fatal_error_message
   - first_where
-  - implicit_return
   - joined_default_parameter
   - literal_expression_end_indentation
   - overridden_super_call
@@ -49,7 +52,7 @@ custom_rules:
     message: "Use UIColor(white:alpha:)"
 force_try: warning
 force_cast: warning
-function_body_length: 80
+function_body_length: 200
 line_length: 200
 file_length: 450
 cyclomatic_complexity: 12

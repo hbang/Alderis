@@ -39,6 +39,7 @@ class FirstViewController: UIViewController {
 		mainButton.addTarget(self, action: #selector(self.presentColorPicker), for: .touchUpInside)
 		stackView.addArrangedSubview(mainButton)
 
+		// swiftlint:disable comma
 		let buttons: [(String, Selector)] = [
 			("Present with customised title",       #selector(self.presentColorPickerCustomisedTitle)),
 			("Present with customised initial tab", #selector(self.presentColorPickerCustomisedInitialTab)),
@@ -49,6 +50,7 @@ class FirstViewController: UIViewController {
 			("Present without overriding Smart Invert", #selector(self.presentColorPickerNoOverrideSmartInvert)),
 			("Present using deprecated API",        #selector(self.presentColorPickerDeprecatedAPI))
 		]
+		// swiftlint:enable comma
 
 		for item in buttons {
 			let button = UIButton(type: .system)

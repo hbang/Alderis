@@ -29,8 +29,8 @@ internal class SeparatorView: UIView {
 
 		backgroundColor = Assets.separatorColor
 
-		widthConstraint = widthAnchor.constraint(equalToConstant: 1.0)
-		heightConstraint = heightAnchor.constraint(equalToConstant: 1.0)
+		widthConstraint = widthAnchor.constraint(equalToConstant: 1)
+		heightConstraint = heightAnchor.constraint(equalToConstant: 1)
 	}
 
 	required init?(coder: NSCoder) {
@@ -40,7 +40,7 @@ internal class SeparatorView: UIView {
 	override func updateConstraints() {
 		super.updateConstraints()
 
-		let constant = 1.0 / (window?.screen.scale ?? 1.0)
+		let constant = 1 / (window?.screen.scale ?? 1)
 
 		switch direction {
 		case .horizontal:

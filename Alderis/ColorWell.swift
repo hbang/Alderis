@@ -196,6 +196,7 @@ open class ColorWell: UIControl {
 
 }
 
+/// :nodoc:
 extension ColorWell: UIDragInteractionDelegate {
 
 	/// :nodoc:
@@ -211,6 +212,7 @@ extension ColorWell: UIDragInteractionDelegate {
 
 }
 
+/// :nodoc:
 extension ColorWell: UIDropInteractionDelegate {
 
 	/// :nodoc:

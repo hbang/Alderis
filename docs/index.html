@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Alderis  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a title="Alderis  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Alderis 1.1 Docs</a></p>
+        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Alderis Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Alderis  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="preference-bundles.html">Preference Bundles</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Color%20Picker.html">Color Picker</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ColorPickerViewController.html">ColorPickerViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ColorPickerConfiguration.html">ColorPickerConfiguration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ColorPickerDelegate.html">ColorPickerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ColorPickerTab.html">ColorPickerTab</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="UI%20Components.html">UI Components</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/ColorWell.html">ColorWell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Deprecated.html">Deprecated</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Deprecated.html#/c:@M@Alderis@objc(cs)HBColorPickerCircleView">ColorPickerCircleView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='img-src-screenshots-logo-jpg-alt-alderis-color-picker' class='heading'><img src="screenshots/logo.jpg" alt="Alderis Color Picker"></h1>
+
+<p><strong><center>Try it yourself: <code>pod try Alderis</code></center></strong></p>
+
+<p>Alderis is a fresh new color picker, with a gentle, fun, and dead simple user interface. It aims to incorporate the usual elements of a color picker, in a way that users will find easy and fun to use.</p>
+
+<p>The user can start by selecting a color they like on the initial color palette tab, and either accept it, or refine it using the color wheel and adjustment sliders found on the two other tabs.</p>
+
+<p>Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constellation. (There is no dependency on the <a href="https://hbang.github.io/libcephei/">Cephei</a> project.)</p>
+
+<p><strong><a href="https://hbang.github.io/Alderis/">Documentation</a></strong></p>
+<h2 id='screenshots' class='heading'>Screenshots</h2>
+
+<table align="center">
+<tr>
+<td><a href="screenshots/alderis-1.jpg"><img src="screenshots/alderis-1.jpg" width="180" height="390"></a></td>
+<td><a href="screenshots/alderis-2.jpg"><img src="screenshots/alderis-2.jpg" width="180" height="390"></a></td>
+<td><a href="screenshots/alderis-3.jpg"><img src="screenshots/alderis-3.jpg" width="180" height="390"></a></td>
+<td><a href="screenshots/alderis-4.jpg"><img src="screenshots/alderis-4.jpg" width="180" height="390"></a></td>
+</tr>
+</table>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>Add to your Podfile:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'Alderis'</span><span class="p">,</span> <span class="s1">'~&gt; 1.1'</span>
+</code></pre>
+
+<p>And then run <code>pod install</code>.</p>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<p>Add to your Cartfile:</p>
+<pre class="highlight ruby"><code><span class="n">github</span> <span class="s1">'hbang/Alderis'</span> <span class="o">~&gt;</span> <span class="mf">1.1</span>
+</code></pre>
+
+<p>And then run <code>carthage update</code>.</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>Not yet available due to <a href="https://github.com/hbang/Alderis/issues/13">#13</a>.</p>
+<h3 id='jailbreak-packages' class='heading'>Jailbreak packages</h3>
+
+<p>Add <code>ws.hbang.alderis (&gt;= 1.1)</code> to your <code>Depends:</code> list.</p>
+<h2 id='libcolorpicker-compatibility' class='heading'>libcolorpicker Compatibility</h2>
+
+<p>Alderis acts as a drop-in replacement for <a href="https://github.com/atomikpanda/libcolorpicker">libcolorpicker</a>, an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace <code>org.thebigboss.libcolorpicker</code> with <code>ws.hbang.alderis</code> to switch their color picker to Alderis. No other changes required!</p>
+
+<p>For more information, refer to <a href="https://hbang.github.io/Alderis/preference-bundles.html">the docs</a>.</p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>Licensed under the Apache License, version 2.0. Refer to <a href="https://github.com/hbang/Alderis/blob/master/LICENSE.md">LICENSE.md</a>.</p>
+
+<p>Header backdrop photo credit: <a href="https://unsplash.com/@mrrrk_smith">John-Mark Smith</a> on Unsplash</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2020-10-04)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

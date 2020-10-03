@@ -64,8 +64,8 @@ internal struct Assets {
 
 	// MARK: - Colors
 
-	static let backdropColor  = UIColor(white: 0 / 255, alpha: 0.2)
-	static let separatorColor = UIColor(white: 217 / 255, alpha: 1)
+	static let backdropColor  = UIColor(white: 0, alpha: 0.2)
+	static let separatorColor = UIColor(white: 1, alpha: 0.15)
 
 	static let borderColor: UIColor = {
 		if #available(iOS 13, *) {

@@ -15,8 +15,8 @@ public protocol ColorPickerDelegate: NSObjectProtocol {
 	/// Informs the delegate that the user has dismissed the color picker with a positive response,
 	/// having selected the selected color. Required.
 	///
-	/// - param: colorPicker: The `ColorPickerViewController` instance that triggered the action.
-	/// - param: color: The `UIColor` selection the user made.
+	/// - parameter colorPicker: The `ColorPickerViewController` instance that triggered the action.
+	/// - parameter color: The `UIColor` selection the user made.
 	@objc(colorPicker:didSelectColor:)
 	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor)
 
@@ -25,7 +25,7 @@ public protocol ColorPickerDelegate: NSObjectProtocol {
 	///
 	/// You usually do not need to handle this condition.
 	///
-	/// - param: colorPicker: The `ColorPickerViewController` instance that triggered the action.
+	/// - parameter colorPicker: The `ColorPickerViewController` instance that triggered the action.
 	@objc(colorPickerDidCancel:)
 	optional func colorPickerDidCancel(_ colorPicker: ColorPickerViewController)
 

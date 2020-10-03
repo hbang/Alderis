@@ -103,6 +103,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			mainStackView.addArrangedSubview(sliderStackView)
 		}
 
+		colorWell.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		colorWell.isDragInteractionEnabled = true
 		colorWell.isDropInteractionEnabled = false
 

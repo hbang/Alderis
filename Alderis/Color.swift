@@ -41,6 +41,12 @@ internal struct Color: Equatable, Hashable {
 		}
 	}
 
+	var white: CGFloat = 0 {
+		didSet {
+			self = Color(white: white, alpha: alpha)
+		}
+	}
+
 	var alpha: CGFloat = 0
 
 	static func ==(lhs: Color, rhs: Color) -> Bool {
@@ -57,12 +63,14 @@ internal struct Color: Equatable, Hashable {
 	init(uiColor: UIColor) {
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
+		self.white = (red + green + blue) / 3
 	}
 
 	init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
 		self.red = red
 		self.green = green
 		self.blue = blue
+		self.white = (red + green + blue) / 3
 		self.alpha = alpha
 		let uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
@@ -76,6 +84,7 @@ internal struct Color: Equatable, Hashable {
 		self.hue = hue
 		self.saturation = saturation
 		self.brightness = brightness
+		self.white = (red + green + blue) / 3
 		self.alpha = alpha
 		let uiColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
@@ -195,6 +204,10 @@ extension Color {
 
 		static let brightness: Component = .init(keyPath: \.brightness, limit: 100, title: "Bright") { color in
 			Color(hue: color.hue, saturation: 0.75, brightness: color.brightness, alpha: 1)
+		}
+
+		static let white: Component = .init(keyPath: \.white, limit: 255, title: "White") { color in
+			Color(white: color.white * 0.85, alpha: 1)
 		}
 
 		static let alpha: Component = .init(keyPath: \.alpha, limit: 100, title: "Alpha") { color in

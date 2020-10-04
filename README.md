@@ -14,10 +14,12 @@ Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constell
 
 <table align="center">
 <tr>
-<td><a href="screenshots/alderis-1.jpg"><img src="screenshots/alderis-1.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-2.jpg"><img src="screenshots/alderis-2.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-3.jpg"><img src="screenshots/alderis-3.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-4.jpg"><img src="screenshots/alderis-4.jpg" width="180" height="390"></a></td>
+<td><a href="screenshots/alderis-1.jpg"><img src="screenshots/alderis-1.jpg" width="180"></a></td>
+<td><a href="screenshots/alderis-2.jpg"><img src="screenshots/alderis-2.jpg" width="180"></a></td>
+</tr>
+<tr>
+<td><a href="screenshots/alderis-3.jpg"><img src="screenshots/alderis-3.jpg" width="180"></a></td>
+<td><a href="screenshots/alderis-4.jpg"><img src="screenshots/alderis-4.jpg" width="180"></a></td>
 </tr>
 </table>
 
@@ -47,7 +49,7 @@ Not yet available due to [#13](https://github.com/hbang/Alderis/issues/13).
 ### Jailbreak packages
 Add `ws.hbang.alderis (>= 1.1)` to your `Depends:` list.
 
-## libcolorpicker Compatibility
+## Preference Bundles and libcolorpicker Compatibility
 Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis` to switch their color picker to Alderis. No other changes required!
 
 For more information, refer to [the docs](https://hbang.github.io/Alderis/preference-bundles.html).

@@ -12,12 +12,13 @@ import Alderis
 class FirstViewController: UIViewController {
 
 	private var colorWell: ColorWell!
+	private var uikitWell: UIView?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		title = "Alderis Demo"
-		if #available(iOS 13.0, *) {
+		if #available(iOS 13, *) {
 			view.backgroundColor = .systemBackground
 		} else {
 			view.backgroundColor = .white
@@ -48,7 +49,8 @@ class FirstViewController: UIViewController {
 			("Present with customised title, tabs hidden", #selector(self.presentColorPickerCustomisedTitleNoTabs)),
 			("Present without alpha",               #selector(self.presentColorPickerNoAlpha)),
 			("Present without overriding Smart Invert", #selector(self.presentColorPickerNoOverrideSmartInvert)),
-			("Present using deprecated API",        #selector(self.presentColorPickerDeprecatedAPI))
+			("Present using deprecated API",        #selector(self.presentColorPickerDeprecatedAPI)),
+			("Present UIKit Color Picker",          #selector(self.presentUIKitColorPicker))
 		]
 		// swiftlint:enable comma
 
@@ -106,6 +108,13 @@ class FirstViewController: UIViewController {
 		wellsStackView.spacing = 10
 		wellsContainerView.addSubview(wellsStackView)
 
+		if #available(iOS 14, *) {
+			let uikitWell = UIColorWell()
+			uikitWell.addTarget(self, action: #selector(self.uikitColorWellValueChanged(_:)), for: .valueChanged)
+			wellsStackView.addArrangedSubview(uikitWell)
+			self.uikitWell = uikitWell
+		}
+
 		stackView.addArrangedSubview(wellsContainerView)
 
 		NSLayoutConstraint.activate([
@@ -132,11 +141,24 @@ class FirstViewController: UIViewController {
 		super.viewDidAppear(animated)
 
 		colorWell.color = view.window!.tintColor
+		if #available(iOS 14, *), let uikitWell = uikitWell as? UIColorWell {
+			uikitWell.selectedColor = view.window!.tintColor
+		}
 	}
 
 	@objc func colorWellValueChanged(_ sender: ColorWell) {
-		NSLog("Color dropped with value %@", String(describing: sender.color))
+		NSLog("Color well value changed with value %@", String(describing: sender.color))
 		view.window!.tintColor = sender.color
+		if #available(iOS 14, *), let uikitWell = uikitWell as? UIColorWell {
+			uikitWell.tintColor = sender.color
+		}
+	}
+
+	@available(iOS 14, *)
+	@objc func uikitColorWellValueChanged(_ sender: UIColorWell) {
+		NSLog("UIKit color well value changed with value %@", String(describing: sender.selectedColor))
+		view.window!.tintColor = sender.selectedColor
+		colorWell.color = sender.selectedColor
 	}
 
 	@objc func presentColorPicker(_ sender: UIView) {
@@ -227,18 +249,47 @@ class FirstViewController: UIViewController {
 		tabBarController!.present(colorPickerViewController, animated: true)
 	}
 
+	@objc func presentUIKitColorPicker(_ sender: UIView) {
+		if #available(iOS 14, *) {
+			let colorPickerViewController = UIColorPickerViewController()
+			colorPickerViewController.delegate = self
+			colorPickerViewController.selectedColor = view.window!.tintColor
+			colorPickerViewController.popoverPresentationController?.sourceView = sender
+			tabBarController!.present(colorPickerViewController, animated: true)
+		} else {
+			fatalError("UIColorPickerViewController is only available as of iOS 14")
+		}
+	}
+
 }
 
 extension FirstViewController: ColorPickerDelegate {
 
 	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor) {
-		NSLog("Returned with color %@", String(describing: color))
+		NSLog("Color picker returned with color %@", String(describing: color))
 		view.window!.tintColor = color
 		colorWell.color = color
 	}
 
 	func colorPickerDidCancel(_ colorPicker: ColorPickerViewController) {
-		NSLog("Cancelled")
+		NSLog("Color picker cancelled")
+	}
+
+}
+
+@available(iOS 14, *)
+extension FirstViewController: UIColorPickerViewControllerDelegate {
+
+	func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+		NSLog("UIKit color picker value changed with color %@", String(describing: viewController.selectedColor))
+		view.window!.tintColor = viewController.selectedColor
+		if let uikitWell = uikitWell as? UIColorWell {
+			uikitWell.selectedColor = viewController.selectedColor
+		}
+	}
+
+	func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+		NSLog("UIKit color picker finished")
 	}
 
 }

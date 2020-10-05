@@ -245,7 +245,7 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 			return true
 		}
 
-		guard var uiColor = UIColor(hbcp_propertyListValue: "#\(canonicalizedString)") else {
+		guard var uiColor = UIColor(propertyListValue: "#\(canonicalizedString)") else {
 			return true
 		}
 

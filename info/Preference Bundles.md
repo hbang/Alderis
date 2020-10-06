@@ -15,7 +15,7 @@ Alderis also provides a replacement, cleaner interface for preference bundles. E
 	<string>#33b5e5</string>
 	<key>label</key>
 	<string>Tint Color</string>
-	<key>supportsAlpha</key>
+	<key>showAlphaSlider</key>
 	<true/>
 	<key>PostNotification</key>
 	<string>com.example.myawesomething/ReloadPrefs</string>
@@ -24,7 +24,7 @@ Alderis also provides a replacement, cleaner interface for preference bundles. E
 
 Compared to libcolorpicker’s API design, this leans on the fundamentals of Preferences.framework, including using the framework’s built-in preference value getters/setters system. In fact, the only two distinct parts are the `cellClass` and the `supportsAlpha` key. The rest should seem natural to typical Preference specifier plist usage.
 
-Remember to link against the `libcolorpicker` library. With Theos, this might look like:
+Remember to link against the `libcolorpicker` library from the preference bundle. With Theos, this might look like:
 
 ```make
 MyAwesomeThing_LIBRARIES = colorpicker

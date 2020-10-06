@@ -23,6 +23,42 @@ Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constell
 </tr>
 </table>
 
+## Why do I want this? Isn’t there already a color picker in iOS?
+Alderis was [originally released](https://twitter.com/hbkirb/status/1239332547437326337) before iOS 14 was unveiled with a built-in [color picker](https://developer.apple.com/design/human-interface-guidelines/ios/controls/color-wells/) feature, which seems to be heavily inspired by Alderis. However, rather than throw in the towel here, I’m considering this an opportunity to continue building what I feel is a better, less cluttered user experience, with more configuration options for apps to fine-tune a color picker UI suitable for each use case and target market.
+
+If this doesn’t seem important to you, the answer is simple: skip Alderis and use [UIColorPickerViewController](https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller). If it does, read on.
+
+### Feature Comparison
+
+<table>
+<tr> <th></th> <th>Alderis</th> <th>UIKit</th> </tr>
+<tr> <th>Minimal UI</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Drag and drop colors within app</th> <td>✔️</td> <td>✔️ *</td> </tr>
+<tr> <th>Drag and drop colors across apps</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Color grid</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Color spectrum/wheel</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>RGB sliders</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>HSB sliders</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Grayscale slider</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Opacity slider</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Hex color code support</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Color space support (Display P3)</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Save favorite colors</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Saved colors shared across apps</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Grab color from screen (eyedropper)</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Customise title label</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise tab row visibility</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise visible tabs</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise initially selected tab</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise opacity slider visibility</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Customise color grid</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>Interface Builder support</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>SwiftUI support w/o UIKit bridging</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>Observe value change with KVO</th> <td>✖️</td> <td>✔️</td> </tr>
+</table>
+
+\* UIColorWell supports dragging colors *onto* it, but not *out* of it. Alderis supports both directions, which are separately configurable. The default Alderis ColorWell behavior matches UIColorWell. Alderis supports drag and drop on the color picker window; UIKit does not.
+
 ## Installation
 
 ### CocoaPods

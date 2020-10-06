@@ -146,7 +146,6 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			segmentedControl.topAnchor.constraint(equalTo: segmentedControlContainer.topAnchor),
 			segmentedControl.bottomAnchor.constraint(equalTo: segmentedControlContainer.bottomAnchor),
 			segmentedControl.centerXAnchor.constraint(equalTo: segmentedControlContainer.centerXAnchor),
-			segmentedControl.widthAnchor.constraint(equalToConstant: 180),
 
 			topSpacerView.heightAnchor.constraint(equalToConstant: 0),
 			bottomSpacerView.heightAnchor.constraint(equalToConstant: 0),

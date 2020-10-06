@@ -83,7 +83,9 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tabs.append(tab)
 		}
 
-		view.addInteraction(UIDropInteraction(delegate: self))
+		if configuration.isDropInteractionEnabled {
+			view.addInteraction(UIDropInteraction(delegate: self))
+		}
 
 		backgroundView = UIView()
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false

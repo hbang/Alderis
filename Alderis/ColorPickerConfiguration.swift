@@ -83,4 +83,8 @@ open class ColorPickerConfiguration: NSObject {
 	/// selection. If this behavior is not desired, you can disable it here.
 	@objc open var overrideSmartInvert = true
 
+	/// Whether the user can end a drag interaction by dropping on the color picker window, allowing
+	/// them to drag a color from a supporting app. The default is true.
+	@objc open var isDropInteractionEnabled = true
+
 }

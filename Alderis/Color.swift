@@ -63,17 +63,17 @@ internal struct Color: Equatable, Hashable {
 	init(uiColor: UIColor) {
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
-		self.white = (red + green + blue) / 3
+		self.white = brightness
 	}
 
 	init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
 		self.red = red
 		self.green = green
 		self.blue = blue
-		self.white = (red + green + blue) / 3
 		self.alpha = alpha
 		let uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
+		self.white = brightness
 	}
 
 	init(white: CGFloat, alpha: CGFloat) {
@@ -84,7 +84,7 @@ internal struct Color: Equatable, Hashable {
 		self.hue = hue
 		self.saturation = saturation
 		self.brightness = brightness
-		self.white = (red + green + blue) / 3
+		self.white = brightness
 		self.alpha = alpha
 		let uiColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)

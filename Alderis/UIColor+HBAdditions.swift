@@ -24,31 +24,31 @@ extension UIColor {
 	/// @returns An initialized color object. The color information represented by this object is in the
 	/// device RGB colorspace.
 	
-	convenience init?(hbcp_propertyListValue value: Any?) {
+	@objc convenience init?(hbcp_propertyListValue value: Any?) {
 		
 			if value == nil {
 						return nil
-			} else if value is NSArray && (value as? [AnyHashable])?.count == 3 || (value as? [AnyHashable])?.count == 4 {
-						let array = value as! [AnyHashable]
+			} else if value is Array<Any> && (value as! Array<Any>).count == 3 || (value as! Array<Any>).count == 4 {
+						let array = value as! [CGFloat]
 						self.init(
-								red: (array[0] as? CGFloat ?? 0) / 255.0,
-								green: (array[1] as? CGFloat ?? 0) / 255.0,
-								blue: (array[2] as? CGFloat ?? 0) / 255.0,
-								alpha: CGFloat(array.count == 4 ? (array[3] as? Double ?? 0.0) : 1))
+								red: array[0] / 255.0,
+								green: array[1] / 255.0,
+								blue: array[2] / 255.0,
+								alpha: CGFloat(array.count == 4 ? (array[3]) : 1))
 			}
-			else if value is NSString {
+			else if value is String {
 						var string = value as! String
-						let colonLocation = (string as NSString?)?.range(of: ":").location ?? 0
-						if colonLocation != NSNotFound {
-								string = (string as NSString?)!.substring(to: colonLocation)
+						if let range = string.range(of: ":") {
+								let location = string.distance(from: string.startIndex, to: range.lowerBound)
+								string = String(string[..<string.index(string.startIndex, offsetBy:location)])
 						}
 
-						if (string.count) == 4 || (string.count) == 5 {
-								let r = (string as NSString).substring(with: NSRange(location: 1, length: 1))
-								let g = (string as NSString).substring(with: NSRange(location: 2, length: 1))
-								let b = (string as NSString).substring(with: NSRange(location: 3, length: 1))
-								let a = string.count == 5 ? (string as NSString?)!.substring(with: NSRange(location: 4, length: 1)) : "F"
-								string = String(format: "#%1$@%1$@%2$@%2$@%3$@%3$@%4$@%4$@", r, g, b, a)
+						if string.count == 4 || string.count == 5 {
+							let r = String(repeating: string[string.index(string.startIndex, offsetBy: 1)], count: 2)
+							let g = String(repeating: string[string.index(string.startIndex, offsetBy: 2)], count: 2)
+							let b = String(repeating: string[string.index(string.startIndex, offsetBy: 3)], count: 2)
+							let a = string.count == 5 ? String(repeating: string[string.index(string.startIndex, offsetBy: 4)], count: 2) : "FF"
+								string = String(format: "%@%@%@%@", r, g, b, a)
 						}
 
 						var hex: UInt64 = 0
@@ -77,10 +77,7 @@ extension UIColor {
 
 
 	func hbcp_propertyListValue() -> String? {
-			var r: CGFloat = 0
-			var g: CGFloat = 0
-			var b: CGFloat = 0
-			var a: CGFloat = 0
+			var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
 			
 			self.getRed(&r, green: &g, blue: &b, alpha: &a)
 		

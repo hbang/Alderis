@@ -53,7 +53,7 @@
 - (void)_setColorValue:(UIColor *)color {
 	// libcolorpicker compatibility
 	if (self._hbcp_defaults != nil && self._hbcp_key != nil) {
-		NSLog(@"Alderis: %@: Writing directly to plist file (libcolorpicker compatibility). I’m going to do it since it seems to be somewhat common, but you should be ashamed of yourself. https://hbang.github.io/Alderis/", self.class);
+		NSLog(@"Alderis: %@: Writing directly to plist file (libcolorpicker compatibility). I’m going to do it since it seems to be somewhat common, but you should be ashamed of yourself. https://hbang.github.io/Alderis/preference-bundles.html", self.class);
 
 		NSString *path = [NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist", self._hbcp_defaults];
 		NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithContentsOfFile:path] ?: [NSMutableDictionary dictionary];

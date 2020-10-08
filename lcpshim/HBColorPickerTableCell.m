@@ -17,19 +17,33 @@
 #pragma mark - PSTableCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier specifier:(PSSpecifier *)specifier {
+	specifier.cellType = PSButtonCell;
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier specifier:specifier];
 	if (self) {
-		_colorWell = [[HBColorWell alloc] initWithFrame:CGRectZero];
+		self.textLabel.textColor = self.tintColor;
+		self.textLabel.highlightedTextColor = self.tintColor;
+
+		_colorWell = [[HBColorWell alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+		_colorWell.isDragInteractionEnabled = YES;
+		_colorWell.isDropInteractionEnabled = YES;
+		[_colorWell addTarget:self action:@selector(_present) forControlEvents:UIControlEventTouchUpInside];
+		[_colorWell addTarget:self action:@selector(_colorWellValueChanged:) forControlEvents:UIControlEventValueChanged];
 		self.accessoryView = _colorWell;
+
+		// This relies on an implementation detail - do not do this yourself!
+		[self addInteraction:[[UIDropInteraction alloc] initWithDelegate:_colorWell]];
+
+		[self _updateValue];
 	}
 	return self;
 }
 
 - (void)refreshCellContentsWithSpecifier:(PSSpecifier *)specifier {
+	specifier.cellType = PSButtonCell;
 	[super refreshCellContentsWithSpecifier:specifier];
-	self.cellTarget = self;
-	self.cellAction = @selector(_present);
 	[self _updateValue];
+	self.textLabel.textColor = self.tintColor;
+	self.textLabel.highlightedTextColor = self.tintColor;
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
@@ -45,6 +59,12 @@
 	}
 }
 
+- (void)tintColorDidChange {
+	[super tintColorDidChange];
+	self.textLabel.textColor = self.tintColor;
+	self.textLabel.highlightedTextColor = self.tintColor;
+}
+
 #pragma mark - Properties
 
 - (NSString *)_hbcp_defaults {
@@ -55,14 +75,18 @@
 	return self.specifier.properties[@"key"];
 }
 
+- (NSString *)_hbcp_default {
+	return self.specifier.properties[@"default"];
+}
+
 - (BOOL)_hbcp_supportsAlpha {
-	return self.specifier.properties[@"supportsAlpha"] ? ((NSNumber *)self.specifier.properties[@"supportsAlpha"]).boolValue : NO;
+	return self.specifier.properties[@"showAlphaSlider"] ? ((NSNumber *)self.specifier.properties[@"showAlphaSlider"]).boolValue : NO;
 }
 
 #pragma mark - Getters/setters
 
 - (UIColor *)_colorValue {
-	return LCPParseColorString([self.specifier performGetter], nil) ?: [UIColor colorWithWhite:0.6 alpha:1];
+	return LCPParseColorString([self.specifier performGetter], self._hbcp_default) ?: [UIColor colorWithWhite:0.6 alpha:1];
 }
 
 - (void)_setColorValue:(UIColor *)color {
@@ -74,21 +98,24 @@
 	_colorWell.color = self._colorValue;
 }
 
-#pragma mark - Present
+#pragma mark - Actions
 
 - (void)_present {
 	_viewController = [[HBColorPickerViewController alloc] init];
 	_viewController.delegate = self;
 	_viewController.popoverPresentationController.sourceView = self;
 
-	UIColor *color = self._colorValue ?: [UIColor colorWithWhite:0.6 alpha:1];
-	HBColorPickerConfiguration *configuration = [[HBColorPickerConfiguration alloc] initWithColor:color];
-	configuration.title = self.specifier.properties[@"label"];
+	HBColorPickerConfiguration *configuration = [[HBColorPickerConfiguration alloc] initWithColor:self._colorValue];
+	configuration.title = self.textLabel.text;
 	configuration.supportsAlpha = self._hbcp_supportsAlpha;
 	_viewController.configuration = configuration;
 
 	UIViewController *rootViewController = self._viewControllerForAncestor ?: [UIApplication sharedApplication].keyWindow.rootViewController;
 	[rootViewController presentViewController:_viewController animated:YES completion:nil];
+}
+
+- (void)_colorWellValueChanged:(HBColorWell *)sender {
+	[self _setColorValue:sender.color];
 }
 
 #pragma mark - HBColorPickerDelegate

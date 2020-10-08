@@ -9,6 +9,7 @@
 	PFColorAlert *_strongSelf;
 	HBColorPickerViewController *_viewController;
 	UIColor *_color;
+	BOOL _showAlpha;
 	PFColorAlertCompletion _completion;
 }
 
@@ -20,9 +21,7 @@
 	self = [super init];
 	if (self) {
 		_color = startColor;
-		if (showAlpha) {
-			NSLog(@"Alderis: -[PFColorAlert initWithStartColor:showAlpha:]: showAlpha was requested, but alpha is not yet supported.");
-		}
+		_showAlpha = showAlpha;
 	}
 	return self;
 }
@@ -31,15 +30,17 @@
 	_completion = [completion copy];
 	_viewController = [[HBColorPickerViewController alloc] init];
 	_viewController.delegate = self;
-	_viewController.popoverPresentationController.sourceRect = [UIScreen mainScreen].bounds;
-	_viewController.popoverPresentationController.permittedArrowDirections = 0;
 
 	UIColor *color = _color ?: [UIColor colorWithWhite:0.6 alpha:1];
 	HBColorPickerConfiguration *configuration = [[HBColorPickerConfiguration alloc] initWithColor:color];
+	configuration.supportsAlpha = _showAlpha;
 	_viewController.configuration = configuration;
 
-	UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-	[rootViewController presentViewController:_viewController animated:YES completion:nil];
+	UIWindow *window = [UIApplication sharedApplication].keyWindow;
+	_viewController.popoverPresentationController.sourceView = window;
+	_viewController.popoverPresentationController.sourceRect = window.bounds;
+	_viewController.popoverPresentationController.permittedArrowDirections = 0;
+	[window.rootViewController presentViewController:_viewController animated:YES completion:nil];
 
 	// Keep a strong reference to ourself. The color picker delegate is weakly stored by
 	// HBColorPickerViewController, but some users of PFColorAlert do not keep a strong reference to

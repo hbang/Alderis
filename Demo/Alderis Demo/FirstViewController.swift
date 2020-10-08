@@ -266,9 +266,13 @@ class FirstViewController: UIViewController {
 extension FirstViewController: ColorPickerDelegate {
 
 	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor) {
-		NSLog("Color picker returned with color %@", String(describing: color))
+		NSLog("User selected color %@", String(describing: color))
 		view.window!.tintColor = color
 		colorWell.color = color
+	}
+
+	func colorPicker(_ colorPicker: ColorPickerViewController, didAccept color: UIColor) {
+		NSLog("User accepted color %@", String(describing: color))
 	}
 
 	func colorPickerDidCancel(_ colorPicker: ColorPickerViewController) {

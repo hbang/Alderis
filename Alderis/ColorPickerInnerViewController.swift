@@ -321,21 +321,25 @@ internal class ColorPickerInnerViewController: UIViewController {
 	}
 
 	@objc private func cancelTapped() {
+		delegate?.colorPicker?(colorPicker, didSelect: configuration.color)
 		delegate?.colorPickerDidCancel?(colorPicker)
 		dismiss(animated: true)
 	}
 
 	@objc private func saveTapped() {
-		delegate?.colorPicker(colorPicker, didSelect: color.uiColor)
+		delegate?.colorPicker?(colorPicker, didAccept: color.uiColor)
 		dismiss(animated: true)
 	}
 
 	private func colorDidChange(withSource source: ColorPickerTabViewControllerBase? = nil) {
+		let uiColor = color.uiColor
+		delegate?.colorPicker?(colorPicker, didSelect: uiColor)
+
 		let foregroundColor: UIColor = color.isDark ? .white : .black
 
-		view.tintColor = color.uiColor
-		tabsBackgroundView.backgroundColor = color.uiColor
-		buttonsBackgroundView.backgroundColor = color.uiColor
+		view.tintColor = uiColor
+		tabsBackgroundView.backgroundColor = uiColor
+		buttonsBackgroundView.backgroundColor = uiColor
 		titleLabel.textColor = foregroundColor
 		cancelButton.setTitleColor(foregroundColor, for: .normal)
 		saveButton.setTitleColor(foregroundColor, for: .normal)
@@ -357,7 +361,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tab.setColor(color, shouldBroadcast: false)
 		}
 
-		backgroundView.backgroundColor = color.uiColor.withAlphaComponent(color.alpha * 0.1)
+		backgroundView.backgroundColor = uiColor.withAlphaComponent(color.alpha * 0.1)
 	}
 
 	private func tabDidChange(oldValue: Int) {
@@ -396,6 +400,14 @@ extension ColorPickerInnerViewController: UIDropInteractionDelegate {
 				self.setColor(Color(uiColor: color), withSource: nil)
 			}
 		}
+	}
+
+}
+
+extension ColorPickerInnerViewController: UIPopoverPresentationControllerDelegate {
+
+	public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+		saveTapped()
 	}
 
 }

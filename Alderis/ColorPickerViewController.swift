@@ -158,15 +158,19 @@ open class ColorPickerViewController: UIViewController {
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)
 		innerViewController.view.translatesAutoresizingMaskIntoConstraints = false
-		innerViewController.view.clipsToBounds = true
-		innerViewController.view.layer.cornerRadius = 13
+
 		if isFullScreen {
+			innerViewController.view.clipsToBounds = true
+			innerViewController.view.layer.cornerRadius = 13
 			innerViewController.view.layer.borderWidth = 1
 			innerViewController.view.layer.borderColor = Assets.borderColor.cgColor
+			if #available(iOS 13, *) {
+				innerViewController.view.layer.cornerCurve = .continuous
+			}
+		} else {
+			popoverPresentationController?.delegate = innerViewController
 		}
-		if #available(iOS 13, *) {
-			innerViewController.view.layer.cornerCurve = .continuous
-		}
+
 		containerView.addSubview(innerViewController.view)
 
 		widthLayoutConstraint = containerView.widthAnchor.constraint(equalToConstant: finalWidth)

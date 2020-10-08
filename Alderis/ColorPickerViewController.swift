@@ -216,7 +216,10 @@ open class ColorPickerViewController: UIViewController {
 		super.viewWillLayoutSubviews()
 
 		widthLayoutConstraint.constant = finalWidth
-		innerViewController.view.layer.borderWidth = 1 / (view.window?.screen.scale ?? 1)
+
+		if isFullScreen {
+			innerViewController.view.layer.borderWidth = 1 / (view.window?.screen.scale ?? 1)
+		}
 	}
 
 	/// :nodoc:

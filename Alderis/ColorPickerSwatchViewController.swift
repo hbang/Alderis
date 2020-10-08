@@ -174,7 +174,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 	let colors = ColorPickerSwatchViewController.colorSwatch
 
 	private var colorRows = [[ColorLayer]]()
-	private var colorDict = [Color: ColorLayer]()
+	private var colorDict = [String: ColorLayer]()
 
 	var containerView: UIView!
 	var selectionView: UIView!
@@ -196,7 +196,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 			for color in row {
 				let colorLayer = ColorLayer(color: color)
 				containerView.layer.addSublayer(colorLayer)
-				colorDict[color] = colorLayer
+				colorDict[color.hexString()] = colorLayer
 				colorRow.append(colorLayer)
 			}
 			colorRows.append(colorRow)
@@ -210,7 +210,6 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		selectionView = UIView()
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
 		selectionView.isUserInteractionEnabled = false
-		selectionView.isHidden = true
 		selectionView.layer.borderColor = UIColor.white.cgColor
 		selectionView.layer.borderWidth = 2
 		selectionView.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -297,7 +296,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 
 	override func colorDidChange() {
 		guard selectionView != nil else { return }
-		setSelection(to: colorDict[color])
+		setSelection(to: colorDict[color.hexString()])
 	}
 
 }

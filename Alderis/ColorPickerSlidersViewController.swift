@@ -240,7 +240,7 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 			return false
 		}
 
-		if ![ 3, 6, 8 ].contains(canonicalizedString.count) {
+		if canonicalizedString.count != 6 && canonicalizedString.count != 8 {
 			// User is probably still typing it out. Don’t do anything yet.
 			return true
 		}

@@ -12,7 +12,6 @@
 
 #import "Alderis.h"
 #import "AlderisSDKCompatibility.h"
-#import "UIColor+HBAdditions.h"
 
 FOUNDATION_EXPORT double AlderisVersionNumber;
 FOUNDATION_EXPORT const unsigned char AlderisVersionString[];

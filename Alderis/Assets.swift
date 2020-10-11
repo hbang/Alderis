@@ -6,7 +6,7 @@
 //  Copyright © 2020 HASHBANG Productions. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal struct Assets {
 

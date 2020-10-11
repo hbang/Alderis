@@ -6,7 +6,7 @@
 //  Copyright © 2020 HASHBANG Productions. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// An enumeration of the tabs `ColorPickerViewController` features. Use these enumeration values to
 /// set tab-related settings on ColorPickerConfiguration.

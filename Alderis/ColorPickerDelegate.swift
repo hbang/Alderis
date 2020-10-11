@@ -24,7 +24,7 @@ public protocol ColorPickerDelegate: NSObjectProtocol {
 	///
 	/// - parameter colorPicker: The `ColorPickerViewController` instance that triggered the action.
 	/// - parameter color: The `UIColor` selection the user made.
-	/// - see: `colorPicker(_:didSelect:)`
+	/// - see: `colorPicker(_:didAccept:)`
 	@objc(colorPicker:didSelectColor:)
 	optional func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor)
 
@@ -35,7 +35,7 @@ public protocol ColorPickerDelegate: NSObjectProtocol {
 	///
 	/// - parameter colorPicker: The `ColorPickerViewController` instance that triggered the action.
 	/// - parameter color: The `UIColor` selection the user made.
-	/// - see: `colorPicker(_:didSelect::)`
+	/// - see: `colorPicker(_:didSelect:)`
 	@objc(colorPicker:didAcceptColor:)
 	optional func colorPicker(_ colorPicker: ColorPickerViewController, didAccept color: UIColor)
 

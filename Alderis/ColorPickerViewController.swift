@@ -116,8 +116,14 @@ open class ColorPickerViewController: UIViewController {
 	override open func viewDidLoad() {
 		super.viewDidLoad()
 
+		var compatibilityMode = false
 		if configuration == nil {
 			// Yes, Swift, I know my code for handling deprecated API usage uses deprecated API 🙄
+			if color == ColorPickerViewController.defaultColor {
+				fatalError("Alderis: You need to set a configuration. https://hbang.github.io/Alderis/")
+			}
+			NSLog("Alderis: Deprecated configuration API in use. This will be removed in a future release. Migrate to using ColorPickerConfiguration. https://hbang.github.io/Alderis/")
+			compatibilityMode = true
 			configuration = ColorPickerConfiguration(color: color)
 			configuration.overrideSmartInvert = overrideSmartInvert
 		}
@@ -155,6 +161,7 @@ open class ColorPickerViewController: UIViewController {
 		}
 
 		innerViewController = ColorPickerInnerViewController(delegate: delegate, configuration: configuration)
+		innerViewController.compatibilityMode = compatibilityMode
 		innerViewController.willMove(toParent: self)
 		addChild(innerViewController)
 		innerViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -360,7 +367,7 @@ open class ColorPickerViewController: UIViewController {
 			if isKeyboardVisible {
 				view.endEditing(true)
 			} else {
-				delegate?.colorPickerDidCancel?(self)
+				innerViewController.saveTapped()
 				dismiss(animated: true, completion: nil)
 			}
 		}

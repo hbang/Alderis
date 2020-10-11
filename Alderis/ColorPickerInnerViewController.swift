@@ -33,6 +33,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 		set { currentTab = configuration.visibleTabs.firstIndex(of: newValue) ?? 0 }
 	}
 
+	var compatibilityMode = false
+
 	private var colorPicker: ColorPickerViewController {
 		// swiftlint:disable:next force_cast
 		parent as! ColorPickerViewController
@@ -321,19 +323,27 @@ internal class ColorPickerInnerViewController: UIViewController {
 	}
 
 	@objc private func cancelTapped() {
-		delegate?.colorPicker?(colorPicker, didSelect: configuration.color)
+		if !compatibilityMode {
+			delegate?.colorPicker?(colorPicker, didSelect: configuration.color)
+		}
 		delegate?.colorPickerDidCancel?(colorPicker)
 		dismiss(animated: true)
 	}
 
-	@objc private func saveTapped() {
-		delegate?.colorPicker?(colorPicker, didAccept: color.uiColor)
+	@objc func saveTapped() {
+		if compatibilityMode {
+			delegate?.colorPicker?(colorPicker, didSelect: color.uiColor)
+		} else {
+			delegate?.colorPicker?(colorPicker, didAccept: color.uiColor)
+		}
 		dismiss(animated: true)
 	}
 
 	private func colorDidChange(withSource source: ColorPickerTabViewControllerBase? = nil) {
 		let uiColor = color.uiColor
-		delegate?.colorPicker?(colorPicker, didSelect: uiColor)
+		if !compatibilityMode {
+			delegate?.colorPicker?(colorPicker, didSelect: uiColor)
+		}
 
 		let foregroundColor: UIColor = color.isDark ? .white : .black
 

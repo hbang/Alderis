@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "Alderis"
-  spec.version      = "1.0"
+  spec.version      = "1.1"
   spec.summary      = "A fresh new color picker, with a gentle, fun, and dead simple user interface."
   spec.description  = <<-DESC
                       Alderis is a fresh new color picker, with a gentle, fun, and dead simple user
@@ -25,6 +25,6 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/hbang/Alderis.git", :tag => "#{spec.version}" }
   spec.requires_arc = true
-  spec.source_files = [ "Alderis/**" ]
+  spec.source_files = [ "Alderis/*.swift", "Alderis/*.h" ]
   spec.resource_bundles = { "Alderis" => "Alderis/Assets.xcassets" }
 end

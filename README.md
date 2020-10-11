@@ -10,16 +10,13 @@ Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constell
 
 **[Documentation](https://hbang.github.io/Alderis/)**
 
-## Screenshots
-
 <table align="center">
 <tr>
-<td><a href="screenshots/alderis-1.jpg"><img src="screenshots/alderis-1.jpg" width="240"></a></td>
-<td><a href="screenshots/alderis-2.jpg"><img src="screenshots/alderis-2.jpg" width="240"></a></td>
-</tr>
-<tr>
-<td><a href="screenshots/alderis-3.jpg"><img src="screenshots/alderis-3.jpg" width="240"></a></td>
-<td><a href="screenshots/alderis-4.jpg"><img src="screenshots/alderis-4.jpg" width="240"></a></td>
+<td>
+<a href="screenshots/alderis-demo.mp4"><img src="screenshots/alderis-demo.gif" width="320"></a>
+<br>
+<sup>Click for full-quality MP4</sup>
+</td>
 </tr>
 </table>
 
@@ -80,7 +77,19 @@ github 'hbang/Alderis' ~> 1.1
 And then run `carthage update`.
 
 ### Swift Package Manager
-Not yet available due to [#13](https://github.com/hbang/Alderis/issues/13).
+1. Click File &rarr; Swift Packages &rarr; Add Package Dependency.
+2. Enter `http://github.com/hbang/Alderis.git`.
+3. Specify `1.1` as the version filter.
+
+Or, manually add it to your Package.swift:
+
+```swift
+dependencies: [
+	.package(url: "http://github.com/hbang/Alderis.git", from: "1.1")
+]
+```
+
+And then run `swift package update`.
 
 ### Jailbreak packages
 Add `ws.hbang.alderis (>= 1.1)` to your `Depends:` list.

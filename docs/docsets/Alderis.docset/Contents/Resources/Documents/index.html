@@ -42,6 +42,9 @@
               <li class="nav-group-task">
                 <a href="preference-bundles.html">Preference Bundles</a>
               </li>
+              <li class="nav-group-task">
+                <a href="migrating-to-11.html">Migrating to 1.1</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -70,6 +73,23 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/UIColor.html">UIColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:7Alderis22ColorPropertyListValueP">ColorPropertyListValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:SS">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions.html#/s:Sa">Array</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Deprecated.html">Deprecated</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -94,16 +114,51 @@
 <p>Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constellation. (There is no dependency on the <a href="https://hbang.github.io/libcephei/">Cephei</a> project.)</p>
 
 <p><strong><a href="https://hbang.github.io/Alderis/">Documentation</a></strong></p>
-<h2 id='screenshots' class='heading'>Screenshots</h2>
 
 <table align="center">
 <tr>
-<td><a href="screenshots/alderis-1.jpg"><img src="screenshots/alderis-1.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-2.jpg"><img src="screenshots/alderis-2.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-3.jpg"><img src="screenshots/alderis-3.jpg" width="180" height="390"></a></td>
-<td><a href="screenshots/alderis-4.jpg"><img src="screenshots/alderis-4.jpg" width="180" height="390"></a></td>
+<td>
+<a href="screenshots/alderis-demo.mp4"><img src="screenshots/alderis-demo.gif" width="320"></a>
+<br>
+<sup>Click for full-quality MP4</sup>
+</td>
 </tr>
 </table>
+<h2 id='why-do-i-want-this-isn-t-there-already-a-color-picker-in-ios' class='heading'>Why do I want this? Isn’t there already a color picker in iOS?</h2>
+
+<p>Alderis was <a href="https://twitter.com/hbkirb/status/1239332547437326337">originally released</a> before iOS 14 was unveiled with a built-in <a href="https://developer.apple.com/design/human-interface-guidelines/ios/controls/color-wells/">color picker</a> feature, which seems to be heavily inspired by Alderis. However, rather than throw in the towel here, I’m considering this an opportunity to continue building what I feel is a better, less cluttered user experience, with more configuration options for apps to fine-tune a color picker UI suitable for each use case and target market.</p>
+
+<p>If this doesn’t seem important to you, the answer is simple: skip Alderis and use <a href="https://developer.apple.com/documentation/uikit/uicolorpickerviewcontroller">UIColorPickerViewController</a>. If it does, read on.</p>
+<h3 id='feature-comparison' class='heading'>Feature Comparison</h3>
+
+<table>
+<tr> <th></th> <th>Alderis</th> <th>UIKit</th> </tr>
+<tr> <th>Minimal UI</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Drag and drop colors within app</th> <td>✔️</td> <td>✔️ *</td> </tr>
+<tr> <th>Drag and drop colors across apps</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Color grid</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Color spectrum/wheel</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>RGB sliders</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>HSB sliders</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Grayscale slider</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Opacity slider</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Hex color code support</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Color space support (Display P3)</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Save favorite colors</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Saved colors shared across apps</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Grab color from screen (eyedropper)</th> <td>✖️</td> <td>✔️</td> </tr>
+<tr> <th>Customise title label</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise tab row visibility</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise visible tabs</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise initially selected tab</th> <td>✔️</td> <td>✖️</td> </tr>
+<tr> <th>Customise opacity slider visibility</th> <td>✔️</td> <td>✔️</td> </tr>
+<tr> <th>Customise color grid</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>Interface Builder support</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>SwiftUI support w/o UIKit bridging</th> <td>✖️</td> <td>✖️</td> </tr>
+<tr> <th>Observe value change with KVO</th> <td>✖️</td> <td>✔️</td> </tr>
+</table>
+
+<p>* UIColorWell supports dragging colors <em>onto</em> it, but not <em>out</em> of it. Alderis supports both directions, which are separately configurable. The default Alderis ColorWell behavior matches UIColorWell. Alderis supports drag and drop on the color picker window; UIKit does not.</p>
 <h2 id='installation' class='heading'>Installation</h2>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
@@ -121,11 +176,23 @@
 <p>And then run <code>carthage update</code>.</p>
 <h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
-<p>Not yet available due to <a href="https://github.com/hbang/Alderis/issues/13">#13</a>.</p>
+<ol>
+<li>Click File &rarr; Swift Packages &rarr; Add Package Dependency.</li>
+<li>Enter <code>http://github.com/hbang/Alderis.git</code>.</li>
+<li>Specify <code>1.1</code> as the version filter.</li>
+</ol>
+
+<p>Or, manually add it to your Package.swift:</p>
+<pre class="highlight swift"><code><span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+    <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"http://github.com/hbang/Alderis.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"1.1"</span><span class="p">)</span>
+<span class="p">]</span>
+</code></pre>
+
+<p>And then run <code>swift package update</code>.</p>
 <h3 id='jailbreak-packages' class='heading'>Jailbreak packages</h3>
 
 <p>Add <code>ws.hbang.alderis (&gt;= 1.1)</code> to your <code>Depends:</code> list.</p>
-<h2 id='libcolorpicker-compatibility' class='heading'>libcolorpicker Compatibility</h2>
+<h2 id='preference-bundles-and-libcolorpicker-compatibility' class='heading'>Preference Bundles and libcolorpicker Compatibility</h2>
 
 <p>Alderis acts as a drop-in replacement for <a href="https://github.com/atomikpanda/libcolorpicker">libcolorpicker</a>, an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace <code>org.thebigboss.libcolorpicker</code> with <code>ws.hbang.alderis</code> to switch their color picker to Alderis. No other changes required!</p>
 
@@ -139,7 +206,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2020-10-04)</p>
+          <p>&copy; 2020 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2020-10-12)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

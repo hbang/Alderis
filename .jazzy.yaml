@@ -1,3 +1,4 @@
+clean: true
 author: HASHBANG Productions
 author_url: https://hbang.github.io/
 github_url: https://github.com/hbang/Alderis
@@ -10,6 +11,7 @@ custom_categories:
   - name: "Guides"
     children:
       - "Preference Bundles"
+      - "Migrating to 1.1"
 
   - name: "Color Picker"
     children:
@@ -21,6 +23,13 @@ custom_categories:
   - name: "UI Components"
     children:
       - ColorWell
+
+  - name: "Extensions"
+    children:
+      - UIColor
+      - ColorPropertyListValue
+      - String
+      - Array
 
   - name: "Deprecated"
     children:

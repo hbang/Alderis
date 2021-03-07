@@ -97,7 +97,7 @@ And then run `swift package update`.
 Add `ws.hbang.alderis (>= 1.1)` to your `Depends:` list.
 
 ## Preference Bundles and libcolorpicker Compatibility
-Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis` to switch their color picker to Alderis. No other changes required!
+Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis (>= 1.1)` to switch their color picker to Alderis. No other changes required!
 
 For more information, refer to [the docs](https://hbang.github.io/Alderis/preference-bundles.html).
 

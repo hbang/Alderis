@@ -1,5 +1,5 @@
 ## Alderis with Preference Bundles
-Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis` to switch the color picker to Alderis. No other changes required!
+Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis (>= 1.1)` to switch the color picker to Alderis. No other changes required!
 
 Alderis also provides a replacement, cleaner interface for preference bundles. Example usage:
 
@@ -22,7 +22,7 @@ Alderis also provides a replacement, cleaner interface for preference bundles. E
 </dict>
 ```
 
-Compared to libcolorpicker’s API design, this leans on the fundamentals of Preferences.framework, including using the framework’s built-in preference value getters/setters system. In fact, the only two distinct parts are the `cellClass` and the `supportsAlpha` key. The rest should seem natural to typical Preference specifier plist usage.
+Compared to libcolorpicker’s API design, this leans on the fundamentals of Preferences.framework, including using the framework’s built-in preference value getters/setters system. In fact, the only two distinct parts are the `cellClass` and the `showAlphaSlider` key. The rest should seem natural to typical Preference specifier plist usage.
 
 Remember to link against the `libcolorpicker` library from the preference bundle. With Theos, this might look like:
 

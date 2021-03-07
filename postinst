@@ -1,4 +1,19 @@
 #!/bin/bash
+set -e
+
+# Install the right version 🙁
+cf_version=$(printf "%.0f" $(cfversion))
+if [[ $cf_version -ge 1770 ]]; then
+	tag=ios14
+else
+	tag=ios12
+fi
+
+if [[ -e /Library/Frameworks/Alderis.framework/Alderis ]]; then
+	rm /Library/Frameworks/Alderis.framework/Alderis
+fi
+ln -s Alderis-$tag /Library/Frameworks/Alderis.framework/Alderis
+
 # Tell the package manager to restart system app (SpringBoard) after installation.
 cydia=($CYDIA)
 if [[ ${cydia[1]} -ge 1 ]]; then

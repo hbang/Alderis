@@ -26,7 +26,7 @@ open class ColorPickerViewController: UIViewController {
 	/// Initialise an instance of ColorPickerViewController with a configuration object.
 	///
 	/// Remember to set the `delegate` before presenting the view controller.
-	public init(configuration: ColorPickerConfiguration) {
+	@objc public init(configuration: ColorPickerConfiguration) {
 		self.configuration = configuration
 		super.init(nibName: nil, bundle: nil)
 		setUp()

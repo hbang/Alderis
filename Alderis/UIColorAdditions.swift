@@ -53,11 +53,6 @@ public extension UIColor {
 								alpha: array.count == 4 ? floats[3] : 1)
 			return
 		} else if var string = propertyListValue as? String {
-			if let range = string.range(of: ":") {
-				let location = string.distance(from: string.startIndex, to: range.lowerBound)
-				string = String(string[..<string.index(string.startIndex, offsetBy: location)])
-			}
-
 			if string.count == 4 || string.count == 5 {
 				let r = String(repeating: string[string.index(string.startIndex, offsetBy: 1)], count: 2)
 				let g = String(repeating: string[string.index(string.startIndex, offsetBy: 2)], count: 2)
@@ -68,8 +63,11 @@ public extension UIColor {
 
 			var hex: UInt64 = 0
 			let scanner = Scanner(string: string)
-			scanner.charactersToBeSkipped = CharacterSet(charactersIn: "#")
-			scanner.scanHexInt64(&hex)
+			guard scanner.scanString("#", into: nil),
+						scanner.scanHexInt64(&hex) else {
+				return nil
+			}
+
 
 			if string.count == 9 {
 				self.init(red: CGFloat((hex & 0xFF000000) >> 24) / 255,
@@ -78,10 +76,16 @@ public extension UIColor {
 									alpha: CGFloat((hex & 0x000000FF) >> 0) / 255)
 				return
 			} else {
+				var alpha: Float = 1
+				if scanner.scanString(":", into: nil) {
+					// Continue scanning to get the alpha component.
+					scanner.scanFloat(&alpha)
+				}
+
 				self.init(red: CGFloat((hex & 0xFF0000) >> 16) / 255,
 									green: CGFloat((hex & 0x00FF00) >> 8) / 255,
 									blue: CGFloat((hex & 0x0000FF) >> 0) / 255,
-									alpha: 1)
+									alpha: CGFloat(alpha))
 				return
 			}
 		}

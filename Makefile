@@ -41,7 +41,7 @@ sdk: stage
 	rm -rf $(ALDERIS_SDK_DIR) $(notdir $(ALDERIS_SDK_DIR)).zip
 	for i in Alderis; do \
 		mkdir -p $(ALDERIS_SDK_DIR)/$$i.framework; \
-		cp -ra $(THEOS_STAGING_DIR)/Library/Frameworks/$$i.framework/{$$i,Headers,Modules} $(ALDERIS_SDK_DIR)/$$i.framework/; \
+		cp -a $(THEOS_STAGING_DIR)/Library/Frameworks/$$i.framework/{$$i,Headers,Modules} $(ALDERIS_SDK_DIR)/$$i.framework/; \
 		tbd -p -v1 --ignore-missing-exports \
 			--replace-install-name /Library/Frameworks/$$i.framework/$$i \
 			$(ALDERIS_SDK_DIR)/$$i.framework/$$i \
@@ -50,7 +50,7 @@ sdk: stage
 		rm -rf $(THEOS_VENDOR_LIBRARY_PATH)/$$i.framework; \
 	done
 	rm -r $(THEOS_STAGING_DIR)/Library/Frameworks/*.framework/{Headers,Modules}
-	cp -ra $(ALDERIS_SDK_DIR)/* $(THEOS_VENDOR_LIBRARY_PATH)
+	cp -a $(ALDERIS_SDK_DIR)/* $(THEOS_VENDOR_LIBRARY_PATH)
 	printf 'This is an SDK for developers wanting to use Alderis.\n\nVersion: %s\n\nFor more information, visit %s.' \
 		"$(THEOS_PACKAGE_BASE_VERSION)" \
 		"https://hbang.github.io/Alderis/" \

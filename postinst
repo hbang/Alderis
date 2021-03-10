@@ -3,7 +3,7 @@ set -e
 
 # Install the right version 🙁
 cf_version=$(printf "%.0f" $(cfversion))
-if [[ $cf_version -ge 1770 ]]; then
+if [[ $cf_version -ge 1750 ]]; then
 	tag=ios14
 else
 	tag=ios12

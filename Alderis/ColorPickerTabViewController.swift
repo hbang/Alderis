@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal protocol ColorPickerTabDelegate: class {
+internal protocol ColorPickerTabDelegate: AnyObject {
 	func colorPickerTab(_ tab: ColorPickerTabViewControllerBase, didSelect color: Color)
 }
 

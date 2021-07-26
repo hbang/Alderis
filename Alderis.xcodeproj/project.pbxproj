@@ -28,7 +28,7 @@
 		CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750D52524615D0069CC57 /* SeparatorView.swift */; };
 		CF775122252852460069CC57 /* AlderisSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = CF775121252852110069CC57 /* AlderisSDKCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */; };
-		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
+		CFAFFC9124277CEE005AD4C1 /* Alderis.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Alderis.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +49,7 @@
 		CF7750D52524615D0069CC57 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CF775121252852110069CC57 /* AlderisSDKCompatibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlderisSDKCompatibility.h; sourceTree = "<group>"; };
 		CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
-		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFAFFC9024277CEE005AD4C1 /* Alderis.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Alderis.xcassets; sourceTree = "<group>"; };
 		CFE70273241A4C5500083903 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		CFE7027B241A62ED00083903 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
 		CFE7027E241B984600083903 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		CF73D337241F9C23000B1B10 /* Alderis */ = {
 			isa = PBXGroup;
 			children = (
+				E12FA1C826935F5600DD4F42 /* Resources */,
+				CF73D339241F9C23000B1B10 /* Info.plist */,
 				CF73D338241F9C23000B1B10 /* Alderis.h */,
 				CF775121252852110069CC57 /* AlderisSDKCompatibility.h */,
 				CF7750B62520D3B50069CC57 /* Assets.swift */,
@@ -112,10 +114,16 @@
 				CF7750BD252203630069CC57 /* DialogButton.swift */,
 				CF7750D52524615D0069CC57 /* SeparatorView.swift */,
 				94A2368B252B5951002B5D0B /* UIColorAdditions.swift */,
-				CF73D339241F9C23000B1B10 /* Info.plist */,
-				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
 			);
 			path = Alderis;
+			sourceTree = "<group>";
+		};
+		E12FA1C826935F5600DD4F42 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CFAFFC9024277CEE005AD4C1 /* Alderis.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */,
+				CFAFFC9124277CEE005AD4C1 /* Alderis.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -400,7 +408,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
+				DEVELOPMENT_TEAM = 7J8FJX4SRX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

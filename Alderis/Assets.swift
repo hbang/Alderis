@@ -29,7 +29,7 @@ internal struct Assets {
 	// MARK: - Images
 
 	static func image(named name: String) -> UIImage? {
-		return UIImage(named: name, in: bundle, compatibleWith: nil)
+		return UIImage(named: name, in: .module, compatibleWith: nil)
 	}
 
 	static func systemImage(named name: String, fontSize: CGFloat? = nil) -> UIImage? {

@@ -51,10 +51,12 @@ internal struct Assets {
 		// high-legibility, monospace-looking, style of the system font.
 		let font = UIFont.monospacedDigitSystemFont(ofSize: size, weight: .regular)
 		let fontDescriptor = font.fontDescriptor.addingAttributes([
-            	   .featureSettings: [
-			UIFontDescriptor.FeatureKey.type: kStylisticAlternativesType,
-			UIFontDescriptor.FeatureKey.selector: kStylisticAltSixOnSelector
-		    ]
+			.featureSettings: [
+				[
+					UIFontDescriptor.FeatureKey.selector: kStylisticAltSixOnSelector,
+					UIFontDescriptor.FeatureKey.type: kStylisticAlternativesType
+				]
+			]
 		])
 		return UIFont(descriptor: fontDescriptor, size: 0)
 	}

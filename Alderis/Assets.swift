@@ -50,12 +50,35 @@ internal struct Assets {
 		// Take the monospace digit font and enable stylistic alternative 6, which provides a
 		// high-legibility, monospace-looking, style of the system font.
 		let font = UIFont.monospacedDigitSystemFont(ofSize: size, weight: .regular)
-		let fontDescriptor = font.fontDescriptor.addingAttributes([
+		let fontDescriptor: UIFontDescriptor
+		#if swift(>=5.5)
+		if #available(iOS 15.0, *) {
+			fontDescriptor = font.fontDescriptor.addingAttributes([
+				.featureSettings: [
+						UIFontDescriptor.FeatureKey.selector: kStylisticAltSixOnSelector,
+						UIFontDescriptor.FeatureKey.type: kStylisticAlternativesType
+				]
+			])
+		} else {
+			fontDescriptor = font.fontDescriptor.addingAttributes([
+				.featureSettings: [
+					[
+						.featureIdentifier: kStylisticAlternativesType,
+						.typeIdentifier: kStylisticAltSixOnSelector
+					]
+				] as [[UIFontDescriptor.FeatureKey: Int]]
+			])
+		}
+		#else
+		fontDescriptor = font.fontDescriptor.addingAttributes([
 			.featureSettings: [
-					UIFontDescriptor.FeatureKey.selector: kStylisticAltSixOnSelector,
-					UIFontDescriptor.FeatureKey.type: kStylisticAlternativesType
-			]
+				[
+					.featureIdentifier: kStylisticAlternativesType,
+					.typeIdentifier: kStylisticAltSixOnSelector
+				]
+			] as [[UIFontDescriptor.FeatureKey: Int]]
 		])
+		#endif
 		return UIFont(descriptor: fontDescriptor, size: 0)
 	}
 

@@ -48,13 +48,15 @@ internal struct Assets {
 
 	static func niceMonospaceDigitFont(ofSize size: CGFloat) -> UIFont {
 		// Take the monospace digit font and enable stylistic alternative 6, which provides a
-		// high-legibility, monospace-looking, style of the system font.
+		// high-legibility, monospace-looking style of the system font.
 		let font = UIFont.monospacedDigitSystemFont(ofSize: size, weight: .regular)
 		let fontDescriptor = font.fontDescriptor.addingAttributes([
 			.featureSettings: [
-					UIFontDescriptor.FeatureKey.selector: kStylisticAltSixOnSelector,
-					UIFontDescriptor.FeatureKey.type: kStylisticAlternativesType
-			]
+				[
+					.alderisFeature: kStylisticAlternativesType,
+					.alderisSelector: kStylisticAltSixOnSelector
+				]
+			] as [[UIFontDescriptor.FeatureKey: Int]]
 		])
 		return UIFont(descriptor: fontDescriptor, size: 0)
 	}

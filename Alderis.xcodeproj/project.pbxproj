@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E1C741328266C5900227EC3 /* UIFontDescriptorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */; };
 		569C25522427F57000022C60 /* ColorPickerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C25512427F57000022C60 /* ColorPickerTabViewController.swift */; };
 		569C25582428346900022C60 /* ColorPickerMapSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C25572428346900022C60 /* ColorPickerMapSlider.swift */; };
 		56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74666242F722A003ED00A /* ColorPickerSlider.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontDescriptorAdditions.swift; sourceTree = "<group>"; };
 		569C25512427F57000022C60 /* ColorPickerTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerTabViewController.swift; sourceTree = "<group>"; };
 		569C25572428346900022C60 /* ColorPickerMapSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerMapSlider.swift; sourceTree = "<group>"; };
 		56C74666242F722A003ED00A /* ColorPickerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSlider.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				CF7750BD252203630069CC57 /* DialogButton.swift */,
 				CF7750D52524615D0069CC57 /* SeparatorView.swift */,
 				94A2368B252B5951002B5D0B /* UIColorAdditions.swift */,
+				4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */,
 				CF73D339241F9C23000B1B10 /* Info.plist */,
 				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
 			);
@@ -234,6 +237,7 @@
 				56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */,
 				CF73D345241F9C31000B1B10 /* ColorPickerMapViewController.swift in Sources */,
 				CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */,
+				4E1C741328266C5900227EC3 /* UIFontDescriptorAdditions.swift in Sources */,
 				CF73D34A241F9C31000B1B10 /* ColorPickerViewController.swift in Sources */,
 				CF7750CF252433680069CC57 /* ColorPickerConfiguration.swift in Sources */,
 				56C74669242F75E3003ED00A /* ColorPickerNumericSlider.swift in Sources */,

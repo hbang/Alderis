@@ -26,11 +26,11 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		private var components: [Color.Component] {
 			switch self {
 			case .rgb:
-				return [ .red, .green, .blue, .alpha ]
+				return [.red, .green, .blue, .alpha]
 			case .hsb:
-				return [ .hue, .saturation, .brightness, .alpha ]
+				return [.hue, .saturation, .brightness, .alpha]
 			case .white:
-				return [ .white, .alpha ]
+				return [.white, .alpha]
 			}
 		}
 
@@ -45,9 +45,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 	}
 
 	private var mode: Mode = .rgb {
-		didSet {
-			updateMode()
-		}
+		didSet { updateMode() }
 	}
 
 	private var segmentedControl: UISegmentedControl!
@@ -71,7 +69,6 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
 		segmentedControl = UISegmentedControl(items: Mode.allCases.map { $0.title })
 		segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-		segmentedControl.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		segmentedControl.selectedSegmentIndex = 0
 		segmentedControl.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
 		segmentedControlContainer.addSubview(segmentedControl)
@@ -79,7 +76,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		let topSpacerView = UIView()
 		topSpacerView.translatesAutoresizingMaskIntoConstraints = false
 
-		let mainStackView = UIStackView(arrangedSubviews: [ segmentedControlContainer, topSpacerView ])
+		let mainStackView = UIStackView(arrangedSubviews: [segmentedControlContainer, topSpacerView])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -88,7 +85,8 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		view.addSubview(mainStackView)
 
 		for mode in Mode.allCases {
-			let modeSliders = mode.makeSliders(overrideSmartInvert: configuration.overrideSmartInvert, supportsAlpha: configuration.supportsAlpha)
+			let modeSliders = mode.makeSliders(overrideSmartInvert: configuration.overrideSmartInvert,
+																				 supportsAlpha: configuration.supportsAlpha)
 			for slider in modeSliders {
 				slider.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 			}
@@ -129,7 +127,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		bottomSpacerView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.addArrangedSubview(bottomSpacerView)
 
-		let hexStackView = UIStackView(arrangedSubviews: [ colorWell, eggLabel, hexTextField ])
+		let hexStackView = UIStackView(arrangedSubviews: [colorWell, eggLabel, hexTextField])
 		hexStackView.translatesAutoresizingMaskIntoConstraints = false
 		hexStackView.axis = .horizontal
 		hexStackView.alignment = .fill

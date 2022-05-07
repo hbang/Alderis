@@ -19,9 +19,7 @@ internal class ColorPickerTabViewControllerBase: UIViewController {
 	private(set) var configuration: ColorPickerConfiguration
 
 	private(set) var color: Color {
-		didSet {
-			colorDidChange()
-		}
+		didSet { colorDidChange() }
 	}
 
 	func colorDidChange() {}
@@ -51,7 +49,7 @@ internal protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewContro
 	static var image: UIImage { get }
 }
 extension ColorPickerTabViewControllerProtocol {
-	static var image: UIImage { Assets.systemImage(named: imageName, fontSize: 20)! }
+	static var image: UIImage { Assets.systemImage(named: imageName, font: .systemFont(ofSize: 20, weight: .medium))! }
 }
 
 internal typealias ColorPickerTabViewController = ColorPickerTabViewControllerBase & ColorPickerTabViewControllerProtocol

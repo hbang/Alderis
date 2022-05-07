@@ -50,8 +50,12 @@ internal struct Color: Equatable, Hashable {
 	var alpha: CGFloat = 0
 
 	static func == (lhs: Color, rhs: Color) -> Bool {
-		lhs.red == rhs.red && lhs.green == rhs.green && lhs.blue == rhs.blue && lhs.alpha == rhs.alpha
+		lhs.red == rhs.red &&
+		lhs.green == rhs.green &&
+		lhs.blue == rhs.blue &&
+		lhs.alpha == rhs.alpha
 	}
+
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(red)
 		hasher.combine(green)
@@ -60,6 +64,7 @@ internal struct Color: Equatable, Hashable {
 	}
 
 	var uiColor: UIColor { .init(red: red, green: green, blue: blue, alpha: alpha) }
+
 	init(uiColor: UIColor) {
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
@@ -103,13 +108,8 @@ extension Color {
 	}()
 
 	// W3C perceived brightness algorithm
-	var perceivedBrightness: CGFloat {
-		((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000
-	}
-
-	var isDark: Bool {
-		perceivedBrightness < Self.brightnessThreshold && alpha > 0.5
-	}
+	var perceivedBrightness: CGFloat { ((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000 }
+	var isDark: Bool { perceivedBrightness < Self.brightnessThreshold && alpha > 0.5 }
 }
 
 extension Color {

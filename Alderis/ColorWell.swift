@@ -207,7 +207,7 @@ extension ColorWell: UIDragInteractionDelegate {
 		let provider = NSItemProvider(object: color)
 		let item = UIDragItem(itemProvider: provider)
 		item.localObject = color
-		return [ item ]
+		return [item]
 	}
 
 }

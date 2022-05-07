@@ -36,7 +36,7 @@ internal class ColorPickerMapViewController: ColorPickerTabViewController {
 			$0.addTarget(self, action: #selector(sliderChanged(_:)), for: .valueChanged)
 		}
 
-		let mainStackView = UIStackView(arrangedSubviews: [ wheelView ] + sliders)
+		let mainStackView = UIStackView(arrangedSubviews: [wheelView] + sliders)
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill

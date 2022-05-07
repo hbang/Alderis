@@ -15,9 +15,7 @@ internal class SeparatorView: UIView {
 	}
 
 	var direction: Direction {
-		didSet {
-			updateConstraints()
-		}
+		didSet { updateConstraints() }
 	}
 
 	private var widthConstraint: NSLayoutConstraint!

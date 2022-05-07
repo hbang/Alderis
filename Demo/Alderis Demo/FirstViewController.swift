@@ -99,11 +99,11 @@ class FirstViewController: UIViewController {
 
 		let wellsContainerView = UIView()
 
-		let wellsStackView = UIStackView(arrangedSubviews: [ colorWell,
-																												 dragOrDropColorWell,
-																												 nonDraggableWell,
-																												 nonDroppableWell,
-																												 nonDragOrDropWell ])
+		let wellsStackView = UIStackView(arrangedSubviews: [colorWell,
+																												dragOrDropColorWell,
+																												nonDraggableWell,
+																												nonDroppableWell,
+																												nonDragOrDropWell])
 		wellsStackView.translatesAutoresizingMaskIntoConstraints = false
 		wellsStackView.axis = .horizontal
 		wellsStackView.spacing = 10
@@ -192,7 +192,7 @@ class FirstViewController: UIViewController {
 
 	@objc func presentColorPickerCustomisedTabs(_ sender: UIView) {
 		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
-		configuration.visibleTabs = [ .map, .sliders ]
+		configuration.visibleTabs = [.map, .sliders]
 		configuration.initialTab = .sliders
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -267,13 +267,13 @@ class FirstViewController: UIViewController {
 extension FirstViewController: ColorPickerDelegate {
 
 	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor) {
-		NSLog("User selected color %@", String(describing: color))
+		NSLog("User selected color %@ (%@)", color.propertyListValue, String(describing: color))
 		view.window!.tintColor = color
 		colorWell.color = color
 	}
 
 	func colorPicker(_ colorPicker: ColorPickerViewController, didAccept color: UIColor) {
-		NSLog("User accepted color %@", String(describing: color))
+		NSLog("User accepted color %@ (%@)", color.propertyListValue, String(describing: color))
 	}
 
 	func colorPickerDidCancel(_ colorPicker: ColorPickerViewController) {
@@ -286,7 +286,7 @@ extension FirstViewController: ColorPickerDelegate {
 extension FirstViewController: UIColorPickerViewControllerDelegate {
 
 	func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-		NSLog("UIKit color picker value changed with color %@", String(describing: viewController.selectedColor))
+		NSLog("UIKit color picker value changed with color %@ (%@)", viewController.selectedColor.propertyListValue, String(describing: viewController.selectedColor))
 		view.window!.tintColor = viewController.selectedColor
 		if let uikitWell = uikitWell as? UIColorWell {
 			uikitWell.selectedColor = viewController.selectedColor

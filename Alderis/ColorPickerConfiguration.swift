@@ -61,11 +61,12 @@ open class ColorPickerConfiguration: NSObject {
 	/// by showTabs.
 	///
 	/// - see: `initialTab`
-	@nonobjc open var visibleTabs: [ColorPickerTab] = [ .swatch, .map, .sliders ]
+	@nonobjc open var visibleTabs: [ColorPickerTab] = [.swatch, .map, .sliders]
 
 	/// Maps visibleTabs to Objective-C due to Swift limitations. This is an implementation detail.
 	/// Ignore this and use visibleTabs per usual.
-	@objc(visibleTabs) open var _visibleTabsObjC: [ColorPickerTab.RawValue] {
+	@objc(visibleTabs)
+	open var _visibleTabsObjC: [ColorPickerTab.RawValue] {
 		get {
 			visibleTabs.map { $0.rawValue }
 		}

@@ -35,9 +35,7 @@ open class ColorPickerViewController: UIViewController {
 	/// The delegate that will receive the user’s selection upon tapping the Done button, or a
 	/// cancellation upon tapping the Cancel button.
 	@objc open weak var delegate: ColorPickerDelegate? {
-		didSet {
-			innerViewController?.delegate = delegate
-		}
+		didSet { innerViewController?.delegate = delegate }
 	}
 
 	/// The configuration of the color picker. Use this to set the initially selected color, as well
@@ -70,9 +68,7 @@ open class ColorPickerViewController: UIViewController {
 		}
 	}
 
-	private var isFullScreen: Bool {
-		return modalPresentationStyle != .popover
-	}
+	private var isFullScreen: Bool { modalPresentationStyle != .popover }
 
 	private var innerViewController: ColorPickerInnerViewController!
 
@@ -118,14 +114,15 @@ open class ColorPickerViewController: UIViewController {
 
 		var compatibilityMode = false
 		if configuration == nil {
+			let deprecatedAPI: ColorPickerViewControllerDeprecatedMethods = self
 			// Yes, Swift, I know my code for handling deprecated API usage uses deprecated API 🙄
-			if color == ColorPickerViewController.defaultColor {
+			if deprecatedAPI.color == ColorPickerViewController.defaultColor {
 				fatalError("Alderis: You need to set a configuration. https://hbang.github.io/Alderis/")
 			}
 			NSLog("Alderis: Deprecated configuration API in use. This will be removed in a future release. Migrate to using ColorPickerConfiguration. https://hbang.github.io/Alderis/")
 			compatibilityMode = true
-			configuration = ColorPickerConfiguration(color: color)
-			configuration.overrideSmartInvert = overrideSmartInvert
+			configuration = ColorPickerConfiguration(color: deprecatedAPI.color)
+			configuration.overrideSmartInvert = deprecatedAPI.overrideSmartInvert
 		}
 
 		if !configuration.supportsAlpha {
@@ -183,9 +180,16 @@ open class ColorPickerViewController: UIViewController {
 		widthLayoutConstraint = containerView.widthAnchor.constraint(equalToConstant: finalWidth)
 		bottomLayoutConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0)
 		bottomAnimatingLayoutConstraint = view.bottomAnchor.constraint(equalTo: containerView.topAnchor)
-
-		if isFullScreen {
-			NSLayoutConstraint.activate([
+		
+		NSLayoutConstraint.activate(
+			[
+				widthLayoutConstraint,
+				innerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+				innerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+				innerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+				innerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+			] +
+			(isFullScreen ? [
 				backdropView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 				backdropView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 				backdropView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -198,24 +202,13 @@ open class ColorPickerViewController: UIViewController {
 
 				containerView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
 				bottomLayoutConstraint
+			] : [
+				 containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+				 containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+				 containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+				 containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 			])
-		} else {
-			NSLayoutConstraint.activate([
-				containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-				containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-				containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-				containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-			])
-		}
-
-		NSLayoutConstraint.activate([
-			widthLayoutConstraint,
-
-			innerViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-			innerViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-			innerViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-			innerViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-		])
+		)
 	}
 
 	/// :nodoc:
@@ -267,14 +260,12 @@ open class ColorPickerViewController: UIViewController {
 										 delay: 0,
 										 usingSpringWithDamping: 2,
 										 initialSpringVelocity: 0.5,
-										 options: [],
-										 animations: {
-											self.backdropView.alpha = 1
-											self.bottomLayoutConstraint.isActive = true
-											self.bottomAnimatingLayoutConstraint.isActive = false
-											self.view.layoutIfNeeded()
-										 },
-										 completion: nil)
+										 options: []) {
+				self.backdropView.alpha = 1
+				self.bottomLayoutConstraint.isActive = true
+				self.bottomAnimatingLayoutConstraint.isActive = false
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 
@@ -288,8 +279,8 @@ open class ColorPickerViewController: UIViewController {
 	override open func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		keyboardNotificationNames.forEach {
-			NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillChange(_:)), name: $0, object: nil)
+		for name in keyboardNotificationNames {
+			NotificationCenter.default.addObserver(self, selector: #selector(keyboardFrameWillChange(_:)), name: name, object: nil)
 		}
 	}
 
@@ -297,8 +288,8 @@ open class ColorPickerViewController: UIViewController {
 	override open func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		keyboardNotificationNames.forEach {
-			NotificationCenter.default.removeObserver(self, name: $0, object: nil)
+		for name in keyboardNotificationNames {
+			NotificationCenter.default.removeObserver(self, name: name, object: nil)
 		}
 
 		if animated && isFullScreen {
@@ -311,14 +302,12 @@ open class ColorPickerViewController: UIViewController {
 										 delay: 0,
 										 usingSpringWithDamping: 0.8,
 										 initialSpringVelocity: 0.5,
-										 options: [],
-										 animations: {
-											self.backdropView.alpha = 0
-											self.bottomLayoutConstraint.isActive = false
-											self.bottomAnimatingLayoutConstraint.isActive = true
-											self.view.layoutIfNeeded()
-										 },
-										 completion: nil)
+										 options: []) {
+				self.backdropView.alpha = 0
+				self.bottomLayoutConstraint.isActive = false
+				self.bottomAnimatingLayoutConstraint.isActive = true
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 
@@ -352,14 +341,13 @@ open class ColorPickerViewController: UIViewController {
 
 		UIView.animate(withDuration: duration,
 									 delay: 0,
-									 options: options,
-									 animations: {
-										let keyboardHeight: CGFloat = (self.isKeyboardVisible ? keyboardEndFrame.size.height : 0)
-										let keyboardExtraMargin: CGFloat = (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
-										let bottom = max(keyboardHeight - (self.initialBottomSafeAreaInset ?? 0), 0) + keyboardExtraMargin
-										self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
-										self.view.layoutIfNeeded()
-									 })
+									 options: options) {
+			let keyboardHeight: CGFloat = (self.isKeyboardVisible ? keyboardEndFrame.size.height : 0)
+			let keyboardExtraMargin: CGFloat = (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
+			let bottom = max(keyboardHeight - (self.initialBottomSafeAreaInset ?? 0), 0) + keyboardExtraMargin
+			self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
+			self.view.layoutIfNeeded()
+		}
 	}
 
 	@objc private func dismissGestureFired(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -374,3 +362,12 @@ open class ColorPickerViewController: UIViewController {
 	}
 
 }
+
+/// :nodoc:
+fileprivate protocol ColorPickerViewControllerDeprecatedMethods {
+	var color: UIColor { get }
+	var overrideSmartInvert: Bool { get }
+}
+
+/// :nodoc:
+extension ColorPickerViewController: ColorPickerViewControllerDeprecatedMethods {}

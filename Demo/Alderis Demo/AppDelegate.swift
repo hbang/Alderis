@@ -20,13 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		let tabBarController = UITabBarController()
 		let viewController = UINavigationController(rootViewController: FirstViewController())
-
 		if #available(iOS 13, *) {
 			let tabIcon = UIImage(systemName: "paintbrush.fill")?.withBaselineOffset(fromBottom: 2)
 			viewController.tabBarItem = UITabBarItem(title: "Alderis Demo", image: tabIcon, tag: 0)
 		}
-
-		tabBarController.viewControllers = [ viewController ]
+		tabBarController.viewControllers = [viewController]
 
 		window!.rootViewController = tabBarController
 		window!.makeKeyAndVisible()

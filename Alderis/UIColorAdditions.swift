@@ -33,7 +33,7 @@ public extension UIColor {
 	/// The value is expected to be one of:
 	///
 	/// * An array of 3 or 4 integer RGB or RGBA color components, with values between 0 and 255 (e.g.
-	///   `[ 218, 192, 222 ]`)
+	///   `[218, 192, 222]`)
 	/// * A CSS-style hex string, with an optional alpha component (e.g. `#DAC0DE` or `#DACODE55`)
 	/// * A short CSS-style hex string, with an optional alpha component (e.g. `#DC0` or `#DC05`)
 	///

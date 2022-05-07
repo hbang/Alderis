@@ -1,5 +1,5 @@
 PODS:
-  - Alderis (1.0)
+  - Alderis (1.1.2)
 
 DEPENDENCIES:
   - Alderis (from `..`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ".."
 
 SPEC CHECKSUMS:
-  Alderis: fee53c6d382e034da92be600a8f15300eeaf1152
+  Alderis: 226746f04e677de7a7a43316475162a6a217794a
 
 PODFILE CHECKSUM: ec7a2ee9a64089a4374e61824363ea96330e7a8a
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.11.3

@@ -35,7 +35,7 @@ internal class ColorPickerSliderBase: UIControl {
 		slider.translatesAutoresizingMaskIntoConstraints = false
 		slider.accessibilityIgnoresInvertColors = overrideSmartInvert
 
-		stackView = UIStackView(arrangedSubviews: [ slider ])
+		stackView = UIStackView(arrangedSubviews: [slider])
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.axis = .horizontal
 		stackView.distribution = .fill

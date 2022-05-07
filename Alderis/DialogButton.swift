@@ -15,8 +15,8 @@ internal class DialogButton: UIButton {
 	init() {
 		super.init(frame: .zero)
 
-		addTarget(self, action: #selector(self.handleTouchDown), for: [ .touchDown, .touchDragEnter ])
-		addTarget(self, action: #selector(self.handleTouchUp), for: [ .touchUpInside, .touchUpOutside, .touchDragExit, .touchCancel ])
+		addTarget(self, action: #selector(self.handleTouchDown), for: [.touchDown, .touchDragEnter])
+		addTarget(self, action: #selector(self.handleTouchUp), for: [.touchUpInside, .touchUpOutside, .touchDragExit, .touchCancel])
 	}
 
 	required init?(coder: NSCoder) {

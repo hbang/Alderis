@@ -17,9 +17,7 @@ internal class ColorPickerWheelView: UIView {
 	weak var delegate: ColorPickerWheelViewDelegate?
 
 	var color: Color {
-		didSet {
-			updateColor()
-		}
+		didSet { updateColor() }
 	}
 
 	private var containerView: UIView!
@@ -76,8 +74,8 @@ internal class ColorPickerWheelView: UIView {
 
 		saturationMask = CAGradientLayer()
 		saturationMask.type = .radial
-		saturationMask.colors = [ UIColor.white.cgColor, UIColor.clear.cgColor ]
-		saturationMask.locations = [ 0, 1 ]
+		saturationMask.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
+		saturationMask.locations = [0, 1]
 		saturationMask.startPoint = CGPoint(x: 0.5, y: 0.5)
 		saturationMask.endPoint = CGPoint(x: 1, y: 1)
 		saturationMask.allowsGroupOpacity = false

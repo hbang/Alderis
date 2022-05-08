@@ -12,10 +12,10 @@ Pod::Spec.new do |spec|
                       sliders found on the two other tabs.
                       DESC
   spec.homepage     = "https://github.com/hbang/Alderis"
-  spec.screenshots  = "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-1.jpg",
-                      "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-2.jpg",
-                      "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-3.jpg",
-                      "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-4.jpg"
+  spec.screenshots  = "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-1.jpg",
+                      "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-2.jpg",
+                      "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-3.jpg",
+                      "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-4.jpg"
   spec.license      = "Apache License, Version 2.0"
   spec.author       = "HASHBANG Productions"
   spec.social_media_url = "https://twitter.com/hashbang"

@@ -102,6 +102,6 @@ Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/at
 For more information, refer to [the docs](https://hbang.github.io/Alderis/preference-bundles.html).
 
 ## License
-Licensed under the Apache License, version 2.0. Refer to [LICENSE.md](https://github.com/hbang/Alderis/blob/master/LICENSE.md).
+Licensed under the Apache License, version 2.0. Refer to [LICENSE.md](https://github.com/hbang/Alderis/blob/main/LICENSE.md).
 
 Header backdrop photo credit: [John-Mark Smith](https://unsplash.com/@mrrrk_smith) on Unsplash

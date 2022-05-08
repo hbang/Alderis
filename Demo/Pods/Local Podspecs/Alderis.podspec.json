@@ -5,10 +5,10 @@
   "description": "Alderis is a fresh new color picker, with a gentle, fun, and dead simple user\ninterface. It aims to incorporate the usual elements of a color picker, in a way\nthat users will find easy and fun to use.\n\nThe user can start by selecting a color they like on the initial color palette\ntab, and either accept it, or refine it using the color wheel and adjustment\nsliders found on the two other tabs.",
   "homepage": "https://github.com/hbang/Alderis",
   "screenshots": [
-    "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-1.jpg",
-    "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-2.jpg",
-    "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-3.jpg",
-    "https://github.com/hbang/Alderis/raw/master/screenshots/alderis-4.jpg"
+    "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-1.jpg",
+    "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-2.jpg",
+    "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-3.jpg",
+    "https://github.com/hbang/Alderis/raw/main/screenshots/alderis-4.jpg"
   ],
   "license": "Apache License, Version 2.0",
   "authors": "HASHBANG Productions",

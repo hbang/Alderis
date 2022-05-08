@@ -30,4 +30,4 @@ Remember to link against the `libcolorpicker` library from the preference bundle
 MyAwesomeThing_LIBRARIES = colorpicker
 ```
 
-The functionality described in this section is only available in the jailbreak package for Alderis, specifically in the `libcolorpicker.dylib` binary ([lcpshim](https://github.com/hbang/Alderis/tree/master/lcpshim)), and is not included in the App Store (CocoaPods/Carthage) version.
+The functionality described in this section is only available in the jailbreak package for Alderis, specifically in the `libcolorpicker.dylib` binary ([lcpshim](https://github.com/hbang/Alderis/tree/main/lcpshim)), and is not included in the App Store (CocoaPods/Carthage) version.

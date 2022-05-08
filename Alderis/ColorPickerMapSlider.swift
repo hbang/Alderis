@@ -29,7 +29,7 @@ internal class ColorPickerMapSlider: ColorPickerComponentSlider {
 		leftImageView.tintColor = imageTintColor
 		stackView.insertArrangedSubview(leftImageView, at: 0)
 
-		let rightImageView = UIImageView(image: Assets.systemImage(named: minImageName))
+		let rightImageView = UIImageView(image: Assets.systemImage(named: maxImageName))
 		rightImageView.translatesAutoresizingMaskIntoConstraints = false
 		rightImageView.contentMode = .scaleAspectFit
 		rightImageView.tintColor = imageTintColor

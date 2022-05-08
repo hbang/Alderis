@@ -23,6 +23,10 @@ public enum ColorPickerTab: Int, CaseIterable {
 	/// saturation, and brightness. The user can additionally copy or enter a color value expressed
 	/// using a CSS-style hexadecimal string, and adjust alpha transparency.
 	case sliders = 2
+	
+	/// Tab 4: A tab that allows the user to test various configurations of the color, and its
+	/// conformance to WCAG color contrast.
+	case accessibility = 3
 }
 
 /// ColorPickerConfiguration is used to configure an instance of `ColorPickerViewController`.
@@ -61,7 +65,7 @@ open class ColorPickerConfiguration: NSObject {
 	/// by showTabs.
 	///
 	/// - see: `initialTab`
-	@nonobjc open var visibleTabs: [ColorPickerTab] = [.swatch, .map, .sliders]
+	@nonobjc open var visibleTabs: [ColorPickerTab] = [.swatch, .map, .sliders, .accessibility]
 
 	/// Maps visibleTabs to Objective-C due to Swift limitations. This is an implementation detail.
 	/// Ignore this and use visibleTabs per usual.

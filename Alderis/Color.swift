@@ -9,6 +9,9 @@
 import UIKit
 
 internal struct Color: Equatable, Hashable {
+	static let black = Color(white: 0, alpha: 1)
+	static let white = Color(white: 1, alpha: 1)
+
 	var red: CGFloat = 0 {
 		didSet {
 			self = Color(red: red, green: green, blue: blue, alpha: alpha)
@@ -97,26 +100,39 @@ internal struct Color: Equatable, Hashable {
 }
 
 extension Color {
-	static let brightnessThreshold: CGFloat = {
-		let differentiateWithoutColor: Bool
-		if #available(iOS 13, *) {
-			differentiateWithoutColor = UIAccessibility.shouldDifferentiateWithoutColor
-		} else {
-			differentiateWithoutColor = false
-		}
-		return UIAccessibility.isReduceTransparencyEnabled || differentiateWithoutColor ? 128 : 80
-	}()
+	static var brightnessThreshold: CGFloat {
+		// Accessibility enabled:  conforms to WCAG 2.1 AAA
+		// Accessibility disabled: conforms to WCAG 2.1 AA
+		return UIAccessibility.isDarkerSystemColorsEnabled ? 4.5 : 7
+	}
+	
+	var relativeLuminanceValues: (CGFloat, CGFloat, CGFloat) {
+		let values = [red, green, blue]
+			.map { $0 <= 0.03928 ? $0 / 12.92 : pow((($0 + 0.055) / 1.055), 2.4) }
+		return (values[0], values[1], values[2])
+	}
+	
+	var relativeLuminance: CGFloat {
+		// https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
+		let (r, g, b) = relativeLuminanceValues
+		return (r * 0.2126) + (g * 0.7152) + (b * 0.0722)
+	}
 
-	// W3C perceived brightness algorithm
-	var perceivedBrightness: CGFloat { ((red * 255 * 299) + (green * 255 * 587) + (blue * 255 * 114)) / 1000 }
-	var isDark: Bool { perceivedBrightness < Self.brightnessThreshold && alpha > 0.5 }
+	func perceivedBrightness(onBackgroundColor background: Color) -> CGFloat {
+		// https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio - between 0-21
+		let a = relativeLuminance + 0.05
+		let b = background.relativeLuminance + 0.05
+		return a > b ? a / b : b / a
+	}
+
+	var isDark: Bool { perceivedBrightness(onBackgroundColor: Self.white) > Self.brightnessThreshold && alpha > 0.5 }
 }
 
 extension Color {
 	struct HexOptions: OptionSet {
 		let rawValue: Int
-		static let allowShorthand = HexOptions(rawValue: 1 << 0)
-		static let forceAlpha = HexOptions(rawValue: 1 << 1)
+		static let allowShorthand = Self(rawValue: 1 << 0)
+		static let forceAlpha = Self(rawValue: 1 << 1)
 	}
 
 	// if the character in `value` is repeated, `repeatedValue` is a single copy of that character. If

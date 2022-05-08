@@ -7,168 +7,176 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		047939B2FC25EACC397E006934D91286 /* ColorPickerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B3CCBE8356BF9CD3606A5510DDA543 /* ColorPickerMapViewController.swift */; };
-		0B31A0B75A779340941246DD5ABCE71C /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2B99F523E3E35019E7B0ED5694174C /* ColorPickerDelegate.swift */; };
-		10FB951FDD6444BE05D0A3D4297C4ADB /* AlderisSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 587772FB3B5CA9FA8CEE6E6A2BBAC535 /* AlderisSDKCompatibility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		12C98131363F6E6FCCF2DE49817D5168 /* ColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356B7BCF4CD6C5765696398F2A13D9A0 /* ColorWell.swift */; };
-		1A734168B347653CE960F8B1F23972FD /* DialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CDE1FA102FBFFE1E279C900D6F1194 /* DialogButton.swift */; };
-		1DBA43D456FA7BBFAB5AD499E7CB6926 /* ColorPickerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9032EAD02A3576082A701B0C4879769D /* ColorPickerTabViewController.swift */; };
-		316C29306E729BF76D2655008DDC91F9 /* ColorPickerNumericSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E0E35CC4F50C9DA92AF97879225D0 /* ColorPickerNumericSlider.swift */; };
-		355BD7815E60E71515A9C1DC13307B78 /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F5A8A0B5F118EE2E3E5069CAFD7D9F /* UIColorAdditions.swift */; };
-		41E8DA2A63EE3358B83E155FB6203B15 /* Alderis-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEBEDC1F558A48A98BB8350829C2D8E /* Alderis-dummy.m */; };
-		4BD01A323BFF1D74067266F4CAB7B85D /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13EF56CB1783DE61F545CF0F7B8FF72 /* ColorPickerSlider.swift */; };
-		4CEA33B4C6007788D0EDC21D72FFEFF0 /* UIFontDescriptorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EB886B462F309725194196BB851A71 /* UIFontDescriptorAdditions.swift */; };
-		4EFA690AF63CA8E57F02E5AF51E4B126 /* ColorPickerSwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A8A27017BE38985113D1EC301FDE4 /* ColorPickerSwatchViewController.swift */; };
-		5507E72F8C91E7FF7F15F62214547F1C /* ColorPickerMapSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18AC02CB1578A85D8ED2A6D32C952D8 /* ColorPickerMapSlider.swift */; };
-		581D1E3152684F2E90410D96F459453A /* Alderis.h in Headers */ = {isa = PBXBuildFile; fileRef = AD951C98D6BC0CC05D173F0FCFCB4C9A /* Alderis.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		68879A162F2F4C23A43C147150FE164D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA5D58989E685C6F3811C08FBB8DEC9 /* Assets.xcassets */; };
-		77D9DF647CFEBEC0A26E6F99CA9FE236 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775F2EAA0F8BAA7E2454FADD9B1E917 /* BottomSheetTransition.swift */; };
-		89AE27935949806B089465132F1A3193 /* ColorPickerWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D804593CF9648906F3FC62D70961DBE5 /* ColorPickerWheelView.swift */; };
+		06EA207B7F9F778B92F7CED6FA765E6F /* ColorPickerWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64FF3587B50F064713F0110D7FCD905 /* ColorPickerWheelView.swift */; };
+		18A6957341B5BBAFE90398BB585F1A09 /* UIFontDescriptorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E31E3C306FFA5EA80B0842D14234ED4 /* UIFontDescriptorAdditions.swift */; };
+		1C011BE853063C640733D574EC933A8E /* AccessibilityContrastSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC14DBE8E663BC251C9AF1AA8083C9D /* AccessibilityContrastSelector.swift */; };
+		29F45822DB6C975C4EF927360CBF1881 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A683536AC63CCDD28C45C7A9C12406A /* Assets.swift */; };
+		2F5BC345C535BDE159B016317C07FB4A /* ColorPickerMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE70C480A0D33EC78F2A0A595615E22 /* ColorPickerMapViewController.swift */; };
+		3020D298695FD9821A51059015814FA7 /* AlderisSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC297C1FBE6F913F129AEE29EE440A3 /* AlderisSDKCompatibility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		34AB6F0FDC30F6709C9554DF3B36BC68 /* AccessibilityComplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA0319E495DBB95C59FD1FCA9094834 /* AccessibilityComplianceLabel.swift */; };
+		4099A95CFF53B4FD21135AD1F4CA3C6B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FE2321A7A4907B81C0F45F518E954A /* ColorPickerViewController.swift */; };
+		4567B2B4700E2CA6C469D74DA516B220 /* ColorPickerAccessibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B419F1F316D6B5503E7699F4C6B5378D /* ColorPickerAccessibilityViewController.swift */; };
+		4F5D7B5A84B761C7CC4432D68101A805 /* TextViewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0A09AA3BF091CD224CBA5EA23CBEE /* TextViewLabel.swift */; };
+		5418EBC6B424516558CFFC88B31BA11B /* DialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5DCC3205C61756CD9BD49BB41D9D62 /* DialogButton.swift */; };
+		56D7C3A30B9FBD839069BF01551D2225 /* ColorPickerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349A742626BF5EF67EB8D6FF96CEA5D /* ColorPickerTabViewController.swift */; };
+		5B42E7E52B20715FDC52352690F81CF0 /* ColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E62B34FC52E71F30B7FFDD32716BD4 /* ColorWell.swift */; };
+		6091BC9230694F038AC1991C4239C199 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15812236A4CDFA846A0BB1E4A9C3E2D3 /* SeparatorView.swift */; };
+		66622F6C57BF25C75132C5E8D49CE12A /* Alderis-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 118FF44E9B4CE56F0B9B005B3F530868 /* Alderis-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		668ACD9CB2848DCE7039FED4E30A1268 /* ColorPickerSlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34795D10B38B60BF192EBA49EA41CB80 /* ColorPickerSlidersViewController.swift */; };
+		6FBB5B195C07914E76D27644AC7375A8 /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA0747754A488A748DC1A14217706F /* BottomSheetTransition.swift */; };
 		8E81254A16B7C247CF0DEBA561FFFBBF /* Pods-Alderis Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0B28B43B7BC45127DE1EA921314EAA /* Pods-Alderis Demo-dummy.m */; };
-		99B340FC2A2F767BEC3B0E2E63ABF1A2 /* ColorPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55C7C59BB1DFCC4E420036C9069673 /* ColorPickerConfiguration.swift */; };
-		9AD7805C17FF14071F4DBE897C53A2A2 /* Alderis-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7ACED4C04D3ABA7576157A6B31A66E /* Alderis-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C9CEA14C1B760F27BDB671FE4969D81B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC917AA1F1ABDBBD61667E37BC494D70 /* ColorPickerViewController.swift */; };
-		D298630B6939275FC9ADC43FC7A9272A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B9379CA1AA1B24E68DEE1BA338C6D6 /* Color.swift */; };
+		94CEE62C0587CB1C6E1576F6F7089F74 /* ColorPickerMapSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D10F94D24455B0E0C7D7D8B48384D75 /* ColorPickerMapSlider.swift */; };
+		A44048C8016C3CDB974FA845C4BEAFF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943222123EC06156F3ED08F1F02A290F /* Assets.xcassets */; };
+		AB8054195E3FF92D64DCA0C82255714F /* ColorPickerSwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B172B6F9A8E7A960FACAEE362EA481 /* ColorPickerSwatchViewController.swift */; };
+		ADD23C7E7A6798CD883F3572951C8524 /* UIColorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886010E696C7BE13FF2ECBBEC562A32A /* UIColorAdditions.swift */; };
+		AE68CDB1E046E287A6051DD8DF1C6616 /* Alderis.h in Headers */ = {isa = PBXBuildFile; fileRef = 97FE6FC6FFE07676D0093B0213AAF5F3 /* Alderis.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C17E8D99BDE3B8A8F14F9532B5C0CF21 /* ColorPickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F5B8517FD318E2614E3ADA768A379 /* ColorPickerConfiguration.swift */; };
+		C208EC3BC09B75525C44EB9B7C10387C /* ColorPickerNumericSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8BD76A5C95BE19EB7B913B4861DB0C /* ColorPickerNumericSlider.swift */; };
+		C4331A1802A8DE5497A527902E863B9B /* Alderis-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CA3E7F3BCD5839C01C9341E4A87016 /* Alderis-dummy.m */; };
+		CAB29A3290111A89E59B5D51E3758BD7 /* ColorPickerInnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D52867A130701AD68DF0BD51D615F84 /* ColorPickerInnerViewController.swift */; };
+		CF6AF69BCC48FF27B947BB113639C056 /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA624758485E1401EB2AB9D3A3D507E /* ColorPickerSlider.swift */; };
+		CFB6E2B126274A5FEEDC225F7135CC2B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD64915CE77287DE4DE699923936861A /* Color.swift */; };
 		D951C553E2937D74043A298EFD7BC0BA /* Pods-Alderis Demo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A2838DE41B9772EA81132CE1FE138B /* Pods-Alderis Demo-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DAD1139A8C1A7173A3CC3C642D336E47 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DAF45D4DC9549CA9A911D675A9EE04 /* Assets.swift */; };
-		F4CDFDF759FF4E4E414C3E98E0912342 /* ColorPickerInnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7EDE2E453798F68A7F84CEA6A454D7 /* ColorPickerInnerViewController.swift */; };
-		F94DAAC9A7829A4D259F0DEDC7B67E33 /* ColorPickerSlidersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4DCE96F7658CDD53C9632F75867273 /* ColorPickerSlidersViewController.swift */; };
-		FF835F3B15E4F191B519DC8A5028D0A2 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBD0B03F1F615D35E28317F5E317573 /* SeparatorView.swift */; };
+		DB515BA2158A050FECF34C48048DDF38 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FCFF3277D65BFB42FA8F7AC607C94 /* ColorPickerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D519AA37E61811EF472CA8C2F1B53924 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BF6D5F4E6EC1CF170610CBAB0F6CEF2;
-			remoteInfo = Alderis;
-		};
-		E272A356CCFB074DA92962EF20D706FF /* PBXContainerItemProxy */ = {
+		A1965C2A248FA05633D5D244A75662A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E06BFBDAEB84B8EBA0D1A8B43D16EF27;
 			remoteInfo = "Alderis-Alderis";
 		};
+		A84280FBDED4F8DFAAEB936A41B47AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BF6D5F4E6EC1CF170610CBAB0F6CEF2;
+			remoteInfo = Alderis;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01FEAE1ED7006F14CED01A3CD98D644A /* migrating-to-11.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "migrating-to-11.html"; path = "docs/migrating-to-11.html"; sourceTree = "<group>"; };
-		02140C23B18F459CE16395AF30415B38 /* Alderis.xml */ = {isa = PBXFileReference; includeInIndex = 1; name = Alderis.xml; path = docs/docsets/Alderis.xml; sourceTree = "<group>"; };
-		056C0D07A58E0B355CE68B48B3FE7F65 /* logo.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = logo.jpg; path = docs/screenshots/logo.jpg; sourceTree = "<group>"; };
-		06A1AB14D0A0D25CB1B6076012CA2E81 /* alderis-2.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-2.jpg"; path = "docs/screenshots/alderis-2.jpg"; sourceTree = "<group>"; };
-		0BB57B3E31885913F0FCBF4D73B9BF59 /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/img/gh.png; sourceTree = "<group>"; };
+		01FE2321A7A4907B81C0F45F518E954A /* ColorPickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerViewController.swift; path = Alderis/ColorPickerViewController.swift; sourceTree = "<group>"; };
+		08B172B6F9A8E7A960FACAEE362EA481 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSwatchViewController.swift; path = Alderis/ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
+		09B0AF23639A55C8ACFA2280B959BC56 /* Alderis-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alderis-prefix.pch"; sourceTree = "<group>"; };
+		0C01EF7F5D772FE13756CDB365CFA301 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/img/carat.png; sourceTree = "<group>"; };
 		0E81A451910A2F39C165935A61188DD7 /* Alderis */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = Alderis; path = libAlderis.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		127234ACDCFE9B0A4B723C9CE7DA9AF1 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/img/spinner.gif; sourceTree = "<group>"; };
-		1491C9CDB493FAA1848BDA2DEFFFE759 /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
+		1151577A98F3B729E52184D45319A8D5 /* ColorPickerTab.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerTab.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Enums/ColorPickerTab.html; sourceTree = "<group>"; };
+		118FF44E9B4CE56F0B9B005B3F530868 /* Alderis-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alderis-umbrella.h"; sourceTree = "<group>"; };
+		15812236A4CDFA846A0BB1E4A9C3E2D3 /* SeparatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeparatorView.swift; path = Alderis/SeparatorView.swift; sourceTree = "<group>"; };
+		1582B7C8F139592CC78F6A93497EE9FE /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/dash.png; sourceTree = "<group>"; };
+		15CA3E7F3BCD5839C01C9341E4A87016 /* Alderis-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alderis-dummy.m"; sourceTree = "<group>"; };
 		16A2838DE41B9772EA81132CE1FE138B /* Pods-Alderis Demo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Alderis Demo-umbrella.h"; sourceTree = "<group>"; };
-		17958FC6B81F60B2E2E4171255198D09 /* ColorPickerDelegate.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerDelegate.html; path = docs/Protocols/ColorPickerDelegate.html; sourceTree = "<group>"; };
-		17CC70B87AF13E09AF086472F4A878C9 /* Alderis.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alderis.modulemap; sourceTree = "<group>"; };
-		17EB886B462F309725194196BB851A71 /* UIFontDescriptorAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFontDescriptorAdditions.swift; path = Alderis/UIFontDescriptorAdditions.swift; sourceTree = "<group>"; };
-		18DAF45D4DC9549CA9A911D675A9EE04 /* Assets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Alderis/Assets.swift; sourceTree = "<group>"; };
-		1EA771467DAA8047D6BA221B9C873B7E /* ColorPickerTab.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerTab.html; path = docs/Enums/ColorPickerTab.html; sourceTree = "<group>"; };
-		2025A67BB86CDF4058A041EEAF49A911 /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		1E2FCFF3277D65BFB42FA8F7AC607C94 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerDelegate.swift; path = Alderis/ColorPickerDelegate.swift; sourceTree = "<group>"; };
+		1FA0319E495DBB95C59FD1FCA9094834 /* AccessibilityComplianceLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityComplianceLabel.swift; path = Alderis/AccessibilityComplianceLabel.swift; sourceTree = "<group>"; };
 		2442B5DB4407D4A13C865A36A51ECE46 /* Pods-Alderis Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Alderis Demo-acknowledgements.plist"; sourceTree = "<group>"; };
-		2C7ACED4C04D3ABA7576157A6B31A66E /* Alderis-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alderis-umbrella.h"; sourceTree = "<group>"; };
-		2C7EDE2E453798F68A7F84CEA6A454D7 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerInnerViewController.swift; path = Alderis/ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
-		310B0B455E8636FFE5EFB73CC25B2FAA /* migrating-to-11.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "migrating-to-11.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/migrating-to-11.html"; sourceTree = "<group>"; };
-		33C2AA30D530CD28793E5309E54BD636 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/search.json; sourceTree = "<group>"; };
-		34B3CCBE8356BF9CD3606A5510DDA543 /* ColorPickerMapViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerMapViewController.swift; path = Alderis/ColorPickerMapViewController.swift; sourceTree = "<group>"; };
-		3518EF83BC793CEF43803375D8613A51 /* alderis-4.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-4.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-4.jpg"; sourceTree = "<group>"; };
-		354D701FA00135351CE8D365DC704941 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/index.html; sourceTree = "<group>"; };
-		356B7BCF4CD6C5765696398F2A13D9A0 /* ColorWell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorWell.swift; path = Alderis/ColorWell.swift; sourceTree = "<group>"; };
+		25960E6A0DD4229040A46F549FEBF16E /* ColorPickerConfiguration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerConfiguration.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorPickerConfiguration.html; sourceTree = "<group>"; };
+		2646E8FAFB10F165EDC7C37F27DFF51E /* migrating-to-11.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "migrating-to-11.html"; path = "docs/migrating-to-11.html"; sourceTree = "<group>"; };
+		26CD8202D62480DF6C33D3CBC45F20E7 /* Alderis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alderis.debug.xcconfig; sourceTree = "<group>"; };
+		26E091C31BA0A0A19B55AA9DADB16384 /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jazzy.search.js; sourceTree = "<group>"; };
+		2795A93134C6411FEB86C01651E5103A /* logo.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = logo.jpg; path = docs/screenshots/logo.jpg; sourceTree = "<group>"; };
+		29A9C709CFE73B4C65BDB1A304AD6739 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/typeahead.jquery.js; sourceTree = "<group>"; };
+		2A683536AC63CCDD28C45C7A9C12406A /* Assets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Alderis/Assets.swift; sourceTree = "<group>"; };
+		2AB95401558DA9DFC8538344986CB61D /* UIColor.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIColor.html; path = docs/Extensions/UIColor.html; sourceTree = "<group>"; };
+		2C33A27D43CA448493B7A0C085426E41 /* alderis-demo.mp4 */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-demo.mp4"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-demo.mp4"; sourceTree = "<group>"; };
+		2DC63CECF8AC072D59C75616BD1B776F /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/js/jquery.min.js; sourceTree = "<group>"; };
+		2E4C99A27B462732E546236D07134C7F /* ColorWell.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorWell.html; path = docs/Classes/ColorWell.html; sourceTree = "<group>"; };
+		30A4B620B43BE60B7251AC158B16BB96 /* alderis-demo.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = "alderis-demo.gif"; path = "docs/screenshots/alderis-demo.gif"; sourceTree = "<group>"; };
+		30B5658A6842A0386526068886A81D06 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
+		34795D10B38B60BF192EBA49EA41CB80 /* ColorPickerSlidersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSlidersViewController.swift; path = Alderis/ColorPickerSlidersViewController.swift; sourceTree = "<group>"; };
+		34DC923C769DE62D14CB99FAE1B788C9 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/css/jazzy.css; sourceTree = "<group>"; };
+		38383266896A7586CADB5DE33C9DFDB1 /* Alderis.xml */ = {isa = PBXFileReference; includeInIndex = 1; name = Alderis.xml; path = docs/docsets/Alderis.xml; sourceTree = "<group>"; };
+		387668346A90363927C166766272D218 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		38D3DF3B87697E39B438064DDAFF96CB /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/index.html; sourceTree = "<group>"; };
+		3CE0F8244F66A4D4835C8D9177021738 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/spinner.gif; sourceTree = "<group>"; };
+		3D72D15DB1512016F30509A18480E3C4 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/lunr.min.js; sourceTree = "<group>"; };
 		3F26A160257BC65D007E7AC9351E1F46 /* Pods-Alderis Demo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Alderis Demo.modulemap"; sourceTree = "<group>"; };
-		404782B2D2A885ABF6466CD39F9B7FDB /* Alderis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alderis.release.xcconfig; sourceTree = "<group>"; };
+		428BE50433E6E99B6851077DCAC0C60C /* UI Components.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "UI Components.html"; path = "docs/UI Components.html"; sourceTree = "<group>"; };
+		4306A5357BBDFBE353B117265C31DCF1 /* ColorPickerDelegate.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerDelegate.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Protocols/ColorPickerDelegate.html; sourceTree = "<group>"; };
 		4339F8A837B317D1831C93FD9779103A /* Pods-Alderis Demo */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-Alderis Demo"; path = "libPods-Alderis Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43CDE1FA102FBFFE1E279C900D6F1194 /* DialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DialogButton.swift; path = Alderis/DialogButton.swift; sourceTree = "<group>"; };
-		4ABDEC86CE24D291506254B071E384F0 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Guides.html; sourceTree = "<group>"; };
-		4C03A575FB83CD1F6849178BD26ABE6A /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/dash.png; sourceTree = "<group>"; };
-		4D021A0FE352BF558401300BF2D4C10D /* ColorPickerViewController.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerViewController.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorPickerViewController.html; sourceTree = "<group>"; };
+		460BCCD2E24FEB1B2DFEFF8E83F32432 /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/gh.png; sourceTree = "<group>"; };
+		473A42DC91D0657175C44C124A42D082 /* logo.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = logo.jpg; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/logo.jpg; sourceTree = "<group>"; };
+		4A2BA97CDB75D4B56132977F01CB14F2 /* UI Components.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "UI Components.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/UI Components.html"; sourceTree = "<group>"; };
+		4A461F69B083C5DD648B7ABD1FAEC635 /* alderis-1.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-1.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-1.jpg"; sourceTree = "<group>"; };
+		4AC93417DC382A456AAD103A9878A9A4 /* ColorWell.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorWell.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorWell.html; sourceTree = "<group>"; };
+		4D52867A130701AD68DF0BD51D615F84 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerInnerViewController.swift; path = Alderis/ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
 		4DAF9BE7C45EEC6325555273285DBCFF /* Pods-Alderis Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Alderis Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		4E4B7274A1F0A08FCD7EB9432D9DE197 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/Guides.html; sourceTree = "<group>"; };
-		50DFDD40BAE3005446007EEC7EAB4BF7 /* alderis-demo.mp4 */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-demo.mp4"; path = "docs/screenshots/alderis-demo.mp4"; sourceTree = "<group>"; };
-		5145C84306148A563AEE07DAE59B9108 /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/js/jazzy.search.js; sourceTree = "<group>"; };
-		515E174AA9349F2D82AAD9B2567D957E /* preference-bundles.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "preference-bundles.html"; path = "docs/preference-bundles.html"; sourceTree = "<group>"; };
-		5179B75DB5262D901A3A64AE210E46E4 /* UIColor.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIColor.html; path = docs/Extensions/UIColor.html; sourceTree = "<group>"; };
-		534D9A1DE417C4B9DE358E3784BE252A /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/js/jazzy.js; sourceTree = "<group>"; };
-		53B9379CA1AA1B24E68DEE1BA338C6D6 /* Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Alderis/Color.swift; sourceTree = "<group>"; };
-		587772FB3B5CA9FA8CEE6E6A2BBAC535 /* AlderisSDKCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AlderisSDKCompatibility.h; path = Alderis/AlderisSDKCompatibility.h; sourceTree = "<group>"; };
-		5A4C0E1C750A9239F05F014B9CC901EF /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/spinner.gif; sourceTree = "<group>"; };
-		5BBD0B03F1F615D35E28317F5E317573 /* SeparatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SeparatorView.swift; path = Alderis/SeparatorView.swift; sourceTree = "<group>"; };
-		5D1E0E35CC4F50C9DA92AF97879225D0 /* ColorPickerNumericSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerNumericSlider.swift; path = Alderis/ColorPickerNumericSlider.swift; sourceTree = "<group>"; };
-		5E2B99F523E3E35019E7B0ED5694174C /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerDelegate.swift; path = Alderis/ColorPickerDelegate.swift; sourceTree = "<group>"; };
-		63C8563801098CB2A2E497608276EFD2 /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/js/lunr.min.js; sourceTree = "<group>"; };
-		642E9058AE41DA163AA1BC061841CC22 /* alderis-1.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-1.jpg"; path = "docs/screenshots/alderis-1.jpg"; sourceTree = "<group>"; };
-		6497A1C2E5334806CB0E85AF90A13061 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/Extensions.html; sourceTree = "<group>"; };
-		6ACFBE0F539668F90438D53B0E407FC6 /* ColorWell.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorWell.html; path = docs/Classes/ColorWell.html; sourceTree = "<group>"; };
-		6B55E3872992DD6188B09D297BFD1495 /* UIColor.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIColor.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Extensions/UIColor.html; sourceTree = "<group>"; };
-		6BAEE1731A2F5B9A6F6215171BB6491E /* UI Components.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "UI Components.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/UI Components.html"; sourceTree = "<group>"; };
-		6DA5D58989E685C6F3811C08FBB8DEC9 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Alderis/Assets.xcassets; sourceTree = "<group>"; };
+		50EF175120EAF4A062AF330EC4710E1A /* alderis-4.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-4.jpg"; path = "docs/screenshots/alderis-4.jpg"; sourceTree = "<group>"; };
+		520BB74976A48F678ED161B7B86EFEBA /* ResourceBundle-Alderis-Alderis-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Alderis-Alderis-Info.plist"; sourceTree = "<group>"; };
+		5521BE917DF6AD14C496196BE86E24C5 /* alderis-demo.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = "alderis-demo.gif"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-demo.gif"; sourceTree = "<group>"; };
+		554F5B8517FD318E2614E3ADA768A379 /* ColorPickerConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerConfiguration.swift; path = Alderis/ColorPickerConfiguration.swift; sourceTree = "<group>"; };
+		5820713F8B066152B4DD6A5DC039DA0A /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/js/lunr.min.js; sourceTree = "<group>"; };
+		58E9F2A2B5131DADEF26E94DC62454BC /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/index.html; sourceTree = "<group>"; };
+		5DD4425533B1D30811CD121AD25ECCD4 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/css/highlight.css; sourceTree = "<group>"; };
+		5E869F85913EAC0C5890A2333A48A0C9 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/search.json; sourceTree = "<group>"; };
+		5F243C314CCA9CD64D9D00C2749C5C67 /* Alderis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alderis.release.xcconfig; sourceTree = "<group>"; };
+		6203AA708D6009BB0058952EE44D09C0 /* alderis-3.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-3.jpg"; path = "docs/screenshots/alderis-3.jpg"; sourceTree = "<group>"; };
+		699320911D1FE858B76DE948FDD151B3 /* spinner.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = spinner.gif; path = docs/img/spinner.gif; sourceTree = "<group>"; };
+		6D450373A88FE594B65591CBA5102A4E /* alderis-3.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-3.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-3.jpg"; sourceTree = "<group>"; };
 		6E0B28B43B7BC45127DE1EA921314EAA /* Pods-Alderis Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Alderis Demo-dummy.m"; sourceTree = "<group>"; };
-		6FEBEDC1F558A48A98BB8350829C2D8E /* Alderis-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alderis-dummy.m"; sourceTree = "<group>"; };
-		7CC36FB9A676E3776008A39EC872A1C4 /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/typeahead.jquery.js; sourceTree = "<group>"; };
-		7DB814924714393CBF277E6A7FBC1711 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/css/highlight.css; sourceTree = "<group>"; };
-		7EEA30A6CB8627805E973DE408DC1E40 /* logo.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = logo.jpg; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/logo.jpg; sourceTree = "<group>"; };
-		7FCF981C431B0FA10E3620F8AE291EA0 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/css/jazzy.css; sourceTree = "<group>"; };
-		805C99AA1AEEE3CDED5DBC1F3FFEF8C8 /* Deprecated.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Deprecated.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Deprecated.html; sourceTree = "<group>"; };
-		81C8855C3399BE86BA0DA14588072236 /* ColorPickerViewController.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerViewController.html; path = docs/Classes/ColorPickerViewController.html; sourceTree = "<group>"; };
-		82D04EA07DFF97C212098860A90CF1DC /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jazzy.search.js; sourceTree = "<group>"; };
-		854A8A27017BE38985113D1EC301FDE4 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSwatchViewController.swift; path = Alderis/ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
-		86D8ADA52675C87F3439F5B021D9E271 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/css/highlight.css; sourceTree = "<group>"; };
-		8A1CEE5BFEBAE6CCE5D1ABC5EF12E712 /* alderis-3.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-3.jpg"; path = "docs/screenshots/alderis-3.jpg"; sourceTree = "<group>"; };
-		8A55C7C59BB1DFCC4E420036C9069673 /* ColorPickerConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerConfiguration.swift; path = Alderis/ColorPickerConfiguration.swift; sourceTree = "<group>"; };
+		6E31E3C306FFA5EA80B0842D14234ED4 /* UIFontDescriptorAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIFontDescriptorAdditions.swift; path = Alderis/UIFontDescriptorAdditions.swift; sourceTree = "<group>"; };
+		72733A5F2745B86A56976C5751393CB6 /* highlight.css */ = {isa = PBXFileReference; includeInIndex = 1; name = highlight.css; path = docs/css/highlight.css; sourceTree = "<group>"; };
+		7A8C4701B4644F48FE23982185A96B96 /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/js/jazzy.js; sourceTree = "<group>"; };
+		7C5DCC3205C61756CD9BD49BB41D9D62 /* DialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DialogButton.swift; path = Alderis/DialogButton.swift; sourceTree = "<group>"; };
+		7CC297C1FBE6F913F129AEE29EE440A3 /* AlderisSDKCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AlderisSDKCompatibility.h; path = Alderis/AlderisSDKCompatibility.h; sourceTree = "<group>"; };
+		7D10F94D24455B0E0C7D7D8B48384D75 /* ColorPickerMapSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerMapSlider.swift; path = Alderis/ColorPickerMapSlider.swift; sourceTree = "<group>"; };
+		7D1816666B656A9D94B9ED30C7764BA9 /* alderis-demo.mp4 */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-demo.mp4"; path = "docs/screenshots/alderis-demo.mp4"; sourceTree = "<group>"; };
+		7D23A64AB2D3B20B80BD17123F40EA7A /* Color Picker.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "Color Picker.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/Color Picker.html"; sourceTree = "<group>"; };
+		82498B11C9CE81F2C95315C6A2C0E817 /* UIColor.html */ = {isa = PBXFileReference; includeInIndex = 1; name = UIColor.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Extensions/UIColor.html; sourceTree = "<group>"; };
+		849F076F709A9CF589F095DC7D0D06BF /* ColorPickerDelegate.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerDelegate.html; path = docs/Protocols/ColorPickerDelegate.html; sourceTree = "<group>"; };
+		85B0A09AA3BF091CD224CBA5EA23CBEE /* TextViewLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextViewLabel.swift; path = Alderis/TextViewLabel.swift; sourceTree = "<group>"; };
+		886010E696C7BE13FF2ECBBEC562A32A /* UIColorAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorAdditions.swift; path = Alderis/UIColorAdditions.swift; sourceTree = "<group>"; };
+		8AB6F3B861B197F86167A055C19CD24F /* alderis-4.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-4.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-4.jpg"; sourceTree = "<group>"; };
 		8BEDC7D63209B1F7C6891F0A83428EC0 /* Pods-Alderis Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Alderis Demo.release.xcconfig"; sourceTree = "<group>"; };
-		8FB752776946361B6100624CE21184DE /* ColorPickerConfiguration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerConfiguration.html; path = docs/Classes/ColorPickerConfiguration.html; sourceTree = "<group>"; };
-		9032EAD02A3576082A701B0C4879769D /* ColorPickerTabViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerTabViewController.swift; path = Alderis/ColorPickerTabViewController.swift; sourceTree = "<group>"; };
-		92F5A8A0B5F118EE2E3E5069CAFD7D9F /* UIColorAdditions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorAdditions.swift; path = Alderis/UIColorAdditions.swift; sourceTree = "<group>"; };
-		94E88B53F5A39437D7D7FC8EAAF97BE5 /* alderis-demo.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = "alderis-demo.gif"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-demo.gif"; sourceTree = "<group>"; };
-		95C5D1AABF187C647E23010F6F52FAFB /* alderis-3.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-3.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-3.jpg"; sourceTree = "<group>"; };
+		8C83C55E48FEB11AC0B9ECC5FF21A239 /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/search.json; sourceTree = "<group>"; };
+		90354DA2C20E2C675F5AADDE45ABFD12 /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/docsets/Alderis.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
+		9078D2E274E569967F02765064ACD9F8 /* Deprecated.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Deprecated.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Deprecated.html; sourceTree = "<group>"; };
+		943222123EC06156F3ED08F1F02A290F /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Alderis/Assets.xcassets; sourceTree = "<group>"; };
 		96D71531FEDE7846F4A8F71D072D1591 /* Alderis-Alderis */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Alderis-Alderis"; path = Alderis.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8D116DF8D48B4249B07C28E0023D8C /* Alderis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alderis.debug.xcconfig; sourceTree = "<group>"; };
+		97FE6FC6FFE07676D0093B0213AAF5F3 /* Alderis.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Alderis.h; path = Alderis/Alderis.h; sourceTree = "<group>"; };
+		9D0B06726655737BE5D3E90895A20B29 /* preference-bundles.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "preference-bundles.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/preference-bundles.html"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A10804913D508774C73A40D4FB140296 /* ColorPickerConfiguration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerConfiguration.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorPickerConfiguration.html; sourceTree = "<group>"; };
-		A491923E3D89ABAB081EBE65FBE6B802 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		A496B6D823FC81BCC0CB3C3530ABBE62 /* UI Components.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "UI Components.html"; path = "docs/UI Components.html"; sourceTree = "<group>"; };
-		A5A2413ABDD8D4671343A8A5DB09925F /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/js/typeahead.jquery.js; sourceTree = "<group>"; };
-		A730FD3AF9E26FA7098D995824233F5E /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/js/jquery.min.js; sourceTree = "<group>"; };
-		AAC33CB110C998F6949427709861778B /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Extensions.html; sourceTree = "<group>"; };
-		AC917AA1F1ABDBBD61667E37BC494D70 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerViewController.swift; path = Alderis/ColorPickerViewController.swift; sourceTree = "<group>"; };
-		ACAE1178FED3C09A23186423F4564BE4 /* alderis-1.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-1.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-1.jpg"; sourceTree = "<group>"; };
-		ACC376ACDA5230E947C1F4ADB7D1CA16 /* index.html */ = {isa = PBXFileReference; includeInIndex = 1; name = index.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/index.html; sourceTree = "<group>"; };
-		AD951C98D6BC0CC05D173F0FCFCB4C9A /* Alderis.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Alderis.h; path = Alderis/Alderis.h; sourceTree = "<group>"; };
-		AEFE46E1DC264282ABC38E4AEB495463 /* alderis-4.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-4.jpg"; path = "docs/screenshots/alderis-4.jpg"; sourceTree = "<group>"; };
-		AFEA93DDE0C8A026631DBC550390D06C /* alderis-demo.gif */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.gif; name = "alderis-demo.gif"; path = "docs/screenshots/alderis-demo.gif"; sourceTree = "<group>"; };
+		A10DB9F1B9803402D3EF6910D1B3EE2B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = docs/docsets/Alderis.docset/Contents/Info.plist; sourceTree = "<group>"; };
+		AAC14DBE8E663BC251C9AF1AA8083C9D /* AccessibilityContrastSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibilityContrastSelector.swift; path = Alderis/AccessibilityContrastSelector.swift; sourceTree = "<group>"; };
+		AD78DEE013950018765C10487DA9205F /* ColorPickerConfiguration.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerConfiguration.html; path = docs/Classes/ColorPickerConfiguration.html; sourceTree = "<group>"; };
+		AE84689F2D87A3B966954FD8357B7C7A /* ColorPickerViewController.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerViewController.html; path = docs/Classes/ColorPickerViewController.html; sourceTree = "<group>"; };
+		AF450481E5F595BEE46CF97E82B48318 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Extensions.html; sourceTree = "<group>"; };
+		AF8BD76A5C95BE19EB7B913B4861DB0C /* ColorPickerNumericSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerNumericSlider.swift; path = Alderis/ColorPickerNumericSlider.swift; sourceTree = "<group>"; };
 		B3128C93A74BE7F8CE1FC5D5717740D7 /* Pods-Alderis Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Alderis Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B407F50FAD5E057DAB831A5AEB2B19F8 /* Color Picker.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "Color Picker.html"; path = "docs/Color Picker.html"; sourceTree = "<group>"; };
-		BBB73E0D28D7EF8DB38316FD2A9199F6 /* docSet.dsidx */ = {isa = PBXFileReference; includeInIndex = 1; name = docSet.dsidx; path = docs/docsets/Alderis.docset/Contents/Resources/docSet.dsidx; sourceTree = "<group>"; };
-		BE26712DB993D508610676170C2D6495 /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/css/jazzy.css; sourceTree = "<group>"; };
-		BFE3B35B8C1B4A362FB981CCF660CC43 /* ResourceBundle-Alderis-Alderis-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Alderis-Alderis-Info.plist"; sourceTree = "<group>"; };
-		C0B2CF9BEC25CF88598D65B177C874A6 /* preference-bundles.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "preference-bundles.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/preference-bundles.html"; sourceTree = "<group>"; };
+		B419F1F316D6B5503E7699F4C6B5378D /* ColorPickerAccessibilityViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerAccessibilityViewController.swift; path = Alderis/ColorPickerAccessibilityViewController.swift; sourceTree = "<group>"; };
+		B4AB0899DF302DADFAD15CBA7CDD76EE /* jazzy.search.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.search.js; path = docs/js/jazzy.search.js; sourceTree = "<group>"; };
+		B64FF3587B50F064713F0110D7FCD905 /* ColorPickerWheelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerWheelView.swift; path = Alderis/ColorPickerWheelView.swift; sourceTree = "<group>"; };
+		B801FA9B966FE9A62ADDA5B99156854C /* alderis-2.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-2.jpg"; path = "docs/screenshots/alderis-2.jpg"; sourceTree = "<group>"; };
+		B8A366A94997E2F977D7200046E7A3BB /* Alderis.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = Alderis.tgz; path = docs/docsets/Alderis.tgz; sourceTree = "<group>"; };
+		B8AA0747754A488A748DC1A14217706F /* BottomSheetTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BottomSheetTransition.swift; path = Alderis/BottomSheetTransition.swift; sourceTree = "<group>"; };
+		BB4E5DDB137EE9F874CE0D60A760520B /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
+		BD64915CE77287DE4DE699923936861A /* Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Alderis/Color.swift; sourceTree = "<group>"; };
+		C10A79A7F6F7AF4A0B79B073609A3B3C /* Deprecated.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Deprecated.html; path = docs/Deprecated.html; sourceTree = "<group>"; };
+		C36E01C7C33B31D4651D0DE4A41DD97A /* LICENSE.md */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE.md; sourceTree = "<group>"; };
+		C665B17AC1D8A64AA56DE3B53336AF6E /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/img/gh.png; sourceTree = "<group>"; };
 		C6E7523EE0A4CF72A207ADDD734DEE45 /* Pods-Alderis Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Alderis Demo-resources.sh"; sourceTree = "<group>"; };
-		C775F2EAA0F8BAA7E2454FADD9B1E917 /* BottomSheetTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BottomSheetTransition.swift; path = Alderis/BottomSheetTransition.swift; sourceTree = "<group>"; };
-		CE157EDAFE7867B69FD2563F5191B96C /* jazzy.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jazzy.js; sourceTree = "<group>"; };
-		CE7952E340E911DFA33B334F0250331F /* alderis-2.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-2.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-2.jpg"; sourceTree = "<group>"; };
-		D1387BAAB91D1AD075E6A0C0778C6240 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = docs/docsets/Alderis.docset/Contents/Info.plist; sourceTree = "<group>"; };
-		D18AC02CB1578A85D8ED2A6D32C952D8 /* ColorPickerMapSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerMapSlider.swift; path = Alderis/ColorPickerMapSlider.swift; sourceTree = "<group>"; };
-		D62957C1C86D2356ACF959ECB1D64A88 /* ColorPickerTab.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerTab.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Enums/ColorPickerTab.html; sourceTree = "<group>"; };
-		D64F5CDE35746DD909854574714111D6 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/img/carat.png; sourceTree = "<group>"; };
-		D6991F1FB3C1D8C60E9484A6CAE3B777 /* alderis-demo.mp4 */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-demo.mp4"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-demo.mp4"; sourceTree = "<group>"; };
-		D7F89227F1ADE8541D83FD540973820F /* ColorPickerDelegate.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerDelegate.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Protocols/ColorPickerDelegate.html; sourceTree = "<group>"; };
-		D804593CF9648906F3FC62D70961DBE5 /* ColorPickerWheelView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerWheelView.swift; path = Alderis/ColorPickerWheelView.swift; sourceTree = "<group>"; };
-		DAF62BF17FF4F136C29C1B018FE538D3 /* ColorWell.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorWell.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorWell.html; sourceTree = "<group>"; };
-		DD1099BFA55DD45E2AD561460C05CD8D /* gh.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = gh.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/gh.png; sourceTree = "<group>"; };
-		DD4DCE96F7658CDD53C9632F75867273 /* ColorPickerSlidersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSlidersViewController.swift; path = Alderis/ColorPickerSlidersViewController.swift; sourceTree = "<group>"; };
-		DDFBA21AA44CA722D3F5C2376B998577 /* Deprecated.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Deprecated.html; path = docs/Deprecated.html; sourceTree = "<group>"; };
-		DF818DBF6C5A949E8D0C2BB61C02D12D /* Alderis.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Alderis.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		ED5ECD976CBBCCED8EDEB8997BB86D08 /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/img/dash.png; sourceTree = "<group>"; };
-		EE03DBCD010114F0F274AFDC5EC72887 /* Alderis.tgz */ = {isa = PBXFileReference; includeInIndex = 1; name = Alderis.tgz; path = docs/docsets/Alderis.tgz; sourceTree = "<group>"; };
-		F045BDB51C5F123984E4F9E4CE7B1122 /* Color Picker.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "Color Picker.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/Color Picker.html"; sourceTree = "<group>"; };
-		F13EF56CB1783DE61F545CF0F7B8FF72 /* ColorPickerSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSlider.swift; path = Alderis/ColorPickerSlider.swift; sourceTree = "<group>"; };
-		F19AC0C16171AACE913784737B5BD218 /* carat.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = carat.png; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/img/carat.png; sourceTree = "<group>"; };
-		F394FFCC5B80FED69C0FFA478DA0BA67 /* Alderis-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alderis-prefix.pch"; sourceTree = "<group>"; };
-		FCBD3BCB9469657C0D1AED98130369FA /* lunr.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = lunr.min.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/lunr.min.js; sourceTree = "<group>"; };
-		FE64DCAD4AA1C2B3205A95D79D31CA8C /* search.json */ = {isa = PBXFileReference; includeInIndex = 1; name = search.json; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/search.json; sourceTree = "<group>"; };
+		C8C9AE460EEAD0FE436B9FF455503976 /* migrating-to-11.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "migrating-to-11.html"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/migrating-to-11.html"; sourceTree = "<group>"; };
+		CA844343B1A6406E3C26BD7DB0CD81F6 /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/Guides.html; sourceTree = "<group>"; };
+		CED26FA59A5F2C5E4D7848713EBF8361 /* Extensions.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Extensions.html; path = docs/Extensions.html; sourceTree = "<group>"; };
+		D6E62B34FC52E71F30B7FFDD32716BD4 /* ColorWell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorWell.swift; path = Alderis/ColorWell.swift; sourceTree = "<group>"; };
+		D736068C420C0698561849FA9499DEE4 /* alderis-1.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-1.jpg"; path = "docs/screenshots/alderis-1.jpg"; sourceTree = "<group>"; };
+		DBE70C480A0D33EC78F2A0A595615E22 /* ColorPickerMapViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerMapViewController.swift; path = Alderis/ColorPickerMapViewController.swift; sourceTree = "<group>"; };
+		E05A2C8D3D1DF73E5EDCBF9591994DDD /* dash.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = dash.png; path = docs/img/dash.png; sourceTree = "<group>"; };
+		E20B9044B6486AF7BF8AA4A110A1994B /* jazzy.css */ = {isa = PBXFileReference; includeInIndex = 1; name = jazzy.css; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/css/jazzy.css; sourceTree = "<group>"; };
+		E20F3649299DC48D4A4137AD904BD7BB /* alderis-2.jpg */ = {isa = PBXFileReference; includeInIndex = 1; name = "alderis-2.jpg"; path = "docs/docsets/Alderis.docset/Contents/Resources/Documents/screenshots/alderis-2.jpg"; sourceTree = "<group>"; };
+		E6472A3020BFEB963874D78024CB672B /* preference-bundles.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "preference-bundles.html"; path = "docs/preference-bundles.html"; sourceTree = "<group>"; };
+		E91B75E2A1FA17F10023963AFA469D11 /* Alderis.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alderis.modulemap; sourceTree = "<group>"; };
+		EAA624758485E1401EB2AB9D3A3D507E /* ColorPickerSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerSlider.swift; path = Alderis/ColorPickerSlider.swift; sourceTree = "<group>"; };
+		EB655BA439E6BB0947ADEE1C5115BE23 /* ColorPickerViewController.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerViewController.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Classes/ColorPickerViewController.html; sourceTree = "<group>"; };
+		F349A742626BF5EF67EB8D6FF96CEA5D /* ColorPickerTabViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPickerTabViewController.swift; path = Alderis/ColorPickerTabViewController.swift; sourceTree = "<group>"; };
+		F49F614652E1415E411ADD2EDC4576C8 /* Color Picker.html */ = {isa = PBXFileReference; includeInIndex = 1; name = "Color Picker.html"; path = "docs/Color Picker.html"; sourceTree = "<group>"; };
+		FCFD908723F98C6E3ED57992CC18875B /* Guides.html */ = {isa = PBXFileReference; includeInIndex = 1; name = Guides.html; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/Guides.html; sourceTree = "<group>"; };
+		FDEE7B706D0E0DD117D4D62C0DF7BFC2 /* Alderis.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Alderis.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FE5D774AC10926FD40C8733C8A8ED2FF /* jquery.min.js */ = {isa = PBXFileReference; includeInIndex = 1; name = jquery.min.js; path = docs/docsets/Alderis.docset/Contents/Resources/Documents/js/jquery.min.js; sourceTree = "<group>"; };
+		FECCBC49A71902EA1228E74EFD44990D /* ColorPickerTab.html */ = {isa = PBXFileReference; includeInIndex = 1; name = ColorPickerTab.html; path = docs/Enums/ColorPickerTab.html; sourceTree = "<group>"; };
+		FFE713B1B935FFC1B0FA530E19690D4E /* typeahead.jquery.js */ = {isa = PBXFileReference; includeInIndex = 1; name = typeahead.jquery.js; path = docs/js/typeahead.jquery.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,14 +187,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BCD9BC846B3D7BE6CB4D1DD97D303F11 /* Frameworks */ = {
+		B1374EE2BF00A23A8CBFDCA12697D3A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1684B58585706CAAA97DC785D71D0C7 /* Frameworks */ = {
+		CDF2C569082438992137C6E133C424E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -196,54 +204,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		559ED8820FD68DAA52C8AF4F666BDABA /* Alderis */ = {
-			isa = PBXGroup;
-			children = (
-				AD951C98D6BC0CC05D173F0FCFCB4C9A /* Alderis.h */,
-				587772FB3B5CA9FA8CEE6E6A2BBAC535 /* AlderisSDKCompatibility.h */,
-				18DAF45D4DC9549CA9A911D675A9EE04 /* Assets.swift */,
-				6DA5D58989E685C6F3811C08FBB8DEC9 /* Assets.xcassets */,
-				C775F2EAA0F8BAA7E2454FADD9B1E917 /* BottomSheetTransition.swift */,
-				53B9379CA1AA1B24E68DEE1BA338C6D6 /* Color.swift */,
-				8A55C7C59BB1DFCC4E420036C9069673 /* ColorPickerConfiguration.swift */,
-				5E2B99F523E3E35019E7B0ED5694174C /* ColorPickerDelegate.swift */,
-				2C7EDE2E453798F68A7F84CEA6A454D7 /* ColorPickerInnerViewController.swift */,
-				D18AC02CB1578A85D8ED2A6D32C952D8 /* ColorPickerMapSlider.swift */,
-				34B3CCBE8356BF9CD3606A5510DDA543 /* ColorPickerMapViewController.swift */,
-				5D1E0E35CC4F50C9DA92AF97879225D0 /* ColorPickerNumericSlider.swift */,
-				F13EF56CB1783DE61F545CF0F7B8FF72 /* ColorPickerSlider.swift */,
-				DD4DCE96F7658CDD53C9632F75867273 /* ColorPickerSlidersViewController.swift */,
-				854A8A27017BE38985113D1EC301FDE4 /* ColorPickerSwatchViewController.swift */,
-				9032EAD02A3576082A701B0C4879769D /* ColorPickerTabViewController.swift */,
-				AC917AA1F1ABDBBD61667E37BC494D70 /* ColorPickerViewController.swift */,
-				D804593CF9648906F3FC62D70961DBE5 /* ColorPickerWheelView.swift */,
-				356B7BCF4CD6C5765696398F2A13D9A0 /* ColorWell.swift */,
-				43CDE1FA102FBFFE1E279C900D6F1194 /* DialogButton.swift */,
-				5BBD0B03F1F615D35E28317F5E317573 /* SeparatorView.swift */,
-				92F5A8A0B5F118EE2E3E5069CAFD7D9F /* UIColorAdditions.swift */,
-				17EB886B462F309725194196BB851A71 /* UIFontDescriptorAdditions.swift */,
-				C3F991B34D9376998387D9538CF98FA5 /* Pod */,
-				755DDCECEDDD68360A8D4CDE8D5A2AA8 /* Support Files */,
-			);
-			name = Alderis;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		755DDCECEDDD68360A8D4CDE8D5A2AA8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				17CC70B87AF13E09AF086472F4A878C9 /* Alderis.modulemap */,
-				6FEBEDC1F558A48A98BB8350829C2D8E /* Alderis-dummy.m */,
-				F394FFCC5B80FED69C0FFA478DA0BA67 /* Alderis-prefix.pch */,
-				2C7ACED4C04D3ABA7576157A6B31A66E /* Alderis-umbrella.h */,
-				9A8D116DF8D48B4249B07C28E0023D8C /* Alderis.debug.xcconfig */,
-				404782B2D2A885ABF6466CD39F9B7FDB /* Alderis.release.xcconfig */,
-				BFE3B35B8C1B4A362FB981CCF660CC43 /* ResourceBundle-Alderis-Alderis-Info.plist */,
-			);
-			name = "Support Files";
-			path = "Demo/Pods/Target Support Files/Alderis";
-			sourceTree = "<group>";
-		};
 		887692E1D0CD32ADA45C133CE07E5777 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +212,14 @@
 				4339F8A837B317D1831C93FD9779103A /* Pods-Alderis Demo */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8E1B6E6D6DCA70A6FB433056C2FA98A0 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD9B529C52A48338DAAF18231049C4 /* Alderis */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		A1837F8ECDB0D608D38E29E5F08D2348 /* Pods-Alderis Demo */ = {
@@ -278,95 +246,110 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		C3F991B34D9376998387D9538CF98FA5 /* Pod */ = {
+		C178FBEA0CB8A2E5946C9CD897A15FB2 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DF818DBF6C5A949E8D0C2BB61C02D12D /* Alderis.podspec */,
-				EE03DBCD010114F0F274AFDC5EC72887 /* Alderis.tgz */,
-				02140C23B18F459CE16395AF30415B38 /* Alderis.xml */,
-				ACAE1178FED3C09A23186423F4564BE4 /* alderis-1.jpg */,
-				642E9058AE41DA163AA1BC061841CC22 /* alderis-1.jpg */,
-				CE7952E340E911DFA33B334F0250331F /* alderis-2.jpg */,
-				06A1AB14D0A0D25CB1B6076012CA2E81 /* alderis-2.jpg */,
-				95C5D1AABF187C647E23010F6F52FAFB /* alderis-3.jpg */,
-				8A1CEE5BFEBAE6CCE5D1ABC5EF12E712 /* alderis-3.jpg */,
-				3518EF83BC793CEF43803375D8613A51 /* alderis-4.jpg */,
-				AEFE46E1DC264282ABC38E4AEB495463 /* alderis-4.jpg */,
-				94E88B53F5A39437D7D7FC8EAAF97BE5 /* alderis-demo.gif */,
-				AFEA93DDE0C8A026631DBC550390D06C /* alderis-demo.gif */,
-				D6991F1FB3C1D8C60E9484A6CAE3B777 /* alderis-demo.mp4 */,
-				50DFDD40BAE3005446007EEC7EAB4BF7 /* alderis-demo.mp4 */,
-				F19AC0C16171AACE913784737B5BD218 /* carat.png */,
-				D64F5CDE35746DD909854574714111D6 /* carat.png */,
-				B407F50FAD5E057DAB831A5AEB2B19F8 /* Color Picker.html */,
-				F045BDB51C5F123984E4F9E4CE7B1122 /* Color Picker.html */,
-				8FB752776946361B6100624CE21184DE /* ColorPickerConfiguration.html */,
-				A10804913D508774C73A40D4FB140296 /* ColorPickerConfiguration.html */,
-				D7F89227F1ADE8541D83FD540973820F /* ColorPickerDelegate.html */,
-				17958FC6B81F60B2E2E4171255198D09 /* ColorPickerDelegate.html */,
-				D62957C1C86D2356ACF959ECB1D64A88 /* ColorPickerTab.html */,
-				1EA771467DAA8047D6BA221B9C873B7E /* ColorPickerTab.html */,
-				81C8855C3399BE86BA0DA14588072236 /* ColorPickerViewController.html */,
-				4D021A0FE352BF558401300BF2D4C10D /* ColorPickerViewController.html */,
-				6ACFBE0F539668F90438D53B0E407FC6 /* ColorWell.html */,
-				DAF62BF17FF4F136C29C1B018FE538D3 /* ColorWell.html */,
-				4C03A575FB83CD1F6849178BD26ABE6A /* dash.png */,
-				ED5ECD976CBBCCED8EDEB8997BB86D08 /* dash.png */,
-				DDFBA21AA44CA722D3F5C2376B998577 /* Deprecated.html */,
-				805C99AA1AEEE3CDED5DBC1F3FFEF8C8 /* Deprecated.html */,
-				BBB73E0D28D7EF8DB38316FD2A9199F6 /* docSet.dsidx */,
-				AAC33CB110C998F6949427709861778B /* Extensions.html */,
-				6497A1C2E5334806CB0E85AF90A13061 /* Extensions.html */,
-				DD1099BFA55DD45E2AD561460C05CD8D /* gh.png */,
-				0BB57B3E31885913F0FCBF4D73B9BF59 /* gh.png */,
-				4ABDEC86CE24D291506254B071E384F0 /* Guides.html */,
-				4E4B7274A1F0A08FCD7EB9432D9DE197 /* Guides.html */,
-				7DB814924714393CBF277E6A7FBC1711 /* highlight.css */,
-				86D8ADA52675C87F3439F5B021D9E271 /* highlight.css */,
-				ACC376ACDA5230E947C1F4ADB7D1CA16 /* index.html */,
-				354D701FA00135351CE8D365DC704941 /* index.html */,
-				D1387BAAB91D1AD075E6A0C0778C6240 /* Info.plist */,
-				BE26712DB993D508610676170C2D6495 /* jazzy.css */,
-				7FCF981C431B0FA10E3620F8AE291EA0 /* jazzy.css */,
-				CE157EDAFE7867B69FD2563F5191B96C /* jazzy.js */,
-				534D9A1DE417C4B9DE358E3784BE252A /* jazzy.js */,
-				82D04EA07DFF97C212098860A90CF1DC /* jazzy.search.js */,
-				5145C84306148A563AEE07DAE59B9108 /* jazzy.search.js */,
-				1491C9CDB493FAA1848BDA2DEFFFE759 /* jquery.min.js */,
-				A730FD3AF9E26FA7098D995824233F5E /* jquery.min.js */,
-				2025A67BB86CDF4058A041EEAF49A911 /* LICENSE.md */,
-				7EEA30A6CB8627805E973DE408DC1E40 /* logo.jpg */,
-				056C0D07A58E0B355CE68B48B3FE7F65 /* logo.jpg */,
-				FCBD3BCB9469657C0D1AED98130369FA /* lunr.min.js */,
-				63C8563801098CB2A2E497608276EFD2 /* lunr.min.js */,
-				310B0B455E8636FFE5EFB73CC25B2FAA /* migrating-to-11.html */,
-				01FEAE1ED7006F14CED01A3CD98D644A /* migrating-to-11.html */,
-				C0B2CF9BEC25CF88598D65B177C874A6 /* preference-bundles.html */,
-				515E174AA9349F2D82AAD9B2567D957E /* preference-bundles.html */,
-				A491923E3D89ABAB081EBE65FBE6B802 /* README.md */,
-				FE64DCAD4AA1C2B3205A95D79D31CA8C /* search.json */,
-				33C2AA30D530CD28793E5309E54BD636 /* search.json */,
-				5A4C0E1C750A9239F05F014B9CC901EF /* spinner.gif */,
-				127234ACDCFE9B0A4B723C9CE7DA9AF1 /* spinner.gif */,
-				7CC36FB9A676E3776008A39EC872A1C4 /* typeahead.jquery.js */,
-				A5A2413ABDD8D4671343A8A5DB09925F /* typeahead.jquery.js */,
-				6BAEE1731A2F5B9A6F6215171BB6491E /* UI Components.html */,
-				A496B6D823FC81BCC0CB3C3530ABBE62 /* UI Components.html */,
-				6B55E3872992DD6188B09D297BFD1495 /* UIColor.html */,
-				5179B75DB5262D901A3A64AE210E46E4 /* UIColor.html */,
+				E91B75E2A1FA17F10023963AFA469D11 /* Alderis.modulemap */,
+				15CA3E7F3BCD5839C01C9341E4A87016 /* Alderis-dummy.m */,
+				09B0AF23639A55C8ACFA2280B959BC56 /* Alderis-prefix.pch */,
+				118FF44E9B4CE56F0B9B005B3F530868 /* Alderis-umbrella.h */,
+				26CD8202D62480DF6C33D3CBC45F20E7 /* Alderis.debug.xcconfig */,
+				5F243C314CCA9CD64D9D00C2749C5C67 /* Alderis.release.xcconfig */,
+				520BB74976A48F678ED161B7B86EFEBA /* ResourceBundle-Alderis-Alderis-Info.plist */,
 			);
-			name = Pod;
+			name = "Support Files";
+			path = "Demo/Pods/Target Support Files/Alderis";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				EA847D251EB67FDD49D0C433453AC223 /* Development Pods */,
+				8E1B6E6D6DCA70A6FB433056C2FA98A0 /* Development Pods */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				887692E1D0CD32ADA45C133CE07E5777 /* Products */,
 				BDF19F2547EA527C68B46E462B39F6D6 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		D8851FF3FFFA07C46E8603F473036A2A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				FDEE7B706D0E0DD117D4D62C0DF7BFC2 /* Alderis.podspec */,
+				B8A366A94997E2F977D7200046E7A3BB /* Alderis.tgz */,
+				38383266896A7586CADB5DE33C9DFDB1 /* Alderis.xml */,
+				4A461F69B083C5DD648B7ABD1FAEC635 /* alderis-1.jpg */,
+				D736068C420C0698561849FA9499DEE4 /* alderis-1.jpg */,
+				E20F3649299DC48D4A4137AD904BD7BB /* alderis-2.jpg */,
+				B801FA9B966FE9A62ADDA5B99156854C /* alderis-2.jpg */,
+				6D450373A88FE594B65591CBA5102A4E /* alderis-3.jpg */,
+				6203AA708D6009BB0058952EE44D09C0 /* alderis-3.jpg */,
+				8AB6F3B861B197F86167A055C19CD24F /* alderis-4.jpg */,
+				50EF175120EAF4A062AF330EC4710E1A /* alderis-4.jpg */,
+				5521BE917DF6AD14C496196BE86E24C5 /* alderis-demo.gif */,
+				30A4B620B43BE60B7251AC158B16BB96 /* alderis-demo.gif */,
+				2C33A27D43CA448493B7A0C085426E41 /* alderis-demo.mp4 */,
+				7D1816666B656A9D94B9ED30C7764BA9 /* alderis-demo.mp4 */,
+				BB4E5DDB137EE9F874CE0D60A760520B /* carat.png */,
+				0C01EF7F5D772FE13756CDB365CFA301 /* carat.png */,
+				F49F614652E1415E411ADD2EDC4576C8 /* Color Picker.html */,
+				7D23A64AB2D3B20B80BD17123F40EA7A /* Color Picker.html */,
+				AD78DEE013950018765C10487DA9205F /* ColorPickerConfiguration.html */,
+				25960E6A0DD4229040A46F549FEBF16E /* ColorPickerConfiguration.html */,
+				4306A5357BBDFBE353B117265C31DCF1 /* ColorPickerDelegate.html */,
+				849F076F709A9CF589F095DC7D0D06BF /* ColorPickerDelegate.html */,
+				1151577A98F3B729E52184D45319A8D5 /* ColorPickerTab.html */,
+				FECCBC49A71902EA1228E74EFD44990D /* ColorPickerTab.html */,
+				AE84689F2D87A3B966954FD8357B7C7A /* ColorPickerViewController.html */,
+				EB655BA439E6BB0947ADEE1C5115BE23 /* ColorPickerViewController.html */,
+				2E4C99A27B462732E546236D07134C7F /* ColorWell.html */,
+				4AC93417DC382A456AAD103A9878A9A4 /* ColorWell.html */,
+				1582B7C8F139592CC78F6A93497EE9FE /* dash.png */,
+				E05A2C8D3D1DF73E5EDCBF9591994DDD /* dash.png */,
+				C10A79A7F6F7AF4A0B79B073609A3B3C /* Deprecated.html */,
+				9078D2E274E569967F02765064ACD9F8 /* Deprecated.html */,
+				90354DA2C20E2C675F5AADDE45ABFD12 /* docSet.dsidx */,
+				AF450481E5F595BEE46CF97E82B48318 /* Extensions.html */,
+				CED26FA59A5F2C5E4D7848713EBF8361 /* Extensions.html */,
+				460BCCD2E24FEB1B2DFEFF8E83F32432 /* gh.png */,
+				C665B17AC1D8A64AA56DE3B53336AF6E /* gh.png */,
+				FCFD908723F98C6E3ED57992CC18875B /* Guides.html */,
+				CA844343B1A6406E3C26BD7DB0CD81F6 /* Guides.html */,
+				72733A5F2745B86A56976C5751393CB6 /* highlight.css */,
+				5DD4425533B1D30811CD121AD25ECCD4 /* highlight.css */,
+				38D3DF3B87697E39B438064DDAFF96CB /* index.html */,
+				58E9F2A2B5131DADEF26E94DC62454BC /* index.html */,
+				A10DB9F1B9803402D3EF6910D1B3EE2B /* Info.plist */,
+				34DC923C769DE62D14CB99FAE1B788C9 /* jazzy.css */,
+				E20B9044B6486AF7BF8AA4A110A1994B /* jazzy.css */,
+				30B5658A6842A0386526068886A81D06 /* jazzy.js */,
+				7A8C4701B4644F48FE23982185A96B96 /* jazzy.js */,
+				26E091C31BA0A0A19B55AA9DADB16384 /* jazzy.search.js */,
+				B4AB0899DF302DADFAD15CBA7CDD76EE /* jazzy.search.js */,
+				FE5D774AC10926FD40C8733C8A8ED2FF /* jquery.min.js */,
+				2DC63CECF8AC072D59C75616BD1B776F /* jquery.min.js */,
+				C36E01C7C33B31D4651D0DE4A41DD97A /* LICENSE.md */,
+				473A42DC91D0657175C44C124A42D082 /* logo.jpg */,
+				2795A93134C6411FEB86C01651E5103A /* logo.jpg */,
+				3D72D15DB1512016F30509A18480E3C4 /* lunr.min.js */,
+				5820713F8B066152B4DD6A5DC039DA0A /* lunr.min.js */,
+				C8C9AE460EEAD0FE436B9FF455503976 /* migrating-to-11.html */,
+				2646E8FAFB10F165EDC7C37F27DFF51E /* migrating-to-11.html */,
+				9D0B06726655737BE5D3E90895A20B29 /* preference-bundles.html */,
+				E6472A3020BFEB963874D78024CB672B /* preference-bundles.html */,
+				387668346A90363927C166766272D218 /* README.md */,
+				8C83C55E48FEB11AC0B9ECC5FF21A239 /* search.json */,
+				5E869F85913EAC0C5890A2333A48A0C9 /* search.json */,
+				3CE0F8244F66A4D4835C8D9177021738 /* spinner.gif */,
+				699320911D1FE858B76DE948FDD151B3 /* spinner.gif */,
+				29A9C709CFE73B4C65BDB1A304AD6739 /* typeahead.jquery.js */,
+				FFE713B1B935FFC1B0FA530E19690D4E /* typeahead.jquery.js */,
+				4A2BA97CDB75D4B56132977F01CB14F2 /* UI Components.html */,
+				428BE50433E6E99B6851077DCAC0C60C /* UI Components.html */,
+				82498B11C9CE81F2C95315C6A2C0E817 /* UIColor.html */,
+				2AB95401558DA9DFC8538344986CB61D /* UIColor.html */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -376,17 +359,56 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EA847D251EB67FDD49D0C433453AC223 /* Development Pods */ = {
+		FFFD9B529C52A48338DAAF18231049C4 /* Alderis */ = {
 			isa = PBXGroup;
 			children = (
-				559ED8820FD68DAA52C8AF4F666BDABA /* Alderis */,
+				1FA0319E495DBB95C59FD1FCA9094834 /* AccessibilityComplianceLabel.swift */,
+				AAC14DBE8E663BC251C9AF1AA8083C9D /* AccessibilityContrastSelector.swift */,
+				97FE6FC6FFE07676D0093B0213AAF5F3 /* Alderis.h */,
+				7CC297C1FBE6F913F129AEE29EE440A3 /* AlderisSDKCompatibility.h */,
+				2A683536AC63CCDD28C45C7A9C12406A /* Assets.swift */,
+				943222123EC06156F3ED08F1F02A290F /* Assets.xcassets */,
+				B8AA0747754A488A748DC1A14217706F /* BottomSheetTransition.swift */,
+				BD64915CE77287DE4DE699923936861A /* Color.swift */,
+				B419F1F316D6B5503E7699F4C6B5378D /* ColorPickerAccessibilityViewController.swift */,
+				554F5B8517FD318E2614E3ADA768A379 /* ColorPickerConfiguration.swift */,
+				1E2FCFF3277D65BFB42FA8F7AC607C94 /* ColorPickerDelegate.swift */,
+				4D52867A130701AD68DF0BD51D615F84 /* ColorPickerInnerViewController.swift */,
+				7D10F94D24455B0E0C7D7D8B48384D75 /* ColorPickerMapSlider.swift */,
+				DBE70C480A0D33EC78F2A0A595615E22 /* ColorPickerMapViewController.swift */,
+				AF8BD76A5C95BE19EB7B913B4861DB0C /* ColorPickerNumericSlider.swift */,
+				EAA624758485E1401EB2AB9D3A3D507E /* ColorPickerSlider.swift */,
+				34795D10B38B60BF192EBA49EA41CB80 /* ColorPickerSlidersViewController.swift */,
+				08B172B6F9A8E7A960FACAEE362EA481 /* ColorPickerSwatchViewController.swift */,
+				F349A742626BF5EF67EB8D6FF96CEA5D /* ColorPickerTabViewController.swift */,
+				01FE2321A7A4907B81C0F45F518E954A /* ColorPickerViewController.swift */,
+				B64FF3587B50F064713F0110D7FCD905 /* ColorPickerWheelView.swift */,
+				D6E62B34FC52E71F30B7FFDD32716BD4 /* ColorWell.swift */,
+				7C5DCC3205C61756CD9BD49BB41D9D62 /* DialogButton.swift */,
+				15812236A4CDFA846A0BB1E4A9C3E2D3 /* SeparatorView.swift */,
+				85B0A09AA3BF091CD224CBA5EA23CBEE /* TextViewLabel.swift */,
+				886010E696C7BE13FF2ECBBEC562A32A /* UIColorAdditions.swift */,
+				6E31E3C306FFA5EA80B0842D14234ED4 /* UIFontDescriptorAdditions.swift */,
+				D8851FF3FFFA07C46E8603F473036A2A /* Pod */,
+				C178FBEA0CB8A2E5946C9CD897A15FB2 /* Support Files */,
 			);
-			name = "Development Pods";
+			name = Alderis;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4880BBE02C143C6BA24E03D7BBC29D70 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE68CDB1E046E287A6051DD8DF1C6616 /* Alderis.h in Headers */,
+				66622F6C57BF25C75132C5E8D49CE12A /* Alderis-umbrella.h in Headers */,
+				3020D298695FD9821A51059015814FA7 /* AlderisSDKCompatibility.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		98EEA9AFD506EEC0E957CF8454860A08 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -395,32 +417,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DBD6A84FD013835D581C38F7CEA47638 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				581D1E3152684F2E90410D96F459453A /* Alderis.h in Headers */,
-				9AD7805C17FF14071F4DBE897C53A2A2 /* Alderis-umbrella.h in Headers */,
-				10FB951FDD6444BE05D0A3D4297C4ADB /* AlderisSDKCompatibility.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		0BF6D5F4E6EC1CF170610CBAB0F6CEF2 /* Alderis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E49AEE23C545878B45F17536497FD05 /* Build configuration list for PBXNativeTarget "Alderis" */;
+			buildConfigurationList = DAD25E624D8154EC66F8A9AEC84015A0 /* Build configuration list for PBXNativeTarget "Alderis" */;
 			buildPhases = (
-				DBD6A84FD013835D581C38F7CEA47638 /* Headers */,
-				050C95F11E21BAFE961D2E626A635720 /* Sources */,
-				C1684B58585706CAAA97DC785D71D0C7 /* Frameworks */,
-				AA4D4AC8B48ED7F21DA15E567F8EF465 /* Copy generated compatibility header */,
+				4880BBE02C143C6BA24E03D7BBC29D70 /* Headers */,
+				DA161A5D291B346C8922EE8987BE1984 /* Sources */,
+				B1374EE2BF00A23A8CBFDCA12697D3A5 /* Frameworks */,
+				40FAE04003B0E484A06AAEE68ED1C88D /* Copy generated compatibility header */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B1D6A46A899AFBB834C2BED02088E73E /* PBXTargetDependency */,
+				90706260854939834213952D0E90734D /* PBXTargetDependency */,
 			);
 			name = Alderis;
 			productName = Alderis;
@@ -438,7 +450,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				69D15A1D7C9762738FA1780BFF166148 /* PBXTargetDependency */,
+				E553516665BFBA23690D90D4BE8D971B /* PBXTargetDependency */,
 			);
 			name = "Pods-Alderis Demo";
 			productName = "Pods-Alderis Demo";
@@ -447,11 +459,11 @@
 		};
 		E06BFBDAEB84B8EBA0D1A8B43D16EF27 /* Alderis-Alderis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 42D71E4FDBD61F9964A0FEE13FD72456 /* Build configuration list for PBXNativeTarget "Alderis-Alderis" */;
+			buildConfigurationList = AD1DDDD2DD272BC42ECF96139D483520 /* Build configuration list for PBXNativeTarget "Alderis-Alderis" */;
 			buildPhases = (
-				890C2184FA6302AF431D57C566D660A1 /* Sources */,
-				BCD9BC846B3D7BE6CB4D1DD97D303F11 /* Frameworks */,
-				3A72E4AF8EA05B67BB09DACFB7ABE139 /* Resources */,
+				1585C008723F3427636EE875F5C04D71 /* Sources */,
+				CDF2C569082438992137C6E133C424E3 /* Frameworks */,
+				C648D70BE76F7DBD874CBA0043D9307A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -492,18 +504,18 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A72E4AF8EA05B67BB09DACFB7ABE139 /* Resources */ = {
+		C648D70BE76F7DBD874CBA0043D9307A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68879A162F2F4C23A43C147150FE164D /* Assets.xcassets in Resources */,
+				A44048C8016C3CDB974FA845C4BEAFF3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AA4D4AC8B48ED7F21DA15E567F8EF465 /* Copy generated compatibility header */ = {
+		40FAE04003B0E484A06AAEE68ED1C88D /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -530,35 +542,7 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		050C95F11E21BAFE961D2E626A635720 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				41E8DA2A63EE3358B83E155FB6203B15 /* Alderis-dummy.m in Sources */,
-				DAD1139A8C1A7173A3CC3C642D336E47 /* Assets.swift in Sources */,
-				77D9DF647CFEBEC0A26E6F99CA9FE236 /* BottomSheetTransition.swift in Sources */,
-				D298630B6939275FC9ADC43FC7A9272A /* Color.swift in Sources */,
-				99B340FC2A2F767BEC3B0E2E63ABF1A2 /* ColorPickerConfiguration.swift in Sources */,
-				0B31A0B75A779340941246DD5ABCE71C /* ColorPickerDelegate.swift in Sources */,
-				F4CDFDF759FF4E4E414C3E98E0912342 /* ColorPickerInnerViewController.swift in Sources */,
-				5507E72F8C91E7FF7F15F62214547F1C /* ColorPickerMapSlider.swift in Sources */,
-				047939B2FC25EACC397E006934D91286 /* ColorPickerMapViewController.swift in Sources */,
-				316C29306E729BF76D2655008DDC91F9 /* ColorPickerNumericSlider.swift in Sources */,
-				4BD01A323BFF1D74067266F4CAB7B85D /* ColorPickerSlider.swift in Sources */,
-				F94DAAC9A7829A4D259F0DEDC7B67E33 /* ColorPickerSlidersViewController.swift in Sources */,
-				4EFA690AF63CA8E57F02E5AF51E4B126 /* ColorPickerSwatchViewController.swift in Sources */,
-				1DBA43D456FA7BBFAB5AD499E7CB6926 /* ColorPickerTabViewController.swift in Sources */,
-				C9CEA14C1B760F27BDB671FE4969D81B /* ColorPickerViewController.swift in Sources */,
-				89AE27935949806B089465132F1A3193 /* ColorPickerWheelView.swift in Sources */,
-				12C98131363F6E6FCCF2DE49817D5168 /* ColorWell.swift in Sources */,
-				1A734168B347653CE960F8B1F23972FD /* DialogButton.swift in Sources */,
-				FF835F3B15E4F191B519DC8A5028D0A2 /* SeparatorView.swift in Sources */,
-				355BD7815E60E71515A9C1DC13307B78 /* UIColorAdditions.swift in Sources */,
-				4CEA33B4C6007788D0EDC21D72FFEFF0 /* UIFontDescriptorAdditions.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		890C2184FA6302AF431D57C566D660A1 /* Sources */ = {
+		1585C008723F3427636EE875F5C04D71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -573,20 +557,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA161A5D291B346C8922EE8987BE1984 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34AB6F0FDC30F6709C9554DF3B36BC68 /* AccessibilityComplianceLabel.swift in Sources */,
+				1C011BE853063C640733D574EC933A8E /* AccessibilityContrastSelector.swift in Sources */,
+				C4331A1802A8DE5497A527902E863B9B /* Alderis-dummy.m in Sources */,
+				29F45822DB6C975C4EF927360CBF1881 /* Assets.swift in Sources */,
+				6FBB5B195C07914E76D27644AC7375A8 /* BottomSheetTransition.swift in Sources */,
+				CFB6E2B126274A5FEEDC225F7135CC2B /* Color.swift in Sources */,
+				4567B2B4700E2CA6C469D74DA516B220 /* ColorPickerAccessibilityViewController.swift in Sources */,
+				C17E8D99BDE3B8A8F14F9532B5C0CF21 /* ColorPickerConfiguration.swift in Sources */,
+				DB515BA2158A050FECF34C48048DDF38 /* ColorPickerDelegate.swift in Sources */,
+				CAB29A3290111A89E59B5D51E3758BD7 /* ColorPickerInnerViewController.swift in Sources */,
+				94CEE62C0587CB1C6E1576F6F7089F74 /* ColorPickerMapSlider.swift in Sources */,
+				2F5BC345C535BDE159B016317C07FB4A /* ColorPickerMapViewController.swift in Sources */,
+				C208EC3BC09B75525C44EB9B7C10387C /* ColorPickerNumericSlider.swift in Sources */,
+				CF6AF69BCC48FF27B947BB113639C056 /* ColorPickerSlider.swift in Sources */,
+				668ACD9CB2848DCE7039FED4E30A1268 /* ColorPickerSlidersViewController.swift in Sources */,
+				AB8054195E3FF92D64DCA0C82255714F /* ColorPickerSwatchViewController.swift in Sources */,
+				56D7C3A30B9FBD839069BF01551D2225 /* ColorPickerTabViewController.swift in Sources */,
+				4099A95CFF53B4FD21135AD1F4CA3C6B /* ColorPickerViewController.swift in Sources */,
+				06EA207B7F9F778B92F7CED6FA765E6F /* ColorPickerWheelView.swift in Sources */,
+				5B42E7E52B20715FDC52352690F81CF0 /* ColorWell.swift in Sources */,
+				5418EBC6B424516558CFFC88B31BA11B /* DialogButton.swift in Sources */,
+				6091BC9230694F038AC1991C4239C199 /* SeparatorView.swift in Sources */,
+				4F5D7B5A84B761C7CC4432D68101A805 /* TextViewLabel.swift in Sources */,
+				ADD23C7E7A6798CD883F3572951C8524 /* UIColorAdditions.swift in Sources */,
+				18A6957341B5BBAFE90398BB585F1A09 /* UIFontDescriptorAdditions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		69D15A1D7C9762738FA1780BFF166148 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alderis;
-			target = 0BF6D5F4E6EC1CF170610CBAB0F6CEF2 /* Alderis */;
-			targetProxy = D519AA37E61811EF472CA8C2F1B53924 /* PBXContainerItemProxy */;
-		};
-		B1D6A46A899AFBB834C2BED02088E73E /* PBXTargetDependency */ = {
+		90706260854939834213952D0E90734D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Alderis-Alderis";
 			target = E06BFBDAEB84B8EBA0D1A8B43D16EF27 /* Alderis-Alderis */;
-			targetProxy = E272A356CCFB074DA92962EF20D706FF /* PBXContainerItemProxy */;
+			targetProxy = A1965C2A248FA05633D5D244A75662A1 /* PBXContainerItemProxy */;
+		};
+		E553516665BFBA23690D90D4BE8D971B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alderis;
+			target = 0BF6D5F4E6EC1CF170610CBAB0F6CEF2 /* Alderis */;
+			targetProxy = A84280FBDED4F8DFAAEB936A41B47AEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -611,38 +627,6 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		11CC75A86333AE1FD4B6E1197D56729E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A8D116DF8D48B4249B07C28E0023D8C /* Alderis.debug.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alderis";
-				IBSC_MODULE = Alderis;
-				INFOPLIST_FILE = "Target Support Files/Alderis/ResourceBundle-Alderis-Alderis-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = Alderis;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		12CBA832F7E974532EEB0B2254CB1AF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 404782B2D2A885ABF6466CD39F9B7FDB /* Alderis.release.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alderis";
-				IBSC_MODULE = Alderis;
-				INFOPLIST_FILE = "Target Support Files/Alderis/ResourceBundle-Alderis-Alderis-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = Alderis;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -796,9 +780,9 @@
 			};
 			name = Release;
 		};
-		884A668C29A726D7A1DE79BE06F46002 /* Release */ = {
+		88B1242CD2C14D566499E83BCF6D0513 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 404782B2D2A885ABF6466CD39F9B7FDB /* Alderis.release.xcconfig */;
+			baseConfigurationReference = 5F243C314CCA9CD64D9D00C2749C5C67 /* Alderis.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -822,9 +806,41 @@
 			};
 			name = Release;
 		};
-		B8DCA19CBE0EE416817640C2A32EF038 /* Debug */ = {
+		9E336C58C53EB61DE1301AD49E42B679 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A8D116DF8D48B4249B07C28E0023D8C /* Alderis.debug.xcconfig */;
+			baseConfigurationReference = 5F243C314CCA9CD64D9D00C2749C5C67 /* Alderis.release.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alderis";
+				IBSC_MODULE = Alderis;
+				INFOPLIST_FILE = "Target Support Files/Alderis/ResourceBundle-Alderis-Alderis-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = Alderis;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		BE4B848C3B813A6B8DBDB64A88E474DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26CD8202D62480DF6C33D3CBC45F20E7 /* Alderis.debug.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Alderis";
+				IBSC_MODULE = Alderis;
+				INFOPLIST_FILE = "Target Support Files/Alderis/ResourceBundle-Alderis-Alderis-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = Alderis;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		BEA28AD9A94A884A9CF9F21E125A50CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26CD8202D62480DF6C33D3CBC45F20E7 /* Alderis.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -850,15 +866,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		42D71E4FDBD61F9964A0FEE13FD72456 /* Build configuration list for PBXNativeTarget "Alderis-Alderis" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				11CC75A86333AE1FD4B6E1197D56729E /* Debug */,
-				12CBA832F7E974532EEB0B2254CB1AF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -868,11 +875,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E49AEE23C545878B45F17536497FD05 /* Build configuration list for PBXNativeTarget "Alderis" */ = {
+		AD1DDDD2DD272BC42ECF96139D483520 /* Build configuration list for PBXNativeTarget "Alderis-Alderis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8DCA19CBE0EE416817640C2A32EF038 /* Debug */,
-				884A668C29A726D7A1DE79BE06F46002 /* Release */,
+				BE4B848C3B813A6B8DBDB64A88E474DB /* Debug */,
+				9E336C58C53EB61DE1301AD49E42B679 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -882,6 +889,15 @@
 			buildConfigurations = (
 				243AD1FF67BA11AD2C1237B6D72C1AEA /* Debug */,
 				09F3B7AD1520CE6F6C0A503058268F79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAD25E624D8154EC66F8A9AEC84015A0 /* Build configuration list for PBXNativeTarget "Alderis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEA28AD9A94A884A9CF9F21E125A50CC /* Debug */,
+				88B1242CD2C14D566499E83BCF6D0513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

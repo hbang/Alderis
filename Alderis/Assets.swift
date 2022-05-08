@@ -10,6 +10,14 @@ import UIKit
 
 internal struct Assets {
 
+	internal enum SymbolScale: Int {
+		case `default` = -1
+		case unspecified, small, medium, large
+
+		@available(iOS 13, *)
+		var uiImageSymbolScale: UIImage.SymbolScale { UIImage.SymbolScale(rawValue: rawValue)! }
+	}
+
 	private static let bundle: Bundle = {
 		let myBundle = Bundle(for: ColorPickerViewController.self)
 		if let resourcesURL = myBundle.url(forResource: "Alderis", withExtension: "bundle"),
@@ -28,11 +36,11 @@ internal struct Assets {
 
 	// MARK: - Images
 
-	static func systemImage(named name: String, fontSize: CGFloat? = nil) -> UIImage? {
+	static func systemImage(named name: String, font: UIFont? = nil, scale: SymbolScale = .default) -> UIImage? {
 		if #available(iOS 13, *) {
 			var configuration: UIImage.SymbolConfiguration?
-			if let fontSize = fontSize {
-				configuration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: fontSize))
+			if let font = font {
+				configuration = UIImage.SymbolConfiguration(font: font, scale: scale.uiImageSymbolScale)
 			}
 			return UIImage(systemName: name, withConfiguration: configuration)
 		}
@@ -60,6 +68,13 @@ internal struct Assets {
 
 	static let backdropColor  = UIColor(white: 0, alpha: 0.2)
 	static let separatorColor = UIColor(white: 1, alpha: 0.15)
+
+	static let labelColor: UIColor = {
+		if #available(iOS 13, *) {
+			return .label
+		}
+		return .black
+	}()
 
 	static let borderColor: UIColor = {
 		if #available(iOS 13, *) {

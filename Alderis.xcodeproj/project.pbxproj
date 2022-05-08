@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4E1C741328266C5900227EC3 /* UIFontDescriptorAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */; };
+		4E1C74172826C1F100227EC3 /* ColorPickerAccessibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C74162826C1F100227EC3 /* ColorPickerAccessibilityViewController.swift */; };
+		4E1C741928276D5600227EC3 /* TextViewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C741828276D5600227EC3 /* TextViewLabel.swift */; };
+		4E1C741B2827829E00227EC3 /* AccessibilityComplianceLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C741A2827829E00227EC3 /* AccessibilityComplianceLabel.swift */; };
+		4E1C741D2827882600227EC3 /* AccessibilityContrastSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1C741C2827882600227EC3 /* AccessibilityContrastSelector.swift */; };
 		569C25522427F57000022C60 /* ColorPickerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C25512427F57000022C60 /* ColorPickerTabViewController.swift */; };
 		569C25582428346900022C60 /* ColorPickerMapSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C25572428346900022C60 /* ColorPickerMapSlider.swift */; };
 		56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C74666242F722A003ED00A /* ColorPickerSlider.swift */; };
@@ -34,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontDescriptorAdditions.swift; sourceTree = "<group>"; };
+		4E1C74162826C1F100227EC3 /* ColorPickerAccessibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerAccessibilityViewController.swift; sourceTree = "<group>"; };
+		4E1C741828276D5600227EC3 /* TextViewLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewLabel.swift; sourceTree = "<group>"; };
+		4E1C741A2827829E00227EC3 /* AccessibilityComplianceLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityComplianceLabel.swift; sourceTree = "<group>"; };
+		4E1C741C2827882600227EC3 /* AccessibilityContrastSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityContrastSelector.swift; sourceTree = "<group>"; };
 		569C25512427F57000022C60 /* ColorPickerTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerTabViewController.swift; sourceTree = "<group>"; };
 		569C25572428346900022C60 /* ColorPickerMapSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerMapSlider.swift; sourceTree = "<group>"; };
 		56C74666242F722A003ED00A /* ColorPickerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSlider.swift; sourceTree = "<group>"; };
@@ -110,11 +118,15 @@
 				CFE70288241D0E7300083903 /* ColorPickerWheelView.swift */,
 				CFE70282241CC88D00083903 /* ColorPickerSlidersViewController.swift */,
 				56C74668242F75E3003ED00A /* ColorPickerNumericSlider.swift */,
+				4E1C74162826C1F100227EC3 /* ColorPickerAccessibilityViewController.swift */,
 				CF73D32D241E49EE000B1B10 /* ColorWell.swift */,
 				CF7750BD252203630069CC57 /* DialogButton.swift */,
 				CF7750D52524615D0069CC57 /* SeparatorView.swift */,
 				94A2368B252B5951002B5D0B /* UIColorAdditions.swift */,
 				4E1C741228266C5900227EC3 /* UIFontDescriptorAdditions.swift */,
+				4E1C741828276D5600227EC3 /* TextViewLabel.swift */,
+				4E1C741A2827829E00227EC3 /* AccessibilityComplianceLabel.swift */,
+				4E1C741C2827882600227EC3 /* AccessibilityContrastSelector.swift */,
 				CF73D339241F9C23000B1B10 /* Info.plist */,
 				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
 			);
@@ -226,6 +238,7 @@
 			files = (
 				CF73D34B241F9C31000B1B10 /* ColorPickerSwatchViewController.swift in Sources */,
 				CF7750BE252203630069CC57 /* DialogButton.swift in Sources */,
+				4E1C741928276D5600227EC3 /* TextViewLabel.swift in Sources */,
 				CF73D347241F9C31000B1B10 /* ColorPickerWheelView.swift in Sources */,
 				CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */,
 				CF73D34C241F9C4D000B1B10 /* Color.swift in Sources */,
@@ -235,6 +248,8 @@
 				CF7750B72520D3B50069CC57 /* Assets.swift in Sources */,
 				CF73D348241F9C31000B1B10 /* ColorPickerInnerViewController.swift in Sources */,
 				56C74667242F722A003ED00A /* ColorPickerSlider.swift in Sources */,
+				4E1C74172826C1F100227EC3 /* ColorPickerAccessibilityViewController.swift in Sources */,
+				4E1C741D2827882600227EC3 /* AccessibilityContrastSelector.swift in Sources */,
 				CF73D345241F9C31000B1B10 /* ColorPickerMapViewController.swift in Sources */,
 				CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */,
 				4E1C741328266C5900227EC3 /* UIFontDescriptorAdditions.swift in Sources */,
@@ -244,6 +259,7 @@
 				569C25522427F57000022C60 /* ColorPickerTabViewController.swift in Sources */,
 				CF73D351241F9FB3000B1B10 /* ColorPickerDelegate.swift in Sources */,
 				CF73D346241F9C31000B1B10 /* ColorPickerSlidersViewController.swift in Sources */,
+				4E1C741B2827829E00227EC3 /* AccessibilityComplianceLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,10 +386,12 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
+				DEVELOPMENT_TEAM = N2LN9ZT493;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -406,7 +424,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Y9Z46WEJ27;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

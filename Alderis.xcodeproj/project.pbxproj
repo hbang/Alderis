@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,7 +35,7 @@
 		CF7750D62524615D0069CC57 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7750D52524615D0069CC57 /* SeparatorView.swift */; };
 		CF775122252852460069CC57 /* AlderisSDKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = CF775121252852110069CC57 /* AlderisSDKCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CF79DA31251723C500F17BCB /* BottomSheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */; };
-		CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */; };
+		CFAFFC9124277CEE005AD4C1 /* Assets-ios12.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFAFFC9024277CEE005AD4C1 /* Assets-ios12.xcassets */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,7 @@
 		CF7750D52524615D0069CC57 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		CF775121252852110069CC57 /* AlderisSDKCompatibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlderisSDKCompatibility.h; sourceTree = "<group>"; };
 		CF79DA30251723C500F17BCB /* BottomSheetTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetTransition.swift; sourceTree = "<group>"; };
-		CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFAFFC9024277CEE005AD4C1 /* Assets-ios12.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets-ios12.xcassets"; sourceTree = "<group>"; };
 		CFE70273241A4C5500083903 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		CFE7027B241A62ED00083903 /* ColorPickerInnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerInnerViewController.swift; sourceTree = "<group>"; };
 		CFE7027E241B984600083903 /* ColorPickerSwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerSwatchViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				4E1C741C2827882600227EC3 /* AccessibilityContrastSelector.swift */,
 				4E1C74202827B8F800227EC3 /* NSBeep.swift */,
 				CF73D339241F9C23000B1B10 /* Info.plist */,
-				CFAFFC9024277CEE005AD4C1 /* Assets.xcassets */,
+				CFAFFC9024277CEE005AD4C1 /* Assets-ios12.xcassets */,
 			);
 			path = Alderis;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFAFFC9124277CEE005AD4C1 /* Assets.xcassets in Resources */,
+				CFAFFC9124277CEE005AD4C1 /* Assets-ios12.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

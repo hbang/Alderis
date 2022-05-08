@@ -9,7 +9,7 @@
 import UIKit
 
 internal extension UIFontDescriptor.FeatureKey {
-	
+
 	// Abstracts a messy API change made in iOS 15.
 	static var alderisFeature: Self {
 		#if swift(>=5.5)
@@ -28,5 +28,5 @@ internal extension UIFontDescriptor.FeatureKey {
 		#endif
 		return .typeIdentifier
 	}
-	
+
 }

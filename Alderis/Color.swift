@@ -105,13 +105,13 @@ extension Color {
 		// Accessibility disabled: conforms to WCAG 2.1 AA
 		return UIAccessibility.isDarkerSystemColorsEnabled ? 4.5 : 7
 	}
-	
+
 	var relativeLuminanceValues: (CGFloat, CGFloat, CGFloat) {
 		let values = [red, green, blue]
 			.map { $0 <= 0.03928 ? $0 / 12.92 : pow((($0 + 0.055) / 1.055), 2.4) }
 		return (values[0], values[1], values[2])
 	}
-	
+
 	var relativeLuminance: CGFloat {
 		// https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
 		let (r, g, b) = relativeLuminanceValues

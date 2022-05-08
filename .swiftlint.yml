@@ -11,6 +11,8 @@ disabled_rules:
   # TODO: Why is vertical_parameter_alignment giving false positives?
   - vertical_parameter_alignment
   - vertical_parameter_alignment_on_call
+  # TODO: Enable when removing support for older Swift versions (<5.6)
+  - unavailable_condition
 opt_in_rules:
   - closure_end_indentation
   - closure_spacing

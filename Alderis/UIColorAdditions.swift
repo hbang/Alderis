@@ -68,7 +68,6 @@ public extension UIColor {
 				return nil
 			}
 
-
 			if string.count == 9 {
 				self.init(red: CGFloat((hex & 0xFF000000) >> 24) / 255,
 									green: CGFloat((hex & 0x00FF0000) >> 16) / 255,

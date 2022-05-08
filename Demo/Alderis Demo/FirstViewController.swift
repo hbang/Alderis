@@ -14,7 +14,6 @@ class FirstViewController: UIViewController {
 	private var colorWell: ColorWell!
 	private var uikitWell: UIView?
 
-	// swiftlint:disable:next function_body_length
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

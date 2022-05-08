@@ -162,18 +162,8 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 	}
 
 	override func colorDidChange() {
-		let backgroundColor: Color
-		let foregroundColor: Color
-		switch backgroundMode {
-		case .color: backgroundColor = color
-		case .black: backgroundColor = .black
-		case .white: backgroundColor = .white
-		}
-		switch foregroundMode {
-		case .color: foregroundColor = color
-		case .black: foregroundColor = .black
-		case .white: foregroundColor = .white
-		}
+		let backgroundColor = backgroundMode.color(withColor: color)
+		let foregroundColor = backgroundMode.color(withColor: color)
 
 		if backgroundColor == foregroundColor {
 			// Change one or the other to not be identical
@@ -200,8 +190,8 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		for label in demoLabels {
 			if let label = label as? UILabel {
 				label.textColor = foregroundColor.uiColor
-			} else if let label = label as? UITextView {
-				let attributedString = label.attributedText.mutableCopy() as! NSMutableAttributedString
+			} else if let label = label as? UITextView,
+								let attributedString = label.attributedText.mutableCopy() as? NSMutableAttributedString {
 				attributedString.addAttribute(.foregroundColor,
 																			value: foregroundColor.uiColor,
 																			range: NSRange(location: 0, length: attributedString.string.count))

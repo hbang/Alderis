@@ -23,7 +23,7 @@ public enum ColorPickerTab: Int, CaseIterable {
 	/// saturation, and brightness. The user can additionally copy or enter a color value expressed
 	/// using a CSS-style hexadecimal string, and adjust alpha transparency.
 	case sliders = 2
-	
+
 	/// Tab 4: A tab that allows the user to test various configurations of the color, and its
 	/// conformance to WCAG color contrast.
 	case accessibility = 3

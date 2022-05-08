@@ -20,6 +20,14 @@ internal class AccessibilityContrastSelector: UIView {
 			case .white: return "White"
 			}
 		}
+
+		func color(withColor color: Color) -> Color {
+			switch self {
+			case .color: return color
+			case .black: return .black
+			case .white: return .white
+			}
+		}
 	}
 
 	var text: String {
@@ -36,7 +44,7 @@ internal class AccessibilityContrastSelector: UIView {
 		}
 	}
 
-	var handleChange: ((Mode) -> ())?
+	var handleChange: ((Mode) -> Void)?
 
 	private var label: UILabel!
 	private var segmentedControl: UISegmentedControl!

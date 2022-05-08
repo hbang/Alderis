@@ -180,7 +180,7 @@ open class ColorPickerViewController: UIViewController {
 		widthLayoutConstraint = containerView.widthAnchor.constraint(equalToConstant: finalWidth)
 		bottomLayoutConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0)
 		bottomAnimatingLayoutConstraint = view.bottomAnchor.constraint(equalTo: containerView.topAnchor)
-		
+
 		NSLayoutConstraint.activate(
 			[
 				widthLayoutConstraint,
@@ -364,7 +364,7 @@ open class ColorPickerViewController: UIViewController {
 }
 
 /// :nodoc:
-fileprivate protocol ColorPickerViewControllerDeprecatedMethods {
+private protocol ColorPickerViewControllerDeprecatedMethods {
 	var color: UIColor { get }
 	var overrideSmartInvert: Bool { get }
 }

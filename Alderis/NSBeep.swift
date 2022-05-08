@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal typealias NSBeepType = @convention(c) () -> ()
+internal typealias NSBeepType = @convention(c) () -> Void
 
 internal let NSBeep: NSBeepType? = {
 	if isCatalyst,

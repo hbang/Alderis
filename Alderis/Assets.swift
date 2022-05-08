@@ -86,6 +86,7 @@ internal struct Assets {
 	private static let checkerboardPattern: [UIUserInterfaceStyle: UIColor] = [
 		.light: renderCheckerboardPattern(colors: (UIColor(white: 200 / 255, alpha: 1),
 																							 UIColor(white: 255 / 255, alpha: 1))),
+		// swiftlint:disable:next colon
 		.dark:  renderCheckerboardPattern(colors: (UIColor(white: 140 / 255, alpha: 1),
 																							 UIColor(white: 186 / 255, alpha: 1)))
 	]

@@ -52,14 +52,8 @@ internal class ColorPickerWheelView: UIView {
 		hueLayer = CAGradientLayer()
 		if #available(iOS 12.0, *) {
 			hueLayer.type = .conic
-		} else {
-			// TODO
 		}
-		let colors = [
-			0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360
-		].map { h in
-			UIColor(hue: CGFloat(h) / 360, saturation: 1, brightness: 1, alpha: 1).cgColor
-		}
+		let colors = Array(0..<18).map { UIColor(hue: CGFloat($0 * 20) / 360, saturation: 1, brightness: 1, alpha: 1).cgColor }
 		hueLayer.colors = colors
 		hueLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
 		hueLayer.endPoint = CGPoint(x: 0.5, y: 0)

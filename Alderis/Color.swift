@@ -165,13 +165,13 @@ extension Color {
 		let keyPath: WritableKeyPath<Color, CGFloat>
 		let limit: CGFloat
 		let title: String
-		private let sliderTintColorForColor: (Color) -> Color
+		private let sliderTintColorForColor: (Color) -> [Color]
 
 		init(
 			keyPath: WritableKeyPath<Color, CGFloat>,
 			limit: CGFloat,
 			title: String,
-			sliderTintColorForColor: @escaping (Color) -> Color
+			sliderTintColorForColor: @escaping (Color) -> [Color]
 		) {
 			self.keyPath = keyPath
 			self.limit = limit
@@ -183,7 +183,7 @@ extension Color {
 			keyPath: WritableKeyPath<Color, CGFloat>,
 			limit: CGFloat,
 			title: String,
-			sliderTint: Color
+			sliderTint: [Color]
 		) {
 			self.keyPath = keyPath
 			self.limit = limit
@@ -191,43 +191,61 @@ extension Color {
 			self.sliderTintColorForColor = { _ in sliderTint }
 		}
 
-		func sliderTintColor(for color: Color) -> Color {
+		func sliderTintColor(for color: Color) -> [Color] {
 			sliderTintColorForColor(color)
 		}
 
-		static let red: Component = .init(
-			keyPath: \.red, limit: 255, title: "Red",
-			sliderTint: Color(red: 1, green: 0.231373, blue: 0.188235, alpha: 1)
-		)
+		static let red: Component = .init(keyPath: \.red, limit: 255, title: "Red") { color in
+			[
+				Color(red: 0, green: color.green, blue: color.blue, alpha: 1),
+				Color(red: 1, green: color.green, blue: color.blue, alpha: 1)
+			]
+		}
 
-		static let green: Component = .init(
-			keyPath: \.green, limit: 255, title: "Green",
-			sliderTint: Color(red: 0.298039, green: 0.85098, blue: 0.392157, alpha: 1)
-		)
+		static let green: Component = .init(keyPath: \.green, limit: 255, title: "Green") { color in
+			[
+				Color(red: color.red, green: 0, blue: color.blue, alpha: 1),
+				Color(red: color.red, green: 1, blue: color.blue, alpha: 1)
+			]
+		}
 
-		static let blue: Component = .init(
-			keyPath: \.blue, limit: 255, title: "Blue",
-			sliderTint: Color(red: 0, green: 0.478431, blue: 1, alpha: 1)
-		)
+		static let blue: Component = .init(keyPath: \.blue, limit: 255, title: "Blue") { color in
+			[
+				Color(red: color.red, green: color.green, blue: 0, alpha: 1),
+				Color(red: color.red, green: color.green, blue: 1, alpha: 1)
+			]
+		}
 
 		static let hue: Component = .init(keyPath: \.hue, limit: 360, title: "Hue") { color in
-			Color(hue: color.hue, saturation: 0.75, brightness: 0.5, alpha: 1)
+			Array(0..<18).map { Color(hue: CGFloat($0 * 20) / 360, saturation: color.saturation, brightness: color.brightness, alpha: 1) }
 		}
 
 		static let saturation: Component = .init(keyPath: \.saturation, limit: 100, title: "Satur.") { color in
-			Color(hue: color.hue, saturation: color.saturation, brightness: 0.75, alpha: 1)
+			[
+				Color(hue: color.hue, saturation: 0, brightness: color.brightness, alpha: 1),
+				Color(hue: color.hue, saturation: 1, brightness: color.brightness, alpha: 1)
+			]
 		}
 
 		static let brightness: Component = .init(keyPath: \.brightness, limit: 100, title: "Bright") { color in
-			Color(hue: color.hue, saturation: 0.75, brightness: color.brightness, alpha: 1)
+			[
+				Color(hue: color.hue, saturation: color.saturation, brightness: 0, alpha: 1),
+				Color(hue: color.hue, saturation: color.saturation, brightness: 1, alpha: 1)
+			]
 		}
 
 		static let white: Component = .init(keyPath: \.white, limit: 255, title: "White") { color in
-			Color(white: color.white * 0.85, alpha: 1)
+			[
+				Color(white: 0, alpha: 1),
+				Color(white: 1, alpha: 1)
+			]
 		}
 
 		static let alpha: Component = .init(keyPath: \.alpha, limit: 100, title: "Alpha") { color in
-			Color(red: color.red, green: color.green, blue: color.blue, alpha: max(color.alpha, 0.5))
+			[
+				Color(red: color.red, green: color.green, blue: color.blue, alpha: 0),
+				Color(red: color.red, green: color.green, blue: color.blue, alpha: 1)
+			]
 		}
 	}
 }

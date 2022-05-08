@@ -121,13 +121,14 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 
 		scrollView = UIScrollView()
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.alwaysBounceVertical = false
 		view.addSubview(scrollView)
 
-		let rootStackView = UIStackView(arrangedSubviews: [demoContainerView, contrastStackView, backgroundSelector, foregroundSelector])
+		let rootStackView = UIStackView(arrangedSubviews: [demoContainerView, UIView(), contrastStackView, backgroundSelector, foregroundSelector, UIView()])
 		rootStackView.translatesAutoresizingMaskIntoConstraints = false
 		rootStackView.axis = .vertical
 		rootStackView.alignment = .fill
-		rootStackView.distribution = .equalSpacing
+		rootStackView.distribution = .fill
 		rootStackView.spacing = UIFloat(10)
 		scrollView.addSubview(rootStackView)
 
@@ -163,7 +164,7 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 
 	override func colorDidChange() {
 		let backgroundColor = backgroundMode.color(withColor: color)
-		let foregroundColor = backgroundMode.color(withColor: color)
+		let foregroundColor = foregroundMode.color(withColor: color)
 
 		if backgroundColor == foregroundColor {
 			// Change one or the other to not be identical

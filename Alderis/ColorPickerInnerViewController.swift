@@ -142,15 +142,16 @@ internal class ColorPickerInnerViewController: UIViewController {
 				tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
 			}
 
-			NSLayoutConstraint.activate(isMac ? [
+			NSLayoutConstraint.activate([
 				tabsView.centerXAnchor.constraint(equalTo: actualTabsView.centerXAnchor),
+				tabsView.leadingAnchor.constraint(greaterThanOrEqualTo: actualTabsView.leadingAnchor, constant: 4),
+				tabsView.trailingAnchor.constraint(lessThanOrEqualTo: actualTabsView.trailingAnchor, constant: -4)
+			] + (isMac ? [
 				tabsView.centerYAnchor.constraint(equalTo: actualTabsView.centerYAnchor)
 			] : [
-				tabsView.leadingAnchor.constraint(equalTo: actualTabsView.leadingAnchor, constant: 4),
-				tabsView.trailingAnchor.constraint(equalTo: actualTabsView.trailingAnchor, constant: -4),
 				tabsView.topAnchor.constraint(equalTo: actualTabsView.topAnchor, constant: 4),
 				tabsView.bottomAnchor.constraint(equalTo: actualTabsView.bottomAnchor, constant: -4)
-			])
+			]))
 		} else {
 			for (i, tab) in tabs.enumerated() {
 				let button = UIButton(type: .system)
@@ -240,12 +241,12 @@ internal class ColorPickerInnerViewController: UIViewController {
 			buttonsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
 			buttonsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 			buttonsCheckerboardView.backgroundColor = Assets.checkerboardPatternColor
-			view.addSubview(buttonsCheckerboardView)
+			view.insertSubview(buttonsCheckerboardView, aboveSubview: tabsBackgroundView)
 
 			let buttonsBackgroundView = UIView()
 			buttonsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
 			buttonsBackgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-			view.addSubview(buttonsBackgroundView)
+			view.insertSubview(buttonsBackgroundView, aboveSubview: buttonsCheckerboardView)
 			self.buttonsBackgroundView = buttonsBackgroundView
 
 			let bottomSeparatorView = SeparatorView(direction: .horizontal)

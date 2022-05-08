@@ -18,7 +18,6 @@ internal class TextViewLabel: UITextView {
 		backgroundColor = nil
 		textContainerInset = .zero
 		self.textContainer.lineFragmentPadding = 0
-		textDragInteraction?.isEnabled = false
 		isEditable = false
 		isScrollEnabled = false
 		adjustsFontForContentSizeCategory = true

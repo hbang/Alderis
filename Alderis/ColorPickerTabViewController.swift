@@ -50,9 +50,7 @@ internal protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewContro
 }
 
 extension ColorPickerTabViewControllerProtocol {
-	static var image: UIImage {
-		return Assets.systemImage(named: imageName, font: .systemFont(ofSize: UIFloat(20), weight: .medium))!
-	}
+	static var image: UIImage { Assets.systemImage(named: imageName, font: .systemFont(ofSize: UIFloat(20), weight: .medium)) ?? UIImage() }
 }
 
 internal typealias ColorPickerTabViewController = ColorPickerTabViewControllerBase & ColorPickerTabViewControllerProtocol

@@ -103,7 +103,7 @@ extension Color {
 	static var brightnessThreshold: CGFloat {
 		// Accessibility enabled:  conforms to WCAG 2.1 AAA
 		// Accessibility disabled: conforms to WCAG 2.1 AA
-		return UIAccessibility.isDarkerSystemColorsEnabled ? 4.5 : 7
+		return UIAccessibility.isDarkerSystemColorsEnabled ? 7 : 4.5
 	}
 
 	var relativeLuminanceValues: (CGFloat, CGFloat, CGFloat) {

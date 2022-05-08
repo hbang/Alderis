@@ -96,14 +96,18 @@ internal class ColorPickerWheelView: UIView {
 		selectionViewYConstraint = selectionView.topAnchor.constraint(equalTo: containerView.topAnchor)
 		// https://www.youtube.com/watch?v=Qs8kDiOwPBA
 		selectionViewFingerDownConstraint = selectionView.widthAnchor.constraint(equalToConstant: 56)
-		let selectionViewNormalConstraint = selectionView.widthAnchor.constraint(equalToConstant: 24)
+		let selectionViewNormalConstraint = selectionView.widthAnchor.constraint(equalToConstant: UIFloat(24))
 		selectionViewNormalConstraint.priority = .defaultHigh
+
+		// Remove minimum width constraint configured by ColorWell internally
+		let selectionWidthConstraint = selectionView.constraints.first { $0.firstAnchor == selectionView.widthAnchor }
+		selectionWidthConstraint?.isActive = false
 
 		NSLayoutConstraint.activate([
 			containerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 			containerView.topAnchor.constraint(equalTo: self.topAnchor),
 			containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-			containerView.widthAnchor.constraint(equalTo: containerView.heightAnchor, constant: 30),
+			containerView.widthAnchor.constraint(equalTo: containerView.heightAnchor, constant: UIFloat(30)),
 			selectionViewXConstraint,
 			selectionViewYConstraint,
 			selectionViewNormalConstraint,
@@ -185,7 +189,7 @@ internal class ColorPickerWheelView: UIView {
 		switch sender.state {
 		case .began, .ended, .cancelled:
 			isFingerDown = sender.state == .began
-			selectionViewFingerDownConstraint.isActive = isFingerDown
+			selectionViewFingerDownConstraint.isActive = isFingerDown && !isCatalyst
 			updateSelectionPoint()
 			UIView.animate(withDuration: 0.2, animations: {
 				self.containerView.layoutIfNeeded()

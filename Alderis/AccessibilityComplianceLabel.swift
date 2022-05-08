@@ -28,7 +28,7 @@ internal class AccessibilityComplianceLabel: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		let font = UIFont.systemFont(ofSize: 16, weight: .medium)
+		let font = UIFont.systemFont(ofSize: UIFloat(16), weight: .medium)
 
 		imageView = UIImageView()
 		if #available(iOS 13, *) {
@@ -41,7 +41,7 @@ internal class AccessibilityComplianceLabel: UIView {
 		let stackView = UIStackView(arrangedSubviews: [imageView, label])
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.alignment = .center
-		stackView.spacing = 6
+		stackView.spacing = UIFloat(6)
 		addSubview(stackView)
 
 		NSLayoutConstraint.activate([

@@ -64,10 +64,10 @@ internal class ColorPickerInnerViewController: UIViewController {
 	private var tabsView: UISegmentedControl!
 	private var oldTabButtons = [UIButton]()
 	private var titleLabel: UILabel!
-	private var cancelButton: DialogButton!
-	private var saveButton: DialogButton!
+	private var cancelButton: DialogButton?
+	private var saveButton: DialogButton?
 	private var tabsBackgroundView: UIView!
-	private var buttonsBackgroundView: UIView!
+	private var buttonsBackgroundView: UIView?
 	private var heightConstraint: NSLayoutConstraint!
 	private var backgroundView: UIView!
 
@@ -83,6 +83,12 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 		if configuration.isDropInteractionEnabled {
 			view.addInteraction(UIDropInteraction(delegate: self))
+		}
+
+		var isMac = false
+		if #available(iOS 14, *),
+			 UIDevice.current.userInterfaceIdiom == .mac {
+			isMac = true
 		}
 
 		backgroundView = UIView()
@@ -105,21 +111,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 		topSeparatorView.translatesAutoresizingMaskIntoConstraints = false
 		tabsBackgroundView.addSubview(topSeparatorView)
 
-		let buttonsCheckerboardView = UIView()
-		buttonsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-		buttonsCheckerboardView.backgroundColor = Assets.checkerboardPatternColor
-		view.addSubview(buttonsCheckerboardView)
-
-		buttonsBackgroundView = UIView()
-		buttonsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsBackgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-		view.addSubview(buttonsBackgroundView)
-
-		let bottomSeparatorView = SeparatorView(direction: .horizontal)
-		bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsBackgroundView.addSubview(bottomSeparatorView)
-
 		let titleView = UIView()
 		titleView.translatesAutoresizingMaskIntoConstraints = false
 		titleView.isHidden = configuration.title == nil || configuration.title!.isEmpty
@@ -127,7 +118,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 		titleLabel = UILabel()
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.textAlignment = .center
-		titleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
+		titleLabel.font = .systemFont(ofSize: UIFloat(17), weight: .semibold)
 		titleLabel.text = configuration.title
 		titleView.addSubview(titleLabel)
 
@@ -141,14 +132,20 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tabsView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 			tabsView.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
 			tabsView.selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.35)
+			if isMac {
+				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .highlighted)
+				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .selected)
+			}
+			actualTabsView.addSubview(tabsView)
 
 			for (i, tab) in tabs.enumerated() {
 				tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
 			}
 
-			actualTabsView.addSubview(tabsView)
-
-			NSLayoutConstraint.activate([
+			NSLayoutConstraint.activate(isMac ? [
+				tabsView.centerXAnchor.constraint(equalTo: actualTabsView.centerXAnchor),
+				tabsView.centerYAnchor.constraint(equalTo: actualTabsView.centerYAnchor)
+			] : [
 				tabsView.leadingAnchor.constraint(equalTo: actualTabsView.leadingAnchor, constant: 4),
 				tabsView.trailingAnchor.constraint(equalTo: actualTabsView.trailingAnchor, constant: -4),
 				tabsView.topAnchor.constraint(equalTo: actualTabsView.topAnchor, constant: 4),
@@ -185,30 +182,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 		addChild(pageViewController)
 		pageViewContainer.addSubview(pageViewController.view)
 
-		cancelButton = DialogButton()
-		cancelButton.translatesAutoresizingMaskIntoConstraints = false
-		cancelButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-		cancelButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .regular)
-		cancelButton.setTitle(Assets.uikitLocalize("Cancel"), for: .normal)
-		cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
-
-		saveButton = DialogButton()
-		saveButton.translatesAutoresizingMaskIntoConstraints = false
-		saveButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-		saveButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .semibold)
-		saveButton.setTitle(Assets.uikitLocalize("Done"), for: .normal)
-		saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
-
-		let buttonSeparatorView = SeparatorView(direction: .vertical)
-		buttonSeparatorView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsBackgroundView.addSubview(buttonSeparatorView)
-
-		let buttonsView = UIStackView(arrangedSubviews: [cancelButton, saveButton])
-		buttonsView.translatesAutoresizingMaskIntoConstraints = false
-		buttonsView.axis = .horizontal
-		buttonsView.alignment = .fill
-
-		let mainStackView = UIStackView(arrangedSubviews: [titleView, actualTabsView, pageViewContainer, buttonsView])
+		let mainStackView = UIStackView(arrangedSubviews: [titleView, actualTabsView, pageViewContainer])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -217,7 +191,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 		heightConstraint = pageViewContainer.heightAnchor.constraint(equalToConstant: 0)
 
-		let barHeight: CGFloat = 48
+		let barHeight: CGFloat = UIFloat(48)
 		let topHeight = (titleView.isHidden ? 0 : barHeight) + (actualTabsView.isHidden ? 0 : barHeight)
 		let titleLabelTopOffset: CGFloat = actualTabsView.isHidden ? 0 : 3
 		NSLayoutConstraint.activate([
@@ -233,7 +207,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 			titleView.heightAnchor.constraint(equalToConstant: barHeight),
 			actualTabsView.heightAnchor.constraint(equalToConstant: barHeight),
-			buttonsView.heightAnchor.constraint(equalToConstant: barHeight),
 
 			titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor, constant: titleLabelTopOffset),
 			titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
@@ -250,36 +223,86 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tabsCheckerboardView.leadingAnchor.constraint(equalTo: tabsBackgroundView.leadingAnchor),
 			tabsCheckerboardView.trailingAnchor.constraint(equalTo: tabsBackgroundView.trailingAnchor),
 
-			buttonsBackgroundView.topAnchor.constraint(equalTo: buttonsView.topAnchor),
-			buttonsBackgroundView.bottomAnchor.constraint(equalTo: buttonsView.bottomAnchor),
-			buttonsBackgroundView.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor),
-			buttonsBackgroundView.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
-
-			buttonsCheckerboardView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
-			buttonsCheckerboardView.bottomAnchor.constraint(equalTo: buttonsBackgroundView.bottomAnchor),
-			buttonsCheckerboardView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
-			buttonsCheckerboardView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
-
 			topSeparatorView.leadingAnchor.constraint(equalTo: tabsBackgroundView.leadingAnchor),
 			topSeparatorView.trailingAnchor.constraint(equalTo: tabsBackgroundView.trailingAnchor),
 			topSeparatorView.bottomAnchor.constraint(equalTo: tabsBackgroundView.bottomAnchor),
-
-			bottomSeparatorView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
-			bottomSeparatorView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
-			bottomSeparatorView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
-
-			buttonSeparatorView.heightAnchor.constraint(equalToConstant: barHeight / 2),
-			buttonSeparatorView.centerXAnchor.constraint(equalTo: buttonsBackgroundView.centerXAnchor),
-			buttonSeparatorView.centerYAnchor.constraint(equalTo: buttonsBackgroundView.centerYAnchor),
 
 			pageViewController.view.topAnchor.constraint(equalTo: pageViewContainer.topAnchor),
 			pageViewController.view.bottomAnchor.constraint(equalTo: pageViewContainer.bottomAnchor),
 			pageViewController.view.leadingAnchor.constraint(equalTo: pageViewContainer.leadingAnchor),
 			pageViewController.view.trailingAnchor.constraint(equalTo: pageViewContainer.trailingAnchor),
-			heightConstraint,
 
-			cancelButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor)
+			heightConstraint
 		])
+
+		if !isMac {
+			let buttonsCheckerboardView = UIView()
+			buttonsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
+			buttonsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+			buttonsCheckerboardView.backgroundColor = Assets.checkerboardPatternColor
+			view.addSubview(buttonsCheckerboardView)
+
+			let buttonsBackgroundView = UIView()
+			buttonsBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+			buttonsBackgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+			view.addSubview(buttonsBackgroundView)
+			self.buttonsBackgroundView = buttonsBackgroundView
+
+			let bottomSeparatorView = SeparatorView(direction: .horizontal)
+			bottomSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+			buttonsBackgroundView.addSubview(bottomSeparatorView)
+
+			let cancelButton = DialogButton()
+			cancelButton.translatesAutoresizingMaskIntoConstraints = false
+			cancelButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+			cancelButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .regular)
+			cancelButton.setTitle(Assets.uikitLocalize("Cancel"), for: .normal)
+			cancelButton.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
+			self.cancelButton = cancelButton
+
+			let saveButton = DialogButton()
+			saveButton.translatesAutoresizingMaskIntoConstraints = false
+			saveButton.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+			saveButton.titleLabel!.font = .systemFont(ofSize: 17, weight: .semibold)
+			saveButton.setTitle(Assets.uikitLocalize("Done"), for: .normal)
+			saveButton.addTarget(self, action: #selector(saveTapped), for: .touchUpInside)
+			self.saveButton = saveButton
+
+			let buttonSeparatorView = SeparatorView(direction: .vertical)
+			buttonSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+			buttonsBackgroundView.addSubview(buttonSeparatorView)
+
+			let buttonsView = UIStackView(arrangedSubviews: [cancelButton, saveButton])
+			buttonsView.translatesAutoresizingMaskIntoConstraints = false
+			buttonsView.axis = .horizontal
+			buttonsView.alignment = .fill
+			mainStackView.addSubview(buttonsView)
+			mainStackView.addArrangedSubview(buttonsView)
+
+			NSLayoutConstraint.activate([
+				buttonsView.heightAnchor.constraint(equalToConstant: barHeight),
+
+				buttonsBackgroundView.topAnchor.constraint(equalTo: buttonsView.topAnchor),
+				buttonsBackgroundView.bottomAnchor.constraint(equalTo: buttonsView.bottomAnchor),
+				buttonsBackgroundView.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor),
+				buttonsBackgroundView.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
+
+				buttonSeparatorView.heightAnchor.constraint(equalToConstant: barHeight / 2),
+				buttonSeparatorView.centerXAnchor.constraint(equalTo: buttonsBackgroundView.centerXAnchor),
+				buttonSeparatorView.centerYAnchor.constraint(equalTo: buttonsBackgroundView.centerYAnchor),
+
+				buttonsCheckerboardView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
+				buttonsCheckerboardView.bottomAnchor.constraint(equalTo: buttonsBackgroundView.bottomAnchor),
+				buttonsCheckerboardView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
+				buttonsCheckerboardView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
+
+				bottomSeparatorView.leadingAnchor.constraint(equalTo: buttonsBackgroundView.leadingAnchor),
+				bottomSeparatorView.trailingAnchor.constraint(equalTo: buttonsBackgroundView.trailingAnchor),
+				bottomSeparatorView.topAnchor.constraint(equalTo: buttonsBackgroundView.topAnchor),
+
+				cancelButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor)
+			])
+		}
 
 		colorDidChange()
 		tab = configuration.initialTab
@@ -345,12 +368,12 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 		view.tintColor = uiColor
 		tabsBackgroundView.backgroundColor = uiColor
-		buttonsBackgroundView.backgroundColor = uiColor
+		buttonsBackgroundView?.backgroundColor = uiColor
 		titleLabel.textColor = foregroundColor
-		cancelButton.setTitleColor(foregroundColor, for: .normal)
-		saveButton.setTitleColor(foregroundColor, for: .normal)
-		cancelButton.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
-		saveButton.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
+		cancelButton?.setTitleColor(foregroundColor, for: .normal)
+		saveButton?.setTitleColor(foregroundColor, for: .normal)
+		cancelButton?.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
+		saveButton?.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
 
 		if #available(iOS 13, *) {
 			tabsView.setTitleTextAttributes([ .foregroundColor: foregroundColor ], for: .normal)
@@ -371,12 +394,19 @@ internal class ColorPickerInnerViewController: UIViewController {
 	}
 
 	private func tabDidChange(oldValue: Int) {
-		let direction: UIPageViewController.NavigationDirection = currentTab < oldValue ? .reverse : .forward
-		pageViewController.setViewControllers([tabs[currentTab]], direction: direction, animated: true)
-		colorDidChange()
+		let stuff = {
+			let direction: UIPageViewController.NavigationDirection = self.currentTab < oldValue ? .reverse : .forward
+			self.pageViewController.setViewControllers([self.tabs[self.currentTab]], direction: direction, animated: !isCatalystMac)
+			self.colorDidChange()
 
-		UIView.animate(withDuration: 0.2) {
-			self.view.layoutIfNeeded()
+			UIView.animate(withDuration: 0.2) {
+				self.view.layoutIfNeeded()
+			}
+		}
+		if isCatalystMac {
+			UIView.performWithoutAnimation(stuff)
+		} else {
+			stuff()
 		}
 	}
 

@@ -106,6 +106,7 @@ class FirstViewController: UIViewController {
 																												nonDragOrDropWell])
 		wellsStackView.translatesAutoresizingMaskIntoConstraints = false
 		wellsStackView.axis = .horizontal
+		wellsStackView.alignment = .center
 		wellsStackView.spacing = 10
 		wellsContainerView.addSubview(wellsStackView)
 
@@ -130,12 +131,17 @@ class FirstViewController: UIViewController {
 			wellsStackView.centerXAnchor.constraint(equalTo: wellsContainerView.centerXAnchor)
 		])
 
-		for view in wellsStackView.arrangedSubviews {
-			NSLayoutConstraint.activate([
-				view.widthAnchor.constraint(equalToConstant: 32),
-				view.heightAnchor.constraint(equalTo: view.widthAnchor)
-			])
+		var isMac = false
+		if #available(iOS 14, *) {
+			isMac = UIDevice.current.userInterfaceIdiom == .mac
 		}
+
+		NSLayoutConstraint.activate(wellsStackView.arrangedSubviews.flatMap { view in
+			[
+				view.widthAnchor.constraint(equalToConstant: isMac ? 24 : 32),
+				view.heightAnchor.constraint(equalTo: view.widthAnchor)
+			]
+		})
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

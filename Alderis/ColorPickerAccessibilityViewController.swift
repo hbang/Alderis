@@ -41,33 +41,38 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		// Catalyst in iPad UI mode scales all UI down to 77%, so we cancel out the scaling (as well as
+		// we possibly can, given scaling down is throwing away quality) for the demo labels.
+		let scaleFactor: CGFloat = isCatalystPad ? 1 / 0.77 : 1
+
 		let demoTitleLabel = UILabel()
 		demoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		demoTitleLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-		demoTitleLabel.text = "Size 18 Lorem ipsum dolor sit amet"
+		demoTitleLabel.font = .systemFont(ofSize: 18 * scaleFactor, weight: .semibold)
+		demoTitleLabel.text = "Size 18 • Contrast Checker"
 
-		let demoImageView = UIImageView(image: Assets.systemImage(named: "sparkles", font: .systemFont(ofSize: 16, weight: .semibold)))
+		let demoImageView = UIImageView(image: Assets.systemImage(named: "sparkles", font: demoTitleLabel.font, scale: .small))
 		demoImageView.translatesAutoresizingMaskIntoConstraints = false
 
 		let titleStackView = UIStackView(arrangedSubviews: [demoImageView, demoTitleLabel])
 		titleStackView.translatesAutoresizingMaskIntoConstraints = false
-		titleStackView.spacing = 6
+		titleStackView.spacing = UIFloat(6)
 		titleStackView.alignment = .center
 
 		let demoSubtitleLabel = UILabel()
 		demoSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-		demoSubtitleLabel.font = .systemFont(ofSize: 15, weight: .medium)
-		demoSubtitleLabel.text = "Size 15 Morbi urna dolor, molestie eu finibus"
+		demoSubtitleLabel.font = .systemFont(ofSize: 14 * scaleFactor, weight: .medium)
+		demoSubtitleLabel.text = "Size 14 • Contrast ratios are a measure of how easily text and images can be read, especially by people with lower vision."
+		demoSubtitleLabel.numberOfLines = 0
 
 		let demoTextLabel = TextViewLabel()
 		demoTextLabel.translatesAutoresizingMaskIntoConstraints = false
 		demoTextLabel.linkTextAttributes = [
 			.underlineStyle: NSUnderlineStyle.single.rawValue
 		]
-		let explainerText = "Size 12 Contrast Ratio is a measure of how easily text and images can be read, especially by people with lower vision. Learn more about minimum (AA) and enhanced (AAA) contrast."
+		let explainerText = "Size 12 • Learn more about minimum (AA) and enhanced (AAA) contrast."
 		let attributedString = NSMutableAttributedString(string: explainerText,
 																										 attributes: [
-																											.font: UIFont.systemFont(ofSize: 12, weight: .regular)
+																											.font: UIFont.systemFont(ofSize: 12 * scaleFactor, weight: .regular)
 																										 ])
 		attributedString.addAttribute(.link,
 																	value: URL(string: "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum")!,
@@ -83,7 +88,7 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		demoStackView.translatesAutoresizingMaskIntoConstraints = false
 		demoStackView.axis = .vertical
 		demoStackView.alignment = .leading
-		demoStackView.spacing = 8
+		demoStackView.spacing = UIFloat(8)
 
 		demoContainerView = UIView()
 		demoContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,18 +100,18 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 
 		contrastRatioLabel = UILabel()
 		contrastRatioLabel.translatesAutoresizingMaskIntoConstraints = false
-		contrastRatioLabel.font = .systemFont(ofSize: 16, weight: .medium)
+		contrastRatioLabel.font = .systemFont(ofSize: UIFloat(16), weight: .medium)
 
 		aaComplianceLabel = AccessibilityComplianceLabel(text: "AA")
 		aaaComplianceLabel = AccessibilityComplianceLabel(text: "AAA")
 
 		let complianceStackView = UIStackView(arrangedSubviews: [aaComplianceLabel, aaaComplianceLabel])
 		complianceStackView.translatesAutoresizingMaskIntoConstraints = false
-		complianceStackView.spacing = 12
+		complianceStackView.spacing = UIFloat(12)
 
 		contrastStackView = UIStackView(arrangedSubviews: [contrastRatioLabel, UIView(), complianceStackView])
 		contrastStackView.translatesAutoresizingMaskIntoConstraints = false
-		contrastStackView.spacing = 8
+		contrastStackView.spacing = UIFloat(8)
 
 		backgroundSelector = AccessibilityContrastSelector(text: "Background", value: backgroundMode)
 		backgroundSelector.handleChange = { self.backgroundMode = $0 }
@@ -123,7 +128,7 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		rootStackView.axis = .vertical
 		rootStackView.alignment = .fill
 		rootStackView.distribution = .equalSpacing
-		rootStackView.spacing = 10
+		rootStackView.spacing = UIFloat(10)
 		scrollView.addSubview(rootStackView)
 
 		NSLayoutConstraint.activate([
@@ -132,18 +137,18 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
-			rootStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 15),
-			rootStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -15),
-			rootStackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 15),
-			rootStackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -15),
-			rootStackView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor, constant: -30),
+			rootStackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: UIFloat(15)),
+			rootStackView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: UIFloat(-15)),
+			rootStackView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: UIFloat(15)),
+			rootStackView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: UIFloat(-15)),
+			rootStackView.heightAnchor.constraint(equalTo: scrollView.contentLayoutGuide.heightAnchor, constant: UIFloat(-30)),
 			scrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 			scrollView.contentLayoutGuide.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor),
 
-			demoStackView.topAnchor.constraint(equalTo: demoContainerView.topAnchor, constant: 16),
-			demoStackView.bottomAnchor.constraint(equalTo: demoContainerView.bottomAnchor, constant: -17),
-			demoStackView.leadingAnchor.constraint(equalTo: demoContainerView.leadingAnchor, constant: 20),
-			demoStackView.trailingAnchor.constraint(equalTo: demoContainerView.trailingAnchor, constant: -20),
+			demoStackView.topAnchor.constraint(equalTo: demoContainerView.topAnchor, constant: UIFloat(16)),
+			demoStackView.bottomAnchor.constraint(equalTo: demoContainerView.bottomAnchor, constant: UIFloat(-17)),
+			demoStackView.leadingAnchor.constraint(equalTo: demoContainerView.leadingAnchor, constant: UIFloat(20)),
+			demoStackView.trailingAnchor.constraint(equalTo: demoContainerView.trailingAnchor, constant: UIFloat(-20)),
 
 			contrastStackView.heightAnchor.constraint(greaterThanOrEqualTo: backgroundSelector.heightAnchor),
 			contrastStackView.heightAnchor.constraint(greaterThanOrEqualTo: foregroundSelector.heightAnchor)
@@ -205,15 +210,15 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		}
 
 		let contrastRatio = foregroundColor.perceivedBrightness(onBackgroundColor: backgroundColor)
-		contrastRatioLabel.text = "Contrast Ratio: \(String(format: "%.2f", contrastRatio)) (\(Self.percentFormatter.string(for: contrastRatio / 21)!))"
-		aaComplianceLabel.isCompliant = contrastRatio > 7
-		aaaComplianceLabel.isCompliant = contrastRatio > 4.5
+		contrastRatioLabel.text = "Contrast: \(String(format: "%.2f", contrastRatio)) (\(Self.percentFormatter.string(for: contrastRatio / 21)!))"
+		aaComplianceLabel.isCompliant = contrastRatio > 4.5
+		aaaComplianceLabel.isCompliant = contrastRatio > 7
 	}
 
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
 
-		contrastStackView.axis = view.frame.size.width > 300 ? .horizontal : .vertical
+		contrastStackView.axis = view.frame.size.width > UIFloat(300) ? .horizontal : .vertical
 	}
 
 }

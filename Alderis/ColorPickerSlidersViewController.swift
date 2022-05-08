@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
@@ -81,7 +82,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
 		mainStackView.distribution = .fill
-		mainStackView.spacing = 10
+		mainStackView.spacing = UIFloat(10)
 		view.addSubview(mainStackView)
 
 		for mode in Mode.allCases {
@@ -96,7 +97,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			sliderStackView.axis = .vertical
 			sliderStackView.alignment = .fill
 			sliderStackView.distribution = .fill
-			sliderStackView.spacing = 10
+			sliderStackView.spacing = UIFloat(10)
 			sliderStacks[mode] = sliderStackView
 			mainStackView.addArrangedSubview(sliderStackView)
 		}
@@ -113,14 +114,14 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		hexTextField.autocapitalizationType = .none
 		hexTextField.autocorrectionType = .no
 		hexTextField.spellCheckingType = .no
-		hexTextField.font = Assets.niceMonospaceDigitFont(ofSize: 16)
+		hexTextField.font = Assets.niceMonospaceDigitFont(ofSize: UIFloat(16))
 		hexTextField.setContentHuggingPriority(.required, for: .vertical)
 		hexTextField.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
 		eggLabel = UILabel()
 		eggLabel.translatesAutoresizingMaskIntoConstraints = false
 		eggLabel.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-		eggLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
+		eggLabel.font = UIFont.systemFont(ofSize: UIFloat(24), weight: .heavy)
 		eggLabel.isHidden = true
 
 		let bottomSpacerView = UIView()
@@ -132,14 +133,14 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		hexStackView.axis = .horizontal
 		hexStackView.alignment = .fill
 		hexStackView.distribution = .fill
-		hexStackView.spacing = 10
+		hexStackView.spacing = UIFloat(10)
 		mainStackView.addArrangedSubview(hexStackView)
 
 		NSLayoutConstraint.activate([
-			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-			mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-			mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -15),
+			mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIFloat(15)),
+			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: UIFloat(-15)),
+			mainStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: UIFloat(15)),
+			mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: UIFloat(-15)),
 
 			segmentedControl.topAnchor.constraint(equalTo: segmentedControlContainer.topAnchor),
 			segmentedControl.bottomAnchor.constraint(equalTo: segmentedControlContainer.bottomAnchor),
@@ -148,7 +149,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			topSpacerView.heightAnchor.constraint(equalToConstant: 0),
 			bottomSpacerView.heightAnchor.constraint(equalToConstant: 0),
 
-			colorWell.widthAnchor.constraint(equalToConstant: 32),
+			colorWell.widthAnchor.constraint(equalToConstant: UIFloat(32)),
 			colorWell.heightAnchor.constraint(equalTo: colorWell.widthAnchor)
 		])
 
@@ -230,11 +231,13 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 
 		let canonicalizedString = newString.hasPrefix("#") ? newString.dropFirst() : Substring(newString)
 		guard canonicalizedString.count <= 8 else {
+			NSBeep?()
 			return false
 		}
 
 		let badCharacterSet = CharacterSet(charactersIn: "0123456789ABCDEFabcdef").inverted
 		guard canonicalizedString.rangeOfCharacter(from: badCharacterSet) == nil else {
+			NSBeep?()
 			return false
 		}
 

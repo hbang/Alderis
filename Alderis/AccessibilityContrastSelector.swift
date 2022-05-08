@@ -45,7 +45,7 @@ internal class AccessibilityContrastSelector: UIView {
 		super.init(frame: frame)
 
 		label = UILabel()
-		label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+		label.font = UIFont.systemFont(ofSize: UIFloat(16), weight: .medium)
 
 		segmentedControl = UISegmentedControl(items: Mode.allCases.map(\.label))
 		segmentedControl.addTarget(self, action: #selector(handleValueChanged), for: .valueChanged)
@@ -54,7 +54,7 @@ internal class AccessibilityContrastSelector: UIView {
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.alignment = .center
 		stackView.distribution = .fill
-		stackView.spacing = 5
+		stackView.spacing = UIFloat(5)
 		addSubview(stackView)
 
 		NSLayoutConstraint.activate([

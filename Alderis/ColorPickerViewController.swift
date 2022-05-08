@@ -62,9 +62,9 @@ open class ColorPickerViewController: UIViewController {
 	// A width divisible by 12 (the number of items wide in the swatch).
 	private var finalWidth: CGFloat {
 		if modalPresentationStyle == .popover {
-			return 336
+			return UIFloat(336)
 		} else {
-			return floor(min(384, view.frame.size.width - 30) / 12) * 12
+			return floor(min(UIFloat(384), view.frame.size.width - 30) / 12) * 12
 		}
 	}
 

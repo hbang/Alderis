@@ -16,11 +16,11 @@ internal class ColorPickerNumericSlider: ColorPickerComponentSlider {
 		super.init(component: component, overrideSmartInvert: overrideSmartInvert)
 
 		stackView.alignment = .fill
-		stackView.spacing = 5
+		stackView.spacing = UIFloat(5)
 
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+		label.font = UIFont.systemFont(ofSize: UIFloat(16), weight: .medium)
 		label.text = component.title
 		stackView.insertArrangedSubview(label, at: 0)
 
@@ -33,12 +33,12 @@ internal class ColorPickerNumericSlider: ColorPickerComponentSlider {
 		textField.autocorrectionType = .no
 		textField.spellCheckingType = .no
 		textField.textAlignment = .right
-		textField.font = Assets.niceMonospaceDigitFont(ofSize: 16)
+		textField.font = Assets.niceMonospaceDigitFont(ofSize: UIFloat(16))
 		stackView.addArrangedSubview(textField)
 
 		NSLayoutConstraint.activate([
-			label.widthAnchor.constraint(equalToConstant: 50),
-			textField.widthAnchor.constraint(equalToConstant: 35)
+			label.widthAnchor.constraint(equalToConstant: UIFloat(50)),
+			textField.widthAnchor.constraint(equalToConstant: UIFloat(35))
 		])
 	}
 
@@ -62,10 +62,12 @@ extension ColorPickerNumericSlider: UITextFieldDelegate {
 		// Numeric only, 0-limit
 		let badCharacterSet = CharacterSet(charactersIn: "0123456789").inverted
 		guard newString.rangeOfCharacter(from: badCharacterSet) == nil else {
+			NSBeep?()
 			return false
 		}
 		let limit = component.limit
 		guard let value = Int(newString), 0...limit ~= CGFloat(value) else {
+			NSBeep?()
 			return false
 		}
 

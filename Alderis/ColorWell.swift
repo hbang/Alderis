@@ -93,7 +93,7 @@ open class ColorWell: UIControl {
 		addGestureRecognizer(tapGestureRecognizer)
 
 		NSLayoutConstraint.activate([
-			self.widthAnchor.constraint(greaterThanOrEqualToConstant: 32),
+			self.widthAnchor.constraint(greaterThanOrEqualToConstant: UIFloat(32)),
 			self.heightAnchor.constraint(equalTo: self.widthAnchor),
 
 			colorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

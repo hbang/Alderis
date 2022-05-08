@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
-               BuildableName = "AlderisDemo.app"
+               BuildableName = "Alderis Demo.app"
                BlueprintName = "Alderis Demo"
                ReferencedContainer = "container:Alderis Demo.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
-            BuildableName = "AlderisDemo.app"
+            BuildableName = "Alderis Demo.app"
             BlueprintName = "Alderis Demo"
             ReferencedContainer = "container:Alderis Demo.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CF39D43D222BC07C001EF57F"
-            BuildableName = "AlderisDemo.app"
+            BuildableName = "Alderis Demo.app"
             BlueprintName = "Alderis Demo"
             ReferencedContainer = "container:Alderis Demo.xcodeproj">
          </BuildableReference>

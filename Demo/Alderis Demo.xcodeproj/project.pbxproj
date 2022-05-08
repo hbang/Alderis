@@ -31,7 +31,7 @@
 		2B5DB4BF0F331C22D5DFB481 /* Pods-Alderis Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alderis Demo.release.xcconfig"; path = "Target Support Files/Pods-Alderis Demo/Pods-Alderis Demo.release.xcconfig"; sourceTree = "<group>"; };
 		9FD89BFF752E9D684C11E887 /* Pods-Alderis Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Alderis Demo.debug.xcconfig"; path = "Target Support Files/Pods-Alderis Demo/Pods-Alderis Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		ABFF0FA1430DE1F1C311810B /* libPods-Alderis Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Alderis Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF39D43E222BC07C001EF57F /* AlderisDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlderisDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF39D43E222BC07C001EF57F /* Alderis Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alderis Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF39D44A222BC07E001EF57F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF39D44F222BC07E001EF57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF6B3B9D2446A13C000A608B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		CF39D43F222BC07C001EF57F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF39D43E222BC07C001EF57F /* AlderisDemo.app */,
+				CF39D43E222BC07C001EF57F /* Alderis Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,7 +124,7 @@
 			);
 			name = "Alderis Demo";
 			productName = "Alderis Demo";
-			productReference = CF39D43E222BC07C001EF57F /* AlderisDemo.app */;
+			productReference = CF39D43E222BC07C001EF57F /* Alderis Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -365,6 +365,8 @@
 			baseConfigurationReference = 9FD89BFF752E9D684C11E887 /* Pods-Alderis Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Alderis Demo/AlderisDemo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -377,7 +379,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ws.hbang.AlderisDemo;
-				PRODUCT_NAME = AlderisDemo;
+				PRODUCT_NAME = "Alderis Demo";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -391,6 +393,8 @@
 			baseConfigurationReference = 2B5DB4BF0F331C22D5DFB481 /* Pods-Alderis Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_SKIP_APP_STORE_DEPLOYMENT = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Alderis Demo/AlderisDemo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -403,7 +407,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ws.hbang.AlderisDemo;
-				PRODUCT_NAME = AlderisDemo;
+				PRODUCT_NAME = "Alderis Demo";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;

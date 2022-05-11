@@ -62,7 +62,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 	private var pageViewController: UIPageViewController!
 	private var tabs = [ColorPickerTabViewController]()
 	private var tabsView: UISegmentedControl!
-	private var oldTabButtons = [UIButton]()
 	private var titleLabel: UILabel!
 	private var cancelButton: DialogButton?
 	private var saveButton: DialogButton?
@@ -122,57 +121,39 @@ internal class ColorPickerInnerViewController: UIViewController {
 		titleLabel.text = configuration.title
 		titleView.addSubview(titleLabel)
 
-		let actualTabsView: UIView!
-		if #available(iOS 13, *) {
-			actualTabsView = UIView()
-			actualTabsView.translatesAutoresizingMaskIntoConstraints = false
+		let tabsContainerView = UIView()
+		tabsContainerView.translatesAutoresizingMaskIntoConstraints = false
+		tabsContainerView.isHidden = !configuration.showTabs
 
-			tabsView = UISegmentedControl()
-			tabsView.translatesAutoresizingMaskIntoConstraints = false
-			tabsView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-			tabsView.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
+		tabsView = UISegmentedControl()
+		tabsView.translatesAutoresizingMaskIntoConstraints = false
+		tabsView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
+		tabsView.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
+
+		if #available(iOS 13, *) {
 			tabsView.selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.35)
 			if isMac {
 				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .highlighted)
 				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .selected)
 			}
-			actualTabsView.addSubview(tabsView)
-
-			for (i, tab) in tabs.enumerated() {
-				tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
-			}
-
-			NSLayoutConstraint.activate([
-				tabsView.centerXAnchor.constraint(equalTo: actualTabsView.centerXAnchor),
-				tabsView.leadingAnchor.constraint(greaterThanOrEqualTo: actualTabsView.leadingAnchor, constant: 4),
-				tabsView.trailingAnchor.constraint(lessThanOrEqualTo: actualTabsView.trailingAnchor, constant: -4)
-			] + (isMac ? [
-				tabsView.centerYAnchor.constraint(equalTo: actualTabsView.centerYAnchor)
-			] : [
-				tabsView.topAnchor.constraint(equalTo: actualTabsView.topAnchor, constant: 4),
-				tabsView.bottomAnchor.constraint(equalTo: actualTabsView.bottomAnchor, constant: -4)
-			]))
-		} else {
-			for (i, tab) in tabs.enumerated() {
-				let button = UIButton(type: .system)
-				button.translatesAutoresizingMaskIntoConstraints = false
-				button.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
-				button.tag = i
-				button.accessibilityLabel = tab.title
-				button.setImage(type(of: tab).image, for: .normal)
-				button.addTarget(self, action: #selector(oldTabButtonTapped(_:)), for: .touchUpInside)
-				oldTabButtons.append(button)
-			}
-
-			let oldTabsView = UIStackView(arrangedSubviews: oldTabButtons)
-			oldTabsView.translatesAutoresizingMaskIntoConstraints = false
-			oldTabsView.axis = .horizontal
-			oldTabsView.alignment = .fill
-			oldTabsView.distribution = .fillEqually
-			actualTabsView = oldTabsView
 		}
 
-		actualTabsView.isHidden = !configuration.showTabs
+		tabsContainerView.addSubview(tabsView)
+
+		for (i, tab) in tabs.enumerated() {
+			tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
+		}
+
+		NSLayoutConstraint.activate([
+			tabsView.centerXAnchor.constraint(equalTo: tabsContainerView.centerXAnchor),
+			tabsView.leadingAnchor.constraint(greaterThanOrEqualTo: tabsContainerView.leadingAnchor, constant: 4),
+			tabsView.trailingAnchor.constraint(lessThanOrEqualTo: tabsContainerView.trailingAnchor, constant: -4)
+		] + (isMac ? [
+			tabsView.centerYAnchor.constraint(equalTo: tabsContainerView.centerYAnchor)
+		] : [
+			tabsView.topAnchor.constraint(equalTo: tabsContainerView.topAnchor, constant: 4),
+			tabsView.bottomAnchor.constraint(equalTo: tabsContainerView.bottomAnchor, constant: -4)
+		]))
 
 		let pageViewContainer = UIView()
 		pageViewContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +164,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 		addChild(pageViewController)
 		pageViewContainer.addSubview(pageViewController.view)
 
-		let mainStackView = UIStackView(arrangedSubviews: [titleView, actualTabsView, pageViewContainer])
+		let mainStackView = UIStackView(arrangedSubviews: [titleView, tabsContainerView, pageViewContainer])
 		mainStackView.translatesAutoresizingMaskIntoConstraints = false
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
@@ -193,8 +174,8 @@ internal class ColorPickerInnerViewController: UIViewController {
 		heightConstraint = pageViewContainer.heightAnchor.constraint(equalToConstant: 0)
 
 		let barHeight: CGFloat = UIFloat(48)
-		let topHeight = (titleView.isHidden ? 0 : barHeight) + (actualTabsView.isHidden ? 0 : barHeight)
-		let titleLabelTopOffset: CGFloat = actualTabsView.isHidden ? 0 : 3
+		let topHeight = (titleView.isHidden ? 0 : barHeight) + (tabsContainerView.isHidden ? 0 : barHeight)
+		let titleLabelTopOffset: CGFloat = tabsContainerView.isHidden ? 0 : 3
 		NSLayoutConstraint.activate([
 			backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
 			backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -207,7 +188,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
 			titleView.heightAnchor.constraint(equalToConstant: barHeight),
-			actualTabsView.heightAnchor.constraint(equalToConstant: barHeight),
+			tabsContainerView.heightAnchor.constraint(equalToConstant: barHeight),
 
 			titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor, constant: titleLabelTopOffset),
 			titleLabel.bottomAnchor.constraint(equalTo: titleView.bottomAnchor),
@@ -375,14 +356,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 		saveButton?.setTitleColor(foregroundColor, for: .normal)
 		cancelButton?.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
 		saveButton?.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
-
-		if #available(iOS 13, *) {
-			tabsView.setTitleTextAttributes([ .foregroundColor: foregroundColor ], for: .normal)
-		} else {
-			for (i, button) in oldTabButtons.enumerated() {
-				button.tintColor = i == currentTab ? foregroundColor : foregroundColor.withAlphaComponent(0.6)
-			}
-		}
+		tabsView.setTitleTextAttributes([ .foregroundColor: foregroundColor ], for: .normal)
 
 		// Even though `shouldBroadcast: false` avoids recursion if we call setColor on the callee tab,
 		// doing so on ColorPickerSlidersViewController would reset `hexOptions`, leading to a buggy

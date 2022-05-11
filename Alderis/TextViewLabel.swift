@@ -44,6 +44,11 @@ internal class TextViewLabel: UITextView {
 		return attributedText.attribute(.link, at: index, effectiveRange: nil) != nil
 	}
 
+	override var selectedRange: NSRange {
+		get { NSRange() }
+		set {}
+	}
+
 	private var viewController: UIViewController? {
 		var responder: UIResponder? = self
 		while responder != nil {
@@ -67,6 +72,7 @@ extension TextViewLabel: UITextViewDelegate {
 		switch interaction {
 		case .invokeDefaultAction:
 			let safariViewController = SFSafariViewController(url: url)
+			safariViewController.modalPresentationStyle = .formSheet
 			viewController?.present(safariViewController, animated: true)
 			return false
 		case .presentActions, .preview:

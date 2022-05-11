@@ -25,6 +25,9 @@ internal class ColorPickerTabViewControllerBase: UIViewController {
 	func colorDidChange() {}
 
 	func setColor(_ color: Color, shouldBroadcast: Bool = true) {
+		if self.color == color {
+			return
+		}
 		self.color = color
 		if shouldBroadcast {
 			tabDelegate.colorPickerTab(self, didSelect: color)

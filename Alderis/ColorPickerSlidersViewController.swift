@@ -26,12 +26,9 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
 		private var components: [Color.Component] {
 			switch self {
-			case .rgb:
-				return [.red, .green, .blue, .alpha]
-			case .hsb:
-				return [.hue, .saturation, .brightness, .alpha]
-			case .white:
-				return [.white, .alpha]
+			case .rgb:   return [.red, .green, .blue, .alpha]
+			case .hsb:   return [.hue, .saturation, .brightness, .alpha]
+			case .white: return [.white, .alpha]
 			}
 		}
 
@@ -198,7 +195,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
 		if #available(iOS 13, *) {
 		} else {
-			let foregroundColor = color.isDark ? UIColor.white : UIColor.black
+			let foregroundColor: UIColor = color.isDark ? .white : .black
 			segmentedControl.setTitleTextAttributes([
 				.foregroundColor: foregroundColor
 			], for: .selected)

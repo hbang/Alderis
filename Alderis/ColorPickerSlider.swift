@@ -91,13 +91,12 @@ internal class ColorPickerComponentSlider: ColorPickerSlider {
 }
 
 internal class ColorSlider: UISlider {
-
 	var gradientColors = [UIColor]() {
-		didSet { gradientLayer.colors = gradientColors.map(\.cgColor) }
+		didSet { gradientView.gradientLayer.colors = gradientColors.map(\.cgColor) }
 	}
 
 	private var checkerboardView: UIView!
-	private var gradientLayer: CAGradientLayer!
+	private var gradientView: GradientView!
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -121,17 +120,23 @@ internal class ColorSlider: UISlider {
 		}
 		insertSubview(checkerboardView, at: 0)
 
-		gradientLayer = CAGradientLayer()
-		gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-		gradientLayer.endPoint = CGPoint(x: 1, y: 0)
-		gradientLayer.allowsGroupOpacity = false
-		checkerboardView.layer.addSublayer(gradientLayer)
+		gradientView = GradientView()
+		gradientView.translatesAutoresizingMaskIntoConstraints = false
+		gradientView.gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+		gradientView.gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+		gradientView.gradientLayer.allowsGroupOpacity = false
+		checkerboardView.addSubview(gradientView)
 
 		NSLayoutConstraint.activate([
 			checkerboardView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: UIFloat(-3)),
 			checkerboardView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: UIFloat(3)),
 			checkerboardView.topAnchor.constraint(equalTo: self.topAnchor, constant: -1),
-			checkerboardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 1)
+			checkerboardView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 1),
+
+			gradientView.leadingAnchor.constraint(equalTo: checkerboardView.leadingAnchor),
+			gradientView.trailingAnchor.constraint(equalTo: checkerboardView.trailingAnchor),
+			gradientView.topAnchor.constraint(equalTo: checkerboardView.topAnchor),
+			gradientView.bottomAnchor.constraint(equalTo: checkerboardView.bottomAnchor),
 		])
 	}
 
@@ -141,9 +146,6 @@ internal class ColorSlider: UISlider {
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
-
-		gradientLayer.frame = checkerboardView.bounds
 		checkerboardView.layer.cornerRadius = checkerboardView.frame.size.height / 2
 	}
-
 }

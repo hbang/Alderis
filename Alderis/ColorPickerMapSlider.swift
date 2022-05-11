@@ -14,7 +14,7 @@ internal class ColorPickerMapSlider: ColorPickerComponentSlider {
 		super.init(component: component, overrideSmartInvert: overrideSmartInvert)
 
 		stackView.alignment = .center
-		stackView.spacing = UIFloat(10)
+		stackView.spacing = UIFloat(13)
 
 		let imageTintColor: UIColor
 		if #available(iOS 13, *) {

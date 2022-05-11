@@ -217,7 +217,7 @@ extension Color {
 		}
 
 		static let hue: Component = .init(keyPath: \.hue, limit: 360, title: "Hue") { color in
-			Array(0..<18).map { Color(hue: CGFloat($0 * 20) / 360, saturation: color.saturation, brightness: color.brightness, alpha: 1) }
+			Array(0..<90).map { Color(hue: CGFloat($0 * 4) / 360, saturation: color.saturation, brightness: color.brightness, alpha: 1) }
 		}
 
 		static let saturation: Component = .init(keyPath: \.saturation, limit: 100, title: "Satur.") { color in

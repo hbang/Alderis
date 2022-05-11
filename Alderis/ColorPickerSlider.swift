@@ -81,6 +81,7 @@ internal class ColorPickerComponentSlider: ColorPickerSlider {
 
 	func setColor(_ color: Color) {
 		value = color[keyPath: component.keyPath]
+		slider.color = color.uiColor
 		slider.gradientColors = component.sliderTintColor(for: color).map(\.uiColor)
 	}
 
@@ -91,12 +92,23 @@ internal class ColorPickerComponentSlider: ColorPickerSlider {
 }
 
 internal class ColorSlider: UISlider {
+	private let thumbImage = UIGraphicsImageRenderer(size: CGSize(width: 26, height: 26)).image { _ in }
+
 	var gradientColors = [UIColor]() {
 		didSet { gradientView.gradientLayer.colors = gradientColors.map(\.cgColor) }
 	}
 
+	var color: UIColor? {
+		get { selectionView?.color }
+		set { selectionView?.color = newValue }
+	}
+
 	private var checkerboardView: UIView!
 	private var gradientView: GradientView!
+
+	private var selectionView: ColorWell?
+	private var selectionViewXConstraint: NSLayoutConstraint?
+	private var valueObserver: NSKeyValueObservation?
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -109,6 +121,7 @@ internal class ColorSlider: UISlider {
 		if useSliderTrack {
 			setMinimumTrackImage(UIImage(), for: .normal)
 			setMaximumTrackImage(UIImage(), for: .normal)
+			setThumbImage(thumbImage, for: .normal)
 		}
 
 		checkerboardView = UIView()
@@ -138,6 +151,29 @@ internal class ColorSlider: UISlider {
 			gradientView.topAnchor.constraint(equalTo: checkerboardView.topAnchor),
 			gradientView.bottomAnchor.constraint(equalTo: checkerboardView.bottomAnchor),
 		])
+
+		if useSliderTrack {
+			let selectionView = ColorWell()
+			selectionView.translatesAutoresizingMaskIntoConstraints = false
+			selectionView.isDragInteractionEnabled = false
+			selectionView.isDropInteractionEnabled = false
+			insertSubview(selectionView, aboveSubview: checkerboardView)
+			self.selectionView = selectionView
+
+			selectionViewXConstraint = selectionView.leadingAnchor.constraint(equalTo: checkerboardView.leadingAnchor)
+
+			// Remove minimum width constraint configured by ColorWell internally
+			let selectionWidthConstraint = selectionView.constraints.first { $0.firstAnchor == selectionView.widthAnchor }
+			selectionWidthConstraint?.isActive = false
+
+			NSLayoutConstraint.activate([
+				selectionViewXConstraint!,
+				selectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+				selectionView.widthAnchor.constraint(equalToConstant: UIFloat(24))
+			])
+
+			valueObserver = observe(\.value) { _, _ in self.valueChanged() }
+		}
 	}
 
 	required init?(coder: NSCoder) {
@@ -147,5 +183,15 @@ internal class ColorSlider: UISlider {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		checkerboardView.layer.cornerRadius = checkerboardView.frame.size.height / 2
+		valueChanged()
+	}
+
+	private func valueChanged() {
+		guard let selectionView = selectionView,
+					let selectionViewXConstraint = selectionViewXConstraint else {
+			return
+		}
+		let spacing = frame.size.height - selectionView.frame.size.height
+		selectionViewXConstraint.constant = (spacing / 2) + ((frame.size.width - selectionView.frame.size.width - spacing) * CGFloat(value))
 	}
 }

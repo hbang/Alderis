@@ -16,7 +16,7 @@ internal class ColorPickerNumericSlider: ColorPickerComponentSlider {
 		super.init(component: component, overrideSmartInvert: overrideSmartInvert)
 
 		stackView.alignment = .fill
-		stackView.spacing = UIFloat(5)
+		stackView.spacing = UIFloat(8)
 
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false

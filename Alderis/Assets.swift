@@ -99,13 +99,13 @@ internal struct Assets {
 	}()
 
 	private static func renderCheckerboardPattern(colors: (dark: UIColor, light: UIColor)) -> UIColor {
-		let renderer = UIGraphicsImageRenderer(size: CGSize(width: 20, height: 20))
-		let image = renderer.image { context in
+		let size = 11
+		let image = UIGraphicsImageRenderer(size: CGSize(width: size * 2, height: size * 2)).image { context in
 			colors.dark.setFill()
-			context.fill(CGRect(x: 0, y: 0, width: 20, height: 20))
+			context.fill(CGRect(x: 0, y: 0, width: size * 2, height: size * 2))
 			colors.light.setFill()
-			context.fill(CGRect(x: 10, y: 0, width: 10, height: 10))
-			context.fill(CGRect(x: 0, y: 10, width: 10, height: 10))
+			context.fill(CGRect(x: size, y: 0, width: size, height: size))
+			context.fill(CGRect(x: 0, y: size, width: size, height: size))
 		}
 		return UIColor(patternImage: image)
 	}

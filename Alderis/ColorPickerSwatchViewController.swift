@@ -26,6 +26,7 @@ internal class ColorPickerSwatchViewController: ColorPickerTabViewController {
 		}
 	}
 
+	static let title = "Swatch"
 	static let imageName = "square.grid.4x3.fill"
 
 	static let colorSwatch = [

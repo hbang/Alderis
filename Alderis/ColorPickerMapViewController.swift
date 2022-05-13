@@ -10,6 +10,7 @@ import UIKit
 
 internal class ColorPickerMapViewController: ColorPickerTabViewController {
 
+	static let title = "Color Wheel"
 	static let imageName = "slider.horizontal.below.rectangle"
 
 	private var wheelView: ColorPickerWheelView!

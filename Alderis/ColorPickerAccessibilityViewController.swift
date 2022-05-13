@@ -10,6 +10,7 @@ import UIKit
 
 internal class ColorPickerAccessibilityViewController: ColorPickerTabViewController {
 
+	static let title = "Contrast Checker"
 	static let imageName = "circle.righthalf.fill"
 
 	private static let percentFormatter: NumberFormatter = {

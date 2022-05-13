@@ -48,6 +48,7 @@ internal class ColorPickerTabViewControllerBase: UIViewController {
 }
 
 internal protocol ColorPickerTabViewControllerProtocol: ColorPickerTabViewControllerBase {
+	static var title: String { get }
 	static var imageName: String { get }
 	static var image: UIImage { get }
 }

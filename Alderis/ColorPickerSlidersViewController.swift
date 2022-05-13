@@ -11,6 +11,7 @@ import AudioToolbox
 
 internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 
+	static let title = "Sliders"
 	static let imageName = "slider.horizontal.3"
 
 	private enum Mode: CaseIterable {

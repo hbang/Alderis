@@ -55,6 +55,9 @@ internal class ColorPickerWheelView: UIView {
 		selectionView.translatesAutoresizingMaskIntoConstraints = false
 		selectionView.isDragInteractionEnabled = false
 		selectionView.isDropInteractionEnabled = false
+		if #available(iOS 14, *) {
+			selectionView.isContextMenuInteractionEnabled = false
+		}
 		containerView.addSubview(selectionView)
 
 		selectionViewXConstraint = selectionView.leftAnchor.constraint(equalTo: containerView.leftAnchor)

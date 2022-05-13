@@ -157,6 +157,9 @@ internal class ColorSlider: UISlider {
 			selectionView.translatesAutoresizingMaskIntoConstraints = false
 			selectionView.isDragInteractionEnabled = false
 			selectionView.isDropInteractionEnabled = false
+			if #available(iOS 14, *) {
+				selectionView.isContextMenuInteractionEnabled = false
+			}
 			insertSubview(selectionView, aboveSubview: checkerboardView)
 			self.selectionView = selectionView
 

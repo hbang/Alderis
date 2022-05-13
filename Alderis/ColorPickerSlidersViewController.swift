@@ -65,7 +65,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		let segmentedControlContainer = UIView()
 		segmentedControlContainer.translatesAutoresizingMaskIntoConstraints = false
 
-		segmentedControl = UISegmentedControl(items: Mode.allCases.map { $0.title })
+		segmentedControl = UISegmentedControl(items: Mode.allCases.map(\.title))
 		segmentedControl.translatesAutoresizingMaskIntoConstraints = false
 		segmentedControl.selectedSegmentIndex = 0
 		segmentedControl.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
@@ -79,7 +79,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		mainStackView.axis = .vertical
 		mainStackView.alignment = .fill
 		mainStackView.distribution = .fill
-		mainStackView.spacing = UIFloat(10)
+		mainStackView.spacing = UIFloat(6)
 		view.addSubview(mainStackView)
 
 		for mode in Mode.allCases {
@@ -143,8 +143,8 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 			segmentedControl.bottomAnchor.constraint(equalTo: segmentedControlContainer.bottomAnchor),
 			segmentedControl.centerXAnchor.constraint(equalTo: segmentedControlContainer.centerXAnchor),
 
-			topSpacerView.heightAnchor.constraint(equalToConstant: 0),
-			bottomSpacerView.heightAnchor.constraint(equalToConstant: 0),
+			topSpacerView.heightAnchor.constraint(equalToConstant: UIFloat(3)),
+			bottomSpacerView.heightAnchor.constraint(equalToConstant: UIFloat(3)),
 
 			colorWell.widthAnchor.constraint(equalToConstant: UIFloat(32)),
 			colorWell.heightAnchor.constraint(equalTo: colorWell.widthAnchor)

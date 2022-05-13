@@ -45,9 +45,25 @@ open class ColorWell: UIControl {
 	/// example:
 	///
 	/// ```swift
-	/// circleView.addTarget(self, action: #selector(self.handleColorDropEvent(_:)), for: .valueChanged)
+	/// colorWell.addTarget(self, action: #selector(self.handleColorDidChange(_:)), for: .valueChanged)
 	/// ```
 	@objc open var isDropInteractionEnabled = true {
+		didSet { updateDragDropInteraction() }
+	}
+
+	/// Whether the user can long press (iPhone) or right-click (Mac/iPad) the view, allowing them to
+	/// copy the color in various formats, or paste a color from another source.
+	///
+	/// To handle a color being pasted via the context menu, add an action for the `.valueChanged`
+	/// event. For example:
+	///
+	/// ```swift
+	/// colorWell.addTarget(self, action: #selector(self.handleColorDidChange(_:)), for: .valueChanged)
+	/// ```
+	///
+	/// Requires iOS 14 or newer.
+	@available(iOS 14, *)
+	open override var isContextMenuInteractionEnabled: Bool {
 		didSet { updateDragDropInteraction() }
 	}
 
@@ -55,6 +71,13 @@ open class ColorWell: UIControl {
 	private var dragInteraction: UIDragInteraction!
 	private var dropInteraction: UIDropInteraction!
 	private var tapGestureRecognizer: UITapGestureRecognizer!
+
+	private var contextMenuTitle: String {
+		if let color = color {
+			return "Color: \(Color(uiColor: color).hexString())"
+		}
+		return "No color"
+	}
 
 	/// :nodoc:
 	override init(frame: CGRect) {
@@ -92,6 +115,17 @@ open class ColorWell: UIControl {
 		tapGestureRecognizer.isEnabled = false
 		addGestureRecognizer(tapGestureRecognizer)
 
+		if #available(iOS 14, *) {
+			isContextMenuInteractionEnabled = true
+		}
+
+		#if swift(>=5.5)
+		if #available(iOS 15, *) {
+			toolTip = contextMenuTitle
+			toolTipInteraction?.delegate = self
+		}
+		#endif
+
 		NSLayoutConstraint.activate([
 			self.widthAnchor.constraint(greaterThanOrEqualToConstant: UIFloat(32)),
 			self.heightAnchor.constraint(equalTo: self.widthAnchor),
@@ -119,6 +153,9 @@ open class ColorWell: UIControl {
 
 	private func updateDragDropInteraction() {
 		isUserInteractionEnabled = isDragInteractionEnabled || isDropInteractionEnabled
+		if #available(iOS 14, *) {
+			isUserInteractionEnabled = isUserInteractionEnabled || isContextMenuInteractionEnabled
+		}
 
 		if isDragInteractionEnabled {
 			addInteraction(dragInteraction)
@@ -138,6 +175,7 @@ open class ColorWell: UIControl {
 		super.layoutSubviews()
 
 		layer.cornerRadius = frame.size.width / 2
+		layer.shadowPath = CGPath(ellipseIn: bounds, transform: nil)
 		colorView.layer.cornerRadius = layer.cornerRadius
 	}
 
@@ -151,7 +189,6 @@ open class ColorWell: UIControl {
 	/// :nodoc:
 	override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
-
 		updateBorderColor()
 	}
 
@@ -197,6 +234,58 @@ open class ColorWell: UIControl {
 }
 
 /// :nodoc:
+extension ColorWell { // UIResponder
+
+	open override var canBecomeFirstResponder: Bool { true }
+
+	open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+		switch action {
+		case #selector(copy(_:)), #selector(copyHex), #selector(copyRGB), #selector(copyHSL),
+				 #selector(copyObjC), #selector(copySwift):
+			return color != nil
+
+		case #selector(paste(_:)):
+			return UIPasteboard.general.hasColors || UIPasteboard.general.hasStrings
+
+		default:
+			return super.canPerformAction(action, withSender: sender)
+		}
+	}
+
+	open override func copy(_ sender: Any?) {
+		UIPasteboard.general.color = color
+	}
+
+	open override func paste(_ sender: Any?) {
+		if let color = UIPasteboard.general.color ?? UIColor(propertyListValue: UIPasteboard.general.string ?? "") {
+			self.color = color
+			sendActions(for: .valueChanged)
+		}
+	}
+
+	@objc private func copyHex(_ sender: Any?) {
+		UIPasteboard.general.string = Color(uiColor: color!).hexString
+	}
+
+	@objc private func copyRGB(_ sender: Any?) {
+		UIPasteboard.general.string = Color(uiColor: color!).rgbString
+	}
+
+	@objc private func copyHSL(_ sender: Any?) {
+		UIPasteboard.general.string = Color(uiColor: color!).hslString
+	}
+
+	@objc private func copyObjC(_ sender: Any?) {
+		UIPasteboard.general.string = Color(uiColor: color!).objcString
+	}
+
+	@objc private func copySwift(_ sender: Any?) {
+		UIPasteboard.general.string = Color(uiColor: color!).swiftString
+	}
+
+}
+
+/// :nodoc:
 extension ColorWell: UIDragInteractionDelegate {
 
 	/// :nodoc:
@@ -232,6 +321,67 @@ extension ColorWell: UIDropInteractionDelegate {
 				self.color = color
 				self.sendActions(for: .valueChanged)
 			}
+		}
+	}
+
+}
+
+#if swift(>=5.5)
+/// :nodoc:
+@available(iOS 15, *)
+extension ColorWell: UIToolTipInteractionDelegate {
+
+	public func toolTipInteraction(_ interaction: UIToolTipInteraction, configurationAt point: CGPoint) -> UIToolTipConfiguration? {
+		UIToolTipConfiguration(toolTip: contextMenuTitle)
+	}
+
+}
+#endif
+
+/// :nodoc:
+@available(iOS 13, *)
+extension ColorWell { // UIContextMenuInteractionDelegate
+
+	open override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+		return UIContextMenuConfiguration(identifier: color, previewProvider: nil) { items in
+			var children = [UIMenuElement]()
+			if isCatalyst {
+				children += [
+					UIMenu(title: "", options: .displayInline, children: [
+						UICommand(title: self.contextMenuTitle,
+											action: #selector(self.doesNotRecognizeSelector(_:)),
+											attributes: .disabled)
+					])
+				]
+			}
+			children += items
+
+			var objcImageName = "chevron.left.slash.chevron.right"
+			var swiftImageName = "chevron.left.slash.chevron.right"
+			if #available(iOS 14, *) {
+				objcImageName = "curlybraces"
+				swiftImageName = "swift"
+			}
+			children += [
+				UIMenu(title: "", options: .displayInline, children: [
+					UICommand(title: "Copy as Hex",
+										image: UIImage(systemName: "number"),
+										action: #selector(self.copyHex(_:))),
+					UICommand(title: "Copy as RGB",
+										image: UIImage(systemName: "r.circle"),
+										action: #selector(self.copyRGB(_:))),
+					UICommand(title: "Copy as HSL",
+										image: UIImage(systemName: "h.circle"),
+										action: #selector(self.copyHSL(_:))),
+					UICommand(title: "Copy as Objective-C",
+										image: UIImage(systemName: objcImageName),
+										action: #selector(self.copyObjC(_:))),
+					UICommand(title: "Copy as Swift",
+										image: UIImage(systemName: swiftImageName),
+										action: #selector(self.copySwift(_:))),
+				])
+			]
+			return UIMenu(title: self.contextMenuTitle, children: children)
 		}
 	}
 

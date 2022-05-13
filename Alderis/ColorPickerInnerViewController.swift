@@ -8,12 +8,12 @@
 
 import UIKit
 
-extension ColorPickerTab {
+internal extension ColorPickerTab {
 	var tabClass: ColorPickerTabViewController.Type {
 		switch self {
-		case .swatch:  return ColorPickerSwatchViewController.self
-		case .map: 		 return ColorPickerMapViewController.self
-		case .sliders: return ColorPickerSlidersViewController.self
+		case .swatch:		return ColorPickerSwatchViewController.self
+		case .map:			return ColorPickerMapViewController.self
+		case .sliders:	return ColorPickerSlidersViewController.self
 		case .accessibility: return ColorPickerAccessibilityViewController.self
 		}
 	}
@@ -129,31 +129,45 @@ internal class ColorPickerInnerViewController: UIViewController {
 		tabsView.translatesAutoresizingMaskIntoConstraints = false
 		tabsView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
 		tabsView.addTarget(self, action: #selector(segmentControlChanged(_:)), for: .valueChanged)
+		tabsContainerView.addSubview(tabsView)
 
 		if #available(iOS 13, *) {
 			tabsView.selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.35)
 			if isMac {
-				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .highlighted)
-				tabsView.setTitleTextAttributes([ .foregroundColor: UIColor.label ], for: .selected)
+				tabsView.setTitleTextAttributes([ .foregroundColor: Assets.macTabBarSelectionColor ], for: .highlighted)
+				tabsView.setTitleTextAttributes([ .foregroundColor: Assets.macTabBarSelectionColor ], for: .selected)
 			}
 		}
 
-		tabsContainerView.addSubview(tabsView)
-
 		for (i, tab) in tabs.enumerated() {
-			tabsView.insertSegment(with: type(of: tab).image, at: i, animated: false)
+			let tabClass = type(of: tab)
+			if #available(iOS 14, *) {
+				tabsView.insertSegment(action: UIAction(title: tabClass.title,
+																								image: tabClass.image,
+																								handler: { _ in }),
+															 at: i,
+															 animated: false)
+			} else {
+				tabsView.insertSegment(with: tabClass.image, at: i, animated: false)
+			}
 		}
 
 		NSLayoutConstraint.activate([
 			tabsView.centerXAnchor.constraint(equalTo: tabsContainerView.centerXAnchor),
+			tabsView.centerYAnchor.constraint(equalTo: tabsContainerView.centerYAnchor),
 			tabsView.leadingAnchor.constraint(greaterThanOrEqualTo: tabsContainerView.leadingAnchor, constant: 4),
 			tabsView.trailingAnchor.constraint(lessThanOrEqualTo: tabsContainerView.trailingAnchor, constant: -4)
-		] + (isMac ? [
-			tabsView.centerYAnchor.constraint(equalTo: tabsContainerView.centerYAnchor)
-		] : [
-			tabsView.topAnchor.constraint(equalTo: tabsContainerView.topAnchor, constant: 4),
-			tabsView.bottomAnchor.constraint(equalTo: tabsContainerView.bottomAnchor, constant: -4)
-		]))
+		])
+
+		if #available(iOS 13, *) {
+		} else {
+			NSLayoutConstraint.activate([
+				tabsView.heightAnchor.constraint(equalToConstant: 32)
+			])
+			for i in 0..<tabsView.numberOfSegments {
+				tabsView.setWidth(40, forSegmentAt: i)
+			}
+		}
 
 		let pageViewContainer = UIView()
 		pageViewContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -358,6 +372,11 @@ internal class ColorPickerInnerViewController: UIViewController {
 		saveButton?.highlightBackgroundColor = foregroundColor.withAlphaComponent(0.25)
 		tabsView.setTitleTextAttributes([ .foregroundColor: foregroundColor ], for: .normal)
 
+		if #available(iOS 13, *) {
+		} else {
+			tabsView.tintColor = foregroundColor
+		}
+
 		// Even though `shouldBroadcast: false` avoids recursion if we call setColor on the callee tab,
 		// doing so on ColorPickerSlidersViewController would reset `hexOptions`, leading to a buggy
 		// typing experience in `hexTextField`
@@ -365,7 +384,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			tab.setColor(color, shouldBroadcast: false)
 		}
 
-		backgroundView.backgroundColor = uiColor.withAlphaComponent(color.alpha * 0.1)
+		backgroundView.backgroundColor = uiColor.withAlphaComponent(color.alpha * 0.2)
 	}
 
 	private func tabDidChange(oldValue: Int) {

@@ -147,7 +147,13 @@ open class ColorPickerViewController: UIViewController {
 		view.addSubview(containerView)
 
 		if isFullScreen {
-			backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+			let style: UIBlurEffect.Style
+			if #available(iOS 13, *) {
+				style = .systemThinMaterial
+			} else {
+				style = .light
+			}
+			backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: style))
 			backgroundView.translatesAutoresizingMaskIntoConstraints = false
 			backgroundView.clipsToBounds = true
 			backgroundView.layer.cornerRadius = 13

@@ -14,6 +14,7 @@ class FirstViewController: UIViewController {
 	private var colorWell: ColorWell!
 	private var uikitWell: UIView?
 
+	// swiftlint:disable:next function_body_length
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -31,33 +32,46 @@ class FirstViewController: UIViewController {
 		let stackView = UIStackView()
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.axis = .vertical
+		stackView.alignment = .center
 		stackView.spacing = 10
 		view.addSubview(stackView)
 
 		let mainButton = UIButton(type: .system)
-		mainButton.titleLabel!.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
+		if #available(iOS 15, *) {
+			var config = UIButton.Configuration.filled()
+			config.buttonSize = .large
+			mainButton.configuration = config
+		} else {
+			mainButton.titleLabel!.font = UIFont.systemFont(ofSize: 34, weight: .semibold)
+		}
 		mainButton.setTitle("Present", for: .normal)
 		mainButton.addTarget(self, action: #selector(self.presentColorPicker), for: .touchUpInside)
 		stackView.addArrangedSubview(mainButton)
 
 		// swiftlint:disable comma
-		let buttons: [(String, Selector)] = [
-			("Present with customised title",       #selector(self.presentColorPickerCustomisedTitle)),
-			("Present with customised initial tab", #selector(self.presentColorPickerCustomisedInitialTab)),
-			("Present with customised tabs",        #selector(self.presentColorPickerCustomisedTabs)),
-			("Present with tabs hidden",            #selector(self.presentColorPickerNoTabs)),
-			("Present with customised title, tabs hidden", #selector(self.presentColorPickerCustomisedTitleNoTabs)),
-			("Present without alpha",               #selector(self.presentColorPickerNoAlpha)),
-			("Present without overriding Smart Invert", #selector(self.presentColorPickerNoOverrideSmartInvert)),
-			("Present using deprecated API",        #selector(self.presentColorPickerDeprecatedAPI)),
-			("Present UIKit Color Picker",          #selector(self.presentUIKitColorPicker))
+		let buttons: [(title: String, action: Selector)] = [
+			("Present with customised title",       #selector(presentColorPickerCustomisedTitle)),
+			("Present with customised initial tab", #selector(presentColorPickerCustomisedInitialTab)),
+			("Present with customised tabs",        #selector(presentColorPickerCustomisedTabs)),
+			("Present with tabs hidden",            #selector(presentColorPickerNoTabs)),
+			("Present with customised title, tabs hidden", #selector(presentColorPickerCustomisedTitleNoTabs)),
+			("Present without alpha",               #selector(presentColorPickerNoAlpha)),
+			("Present without overriding Smart Invert", #selector(presentColorPickerNoOverrideSmartInvert)),
+			("Present using deprecated API",        #selector(presentColorPickerDeprecatedAPI)),
+			("Present UIKit Color Picker",          #selector(presentUIKitColorPicker))
 		]
 		// swiftlint:enable comma
 
 		for item in buttons {
 			let button = UIButton(type: .system)
-			button.setTitle(item.0, for: .normal)
-			button.addTarget(self, action: item.1, for: .touchUpInside)
+			if #available(iOS 15, *) {
+				var config = UIButton.Configuration.plain()
+				config.buttonSize = .mini
+				config.macIdiomStyle = .borderlessTinted
+				button.configuration = config
+			}
+			button.setTitle(item.title, for: .normal)
+			button.addTarget(self, action: item.action, for: .touchUpInside)
 			stackView.addArrangedSubview(button)
 		}
 
@@ -96,8 +110,6 @@ class FirstViewController: UIViewController {
 		nonDragOrDropWell.isDropInteractionEnabled = false
 		nonDragOrDropWell.color = .systemGreen
 
-		let wellsContainerView = UIView()
-
 		let wellsStackView = UIStackView(arrangedSubviews: [colorWell,
 																												dragOrDropColorWell,
 																												nonDraggableWell,
@@ -107,7 +119,6 @@ class FirstViewController: UIViewController {
 		wellsStackView.axis = .horizontal
 		wellsStackView.alignment = .center
 		wellsStackView.spacing = 10
-		wellsContainerView.addSubview(wellsStackView)
 
 		if #available(iOS 14, *) {
 			let uikitWell = UIColorWell()
@@ -116,18 +127,14 @@ class FirstViewController: UIViewController {
 			self.uikitWell = uikitWell
 		}
 
-		stackView.addArrangedSubview(wellsContainerView)
+		stackView.addArrangedSubview(wellsStackView)
 
 		NSLayoutConstraint.activate([
 			stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
 			stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
 			stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-			spacerView.heightAnchor.constraint(equalToConstant: 0),
-
-			wellsStackView.topAnchor.constraint(equalTo: wellsContainerView.topAnchor),
-			wellsStackView.bottomAnchor.constraint(equalTo: wellsContainerView.bottomAnchor),
-			wellsStackView.centerXAnchor.constraint(equalTo: wellsContainerView.centerXAnchor)
+			spacerView.heightAnchor.constraint(equalToConstant: 0)
 		])
 
 		var isMac = false

@@ -158,6 +158,51 @@ extension Color {
 			return "#\(r)\(g)\(b)\(showAlpha ? a : "")"
 		}
 	}
+
+	var hexString: String { hexString() }
+
+	var hslValue: (saturation: CGFloat, lightness: CGFloat) {
+		let lightness = brightness - brightness * saturation / 2
+		var saturation = min(lightness, 1 - lightness)
+		saturation = saturation == 0 ? 0 : (brightness - lightness) / saturation
+		return (saturation, lightness)
+	}
+
+	private func cssString(function: String, params: [String?]) -> String {
+		let filteredParams = params.compactMap { $0 }
+		return "\(function)\(filteredParams.count == 4 ? "a" : "")(\(filteredParams.joined(separator: ", ")))"
+	}
+
+	var rgbString: String {
+		cssString(function: "rgb", params: [
+			"\(Int(red * 255))",
+			"\(Int(green * 255))",
+			"\(Int(blue * 255))",
+			alpha == 1 ? nil : String(format: "%.2f", alpha)
+		])
+	}
+
+	var hslString: String {
+		let (saturation, lightness) = hslValue
+		return cssString(function: "hsl", params: [
+			"\(Int(hue * 360))",
+			"\(Int(saturation * 100))%",
+			"\(Int(lightness * 100))%",
+			alpha == 1 ? nil : String(format: "%.2f", alpha)
+		])
+	}
+
+	var objcString: String {
+		red == green && green == blue
+			? String(format: "[UIColor colorWithWhite:%.3f alpha:%.2f]", white, alpha)
+			: String(format: "[UIColor colorWithRed:%.3f green:%.3f blue:%.3f alpha:%.2f]", red, green, blue, alpha)
+	}
+
+	var swiftString: String {
+		red == green && green == blue
+			? String(format: "UIColor(white: %.3f, alpha: %.3f", white, alpha)
+			: String(format: "UIColor(red: %.3f, green: %.3f, blue: %.3f, alpha: %.2f)", red, green, blue, alpha)
+	}
 }
 
 extension Color {
@@ -234,7 +279,7 @@ extension Color {
 			]
 		}
 
-		static let white: Component = .init(keyPath: \.white, limit: 255, title: "White") { color in
+		static let white: Component = .init(keyPath: \.white, limit: 255, title: "White") { _ in
 			[
 				Color(white: 0, alpha: 1),
 				Color(white: 1, alpha: 1)

@@ -62,12 +62,12 @@ extension ColorPickerNumericSlider: UITextFieldDelegate {
 		// Numeric only, 0-limit
 		let badCharacterSet = CharacterSet(charactersIn: "0123456789").inverted
 		guard newString.rangeOfCharacter(from: badCharacterSet) == nil else {
-			NSBeep?()
+			beep()
 			return false
 		}
 		let limit = component.limit
 		guard let value = Int(newString), 0...limit ~= CGFloat(value) else {
-			NSBeep?()
+			beep()
 			return false
 		}
 

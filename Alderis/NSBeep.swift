@@ -18,3 +18,12 @@ internal let NSBeep: NSBeepType? = {
 	}
 	return nil
 }()
+
+internal func beep() {
+	if isCatalyst {
+		NSBeep?()
+	} else {
+		let feedbackGenerator = UINotificationFeedbackGenerator()
+		feedbackGenerator.notificationOccurred(.error)
+	}
+}

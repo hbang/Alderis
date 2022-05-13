@@ -228,13 +228,13 @@ extension ColorPickerSlidersViewController: UITextFieldDelegate {
 
 		let canonicalizedString = newString.hasPrefix("#") ? newString.dropFirst() : Substring(newString)
 		guard canonicalizedString.count <= 8 else {
-			NSBeep?()
+			beep()
 			return false
 		}
 
 		let badCharacterSet = CharacterSet(charactersIn: "0123456789ABCDEFabcdef").inverted
 		guard canonicalizedString.rangeOfCharacter(from: badCharacterSet) == nil else {
-			NSBeep?()
+			beep()
 			return false
 		}
 

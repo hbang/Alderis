@@ -16,23 +16,16 @@ internal class ColorPickerMapSlider: ColorPickerComponentSlider {
 		stackView.alignment = .center
 		stackView.spacing = UIFloat(13)
 
-		let imageTintColor: UIColor
-		if #available(iOS 13, *) {
-			imageTintColor = .secondaryLabel
-		} else {
-			imageTintColor = UIColor(white: 60 / 255, alpha: 0.6)
-		}
-
 		let leftImageView = UIImageView(image: Assets.systemImage(named: minImageName))
 		leftImageView.translatesAutoresizingMaskIntoConstraints = false
 		leftImageView.contentMode = .center
-		leftImageView.tintColor = imageTintColor
+		leftImageView.tintColor = Assets.secondaryLabelColor
 		stackView.insertArrangedSubview(leftImageView, at: 0)
 
 		let rightImageView = UIImageView(image: Assets.systemImage(named: maxImageName))
 		rightImageView.translatesAutoresizingMaskIntoConstraints = false
 		rightImageView.contentMode = .center
-		rightImageView.tintColor = imageTintColor
+		rightImageView.tintColor = Assets.secondaryLabelColor
 		stackView.addArrangedSubview(rightImageView)
 
 		if #available(iOS 13, *) {

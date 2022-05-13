@@ -62,7 +62,7 @@ internal class AccessibilityComplianceLabel: UIView {
 	}
 
 	private func updateState() {
-		let color: UIColor = isCompliant ? .systemGreen : .systemRed
+		let color = isCompliant ? Assets.green : Assets.red
 
 		tintColor = color
 		accessibilityLabel = "\(text): \(isCompliant ? "Compliant" : "Not compliant")"

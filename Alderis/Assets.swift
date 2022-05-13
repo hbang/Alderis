@@ -66,6 +66,13 @@ internal struct Assets {
 
 	// MARK: - Colors
 
+	private static func color(userInterfaceStyles colors: [UIUserInterfaceStyle: UIColor], fallback: UIUserInterfaceStyle = .light) -> UIColor {
+		if #available(iOS 13, *) {
+			return UIColor { colors[$0.userInterfaceStyle] ?? colors[fallback] ?? colors.values.first! }
+		}
+		return colors[fallback] ?? colors.values.first!
+	}
+
 	static let backdropColor  = UIColor(white: 0, alpha: 0.2)
 	static let separatorColor = UIColor(white: 1, alpha: 0.15)
 
@@ -76,6 +83,13 @@ internal struct Assets {
 		return .black
 	}()
 
+	static let secondaryLabelColor: UIColor = {
+		if #available(iOS 13, *) {
+			return .secondaryLabel
+		}
+		return UIColor(white: 60 / 255, alpha: 0.6)
+	}()
+
 	static let borderColor: UIColor = {
 		if #available(iOS 13, *) {
 			return .separator
@@ -83,20 +97,28 @@ internal struct Assets {
 		return UIColor(white: 1, alpha: 0.35)
 	}()
 
-	private static let checkerboardPattern: [UIUserInterfaceStyle: UIColor] = [
+	@available(iOS 13, *)
+	static let macTabBarSelectionColor = color(userInterfaceStyles: [
+		.light: .black,
+		.dark: .label
+	])
+
+	static let red = UIColor.systemRed
+
+	// .systemGreen adjusted to be more consistent / easier to read
+	static let green = color(userInterfaceStyles: [
+		.light: UIColor(red: 15 / 255, green: 189 / 255, blue: 59 / 255, alpha: 1),
+		// swiftlint:disable:next colon
+		.dark:  UIColor(red: 41 / 255, green: 179 / 255, blue: 76 / 255, alpha: 1)
+	])
+
+	static let checkerboardPatternColor = color(userInterfaceStyles: [
 		.light: renderCheckerboardPattern(colors: (UIColor(white: 200 / 255, alpha: 1),
 																							 UIColor(white: 255 / 255, alpha: 1))),
 		// swiftlint:disable:next colon
 		.dark:  renderCheckerboardPattern(colors: (UIColor(white: 140 / 255, alpha: 1),
 																							 UIColor(white: 186 / 255, alpha: 1)))
-	]
-
-	static let checkerboardPatternColor: UIColor = {
-		if #available(iOS 13, *) {
-			return UIColor { checkerboardPattern[$0.userInterfaceStyle] ?? checkerboardPattern[.light]! }
-		}
-		return checkerboardPattern[.light]!
-	}()
+	])
 
 	private static func renderCheckerboardPattern(colors: (dark: UIColor, light: UIColor)) -> UIColor {
 		let size = 11

@@ -27,7 +27,7 @@
     "Alderis/*.h"
   ],
   "resource_bundles": {
-    "Alderis": "Alderis/Assets.xcassets"
+    "Alderis": "Alderis/Assets-ios12.xcassets"
   },
   "swift_version": "5.0"
 }

@@ -106,11 +106,11 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		aaComplianceLabel = AccessibilityComplianceLabel(text: "AA")
 		aaaComplianceLabel = AccessibilityComplianceLabel(text: "AAA")
 
-		let complianceStackView = UIStackView(arrangedSubviews: [aaComplianceLabel, aaaComplianceLabel])
+		let complianceStackView = UIStackView(arrangedSubviews: [UIView(), aaComplianceLabel, aaaComplianceLabel])
 		complianceStackView.translatesAutoresizingMaskIntoConstraints = false
 		complianceStackView.spacing = UIFloat(12)
 
-		contrastStackView = UIStackView(arrangedSubviews: [contrastRatioLabel, UIView(), complianceStackView])
+		contrastStackView = UIStackView(arrangedSubviews: [contrastRatioLabel, complianceStackView])
 		contrastStackView.translatesAutoresizingMaskIntoConstraints = false
 		contrastStackView.spacing = UIFloat(8)
 
@@ -155,12 +155,20 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 			contrastStackView.heightAnchor.constraint(greaterThanOrEqualTo: backgroundSelector.heightAnchor),
 			contrastStackView.heightAnchor.constraint(greaterThanOrEqualTo: foregroundSelector.heightAnchor)
 		])
+
+		colorDidChange()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		scrollView.flashScrollIndicators()
+	}
+
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+
+		contrastStackView.axis = view.frame.size.width > UIFloat(300) ? .horizontal : .vertical
 	}
 
 	override func colorDidChange() {
@@ -205,12 +213,6 @@ internal class ColorPickerAccessibilityViewController: ColorPickerTabViewControl
 		contrastRatioLabel.text = "Contrast: \(String(format: "%.2f", contrastRatio)) (\(Self.percentFormatter.string(for: contrastRatio / 21)!))"
 		aaComplianceLabel.isCompliant = contrastRatio > 4.5
 		aaaComplianceLabel.isCompliant = contrastRatio > 7
-	}
-
-	override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
-
-		contrastStackView.axis = view.frame.size.width > UIFloat(300) ? .horizontal : .vertical
 	}
 
 }

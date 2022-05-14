@@ -15,11 +15,12 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 	static let imageName = "slider.horizontal.3"
 
 	private enum Mode: CaseIterable {
-		case rgb, hsb, white
+		case rgb, hsl, hsb, white
 
 		var title: String {
 			switch self {
 			case .rgb:   return "RGB"
+			case .hsl:   return "HSL"
 			case .hsb:   return "HSB"
 			case .white: return "White"
 			}
@@ -28,6 +29,7 @@ internal class ColorPickerSlidersViewController: ColorPickerTabViewController {
 		private var components: [Color.Component] {
 			switch self {
 			case .rgb:   return [.red, .green, .blue, .alpha]
+			case .hsl:   return [.hue, .hslSaturation, .lightness, .alpha]
 			case .hsb:   return [.hue, .saturation, .brightness, .alpha]
 			case .white: return [.white, .alpha]
 			}

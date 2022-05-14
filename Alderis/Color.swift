@@ -43,6 +43,16 @@ internal struct Color: Equatable, Hashable {
 			self = Color(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
 		}
 	}
+	var hslSaturation: CGFloat = 0 {
+		didSet {
+			self = Color(hue: hue, saturation: hslSaturation, lightness: lightness, alpha: alpha)
+		}
+	}
+	var lightness: CGFloat = 0 {
+		didSet {
+			self = Color(hue: hue, saturation: hslSaturation, lightness: lightness, alpha: alpha)
+		}
+	}
 
 	var white: CGFloat = 0 {
 		didSet {
@@ -72,6 +82,7 @@ internal struct Color: Equatable, Hashable {
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
 		self.white = brightness
+		(self.hslSaturation, self.lightness) = hslValue
 	}
 
 	init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -82,6 +93,7 @@ internal struct Color: Equatable, Hashable {
 		let uiColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
 		uiColor.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
 		self.white = brightness
+		(self.hslSaturation, self.lightness) = hslValue
 	}
 
 	init(white: CGFloat, alpha: CGFloat) {
@@ -96,6 +108,18 @@ internal struct Color: Equatable, Hashable {
 		self.alpha = alpha
 		let uiColor = UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
 		uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
+		(self.hslSaturation, self.lightness) = hslValue
+	}
+
+	init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat) {
+		self.hue = hue
+		self.hslSaturation = saturation
+		self.lightness = lightness
+		self.alpha = alpha
+		(self.saturation, self.brightness) = hsbValue
+		let uiColor = UIColor(hue: hue, saturation: self.saturation, brightness: self.brightness, alpha: alpha)
+		uiColor.getRed(&red, green: &green, blue: &blue, alpha: nil)
+		self.white = brightness
 	}
 }
 
@@ -103,10 +127,11 @@ extension Color {
 	static var brightnessThreshold: CGFloat {
 		// Accessibility enabled:  conforms to WCAG 2.1 AAA
 		// Accessibility disabled: conforms to WCAG 2.1 AA
-		return UIAccessibility.isDarkerSystemColorsEnabled ? 7 : 4.5
+		UIAccessibility.isDarkerSystemColorsEnabled ? 7 : 4.5
 	}
 
-	var relativeLuminanceValues: (CGFloat, CGFloat, CGFloat) {
+	var relativeLuminanceValues: (red: CGFloat, green: CGFloat, blue: CGFloat) {
+		// https://www.w3.org/TR/WCAG21/#dfn-relative-luminance
 		let values = [red, green, blue]
 			.map { $0 <= 0.03928 ? $0 / 12.92 : pow((($0 + 0.055) / 1.055), 2.4) }
 		return (values[0], values[1], values[2])
@@ -125,7 +150,7 @@ extension Color {
 		return a > b ? a / b : b / a
 	}
 
-	var isDark: Bool { perceivedBrightness(onBackgroundColor: Self.white) > Self.brightnessThreshold && alpha > 0.5 }
+	var isDark: Bool { perceivedBrightness(onBackgroundColor: .white) > Self.brightnessThreshold && alpha > 0.5 }
 }
 
 extension Color {
@@ -162,10 +187,16 @@ extension Color {
 	var hexString: String { hexString() }
 
 	var hslValue: (saturation: CGFloat, lightness: CGFloat) {
-		let lightness = brightness - brightness * saturation / 2
+		let lightness = brightness - (brightness * (saturation / 2))
 		var saturation = min(lightness, 1 - lightness)
 		saturation = saturation == 0 ? 0 : (brightness - lightness) / saturation
 		return (saturation, lightness)
+	}
+
+	var hsbValue: (saturation: CGFloat, brightness: CGFloat) {
+		let brightness = hslSaturation * min(lightness, 1 - lightness) + lightness
+		let saturation = brightness == 0 ? 0 : 2 - 2 * lightness / brightness
+		return (saturation, brightness)
 	}
 
 	private func cssString(function: String, params: [String?]) -> String {
@@ -183,10 +214,9 @@ extension Color {
 	}
 
 	var hslString: String {
-		let (saturation, lightness) = hslValue
-		return cssString(function: "hsl", params: [
+		cssString(function: "hsl", params: [
 			"\(Int(hue * 360))",
-			"\(Int(saturation * 100))%",
+			"\(Int(hslSaturation * 100))%",
 			"\(Int(lightness * 100))%",
 			alpha == 1 ? nil : String(format: "%.2f", alpha)
 		])
@@ -262,27 +292,42 @@ extension Color {
 		}
 
 		static let hue: Component = .init(keyPath: \.hue, limit: 360, title: "Hue") { color in
-			Array(0..<90).map { Color(hue: CGFloat($0 * 4) / 360, saturation: color.saturation, brightness: color.brightness, alpha: 1) }
+			Array(0...8).map { Color(hue: CGFloat($0) * 45 / 360, saturation: color.saturation, brightness: color.brightness, alpha: 1) }
 		}
 
 		static let saturation: Component = .init(keyPath: \.saturation, limit: 100, title: "Satur.") { color in
 			[
-				Color(hue: color.hue, saturation: 0, brightness: color.brightness, alpha: 1),
+				.white,
 				Color(hue: color.hue, saturation: 1, brightness: color.brightness, alpha: 1)
 			]
 		}
 
 		static let brightness: Component = .init(keyPath: \.brightness, limit: 100, title: "Bright") { color in
 			[
-				Color(hue: color.hue, saturation: color.saturation, brightness: 0, alpha: 1),
+				.black,
 				Color(hue: color.hue, saturation: color.saturation, brightness: 1, alpha: 1)
+			]
+		}
+
+		static let hslSaturation: Component = .init(keyPath: \.hslSaturation, limit: 100, title: "Satur.") { color in
+			[
+				Color(hue: color.hue, saturation: 0, lightness: color.lightness, alpha: 1),
+				Color(hue: color.hue, saturation: 1, lightness: color.lightness, alpha: 1)
+			]
+		}
+
+		static let lightness: Component = .init(keyPath: \.lightness, limit: 100, title: "Light") { color in
+			[
+				.black,
+				Color(hue: color.hue, saturation: color.hslSaturation, lightness: 0.5, alpha: 1),
+				.white
 			]
 		}
 
 		static let white: Component = .init(keyPath: \.white, limit: 255, title: "White") { _ in
 			[
-				Color(white: 0, alpha: 1),
-				Color(white: 1, alpha: 1)
+				.black,
+				.white
 			]
 		}
 

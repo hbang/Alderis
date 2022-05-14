@@ -186,6 +186,8 @@ private class ColorPickerWheelInnerView: UIView {
 
 	var handleLayout: (() -> Void)!
 
+	private var saturationMask: GradientView!
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
@@ -201,15 +203,18 @@ private class ColorPickerWheelInnerView: UIView {
 		hueView.gradientLayer.transform = CATransform3DMakeRotation(0.5 * .pi, 0, 0, 1)
 		addSubview(hueView)
 
-		let saturationView = GradientView()
+		let saturationView = UIView()
 		saturationView.translatesAutoresizingMaskIntoConstraints = false
 		saturationView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		saturationView.gradientLayer.type = .radial
-		saturationView.gradientLayer.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
-		saturationView.gradientLayer.locations = [0, 1]
-		saturationView.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-		saturationView.gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+		saturationView.backgroundColor = .white
 		addSubview(saturationView)
+
+		saturationMask = GradientView()
+		saturationMask.gradientLayer.type = .radial
+		saturationMask.gradientLayer.colors = [UIColor.white.cgColor, UIColor.clear.cgColor]
+		saturationMask.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+		saturationMask.gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+		saturationView.mask = saturationMask
 
 		brightnessView = UIView()
 		brightnessView.translatesAutoresizingMaskIntoConstraints = false
@@ -229,6 +234,7 @@ private class ColorPickerWheelInnerView: UIView {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		layer.cornerRadius = frame.size.height / 2
+		saturationMask.frame = bounds
 		handleLayout()
 	}
 }

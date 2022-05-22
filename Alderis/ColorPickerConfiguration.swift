@@ -71,12 +71,8 @@ open class ColorPickerConfiguration: NSObject {
 	/// Ignore this and use visibleTabs per usual.
 	@objc(visibleTabs)
 	open var _visibleTabsObjC: [ColorPickerTab.RawValue] {
-		get {
-			visibleTabs.map { $0.rawValue }
-		}
-		set {
-			visibleTabs = newValue.map { ColorPickerTab(rawValue: $0)! }
-		}
+		get { visibleTabs.map(\.rawValue) }
+		set { visibleTabs = newValue.map { ColorPickerTab(rawValue: $0)! } }
 	}
 
 	/// Whether to display the tab selection at the top of the popup. The default is true. When set to

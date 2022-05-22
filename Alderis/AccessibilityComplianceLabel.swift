@@ -66,8 +66,12 @@ internal class AccessibilityComplianceLabel: UIView {
 
 		tintColor = color
 		accessibilityLabel = "\(text): \(isCompliant ? "Compliant" : "Not compliant")"
-		label.textColor = color
 		imageView.image = isCompliant ? tickImage : crossImage
+	}
+
+	override func tintColorDidChange() {
+		super.tintColorDidChange()
+		label.textColor = tintColor
 	}
 
 }

@@ -46,7 +46,7 @@ public extension UIColor {
 	/// - see: `propertyListValue`
 	@nonobjc convenience init?(propertyListValue: ColorPropertyListValue?) {
 		if let array = propertyListValue as? [Int], array.count == 3 || array.count == 4 {
-			let floats = array.map { CGFloat($0) }
+			let floats = array.map(CGFloat.init(_:))
 			self.init(red: floats[0] / 255,
 								green: floats[1] / 255,
 								blue: floats[2] / 255,

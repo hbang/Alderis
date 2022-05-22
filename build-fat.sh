@@ -12,13 +12,13 @@ PROJECT_DIR=$(realpath $(dirname $0))
 
 THEOS_OBJ_DIR=$PROJECT_DIR/.theos/obj
 THEOS_STAGING_DIR=$PROJECT_DIR/.theos/_
-FRAMEWORK_OUTPUT_DIR=$THEOS_OBJ_DIR/xcode_derived/install/Library/Frameworks
+FRAMEWORK_OUTPUT_DIR=$THEOS_OBJ_DIR/install/Library/Frameworks
 
 echo
 echo Building modern
 echo
 make clean
-sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+sudo xcode-select -switch /Applications/Xcode-13.4.0.app/Contents/Developer
 make package \
 	FINALPACKAGE=1
 cp $FRAMEWORK_OUTPUT_DIR/Alderis.framework/Alderis Alderis-ios14
@@ -38,6 +38,7 @@ cp $FRAMEWORK_OUTPUT_DIR/Alderis.framework/Alderis $THEOS_OBJ_DIR/Alderis-ios12
 
 echo
 cp $THEOS_OBJ_DIR/Alderis-ios{12,14} $THEOS_STAGING_DIR/Library/Frameworks/Alderis.framework
+sudo xcode-select -switch /Applications/Xcode-13.4.0.app/Contents/Developer
 echo Alderis-ios12:
 otool -h $THEOS_STAGING_DIR/Library/Frameworks/Alderis.framework/Alderis-ios12
 echo

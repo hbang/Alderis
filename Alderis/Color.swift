@@ -231,6 +231,7 @@ extension Color {
 	var swiftString: String {
 		red == green && green == blue
 			? String(format: "UIColor(white: %.3f, alpha: %.3f", white, alpha)
+			// swiftlint:disable:next color_init
 			: String(format: "UIColor(red: %.3f, green: %.3f, blue: %.3f, alpha: %.2f)", red, green, blue, alpha)
 	}
 }

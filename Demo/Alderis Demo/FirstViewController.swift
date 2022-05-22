@@ -11,6 +11,8 @@ import Alderis
 
 class FirstViewController: UIViewController {
 
+	private var color = UIColor(hue: 0.939614, saturation: 0.811765, brightness: 0.333333, alpha: 1)
+
 	private var colorWell: ColorWell!
 	private var uikitWell: UIView?
 
@@ -153,17 +155,20 @@ class FirstViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		colorWell.color = view.window!.tintColor
-		if #available(iOS 14, *), let uikitWell = uikitWell as? UIColorWell {
-			uikitWell.selectedColor = view.window!.tintColor
+		view.window!.tintColor = color
+		colorWell.color = color
+		if #available(iOS 14, *),
+			 let uikitWell = uikitWell as? UIColorWell {
+			uikitWell.selectedColor = color
 		}
 	}
 
 	@objc func colorWellValueChanged(_ sender: ColorWell) {
 		NSLog("Color well value changed with value %@", String(describing: sender.color))
 		view.window!.tintColor = sender.color
-		if #available(iOS 14, *), let uikitWell = uikitWell as? UIColorWell {
-			uikitWell.tintColor = sender.color
+		if #available(iOS 14, *),
+			 let uikitWell = uikitWell as? UIColorWell {
+			uikitWell.selectedColor = sender.color
 		}
 	}
 
@@ -175,7 +180,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPicker(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
 		colorPickerViewController.delegate = self
 		colorPickerViewController.popoverPresentationController?.sourceView = sender
@@ -183,7 +188,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerCustomisedTitle(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.title = "Select an Awesome Color"
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -193,7 +198,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerCustomisedInitialTab(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.initialTab = .map
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -203,7 +208,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerCustomisedTabs(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.visibleTabs = [.map, .sliders]
 		configuration.initialTab = .sliders
 
@@ -214,7 +219,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerNoAlpha(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor.withAlphaComponent(0.5))
+		let configuration = ColorPickerConfiguration(color: color.withAlphaComponent(0.5))
 		configuration.supportsAlpha = false
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -224,7 +229,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerNoTabs(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.showTabs = false
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -234,7 +239,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerCustomisedTitleNoTabs(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.title = "Select an Awesome Color"
 		configuration.showTabs = false
 
@@ -245,7 +250,7 @@ class FirstViewController: UIViewController {
 	}
 
 	@objc func presentColorPickerNoOverrideSmartInvert(_ sender: UIView) {
-		let configuration = ColorPickerConfiguration(color: view.window!.tintColor)
+		let configuration = ColorPickerConfiguration(color: color)
 		configuration.overrideSmartInvert = false
 
 		let colorPickerViewController = ColorPickerViewController(configuration: configuration)
@@ -257,7 +262,7 @@ class FirstViewController: UIViewController {
 	@objc func presentColorPickerDeprecatedAPI(_ sender: UIView) {
 		let colorPickerViewController = ColorPickerViewController()
 		colorPickerViewController.delegate = self
-		colorPickerViewController.color = view.window!.tintColor
+		colorPickerViewController.color = color
 		colorPickerViewController.popoverPresentationController?.sourceView = sender
 		tabBarController!.present(colorPickerViewController, animated: true)
 	}
@@ -266,7 +271,7 @@ class FirstViewController: UIViewController {
 		if #available(iOS 14, *) {
 			let colorPickerViewController = UIColorPickerViewController()
 			colorPickerViewController.delegate = self
-			colorPickerViewController.selectedColor = view.window!.tintColor
+			colorPickerViewController.selectedColor = color
 			colorPickerViewController.popoverPresentationController?.sourceView = sender
 			tabBarController!.present(colorPickerViewController, animated: true)
 		} else {
@@ -280,6 +285,7 @@ extension FirstViewController: ColorPickerDelegate {
 
 	func colorPicker(_ colorPicker: ColorPickerViewController, didSelect color: UIColor) {
 		NSLog("User selected color %@ (%@)", color.propertyListValue, String(describing: color))
+		self.color = color
 		view.window!.tintColor = color
 		colorWell.color = color
 	}
@@ -298,7 +304,10 @@ extension FirstViewController: ColorPickerDelegate {
 extension FirstViewController: UIColorPickerViewControllerDelegate {
 
 	func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-		NSLog("UIKit color picker value changed with color %@ (%@)", viewController.selectedColor.propertyListValue, String(describing: viewController.selectedColor))
+		NSLog("UIKit color picker value changed with color %@ (%@)",
+					viewController.selectedColor.propertyListValue,
+					String(describing: viewController.selectedColor))
+		color = viewController.selectedColor
 		view.window!.tintColor = viewController.selectedColor
 		if let uikitWell = uikitWell as? UIColorWell {
 			uikitWell.selectedColor = viewController.selectedColor

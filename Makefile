@@ -4,7 +4,7 @@ else
 	export TARGET = iphone:latest:12.0
 endif
 
-FRAMEWORK_OUTPUT_DIR = $(THEOS_OBJ_DIR)/xcode_derived/install/Library/Frameworks
+FRAMEWORK_OUTPUT_DIR = $(THEOS_OBJ_DIR)/install/Library/Frameworks
 ALDERIS_SDK_DIR = $(THEOS_OBJ_DIR)/alderis_sdk_$(THEOS_PACKAGE_BASE_VERSION)
 
 export ADDITIONAL_CFLAGS = -fobjc-arc -Wextra -Wno-unused-parameter -F$(FRAMEWORK_OUTPUT_DIR)

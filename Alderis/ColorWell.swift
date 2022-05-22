@@ -62,10 +62,12 @@ open class ColorWell: UIControl {
 	/// ```
 	///
 	/// Requires iOS 14 or newer.
+	#if swift(>=5.3)
 	@available(iOS 14, *)
 	open override var isContextMenuInteractionEnabled: Bool {
 		didSet { updateDragDropInteraction() }
 	}
+	#endif
 
 	private var colorView: UIView!
 	private var dragInteraction: UIDragInteraction!
@@ -115,9 +117,11 @@ open class ColorWell: UIControl {
 		tapGestureRecognizer.isEnabled = false
 		addGestureRecognizer(tapGestureRecognizer)
 
+		#if swift(>=5.3)
 		if #available(iOS 14, *) {
 			isContextMenuInteractionEnabled = true
 		}
+		#endif
 
 		#if swift(>=5.5)
 		if #available(iOS 15, *) {
@@ -153,9 +157,11 @@ open class ColorWell: UIControl {
 
 	private func updateDragDropInteraction() {
 		isUserInteractionEnabled = isDragInteractionEnabled || isDropInteractionEnabled
+		#if swift(>=5.3)
 		if #available(iOS 14, *) {
 			isUserInteractionEnabled = isUserInteractionEnabled || isContextMenuInteractionEnabled
 		}
+		#endif
 
 		if isDragInteractionEnabled {
 			addInteraction(dragInteraction)
@@ -338,6 +344,7 @@ extension ColorWell: UIToolTipInteractionDelegate {
 }
 #endif
 
+#if swift(>=5.3)
 /// :nodoc:
 @available(iOS 13, *)
 extension ColorWell { // UIContextMenuInteractionDelegate
@@ -386,6 +393,7 @@ extension ColorWell { // UIContextMenuInteractionDelegate
 	}
 
 }
+#endif
 
 /// Deprecated. Use `ColorWell` instead.
 @available(*, deprecated, renamed: "ColorWell")

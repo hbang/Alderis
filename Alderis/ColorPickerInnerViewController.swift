@@ -84,12 +84,6 @@ internal class ColorPickerInnerViewController: UIViewController {
 			view.addInteraction(UIDropInteraction(delegate: self))
 		}
 
-		var isMac = false
-		if #available(iOS 14, *),
-			 UIDevice.current.userInterfaceIdiom == .mac {
-			isMac = true
-		}
-
 		backgroundView = UIView()
 		backgroundView.translatesAutoresizingMaskIntoConstraints = false
 		backgroundView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert
@@ -133,7 +127,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 		if #available(iOS 13, *) {
 			tabsView.selectedSegmentTintColor = UIColor.white.withAlphaComponent(0.35)
-			if isMac {
+			if isCatalystMac {
 				tabsView.setTitleTextAttributes([ .foregroundColor: Assets.macTabBarSelectionColor ], for: .highlighted)
 				tabsView.setTitleTextAttributes([ .foregroundColor: Assets.macTabBarSelectionColor ], for: .selected)
 			}
@@ -141,6 +135,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 
 		for (i, tab) in tabs.enumerated() {
 			let tabClass = type(of: tab)
+			#if swift(>=5.3)
 			if #available(iOS 14, *) {
 				tabsView.insertSegment(action: UIAction(title: tabClass.title,
 																								image: tabClass.image,
@@ -150,6 +145,9 @@ internal class ColorPickerInnerViewController: UIViewController {
 			} else {
 				tabsView.insertSegment(with: tabClass.image, at: i, animated: false)
 			}
+			#else
+			tabsView.insertSegment(with: tabClass.image, at: i, animated: false)
+			#endif
 		}
 
 		NSLayoutConstraint.activate([
@@ -231,7 +229,7 @@ internal class ColorPickerInnerViewController: UIViewController {
 			heightConstraint
 		])
 
-		if !isMac {
+		if !isCatalystMac {
 			let buttonsCheckerboardView = UIView()
 			buttonsCheckerboardView.translatesAutoresizingMaskIntoConstraints = false
 			buttonsCheckerboardView.accessibilityIgnoresInvertColors = configuration.overrideSmartInvert

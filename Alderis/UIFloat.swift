@@ -20,9 +20,11 @@ internal let isCatalystPad = isCatalyst && UIDevice.current.userInterfaceIdiom =
 
 // Catalyst Mac mode, with Mac UI at 1.00 scale
 internal let isCatalystMac: Bool = {
+	#if swift(>=5.3)
 	if #available(iOS 14, *) {
 		return UIDevice.current.userInterfaceIdiom == .mac
 	}
+	#endif
 	return false
 }()
 

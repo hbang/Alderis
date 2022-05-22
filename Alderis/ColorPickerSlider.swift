@@ -113,11 +113,15 @@ internal class ColorSlider: UISlider {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
+		#if swift(>=5.5)
 		var useSliderTrack = !isCatalystMac
 		if #available(iOS 15, *) {
 			preferredBehavioralStyle = .pad
 			useSliderTrack = true
 		}
+		#else
+		let useSliderTrack = true
+		#endif
 		if useSliderTrack {
 			setMinimumTrackImage(UIImage(), for: .normal)
 			setMaximumTrackImage(UIImage(), for: .normal)
@@ -157,9 +161,11 @@ internal class ColorSlider: UISlider {
 			selectionView.translatesAutoresizingMaskIntoConstraints = false
 			selectionView.isDragInteractionEnabled = false
 			selectionView.isDropInteractionEnabled = false
+			#if swift(>=5.3)
 			if #available(iOS 14, *) {
 				selectionView.isContextMenuInteractionEnabled = false
 			}
+			#endif
 			insertSubview(selectionView, aboveSubview: checkerboardView)
 			self.selectionView = selectionView
 

@@ -266,12 +266,14 @@ open class ColorPickerViewController: UIViewController {
 										 delay: 0,
 										 usingSpringWithDamping: 2,
 										 initialSpringVelocity: 0.5,
-										 options: []) {
-				self.backdropView.alpha = 1
-				self.bottomLayoutConstraint.isActive = true
-				self.bottomAnimatingLayoutConstraint.isActive = false
-				self.view.layoutIfNeeded()
-			}
+										 options: [],
+										 animations: {
+											self.backdropView.alpha = 1
+											self.bottomLayoutConstraint.isActive = true
+											self.bottomAnimatingLayoutConstraint.isActive = false
+											self.view.layoutIfNeeded()
+										 },
+										 completion: nil)
 		}
 	}
 
@@ -308,12 +310,14 @@ open class ColorPickerViewController: UIViewController {
 										 delay: 0,
 										 usingSpringWithDamping: 0.8,
 										 initialSpringVelocity: 0.5,
-										 options: []) {
-				self.backdropView.alpha = 0
-				self.bottomLayoutConstraint.isActive = false
-				self.bottomAnimatingLayoutConstraint.isActive = true
-				self.view.layoutIfNeeded()
-			}
+										 options: [],
+										 animations: {
+											self.backdropView.alpha = 0
+											self.bottomLayoutConstraint.isActive = false
+											self.bottomAnimatingLayoutConstraint.isActive = true
+											self.view.layoutIfNeeded()
+										 },
+										 completion: nil)
 		}
 	}
 
@@ -347,13 +351,15 @@ open class ColorPickerViewController: UIViewController {
 
 		UIView.animate(withDuration: duration,
 									 delay: 0,
-									 options: options) {
-			let keyboardHeight: CGFloat = (self.isKeyboardVisible ? keyboardEndFrame.size.height : 0)
-			let keyboardExtraMargin: CGFloat = (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
-			let bottom = max(keyboardHeight - (self.initialBottomSafeAreaInset ?? 0), 0) + keyboardExtraMargin
-			self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
-			self.view.layoutIfNeeded()
-		}
+									 options: options,
+									 animations: {
+										let keyboardHeight: CGFloat = (self.isKeyboardVisible ? keyboardEndFrame.size.height : 0)
+										let keyboardExtraMargin: CGFloat = (self.isKeyboardVisible && self.initialBottomSafeAreaInset != 0 ? 15 : 0)
+										let bottom = max(keyboardHeight - (self.initialBottomSafeAreaInset ?? 0), 0) + keyboardExtraMargin
+										self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottom, right: 0)
+										self.view.layoutIfNeeded()
+									 },
+									 completion: nil)
 	}
 
 	@objc private func dismissGestureFired(_ gestureRecognizer: UITapGestureRecognizer) {

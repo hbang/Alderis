@@ -9,7 +9,7 @@
 import UIKit
 
 /// An enumeration of the tabs `ColorPickerViewController` features. Use these enumeration values to
-/// set tab-related settings on ColorPickerConfiguration.
+/// set tab-related settings on `ColorPickerConfiguration`.
 @objc(HBColorPickerTab)
 public enum ColorPickerTab: Int, CaseIterable {
 	/// Tab 1: A grid of 9 variations of 11 colours, and a grayscale ramp. The first and default tab.
@@ -44,13 +44,13 @@ open class ColorPickerConfiguration: NSObject {
 	@objc open var color: UIColor
 
 	/// Whether to allow the user to set an alpha transparency value on the color. This controls the
-	/// visibility of an Alpha slider on the Sliders tab. When set to false, alpha values provided via
-	/// the `color` property, or by the user when entering a hexadecimal value on the Sliders tab,
+	/// visibility of an Alpha slider on the Sliders tab. When set to `false`, alpha values provided
+	/// via the `color` property, or by the user when entering a hexadecimal value on the Sliders tab,
 	/// will be discarded.
 	@objc open var supportsAlpha = true
 
-	/// The title to display at the top of the popup. If set to nil, no title will be displayed. The
-	/// default is nil.
+	/// The title to display at the top of the popup. If set to `nil`, no title will be displayed. The
+	/// default is `nil`.
 	@objc open var title: String?
 
 	/// The initial tab to select when the color picker is presented. The default is
@@ -62,21 +62,21 @@ open class ColorPickerConfiguration: NSObject {
 	@objc open var initialTab = ColorPickerTab.swatch
 
 	/// The tabs the user can select and switch between at the top of the window, if tabs are enabled
-	/// by showTabs.
+	/// by `showTabs`.
 	///
 	/// - see: `initialTab`
 	@nonobjc open var visibleTabs: [ColorPickerTab] = [.swatch, .map, .sliders, .accessibility]
 
-	/// Maps visibleTabs to Objective-C due to Swift limitations. This is an implementation detail.
-	/// Ignore this and use visibleTabs per usual.
+	/// Maps `visibleTabs` to Objective-C due to Swift limitations. This is an implementation detail.
+	/// Ignore this and use `visibleTabs` per usual.
 	@objc(visibleTabs)
 	open var _visibleTabsObjC: [ColorPickerTab.RawValue] {
 		get { visibleTabs.map(\.rawValue) }
 		set { visibleTabs = newValue.map { ColorPickerTab(rawValue: $0)! } }
 	}
 
-	/// Whether to display the tab selection at the top of the popup. The default is true. When set to
-	/// false, the user will only be able to access the tab specified in initialTab.
+	/// Whether to display the tab selection at the top of the popup. The default is `true`. When set
+	/// to `false`, the user will only be able to access the tab specified in initialTab.
 	@objc open var showTabs = true
 
 	/// When the Smart Invert accessibility feature is enabled, Alderis instructs the system to not
@@ -85,7 +85,7 @@ open class ColorPickerConfiguration: NSObject {
 	@objc open var overrideSmartInvert = true
 
 	/// Whether the user can end a drag interaction by dropping on the color picker window, allowing
-	/// them to drag a color from a supporting app. The default is true.
+	/// them to drag a color from a supporting app. The default is `true`.
 	@objc open var isDropInteractionEnabled = true
 
 }

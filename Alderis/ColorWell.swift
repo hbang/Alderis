@@ -33,7 +33,7 @@ open class ColorWell: UIControl {
 	}
 
 	/// Whether the user can begin a drag interaction from this view, allowing them to drop the color
-	/// into a supporting app. The default is false.
+	/// into a supporting app. The default is `false`.
 	@objc open var isDragInteractionEnabled = false {
 		didSet { updateDragDropInteraction() }
 	}
@@ -51,6 +51,7 @@ open class ColorWell: UIControl {
 		didSet { updateDragDropInteraction() }
 	}
 
+	#if swift(>=5.3)
 	/// Whether the user can long press (iPhone) or right-click (Mac/iPad) the view, allowing them to
 	/// copy the color in various formats, or paste a color from another source.
 	///
@@ -62,7 +63,6 @@ open class ColorWell: UIControl {
 	/// ```
 	///
 	/// Requires iOS 14 or newer.
-	#if swift(>=5.3)
 	@available(iOS 14, *)
 	open override var isContextMenuInteractionEnabled: Bool {
 		didSet { updateDragDropInteraction() }
@@ -337,6 +337,7 @@ extension ColorWell: UIDropInteractionDelegate {
 @available(iOS 15, *)
 extension ColorWell: UIToolTipInteractionDelegate {
 
+	/// :nodoc:
 	public func toolTipInteraction(_ interaction: UIToolTipInteraction, configurationAt point: CGPoint) -> UIToolTipConfiguration? {
 		UIToolTipConfiguration(toolTip: contextMenuTitle)
 	}
@@ -349,6 +350,7 @@ extension ColorWell: UIToolTipInteractionDelegate {
 @available(iOS 13, *)
 extension ColorWell { // UIContextMenuInteractionDelegate
 
+	/// :nodoc:
 	open override func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 		return UIContextMenuConfiguration(identifier: color, previewProvider: nil) { items in
 			var children = [UIMenuElement]()
@@ -398,5 +400,4 @@ extension ColorWell { // UIContextMenuInteractionDelegate
 /// Deprecated. Use `ColorWell` instead.
 @available(*, deprecated, renamed: "ColorWell")
 @objc(HBColorPickerCircleView)
-open class ColorPickerCircleView: ColorWell {
-}
+open class ColorPickerCircleView: ColorWell {}

@@ -17,20 +17,20 @@
     <a title="ColorPickerConfiguration Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Alderis 1.1.2 Docs</a></p>
-        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
-        <p class="header-right">
+        <p><a href="../index.html">Alderis 1.2 Docs</a></p>
+        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="../img/dash.png" alt="Dash"/>Install in Dash</a></p>
+        <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html">Alderis Reference</a>
-        <img id="carat" src="../img/carat.png" />
+        <img id="carat" src="../img/carat.png" alt=""/>
         ColorPickerConfiguration Class Reference
       </p>
     </div>
@@ -107,7 +107,7 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc(HBColorPickerConfiguration)</span>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorPickerConfiguration</span><span class="p">)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">ColorPickerConfiguration</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                 </div>
@@ -189,8 +189,8 @@ set yet, provide a sensible default.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Whether to allow the user to set an alpha transparency value on the color. This controls the
-visibility of an Alpha slider on the Sliders tab. When set to false, alpha values provided via
-the <code><a href="../Classes/ColorPickerConfiguration.html#/c:@M@Alderis@objc(cs)HBColorPickerConfiguration(py)color">color</a></code> property, or by the user when entering a hexadecimal value on the Sliders tab,
+visibility of an Alpha slider on the Sliders tab. When set to <code>false</code>, alpha values provided
+via the <code><a href="../Classes/ColorPickerConfiguration.html#/c:@M@Alderis@objc(cs)HBColorPickerConfiguration(py)color">color</a></code> property, or by the user when entering a hexadecimal value on the Sliders tab,
 will be discarded.</p>
 
                       </div>
@@ -219,8 +219,8 @@ will be discarded.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The title to display at the top of the popup. If set to nil, no title will be displayed. The
-default is nil.</p>
+                        <p>The title to display at the top of the popup. If set to <code>nil</code>, no title will be displayed. The
+default is <code>nil</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -285,7 +285,7 @@ default is nil.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The tabs the user can select and switch between at the top of the window, if tabs are enabled
-by showTabs.</p>
+by <code><a href="../Classes/ColorPickerConfiguration.html#/c:@M@Alderis@objc(cs)HBColorPickerConfiguration(py)showTabs">showTabs</a></code>.</p>
 <div class="aside aside-see">
     <p class="aside-title">See</p>
     <code><a href="../Classes/ColorPickerConfiguration.html#/c:@M@Alderis@objc(cs)HBColorPickerConfiguration(py)initialTab">initialTab</a></code>
@@ -318,15 +318,15 @@ by showTabs.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Maps visibleTabs to Objective-C due to Swift limitations. This is an implementation detail.
-Ignore this and use visibleTabs per usual.</p>
+                        <p>Maps <code><a href="../Classes/ColorPickerConfiguration.html#/s:7Alderis24ColorPickerConfigurationC11visibleTabsSayAA0bC3TabOGvp">visibleTabs</a></code> to Objective-C due to Swift limitations. This is an implementation detail.
+Ignore this and use <code><a href="../Classes/ColorPickerConfiguration.html#/s:7Alderis24ColorPickerConfigurationC11visibleTabsSayAA0bC3TabOGvp">visibleTabs</a></code> per usual.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(visibleTabs)</span>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="n"><a href="../Classes/ColorPickerConfiguration.html#/s:7Alderis24ColorPickerConfigurationC11visibleTabsSayAA0bC3TabOGvp">visibleTabs</a></span><span class="p">)</span>
 <span class="kd">open</span> <span class="k">var</span> <span class="nv">_visibleTabsObjC</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Enums/ColorPickerTab.html">ColorPickerTab</a></span><span class="o">.</span><span class="kt">RawValue</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
@@ -347,8 +347,8 @@ Ignore this and use visibleTabs per usual.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Whether to display the tab selection at the top of the popup. The default is true. When set to
-false, the user will only be able to access the tab specified in initialTab.</p>
+                        <p>Whether to display the tab selection at the top of the popup. The default is <code>true</code>. When set
+to <code>false</code>, the user will only be able to access the tab specified in initialTab.</p>
 
                       </div>
                       <div class="declaration">
@@ -407,7 +407,7 @@ selection. If this behavior is not desired, you can disable it here.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Whether the user can end a drag interaction by dropping on the color picker window, allowing
-them to drag a color from a supporting app. The default is true.</p>
+them to drag a color from a supporting app. The default is <code>true</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -427,11 +427,10 @@ them to drag a color from a supporting app. The default is true.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2021-03-10)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2022 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external noopener">HASHBANG Productions</a>. All rights reserved. (Last updated: 2022-05-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>

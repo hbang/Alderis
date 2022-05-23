@@ -17,20 +17,20 @@
     <a title="Color Picker  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Alderis 1.1.2 Docs</a></p>
-        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="img/dash.png"/>Install in Dash</a></p>
-        <p class="header-right">
+        <p><a href="index.html">Alderis 1.2 Docs</a></p>
+        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="img/dash.png" alt="Dash"/>Install in Dash</a></p>
+        <div class="header-right">
           <form role="search" action="search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="index.html">Alderis Reference</a>
-        <img id="carat" src="img/carat.png" />
+        <img id="carat" src="img/carat.png" alt=""/>
         Color Picker  Reference
       </p>
     </div>
@@ -130,7 +130,7 @@ on iPad and Mac, the picker will be presented as a popover. This means that you 
 <code>sourceView</code> or other similar properties on the view controller’s <code>popoverPresentationController</code>
 before presentation.</p>
 
-<p>To review examples of ColorPickerViewController in use, run <code>pod try Alderis</code>.</p>
+<p>To review examples of <code>ColorPickerViewController</code> in use, run <code>pod try Alderis</code>.</p>
 
                         <a href="Classes/ColorPickerViewController.html" class="slightly-smaller">See more</a>
                       </div>
@@ -138,7 +138,7 @@ before presentation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(HBColorPickerViewController)</span>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorPickerViewController</span><span class="p">)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">ColorPickerViewController</span> <span class="p">:</span> <span class="kt">UIViewController</span></code></pre>
 
                         </div>
@@ -167,7 +167,7 @@ before presentation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(HBColorPickerConfiguration)</span>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorPickerConfiguration</span><span class="p">)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">ColorPickerConfiguration</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
 
                         </div>
@@ -188,7 +188,7 @@ before presentation.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Use ColorPickerDelegate to handle the user’s response to <code><a href="Classes/ColorPickerViewController.html">ColorPickerViewController</a></code>.</p>
+                        <p>Use <code>ColorPickerDelegate</code> to handle the user’s response to <code><a href="Classes/ColorPickerViewController.html">ColorPickerViewController</a></code>.</p>
 
                         <a href="Protocols/ColorPickerDelegate.html" class="slightly-smaller">See more</a>
                       </div>
@@ -196,7 +196,7 @@ before presentation.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(HBColorPickerDelegate)</span>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorPickerDelegate</span><span class="p">)</span>
 <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ColorPickerDelegate</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
 
                         </div>
@@ -218,7 +218,7 @@ before presentation.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An enumeration of the tabs <code><a href="Classes/ColorPickerViewController.html">ColorPickerViewController</a></code> features. Use these enumeration values to
-set tab-related settings on ColorPickerConfiguration.</p>
+set tab-related settings on <code><a href="Classes/ColorPickerConfiguration.html">ColorPickerConfiguration</a></code>.</p>
 
                         <a href="Enums/ColorPickerTab.html" class="slightly-smaller">See more</a>
                       </div>
@@ -226,7 +226,7 @@ set tab-related settings on ColorPickerConfiguration.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc(HBColorPickerTab)</span>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorPickerTab</span><span class="p">)</span>
 <span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ColorPickerTab</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span></code></pre>
 
                         </div>
@@ -239,11 +239,10 @@ set tab-related settings on ColorPickerConfiguration.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2021-03-10)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2022 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external noopener">HASHBANG Productions</a>. All rights reserved. (Last updated: 2022-05-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>

@@ -17,20 +17,20 @@
     <a title="ColorWell Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Alderis 1.1.2 Docs</a></p>
-        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
-        <p class="header-right">
+        <p><a href="../index.html">Alderis 1.2 Docs</a></p>
+        <p class="header-right"><a href="https://github.com/hbang/Alderis"><img src="../img/gh.png" alt="GitHub"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fhbang.github.io%2FAlderis%2Fdocsets%2FAlderis.xml"><img src="../img/dash.png" alt="Dash"/>Install in Dash</a></p>
+        <div class="header-right">
           <form role="search" action="../search.json">
             <input type="text" placeholder="Search documentation" data-typeahead>
           </form>
-        </p>
+        </div>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
         <a href="../index.html">Alderis Reference</a>
-        <img id="carat" src="../img/carat.png" />
+        <img id="carat" src="../img/carat.png" alt=""/>
         ColorWell Class Reference
       </p>
     </div>
@@ -107,7 +107,7 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@objc(HBColorWell)</span>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span><span class="p">(</span><span class="kt">HBColorWell</span><span class="p">)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">ColorWell</span> <span class="p">:</span> <span class="kt">UIControl</span></code></pre>
 
                 </div>
@@ -196,7 +196,7 @@ and present an instance of <code><a href="../Classes/ColorPickerViewController.h
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Whether the user can begin a drag interaction from this view, allowing them to drop the color
-into a supporting app. The default is false.</p>
+into a supporting app. The default is <code>false</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -229,7 +229,7 @@ color from a supporting app onto this view. The default is true.</p>
 
 <p>To handle a color being dropped on this view, add an action for the <code>.valueChanged</code> event. For
 example:</p>
-<pre class="highlight swift"><code><span class="n">circleView</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">self.handleColorDropEvent(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">valueChanged</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">colorWell</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">self.handleColorDidChange(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">valueChanged</span><span class="p">)</span>
 </code></pre>
 
                       </div>
@@ -245,16 +245,51 @@ example:</p>
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Alderis@objc(cs)HBColorWell(py)contextMenuInteractionEnabled"></a>
+                    <a name="//apple_ref/swift/Property/isContextMenuInteractionEnabled" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Alderis@objc(cs)HBColorWell(py)contextMenuInteractionEnabled">isContextMenuInteractionEnabled</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Whether the user can long press (iPhone) or right-click (Mac/iPad) the view, allowing them to
+copy the color in various formats, or paste a color from another source.</p>
+
+<p>To handle a color being pasted via the context menu, add an action for the <code>.valueChanged</code>
+event. For example:</p>
+<pre class="highlight swift"><code><span class="n">colorWell</span><span class="o">.</span><span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">self.handleColorDidChange(_:)</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">valueChanged</span><span class="p">)</span>
+</code></pre>
+
+<p>Requires iOS 14 or newer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available</span><span class="p">(</span><span class="n">iOS</span> <span class="mi">14</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
+<span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">isContextMenuInteractionEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external">HASHBANG Productions</a>. All rights reserved. (Last updated: 2021-03-10)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2022 <a class="link" href="https://hbang.github.io/" target="_blank" rel="external noopener">HASHBANG Productions</a>. All rights reserved. (Last updated: 2022-05-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
         </section>
       </article>
     </div>
   </body>
-</div>
 </html>

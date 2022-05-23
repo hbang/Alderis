@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Use ColorPickerDelegate to handle the user’s response to `ColorPickerViewController`.
+/// Use `ColorPickerDelegate` to handle the user’s response to `ColorPickerViewController`.
 @objc(HBColorPickerDelegate)
 public protocol ColorPickerDelegate: NSObjectProtocol {
 

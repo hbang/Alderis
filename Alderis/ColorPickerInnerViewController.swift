@@ -414,14 +414,17 @@ extension ColorPickerInnerViewController: ColorPickerTabDelegate {
 
 extension ColorPickerInnerViewController: UIDropInteractionDelegate {
 
+	/// :nodoc:
 	public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
 		return session.items.count == 1 && session.canLoadObjects(ofClass: UIColor.self)
 	}
 
+	/// :nodoc:
 	public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
 		return UIDropProposal(operation: .copy)
 	}
 
+	/// :nodoc:
 	public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
 		session.loadObjects(ofClass: UIColor.self) { items in
 			if let color = items.first as? UIColor {
@@ -434,6 +437,7 @@ extension ColorPickerInnerViewController: UIDropInteractionDelegate {
 
 extension ColorPickerInnerViewController: UIPopoverPresentationControllerDelegate {
 
+	/// :nodoc:
 	public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
 		saveTapped()
 	}

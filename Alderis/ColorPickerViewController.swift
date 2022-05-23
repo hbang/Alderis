@@ -16,14 +16,14 @@ import UIKit
 /// `sourceView` or other similar properties on the view controller’s `popoverPresentationController`
 /// before presentation.
 ///
-/// To review examples of ColorPickerViewController in use, run `pod try Alderis`.
+/// To review examples of `ColorPickerViewController` in use, run `pod try Alderis`.
 @objc(HBColorPickerViewController)
 open class ColorPickerViewController: UIViewController {
 
 	/// Do not rely on this fallback value - always specify a color!
 	private static let defaultColor = UIColor(white: 0.6, alpha: 1)
 
-	/// Initialise an instance of ColorPickerViewController with a configuration object.
+	/// Initialise an instance of `ColorPickerViewController` with a configuration object.
 	///
 	/// Remember to set the `delegate` before presenting the view controller.
 	@objc public init(configuration: ColorPickerConfiguration) {
@@ -47,13 +47,13 @@ open class ColorPickerViewController: UIViewController {
 	/// - see: `ColorPickerConfiguration`
 	@objc open var configuration: ColorPickerConfiguration!
 
-	/// Deprecated. Set overrideSmartInvert on the `ColorPickerConfiguration` instead.
+	/// Deprecated. Set `ColorPickerConfiguration.overrideSmartInvert` instead.
 	///
 	/// - see: `ColorPickerConfiguration.overrideSmartInvert`
 	@available(*, deprecated, message: "Use ColorPickerConfiguration instead")
 	@objc open var overrideSmartInvert = true
 
-	/// Deprecated. Set color on the `ColorPickerConfiguration` instead.
+	/// Deprecated. Set `ColorPickerConfiguration.color` instead.
 	///
 	/// - see: `ColorPickerConfiguration.color`
 	@available(*, deprecated, message: "Use ColorPickerConfiguration instead")

@@ -64,7 +64,7 @@ If this doesn’t seem important to you, the answer is simple: skip Alderis and 
 Add to your Podfile:
 
 ```ruby
-pod 'Alderis', '~> 1.1'
+pod 'Alderis', '~> 1.2.0'
 ```
 
 And then run `pod install`.
@@ -73,7 +73,7 @@ And then run `pod install`.
 Add to your Cartfile:
 
 ```ruby
-github 'hbang/Alderis' ~> 1.1
+github 'hbang/Alderis' ~> 1.2.0
 ```
 
 And then run `carthage update`.
@@ -81,23 +81,23 @@ And then run `carthage update`.
 ### Swift Package Manager
 1. Click File &rarr; Swift Packages &rarr; Add Package Dependency.
 2. Enter `http://github.com/hbang/Alderis.git`.
-3. Specify `1.1` as the version filter.
+3. Specify `1.2` as the version filter.
 
 Or, manually add it to your Package.swift:
 
 ```swift
 dependencies: [
-	.package(url: "http://github.com/hbang/Alderis.git", from: "1.1")
+	.package(url: "http://github.com/hbang/Alderis.git", from: "1.2.0")
 ]
 ```
 
 And then run `swift package update`.
 
 ### Jailbreak packages
-Add `ws.hbang.alderis (>= 1.1)` to your `Depends:` list.
+Add `ws.hbang.alderis (>= 1.2)` to your `Depends:` list.
 
-## Preference Bundles and libcolorpicker Compatibility
-Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis (>= 1.1)` to switch their color picker to Alderis. No other changes required!
+#### Preference Bundles and libcolorpicker Compatibility
+Alderis acts as a drop-in replacement for [libcolorpicker](https://github.com/atomikpanda/libcolorpicker), an abandoned but still very popular color picker library on jailbroken iOS. Packages can simply change their dependencies list to replace `org.thebigboss.libcolorpicker` with `ws.hbang.alderis (>= 1.2)` to switch their color picker to Alderis. No other changes required!
 
 For more information, refer to [the docs](https://hbang.github.io/Alderis/preference-bundles.html).
 

@@ -15,7 +15,9 @@ Alderis is named for the Alderamin (Alpha) star in the Cepheus (Cephei) constell
 <td>
 <a href="https://hbang.github.io/Alderis/screenshots/alderis-demo.mp4">
 <img src="screenshots/alderis-demo.gif" width="320">
+</a>
 <br>
+<a href="https://hbang.github.io/Alderis/screenshots/alderis-demo.mp4">
 <sup>Click for full-quality MP4</sup>
 </a>
 </td>

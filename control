@@ -3,7 +3,7 @@ Name: Alderis Color Picker
 Depends: firmware (>= 12.0), firmware (>= 12.2) | ${LIBSWIFT}, uikittools
 Replaces: org.thebigboss.libcolorpicker, me.nepeta.libcolorpicker
 Provides: org.thebigboss.libcolorpicker (= 99.0), me.nepeta.libcolorpicker (= 99.0)
-Version: 1.2
+Version: 1.2.2
 Architecture: iphoneos-arm
 Description: Color picker support library for tweaks
 Maintainer: HASHBANG Productions <support@hbang.ws>

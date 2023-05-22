@@ -1,13 +1,18 @@
-ifeq ($(BUILD_LEGACY_ARM64E),1)
+ifeq ($(ROOTLESS),1)
+	export THEOS_PACKAGE_SCHEME = rootless
+	export TARGET = iphone:latest:15.0
+else ifeq ($(BUILD_LEGACY_ARM64E),1)
 	export TARGET = iphone:13.7:12.0
 else
 	export TARGET = iphone:latest:12.0
 endif
 
-FRAMEWORK_OUTPUT_DIR = $(THEOS_OBJ_DIR)/install/Library/Frameworks
+FRAMEWORK_OUTPUT_DIR = $(THEOS_OBJ_DIR)/install$(THEOS_PACKAGE_INSTALL_PREFIX)/Library/Frameworks
 ALDERIS_SDK_DIR = $(THEOS_OBJ_DIR)/alderis_sdk_$(THEOS_PACKAGE_BASE_VERSION)
 
-export ADDITIONAL_CFLAGS = -fobjc-arc -Wextra -Wno-unused-parameter -F$(FRAMEWORK_OUTPUT_DIR)
+export ADDITIONAL_CFLAGS = -fobjc-arc \
+	-Wextra -Wno-unused-parameter \
+	-F$(FRAMEWORK_OUTPUT_DIR)
 export ADDITIONAL_LDFLAGS = -F$(FRAMEWORK_OUTPUT_DIR)
 
 INSTALL_TARGET_PROCESSES = Preferences
@@ -16,17 +21,34 @@ include $(THEOS)/makefiles/common.mk
 
 XCODEPROJ_NAME = Alderis
 
-Alderis_XCODEFLAGS = DYLIB_INSTALL_NAME_BASE=/Library/Frameworks BUILD_LIBRARY_FOR_DISTRIBUTION=YES ARCHS="$(ARCHS)"
+Alderis_XCODEFLAGS = \
+	DYLIB_INSTALL_NAME_BASE=@rpath \
+	BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+	LOCAL_LIBRARY_DIR="$(THEOS_PACKAGE_INSTALL_PREFIX)/Library" \
+	ARCHS="$(ARCHS)"
 
 SUBPROJECTS = lcpshim
 
 include $(THEOS_MAKE_PATH)/xcodeproj.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
+after-Alderis-all::
+ifeq ($(ROOTLESS),1)
+	@rm -f $(FRAMEWORK_OUTPUT_DIR)/Alderis.framework/Assets.car
+	@ldid -S $(FRAMEWORK_OUTPUT_DIR)/Alderis.framework
+endif
+
 internal-stage::
-	# Copy postinst
-	mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
-	cp postinst $(THEOS_STAGING_DIR)/DEBIAN
+ifneq ($(ROOTLESS),1)
+	@mkdir -p $(THEOS_STAGING_DIR)/DEBIAN
+	@cp postinst $(THEOS_STAGING_DIR)/DEBIAN
+endif
+
+internal-package::
+ifeq ($(ROOTLESS),1)
+	@grep -v Depends: $(THEOS_STAGING_DIR)/DEBIAN/control > tmp
+	@mv tmp $(THEOS_STAGING_DIR)/DEBIAN/control
+endif
 
 docs:
 	@$(PRINT_FORMAT_MAKING) "Generating docs"

@@ -36,7 +36,14 @@
 	configuration.supportsAlpha = _showAlpha;
 	_viewController.configuration = configuration;
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_15_0
+	// Theoretically can do unexpected things if multiple windows are open, but I don’t really care,
+	// because this is a bad API design only included for compatibility.
+	UIWindow *window = ((UIWindowScene *)[UIApplication sharedApplication].connectedScenes.anyObject).keyWindow;
+#else
 	UIWindow *window = [UIApplication sharedApplication].keyWindow;
+#endif
+
 	_viewController.popoverPresentationController.sourceView = window;
 	_viewController.popoverPresentationController.sourceRect = window.bounds;
 	_viewController.popoverPresentationController.permittedArrowDirections = 0;

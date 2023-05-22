@@ -110,7 +110,7 @@
 	configuration.supportsAlpha = self._hbcp_supportsAlpha;
 	_viewController.configuration = configuration;
 
-	UIViewController *rootViewController = self._viewControllerForAncestor ?: [UIApplication sharedApplication].keyWindow.rootViewController;
+	UIViewController *rootViewController = self._viewControllerForAncestor ?: self.window.rootViewController;
 	[rootViewController presentViewController:_viewController animated:YES completion:nil];
 }
 
